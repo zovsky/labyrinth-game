@@ -1,9 +1,11 @@
 package com.zovsky.labyrinth;
 
+import android.app.Fragment;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -14,19 +16,33 @@ public class MainActivity extends AppCompatActivity {
     private String[] mDrawerItems;
     private DrawerLayout mDrawerLayout;
     private NavigationView mDrawerList;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //mDrawerItems = getResources().getStringArray(R.array.planets_array);
-        //mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        //mDrawerList = findViewById(R.id.left_drawer);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.app_name);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
 
-        // Set the adapter for the list view
-//        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-//                R.layout.drawer_list_item, mPlanetTitles));
+                return false;
+            }
+        });
+        toolbar.inflateMenu(R.menu.menu_main);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //mDrawerList = (NavigationView) findViewById(R.id.left_drawer);
+        //mDrawerItems = getResources().getStringArray(R.array.drawer_array);
+
+
+//        //Set the adapter for the list view
+//        mDrawerList.setAdapter(new ArrayAdapter<String>(this, null, mDrawerItems));
+//
 //        // Set the list's click listener
 //        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
