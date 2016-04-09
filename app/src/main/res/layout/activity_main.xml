@@ -7,9 +7,10 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <android.support.design.widget.CoordinatorLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -24,9 +25,23 @@
                 android:layout_height="?attr/actionBarSize" >
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
-    </android.support.design.widget.CoordinatorLayout>
 
+        <Button
+            android:id="@+id/button_rules"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Правила игры"
+            />
 
+        <Button
+            android:id="@+id/button_new"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Начать новую игру"
+            />
+    </LinearLayout>
 
 
     <android.support.design.widget.NavigationView
