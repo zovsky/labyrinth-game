@@ -6,10 +6,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private NavigationView mDrawerList;
     private Toolbar toolbar;
+    private WebView rules;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +50,9 @@ public class MainActivity extends AppCompatActivity {
 //
 //        // Set the list's click listener
 //        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
-    }
+        WebView rules = (WebView) findViewById(R.id.rules_web_view);
+        String rules_str = getResources().getString(R.string.rules_html);
+        rules.loadDataWithBaseURL(null, rules_str, "text/html", "utf-8", null);    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
