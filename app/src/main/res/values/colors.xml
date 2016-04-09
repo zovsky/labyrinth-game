@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="color_main" type="color">#3e2723</item>
+    <item name="color_main" type="color">#755444</item>
+    <item name="color_main_dark" type="color">#623722</item>
     <item name="color_text" type="color">#FFFFFF</item>
+    <item name="color_menu_item" type="color">#EFBD5F</item>
 </resources>
