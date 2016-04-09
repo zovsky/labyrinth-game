@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Labyrinth</string>
     <string name="action_settings">Inventory</string>
+
+    <string name="rules_html">
+        <![CDATA[
+        <h1>Правила Игры</h1>
+        <p>This is another paragraph of the same string.</p>
+        ]]>
+    </string>
 </resources>
