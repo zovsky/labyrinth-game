@@ -18,7 +18,7 @@
             <android.support.v7.widget.Toolbar
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/toolbar"
-                app:theme="@style/ActionBar"
+                android:theme="@style/ActionBar"
                 android:background="@color/color_main"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize" >
@@ -34,6 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/color_main"
+        app:itemTextColor="@color/color_menu_item"
         app:menu="@menu/navigation"
         app:headerLayout="@layout/navigation_header" />
 
