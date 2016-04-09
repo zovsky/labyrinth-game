@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/rules"
         android:orderInCategory="1"
-        android:title="Правила" />
+        android:title="Правила игры" />
 
     <item
+        android:id="@+id/new_game"
         android:orderInCategory="2"
-        android:title="Начать новую игру" />
+        android:title="Начать приключение сначала" />
 </menu>
