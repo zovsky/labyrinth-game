@@ -17,7 +17,7 @@ import android.widget.TextView;
  * Use the {@link ButtonsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GameFragment extends Fragment {
+public class NewGameFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +29,7 @@ public class GameFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public GameFragment() {
+    public NewGameFragment() {
         // Required empty public constructor
     }
 
@@ -63,9 +63,8 @@ public class GameFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText(R.string.hello_blank_fragment);
-        return textView;
+        return inflater.inflate(R.layout.fragment_rules, container, false);
+
     }
 
     //TODO fragments interaction

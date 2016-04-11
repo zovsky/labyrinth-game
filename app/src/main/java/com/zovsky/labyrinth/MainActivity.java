@@ -6,32 +6,28 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity implements GameFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity
+        implements  NewGameFragment.OnFragmentInteractionListener,
+                    ButtonsFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mDrawerList;
     private Toolbar toolbar;
-    private Button startGame;
-    private Button showRules;
+    private FragmentManager fm;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ViewPager pager = (ViewPager) findViewById(R.id.viewPager);
-        pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.app_name);
@@ -70,55 +66,78 @@ public class MainActivity extends AppCompatActivity implements GameFragment.OnFr
                     }
                 });
 
-        showRules = (Button) findViewById(R.id.button_rules);
-        showRules.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showRulesWebView();
-            }
-        });
+//
 
-        startGame = (Button) findViewById(R.id.button_new);
-        startGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showNewGameFragment();
-            }
-        });
-    }
-
-    private void showRulesWebView() {
-        FragmentManager fm = getSupportFragmentManager();
+        fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        Fragment fragment = new GameFragment();
-        ft.add(R.id.rules_web_view, fragment);
-        ft.addToBackStack("one");
-        //setTransition()
-        ft.commit();    }
-
-    private void showNewGameFragment() {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        Fragment fragment = new GameFragment();
-        ft.add(R.id.fragment_buttons, fragment);
-        ft.addToBackStack("one");
+        Fragment fragment = new ButtonsFragment();
+        ft.add(R.id.fragment_container, fragment);
+        ft.addToBackStack(null);
         //setTransition()
         ft.commit();
+    }
+
+    public class MyPagerAdapter {
+        private int NUM_ITEMS = 400;
+
+        public MyPagerAdapter(FragmentManager fragmentManager) {
+        }
+
+        public Fragment getItem(int page) {
+            switch (page) {
+                case 400: // Fragment 400 - Buttons
+                    showRulesWebView();
+                    //return null;
+                case 1: // Fragment # 0 - This will show FirstFragment different title
+                    //return NewGameFragment.newInstance(1, "Page # 2");
+                case 2: // Fragment # 1 - This will show SecondFragment
+                    //return NewGameFragment.newInstance(2, "Page # 3");
+                default:
+                    return ButtonsFragment.newInstance(null,null);
+            }
+        }
+    }
+
+    public void showRulesWebView() {
+        FragmentTransaction ft = fm.beginTransaction();
+        Fragment fragment = new NewGameFragment();
+        ft.add(R.id.fragment_container, fragment);
+        ft.addToBackStack(null);
+        //setTransition()
+        ft.commit();
+    }
+
+    public void showNewGameFragment() {
+        FragmentTransaction ft = fm.beginTransaction();
+        Fragment fragment = new NewGameFragment();
+        ft.replace(R.id.fragment_buttons, fragment);
+        ft.addToBackStack(null);
+        //setTransition()
+        ft.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0 ){
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     public void onFragmentInteraction(Uri uri){
         //you can leave it empty
     }
 
-    @Override
-    public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            super.onBackPressed();
-        } else {
-            mDrawerLayout.openDrawer(GravityCompat.START);
-
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+//            super.onBackPressed();
+//        } else {
+//            mDrawerLayout.openDrawer(GravityCompat.START);
+//
+//        }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
