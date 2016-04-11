@@ -1,27 +1,35 @@
 package com.zovsky.labyrinth;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ButtonsFragment.OnFragmentInteractionListener} interface
+ * {@link RulesFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ButtonsFragment#newInstance} factory method to
+ * Use the {@link RulesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewGameFragment extends Fragment {
+public class RulesFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private WebView webView;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -29,7 +37,7 @@ public class NewGameFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public NewGameFragment() {
+    public RulesFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +47,11 @@ public class NewGameFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ButtonsFragment.
+     * @return A new instance of fragment RulesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ButtonsFragment newInstance(String param1, String param2) {
-        ButtonsFragment fragment = new ButtonsFragment();
+    public static RulesFragment newInstance(String param1, String param2) {
+        RulesFragment fragment = new RulesFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,14 +68,35 @@ public class NewGameFragment extends Fragment {
         }
     }
 
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//
+////        if (isVisibleToUser) {
+////            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Правила игры");
+////        }
+//    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_new_game, container, false);
-
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_rules_webview, container, false);
+        webView = (WebView) view.findViewById(R.id.rules_web_view);
+        int color = ContextCompat.getColor(getContext(), R.color.color_main);
+        webView.setBackgroundColor(color);
+        String str = getResources().getString(R.string.rules_html);
+        webView.loadDataWithBaseURL(null, str, "text/html", "utf-8", null);
+        webView.setLongClickable(true);
+        webView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return true;
+            }
+        });
+        return view;
     }
-
-    //TODO fragments interaction
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

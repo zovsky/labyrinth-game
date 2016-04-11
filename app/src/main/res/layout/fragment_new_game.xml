@@ -9,7 +9,6 @@
         android:fitsSystemWindows="true"
         android:textColor="@color/color_text"
         android:background="@color/color_main"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

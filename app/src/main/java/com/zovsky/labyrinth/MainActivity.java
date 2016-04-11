@@ -15,7 +15,8 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
         implements  NewGameFragment.OnFragmentInteractionListener,
-                    ButtonsFragment.OnFragmentInteractionListener {
+                    ButtonsFragment.OnFragmentInteractionListener,
+                    RulesFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mDrawerList;
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction ft = fm.beginTransaction();
         Fragment fragment = new ButtonsFragment();
         ft.add(R.id.fragment_container, fragment);
-        ft.addToBackStack(null);
+        //ft.addToBackStack(null);
         //setTransition()
         ft.commit();
     }
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity
 
     public void showRulesWebView() {
         FragmentTransaction ft = fm.beginTransaction();
-        Fragment fragment = new NewGameFragment();
+        Fragment fragment = new RulesFragment();
         ft.add(R.id.fragment_container, fragment);
         ft.addToBackStack(null);
         //setTransition()
@@ -110,20 +111,20 @@ public class MainActivity extends AppCompatActivity
     public void showNewGameFragment() {
         FragmentTransaction ft = fm.beginTransaction();
         Fragment fragment = new NewGameFragment();
-        ft.replace(R.id.fragment_buttons, fragment);
+        ft.replace(R.id.fragment_container, fragment);
         ft.addToBackStack(null);
         //setTransition()
         ft.commit();
     }
 
-    @Override
-    public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0 ){
-            getSupportFragmentManager().popBackStack();
-        } else {
-            super.onBackPressed();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (getSupportFragmentManager().getBackStackEntryCount() > 0 ){
+//            getSupportFragmentManager().popBackStack();
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
 
     public void onFragmentInteraction(Uri uri){
         //you can leave it empty
