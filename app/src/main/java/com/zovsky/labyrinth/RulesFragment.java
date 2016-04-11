@@ -1,18 +1,14 @@
 package com.zovsky.labyrinth;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.TextView;
 
 
 /**
@@ -84,7 +80,7 @@ public class RulesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_rules_webview, container, false);
         webView = (WebView) view.findViewById(R.id.rules_web_view);
-        int color = ContextCompat.getColor(getContext(), R.color.color_main);
+        int color = ContextCompat.getColor(getContext(), R.color.color_background);
         webView.setBackgroundColor(color);
         String str = getResources().getString(R.string.rules_html);
         webView.loadDataWithBaseURL(null, str, "text/html", "utf-8", null);
@@ -95,6 +91,7 @@ public class RulesFragment extends Fragment {
                 return true;
             }
         });
+
         return view;
     }
 

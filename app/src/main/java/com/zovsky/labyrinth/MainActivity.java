@@ -31,6 +31,13 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
         toolbar.setTitle(R.string.app_name);
 //        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
 //            @Override
@@ -78,6 +85,11 @@ public class MainActivity extends AppCompatActivity
         ft.commit();
     }
 
+    public void setToolbarTitle(String string) {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(string);
+    }
+
     public class MyPagerAdapter {
         private int NUM_ITEMS = 400;
 
@@ -117,28 +129,21 @@ public class MainActivity extends AppCompatActivity
         ft.commit();
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        if (getSupportFragmentManager().getBackStackEntryCount() > 0 ){
-//            getSupportFragmentManager().popBackStack();
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
-
     public void onFragmentInteraction(Uri uri){
         //you can leave it empty
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-//            super.onBackPressed();
-//        } else {
-//            mDrawerLayout.openDrawer(GravityCompat.START);
-//
-//        }
-//    }
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0 ){
+            getSupportFragmentManager().popBackStack();
+        } else if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            super.onBackPressed();
+        } else {
+            mDrawerLayout.openDrawer(GravityCompat.START);
+
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
