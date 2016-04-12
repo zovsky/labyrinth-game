@@ -7,7 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +25,14 @@ public class NewGameFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private Button generator;
+    private TextView vinos;
+    private TextView lovk;
+    private TextView udaca;
+    int LLL;
+    int VVV;
+    int UUU;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -63,8 +74,33 @@ public class NewGameFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_new_game, container, false);
+        View view = inflater.inflate(R.layout.fragment_new_game, container, false);
+        generator = (Button) view.findViewById(R.id.init_calc_button);
+        generator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Random rnd = new Random();
+                LLL = rnd.nextInt(6)+7;
+                VVV = rnd.nextInt(6)+rnd.nextInt(6)+14;
+                UUU = rnd.nextInt(6)+7;
+                lovk.setText("ЛОВКОСТЬ (7-12) " + Integer.toString(LLL));
+                vinos.setText("ВЫНОСЛИВОСТЬ (14-24) " + Integer.toString(VVV));
+                udaca.setText("УДАЧА (7-12) " + Integer.toString(UUU));
+            }
+        });
 
+        lovk = (TextView) view.findViewById(R.id.lovk_text);
+        vinos = (TextView) view.findViewById(R.id.vinos_text);
+        udaca = (TextView) view.findViewById(R.id.udaca_text);
+
+//        startGame = (Button) view.findViewById(R.id.button_new);
+//        startGame.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ((MainActivity) getActivity()).showNewGameFragment();
+//            }
+//        });
+        return view;
     }
 
     //TODO fragments interaction
