@@ -62,22 +62,6 @@ public class ButtonsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-//        showRules = (Button) getActivity().findViewById(R.id.button_rules);
-//        showRules.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ((MainActivity) getActivity()).showRulesWebView();
-//            }
-//        });
-
-//        startGame = (Button) findViewById(R.id.button_new);
-//        startGame.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                showNewGameFragment();
-//            }
-//        });
     }
 
     @Override
@@ -88,6 +72,13 @@ public class ButtonsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ((MainActivity) getActivity()).showRulesWebView();
+            }
+        });
+        startGame = (Button) view.findViewById(R.id.button_new);
+        startGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity) getActivity()).showNewGameFragment();
             }
         });
         return view;

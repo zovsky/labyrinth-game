@@ -91,7 +91,6 @@ public class RulesFragment extends Fragment {
                 return true;
             }
         });
-
         return view;
     }
 
