@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout mDrawerLayout;
     private NavigationView mDrawerList;
     private Toolbar toolbar;
-    private FragmentManager fm;
 
 
     @Override
@@ -75,14 +74,16 @@ public class MainActivity extends AppCompatActivity
                 });
 
 //
+        if (savedInstanceState == null) {
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            Fragment fragment = new ButtonsFragment();
+            ft.replace(R.id.fragment_container, fragment);
+            //ft.addToBackStack(null);
+            //setTransition()
+            ft.commit();
+        }
 
-        fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        Fragment fragment = new ButtonsFragment();
-        ft.add(R.id.fragment_container, fragment);
-        //ft.addToBackStack(null);
-        //setTransition()
-        ft.commit();
     }
 
     public void setToolbarTitle(String string) {
@@ -112,15 +113,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void showRulesWebView() {
+        FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         Fragment fragment = new RulesFragment();
-        ft.add(R.id.fragment_container, fragment);
+        ft.replace(R.id.fragment_container, fragment);
         ft.addToBackStack(null);
         //setTransition()
         ft.commit();
     }
 
     public void showNewGameFragment() {
+        FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         Fragment fragment = new NewGameFragment();
         ft.replace(R.id.fragment_container, fragment);

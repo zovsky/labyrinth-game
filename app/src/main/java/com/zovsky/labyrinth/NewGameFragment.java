@@ -65,6 +65,7 @@ public class NewGameFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -79,13 +80,7 @@ public class NewGameFragment extends Fragment {
         generator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Random rnd = new Random();
-                LLL = rnd.nextInt(6)+7;
-                VVV = rnd.nextInt(6)+rnd.nextInt(6)+14;
-                UUU = rnd.nextInt(6)+7;
-                lovk.setText("ЛОВКОСТЬ (7-12) " + Integer.toString(LLL));
-                vinos.setText("ВЫНОСЛИВОСТЬ (14-24) " + Integer.toString(VVV));
-                udaca.setText("УДАЧА (7-12) " + Integer.toString(UUU));
+                generateInitials();
             }
         });
 
@@ -101,6 +96,16 @@ public class NewGameFragment extends Fragment {
 //            }
 //        });
         return view;
+    }
+
+    private void generateInitials() {
+        Random rnd = new Random();
+        LLL = rnd.nextInt(6)+7;
+        VVV = rnd.nextInt(6)+rnd.nextInt(6)+14;
+        UUU = rnd.nextInt(6)+7;
+        lovk.setText("ЛОВКОСТЬ (7-12) " + Integer.toString(LLL));
+        vinos.setText("ВЫНОСЛИВОСТЬ (14-24) " + Integer.toString(VVV));
+        udaca.setText("УДАЧА (7-12) " + Integer.toString(UUU));
     }
 
     //TODO fragments interaction
