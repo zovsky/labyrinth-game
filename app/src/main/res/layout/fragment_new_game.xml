@@ -59,24 +59,32 @@
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/choice_elixir" >
-
-        <RadioButton
-            android:layout_width="wrap_content"
+        
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ловкость"
-            android:id="@+id/radioButton1" />
+            android:orientation="horizontal">
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Выносливость"
-            android:id="@+id/radioButton2" />
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Удача"
-            android:id="@+id/radioButton3" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ловкость"
+                android:id="@+id/radioButton1" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Выносливость"
+                android:id="@+id/radioButton2" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Удача"
+                android:id="@+id/radioButton3" />
+        </RadioGroup>
+
     </LinearLayout>
 
     <Button

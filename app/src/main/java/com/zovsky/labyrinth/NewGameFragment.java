@@ -1,6 +1,7 @@
 package com.zovsky.labyrinth;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -26,7 +30,12 @@ public class NewGameFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private SharedPreferences heroPref;
+    private SharedPreferences.Editor editor;
+
     private Button generator;
+    private RadioGroup radioGroup;
+    private Button mainEntrance;
     private TextView vinos;
     private TextView lovk;
     private TextView udaca;
@@ -66,6 +75,7 @@ public class NewGameFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -76,6 +86,9 @@ public class NewGameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new_game, container, false);
+
+        heroPref = getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE);
+
         generator = (Button) view.findViewById(R.id.init_calc_button);
         generator.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,18 +97,54 @@ public class NewGameFragment extends Fragment {
             }
         });
 
+        radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
+
         lovk = (TextView) view.findViewById(R.id.lovk_text);
         vinos = (TextView) view.findViewById(R.id.vinos_text);
         udaca = (TextView) view.findViewById(R.id.udaca_text);
 
-//        startGame = (Button) view.findViewById(R.id.button_new);
-//        startGame.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ((MainActivity) getActivity()).showNewGameFragment();
-//            }
-//        });
+        setLVUnumbers();
+
+
+
+        mainEntrance = (Button) view.findViewById(R.id.entrance_button);
+        mainEntrance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+                if (selectedId == -1) {
+                    Toast.makeText(getContext(), "no radio selected", Toast.LENGTH_SHORT).show();
+                } else {
+                    switch (selectedId){
+                        case R.id.radioButton1:
+                            //lovk
+                            break;
+                        case R.id.radioButton2:
+                            //vinos
+                            break;
+                        case R.id.radioButton3:
+                            //udaca
+                            break;
+
+                    }
+                }
+            }
+        });
         return view;
+    }
+
+    private void setLVUnumbers() {
+        if (heroPref.getInt("LLL", 0) == 0) {
+            lovk.setText("ЛОВКОСТЬ (7-12)");
+            vinos.setText("ВЫНОСЛИВОСТЬ (14-24)");
+            udaca.setText("УДАЧА (7-12)");
+        } else {
+            lovk.setText("ЛОВКОСТЬ (7-12) " + Integer.toString(heroPref.getInt("LLL", 0)));
+            vinos.setText("ВЫНОСЛИВОСТЬ (14-24) " + Integer.toString(heroPref.getInt("VVV", 0)));
+            udaca.setText("УДАЧА (7-12) " + Integer.toString(heroPref.getInt("UUU", 0)));
+        }
+
     }
 
     private void generateInitials() {
@@ -103,9 +152,14 @@ public class NewGameFragment extends Fragment {
         LLL = rnd.nextInt(6)+7;
         VVV = rnd.nextInt(6)+rnd.nextInt(6)+14;
         UUU = rnd.nextInt(6)+7;
-        lovk.setText("ЛОВКОСТЬ (7-12) " + Integer.toString(LLL));
-        vinos.setText("ВЫНОСЛИВОСТЬ (14-24) " + Integer.toString(VVV));
-        udaca.setText("УДАЧА (7-12) " + Integer.toString(UUU));
+
+        editor = heroPref.edit();
+        editor.putInt("LLL", LLL);
+        editor.putInt("VVV", VVV);
+        editor.putInt("UUU", UUU);
+        editor.commit();
+
+        setLVUnumbers();
     }
 
     //TODO fragments interaction

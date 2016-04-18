@@ -1,5 +1,6 @@
 package com.zovsky.labyrinth;
 
+import android.content.Context;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -64,6 +65,9 @@ public class MainActivity extends AppCompatActivity
                                 return true;
 
                             case R.id.new_game:
+                                if (getSharedPreferences("game", Context.MODE_PRIVATE).getInt("gameOn", 0) == 1) {
+                                    //TODO 1: confirmation dialog
+                                }
                                 showNewGameFragment();
                                 return true;
 
