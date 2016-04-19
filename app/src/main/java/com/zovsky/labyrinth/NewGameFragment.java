@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +27,11 @@ import java.util.Random;
  * create an instance of this fragment.
  */
 public class NewGameFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private SharedPreferences heroPref;
+    private SharedPreferences heroPref, gamePref;
     private SharedPreferences.Editor editor;
 
     private Button generator;
@@ -43,7 +44,6 @@ public class NewGameFragment extends Fragment {
     int VVV;
     int UUU;
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -61,7 +61,7 @@ public class NewGameFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment ButtonsFragment.
      */
-    // TODO: Rename and change types and number of parameters
+
     public static ButtonsFragment newInstance(String param1, String param2) {
         ButtonsFragment fragment = new ButtonsFragment();
         Bundle args = new Bundle();
@@ -89,6 +89,18 @@ public class NewGameFragment extends Fragment {
 
         heroPref = getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE);
 
+        gamePref = getActivity().getSharedPreferences("game", Context.MODE_PRIVATE);
+        if (gamePref.getInt("gameOn", 0) == 0) {
+            editor = heroPref.edit();
+            editor.putInt("LLL", 0);
+            editor.putInt("VVV", 0);
+            editor.putInt("UUU", 0);
+            editor.commit();
+        }
+        editor = gamePref.edit();
+        editor.putInt("gameOn", 1);
+        editor.commit();
+
         generator = (Button) view.findViewById(R.id.init_calc_button);
         generator.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,22 +125,42 @@ public class NewGameFragment extends Fragment {
             public void onClick(View view) {
 
                 int selectedId = radioGroup.getCheckedRadioButtonId();
-                if (selectedId == -1) {
-                    Toast.makeText(getContext(), "no radio selected", Toast.LENGTH_SHORT).show();
+                if (selectedId == -1 || getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE).
+                                            getInt("VVV", 0) == 0) {
+                    Toast.makeText(getContext(), "Рассчитайте начальные параметры и выберите эликсир", Toast.LENGTH_SHORT).show();
                 } else {
+                    editor = heroPref.edit();
+                    editor.putInt("startLLL", getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE).getInt("LLL", 0));
+                    editor.putInt("startVVV", getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE).getInt("VVV", 0));
+                    editor.putInt("startUUU", getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE).getInt("UUU", 0));
+                    editor.putInt("elixirCounter", 2);
                     switch (selectedId){
                         case R.id.radioButton1:
-                            //lovk
+                            editor.putInt("elixir", 1);
+                            editor.commit();
                             break;
                         case R.id.radioButton2:
-                            //vinos
+                            editor.putInt("elixir", 2);
+                            editor.commit();
                             break;
                         case R.id.radioButton3:
-                            //udaca
+                            editor.putInt("elixir", 3);
+                            editor.commit();
                             break;
 
                     }
+                    ((MainActivity) getActivity()).showArticle(1);
                 }
+//                Toast.makeText(getContext(),
+//                  "sL " + Integer.toString(getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE).getInt("startLLL", 0)) +
+//                  " L " + Integer.toString(getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE).getInt("LLL", 0)) +
+//                  " sV " + Integer.toString(getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE).getInt("startVVV", 0)) +
+//                  " V " + Integer.toString(getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE).getInt("VVV", 0)) +
+//                  " sU " + Integer.toString(getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE).getInt("startUUU", 0)) +
+//                  " U " + Integer.toString(getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE).getInt("UUU", 0)) +
+//                  " el " + Integer.toString(getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE).getInt("elixir", 0)) +
+//                  " game " + Integer.toString(getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("gameOn", 0)),
+//                  Toast.LENGTH_LONG).show();
             }
         });
         return view;
@@ -162,9 +194,6 @@ public class NewGameFragment extends Fragment {
 
     }
 
-    //TODO fragments interaction
-
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -199,7 +228,6 @@ public class NewGameFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

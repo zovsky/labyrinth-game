@@ -23,7 +23,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity
         implements  NewGameFragment.OnFragmentInteractionListener,
                     ButtonsFragment.OnFragmentInteractionListener,
-                    RulesFragment.OnFragmentInteractionListener {
+                    RulesFragment.OnFragmentInteractionListener,
+                    ArticleFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mDrawerList;
@@ -168,8 +169,16 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction ft = fm.beginTransaction();
         Fragment fragment = new NewGameFragment();
         ft.replace(R.id.fragment_container, fragment);
-        ft.addToBackStack(null);
+        //ft.addToBackStack(null);
         //setTransition()
+        ft.commit();
+    }
+
+    public void showArticle(int article) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        Fragment fragment = ArticleFragment.newInstance(1, 0);
+        ft.replace(R.id.fragment_container, fragment);
         ft.commit();
     }
 
