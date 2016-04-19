@@ -1,6 +1,7 @@
 package com.zovsky.labyrinth;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,11 +9,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements  NewGameFragment.OnFragmentInteractionListener,
@@ -65,10 +71,10 @@ public class MainActivity extends AppCompatActivity
                                 return true;
 
                             case R.id.new_game:
-                                if (getSharedPreferences("game", Context.MODE_PRIVATE).getInt("gameOn", 0) == 1) {
-                                    //TODO 1: confirmation dialog
-                                }
-                                showNewGameFragment();
+//                                if (getSharedPreferences("game", Context.MODE_PRIVATE).getInt("gameOn", 0) == 1) {
+                                    showAlert();
+//                                }
+//                                showNewGameFragment();
                                 return true;
 
                             default:
@@ -88,6 +94,37 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
         }
 
+    }
+
+    private void showAlert() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        LinearLayout layout       = new LinearLayout(this);
+        TextView tvMessage        = new TextView(this);
+
+        tvMessage.setText("Вы действительно хотите начать заново? Текущая игра будет потеряна.");
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.addView(tvMessage);
+        tvMessage.setPadding(50, 20, 50, 0);
+        alert.setTitle("Внимание");
+        alert.setView(layout);
+
+
+        alert.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alert.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                showNewGameFragment();
+            }
+        });
+        alert.show();
     }
 
     public void setToolbarTitle(String string) {

@@ -134,19 +134,6 @@ public class NewGameFragment extends Fragment {
         return view;
     }
 
-    private void setLVUnumbers() {
-        if (heroPref.getInt("LLL", 0) == 0) {
-            lovk.setText("ЛОВКОСТЬ (7-12)");
-            vinos.setText("ВЫНОСЛИВОСТЬ (14-24)");
-            udaca.setText("УДАЧА (7-12)");
-        } else {
-            lovk.setText("ЛОВКОСТЬ (7-12) " + Integer.toString(heroPref.getInt("LLL", 0)));
-            vinos.setText("ВЫНОСЛИВОСТЬ (14-24) " + Integer.toString(heroPref.getInt("VVV", 0)));
-            udaca.setText("УДАЧА (7-12) " + Integer.toString(heroPref.getInt("UUU", 0)));
-        }
-
-    }
-
     private void generateInitials() {
         Random rnd = new Random();
         LLL = rnd.nextInt(6)+7;
@@ -160,6 +147,19 @@ public class NewGameFragment extends Fragment {
         editor.commit();
 
         setLVUnumbers();
+    }
+
+    private void setLVUnumbers() {
+        if (heroPref.getInt("LLL", 0) == 0) {
+            lovk.setText("ЛОВКОСТЬ (7-12)");
+            vinos.setText("ВЫНОСЛИВОСТЬ (14-24)");
+            udaca.setText("УДАЧА (7-12)");
+        } else {
+            lovk.setText("ЛОВКОСТЬ (7-12) " + Integer.toString(heroPref.getInt("LLL", 0)));
+            vinos.setText("ВЫНОСЛИВОСТЬ (14-24) " + Integer.toString(heroPref.getInt("VVV", 0)));
+            udaca.setText("УДАЧА (7-12) " + Integer.toString(heroPref.getInt("UUU", 0)));
+        }
+
     }
 
     //TODO fragments interaction
