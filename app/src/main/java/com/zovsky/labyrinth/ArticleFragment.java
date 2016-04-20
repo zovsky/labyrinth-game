@@ -4,10 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -38,14 +42,14 @@ public class ArticleFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param article Parameter 1.
-     * @param prevArticle Parameter 2.
+     * @param numberOfPara Parameter 2.
      * @return A new instance of fragment ArticleFragment.
      */
-    public static ArticleFragment newInstance(int article, int prevArticle) {
+    public static ArticleFragment newInstance(int article, int numberOfPara) {
         ArticleFragment fragment = new ArticleFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, article);
-        args.putInt(ARG_PARAM2, prevArticle);
+        args.putInt(ARG_PARAM2, numberOfPara);
         fragment.setArguments(args);
         return fragment;
     }
@@ -64,9 +68,20 @@ public class ArticleFragment extends Fragment {
                              Bundle savedInstanceState) {
         ((MainActivity) getActivity()).setToolbarTitle(Integer.toString(mParam1));
         View view = inflater.inflate(R.layout.fragment_article, container, false);
-        TextView textView = (TextView) view.findViewById(R.id.article_text);
-        textView.setText(R.string.article_1);
-        //TODO: Create textView(s) programmatically
+
+        TextView[] textView = new TextView[mParam2];
+        LinearLayout layout = (LinearLayout) view.findViewById(R.id.article_layout);
+        String articleID;
+        for (int i=0; i<mParam2; i++) {
+            textView[i] = new TextView(getContext());
+
+            layout.addView(textView[i]);
+            articleID = "article_" + Integer.toString(mParam1) + "_" + Integer.toString(i+1);
+            int resID = getResources().getIdentifier(articleID, "string", "com.zovsky.labyrinth");
+            textView[i].setText(resID);
+            Log.d("com.zovsky.labyrinth", articleID);
+        }
+
         //TODO: Add inventory to toolbar
         return view;
     }
@@ -108,5 +123,10 @@ public class ArticleFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         //Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private int getStringResourceByName(String aString) {
+        int resId = getResources().getIdentifier(aString, "string", null);
+        return resId;
     }
 }

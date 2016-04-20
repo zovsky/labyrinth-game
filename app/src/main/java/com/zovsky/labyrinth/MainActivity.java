@@ -174,10 +174,10 @@ public class MainActivity extends AppCompatActivity
         ft.commit();
     }
 
-    public void showArticle(int article) {
+    public void showArticle(int article, int numberOfPara) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        Fragment fragment = ArticleFragment.newInstance(1, 0);
+        Fragment fragment = ArticleFragment.newInstance(article, numberOfPara);
         ft.replace(R.id.fragment_container, fragment);
         ft.commit();
     }

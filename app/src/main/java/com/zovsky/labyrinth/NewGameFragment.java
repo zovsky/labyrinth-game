@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,6 +111,11 @@ public class NewGameFragment extends Fragment {
         });
 
         radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
+        int elixir = getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE).getInt("elixir", 0);
+        Log.d("com.zovsky.labyrinth", "elixir " + Integer.toString(elixir));
+        if (elixir != 0) {
+            radioGroup.check(elixir);
+        }
 
         lovk = (TextView) view.findViewById(R.id.lovk_text);
         vinos = (TextView) view.findViewById(R.id.vinos_text);
@@ -136,20 +142,20 @@ public class NewGameFragment extends Fragment {
                     editor.putInt("elixirCounter", 2);
                     switch (selectedId){
                         case R.id.radioButton1:
-                            editor.putInt("elixir", 1);
+                            editor.putInt("elixir", R.id.radioButton1);
                             editor.commit();
                             break;
                         case R.id.radioButton2:
-                            editor.putInt("elixir", 2);
+                            editor.putInt("elixir", R.id.radioButton2);
                             editor.commit();
                             break;
                         case R.id.radioButton3:
-                            editor.putInt("elixir", 3);
+                            editor.putInt("elixir", R.id.radioButton3);
                             editor.commit();
                             break;
 
                     }
-                    ((MainActivity) getActivity()).showArticle(1);
+                    ((MainActivity) getActivity()).showArticle(1, 2);
                 }
 //                Toast.makeText(getContext(),
 //                  "sL " + Integer.toString(getActivity().getSharedPreferences("hero", Context.MODE_PRIVATE).getInt("startLLL", 0)) +
