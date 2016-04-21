@@ -2,6 +2,7 @@ package com.zovsky.labyrinth;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,25 +15,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity
         implements  NewGameFragment.OnFragmentInteractionListener,
                     ButtonsFragment.OnFragmentInteractionListener,
                     RulesFragment.OnFragmentInteractionListener,
-                    ArticleFragment.OnFragmentInteractionListener {
+                    ArticleFragment.OnFragmentInteractionListener,
+                    InventoryFragment.OnFragmentInteractionListener {
+
+    private final static String GAME = "com.zovsky.labyrinth";
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mDrawerList;
     private Toolbar toolbar;
-    ActionMenuItemView inventory;
+    private ActionMenuItemView inventory;
+    private SharedPreferences gamePref;
+    private SharedPreferences.Editor editor;
+
 
 
     @Override
@@ -53,8 +63,7 @@ public class MainActivity extends AppCompatActivity
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                //TODO: Show Inventory fragment
-                return false;
+                return true;
             }
         });
         toolbar.inflateMenu(R.menu.menu_main);
@@ -77,8 +86,9 @@ public class MainActivity extends AppCompatActivity
                                 return true;
 
                             case R.id.new_game:
-                                if (getSharedPreferences("game", Context.MODE_PRIVATE).getInt("gameOn", 0) == 1) {
+                                if (getSharedPreferences(GAME, Context.MODE_PRIVATE).getInt("gameOn", 0) == 1) {
                                     showAlert();
+                                    return true;
                                 }
                                 showNewGameFragment();
                                 return true;
@@ -90,16 +100,17 @@ public class MainActivity extends AppCompatActivity
                 });
 
 //
-        if (savedInstanceState == null) {
+        if (getSharedPreferences(GAME, Context.MODE_PRIVATE).getInt("gameOn", 0) == 0) {
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             Fragment fragment = new ButtonsFragment();
             ft.replace(R.id.fragment_container, fragment);
             //ft.addToBackStack(null);
-            //setTransition()
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
             ft.commit();
+        } else {
+            showArticle(getSharedPreferences(GAME, Context.MODE_PRIVATE).getInt("currentArticle", 0));
         }
-
     }
 
     private void showAlert() {
@@ -127,15 +138,20 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences gamePref = getSharedPreferences(GAME, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = gamePref.edit();
+                editor.clear();
+                editor.commit();
                 showNewGameFragment();
             }
         });
         alert.show();
     }
 
-    public void setToolbarTitle(String string) {
+    public void setToolbarTitle(String title, String subtitle) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(string);
+        toolbar.setTitle(title);
+        toolbar.setSubtitle(subtitle);
     }
 
     public void setInventoryVisibility(boolean visibility) {
@@ -148,35 +164,17 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-//    public class MyPagerAdapter {
-//        private int NUM_ITEMS = 400;
-//
-//        public MyPagerAdapter(FragmentManager fragmentManager) {
-//        }
-//
-//        public Fragment getItem(int page) {
-//            switch (page) {
-//                case 400: // Fragment 400 - Buttons
-//                    showRulesWebView();
-//                    //return null;
-//                case 1: // Fragment # 0 - This will show FirstFragment different title
-//                    //return NewGameFragment.newInstance(1, "Page # 2");
-//                case 2: // Fragment # 1 - This will show SecondFragment
-//                    //return NewGameFragment.newInstance(2, "Page # 3");
-//                default:
-//                    return ButtonsFragment.newInstance(null,null);
-//            }
-//        }
-//    }
-
     public void showRulesWebView() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         Fragment fragment = new RulesFragment();
-        ft.replace(R.id.fragment_container, fragment);
-        ft.addToBackStack(null);
-        //setTransition()
-        ft.commit();
+        Fragment myFragment = fm.findFragmentByTag("rules");
+        if (!(myFragment instanceof RulesFragment)) {
+            ft.replace(R.id.fragment_container, fragment, "rules");
+            ft.addToBackStack(null);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+            ft.commit();
+        }
     }
 
     public void showNewGameFragment() {
@@ -185,7 +183,7 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = new NewGameFragment();
         ft.replace(R.id.fragment_container, fragment);
         //ft.addToBackStack(null);
-        //setTransition()
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
         ft.commit();
     }
 
@@ -194,11 +192,38 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction ft = fm.beginTransaction();
         String paras = "para_" + article;
         String opts = "opt_" + article;
-        int numberOfPara = Integer.valueOf(getResources().getString(getResources().getIdentifier(paras, "string", "com.zovsky.labyrinth")));
-        int numberOfRadios = Integer.valueOf(getResources().getString(getResources().getIdentifier(opts, "string", "com.zovsky.labyrinth")));
+        int numberOfPara = Integer.valueOf(getResources().getString(getResources().getIdentifier(paras, "string", GAME)));
+        int numberOfRadios = Integer.valueOf(getResources().getString(getResources().getIdentifier(opts, "string", GAME)));
         Fragment fragment = ArticleFragment.newInstance(article, numberOfPara, numberOfRadios);
         ft.replace(R.id.fragment_container, fragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
         ft.commit();
+    }
+
+    public void setInitialParameters() {
+        gamePref = getSharedPreferences(GAME, Context.MODE_PRIVATE);
+        editor = gamePref.edit();
+        editor.putInt("LLL", 0);
+        editor.putInt("VVV", 0);
+        editor.putInt("UUU", 0);
+        editor.putInt("elixirCounter", 2);
+        editor.putInt("gold", 0);
+        editor.putInt("food", 8);
+        editor.putInt("gameOn", 0);
+        Set<String> things=new HashSet<String>();
+        things.add("Меч");
+        things.add("Фонарь");
+        editor.putStringSet("things", things);
+        editor.commit();
+
+        showAllParameters();
+    }
+
+    public void showAllParameters() {
+        Map<String, ?> allEntries = gamePref.getAll();
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            Log.d(GAME, entry.getKey() + ": " + entry.getValue().toString());
+        }
     }
 
     public void onFragmentInteraction(Uri uri){
