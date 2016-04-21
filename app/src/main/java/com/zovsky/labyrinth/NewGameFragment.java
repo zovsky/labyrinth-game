@@ -153,7 +153,7 @@ public class NewGameFragment extends Fragment {
                             break;
 
                     }
-                    ((MainActivity) getActivity()).showArticle(1, 1, 1);
+                    ((MainActivity) getActivity()).showArticle(1);
                 }
 //                Toast.makeText(getContext(),
 //                  "sL " + Integer.toString(getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("startLLL", 0)) +

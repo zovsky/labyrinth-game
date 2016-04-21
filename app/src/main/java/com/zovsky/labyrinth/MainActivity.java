@@ -189,9 +189,13 @@ public class MainActivity extends AppCompatActivity
         ft.commit();
     }
 
-    public void showArticle(int article, int numberOfPara, int numberOfRadios) {
+    public void showArticle(int article) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+        String paras = "para_" + article;
+        String opts = "opt_" + article;
+        int numberOfPara = Integer.valueOf(getResources().getString(getResources().getIdentifier(paras, "string", "com.zovsky.labyrinth")));
+        int numberOfRadios = Integer.valueOf(getResources().getString(getResources().getIdentifier(opts, "string", "com.zovsky.labyrinth")));
         Fragment fragment = ArticleFragment.newInstance(article, numberOfPara, numberOfRadios);
         ft.replace(R.id.fragment_container, fragment);
         ft.commit();
