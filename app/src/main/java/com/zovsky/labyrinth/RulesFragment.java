@@ -79,6 +79,7 @@ public class RulesFragment extends Fragment {
                 return true;
             }
         });
+        ((MainActivity) getActivity()).setToolbarTitle("Лабиринт", "");
         return view;
     }
 

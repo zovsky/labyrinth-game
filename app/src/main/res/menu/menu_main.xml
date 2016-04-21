@@ -5,5 +5,14 @@
         android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="1"
-        app:showAsAction="always" />
+        app:showAsAction="always">
+
+        <menu>
+            <item android:id="@+id/top"
+                android:title="submenu1"/>
+            <item android:id="@+id/bottom"
+                android:title="submenu2" />
+        </menu>
+
+    </item>
 </menu>

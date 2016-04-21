@@ -15,6 +15,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.Map;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +27,9 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class ArticleFragment extends Fragment {
+
+    private final static String GAME = "com.zovsky.labyrinth";
+
     // Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -71,14 +76,22 @@ public class ArticleFragment extends Fragment {
             mParas = getArguments().getInt(ARG_PARAM2);
             mRadios = getArguments().getInt(ARG_PARAM3);
         }
-        ((MainActivity)getActivity()).setInventoryVisibility(true);
+
+        gamePref = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE);
+        editor = gamePref.edit();
+        editor.putInt("currentArticle", mArticle);
+        editor.commit();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //TODO: Set toolbar title as LVU
-        ((MainActivity) getActivity()).setToolbarTitle(Integer.toString(mArticle));
+        ((MainActivity)getActivity()).setInventoryVisibility(true);
+        gamePref = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE);
+        String toolbarTitle = "Л:" + gamePref.getInt("LLL",0) +
+                                " В:" + gamePref.getInt("VVV",0) +
+                                " У:" + gamePref.getInt("UUU",0);
+        ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
         View view = inflater.inflate(R.layout.fragment_article, container, false);
 
         TextView[] textView = new TextView[mParas];
@@ -106,7 +119,7 @@ public class ArticleFragment extends Fragment {
             int radioTextID = getStringResourceByName(textID);
             if (mRadios == 1) {
                 radioGroup.check(radioButton[radio].getId());
-                gamePref = getActivity().getSharedPreferences("game", Context.MODE_PRIVATE);
+                gamePref = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE);
                 editor = gamePref.edit();
                 editor.putInt("nextArticle", Integer.parseInt(getResources().getString(resID)));
                 editor.commit();
@@ -122,10 +135,7 @@ public class ArticleFragment extends Fragment {
             @Override
             public void onClick(View view) {
 //                int selectedRadioID = radioGroup.getCheckedRadioButtonId();
-                int nextArticle = getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("nextArticle", 0);
-                Log.d("com.zovsky.labyrinth", "" + nextArticle);
-
-
+                int nextArticle = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE).getInt("nextArticle", 0);
                 ((MainActivity) getActivity()).showArticle(nextArticle);
             }
         });
@@ -173,7 +183,7 @@ public class ArticleFragment extends Fragment {
     }
 
     private int getStringResourceByName(String aString) {
-        int resId = getResources().getIdentifier(aString, "string", "com.zovsky.labyrinth");
+        int resId = getResources().getIdentifier(aString, "string", GAME);
         return resId;
     }
 
