@@ -12,11 +12,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout mDrawerLayout;
     private NavigationView mDrawerList;
     private Toolbar toolbar;
+    ActionMenuItemView inventory;
 
 
     @Override
@@ -46,14 +50,15 @@ public class MainActivity extends AppCompatActivity
 //            }
 //        });
         toolbar.setTitle(R.string.app_name);
-//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//
-//                return false;
-//            }
-//        });
-//        toolbar.inflateMenu(R.menu.menu_main);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                //TODO: Show Inventory fragment
+                return false;
+            }
+        });
+        toolbar.inflateMenu(R.menu.menu_main);
+        setInventoryVisibility(false);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (NavigationView) findViewById(R.id.left_drawer);
@@ -72,10 +77,10 @@ public class MainActivity extends AppCompatActivity
                                 return true;
 
                             case R.id.new_game:
-//                                if (getSharedPreferences("game", Context.MODE_PRIVATE).getInt("gameOn", 0) == 1) {
+                                if (getSharedPreferences("game", Context.MODE_PRIVATE).getInt("gameOn", 0) == 1) {
                                     showAlert();
-//                                }
-//                                showNewGameFragment();
+                                }
+                                showNewGameFragment();
                                 return true;
 
                             default:
@@ -133,26 +138,36 @@ public class MainActivity extends AppCompatActivity
         toolbar.setTitle(string);
     }
 
-    public class MyPagerAdapter {
-        private int NUM_ITEMS = 400;
-
-        public MyPagerAdapter(FragmentManager fragmentManager) {
+    public void setInventoryVisibility(boolean visibility) {
+        inventory = (ActionMenuItemView) findViewById(R.id.action_settings);
+        if (visibility == false) {
+            inventory.setVisibility(View.INVISIBLE);
+        } else {
+            inventory.setVisibility(View.VISIBLE);
         }
 
-        public Fragment getItem(int page) {
-            switch (page) {
-                case 400: // Fragment 400 - Buttons
-                    showRulesWebView();
-                    //return null;
-                case 1: // Fragment # 0 - This will show FirstFragment different title
-                    //return NewGameFragment.newInstance(1, "Page # 2");
-                case 2: // Fragment # 1 - This will show SecondFragment
-                    //return NewGameFragment.newInstance(2, "Page # 3");
-                default:
-                    return ButtonsFragment.newInstance(null,null);
-            }
-        }
     }
+
+//    public class MyPagerAdapter {
+//        private int NUM_ITEMS = 400;
+//
+//        public MyPagerAdapter(FragmentManager fragmentManager) {
+//        }
+//
+//        public Fragment getItem(int page) {
+//            switch (page) {
+//                case 400: // Fragment 400 - Buttons
+//                    showRulesWebView();
+//                    //return null;
+//                case 1: // Fragment # 0 - This will show FirstFragment different title
+//                    //return NewGameFragment.newInstance(1, "Page # 2");
+//                case 2: // Fragment # 1 - This will show SecondFragment
+//                    //return NewGameFragment.newInstance(2, "Page # 3");
+//                default:
+//                    return ButtonsFragment.newInstance(null,null);
+//            }
+//        }
+//    }
 
     public void showRulesWebView() {
         FragmentManager fm = getSupportFragmentManager();
@@ -174,10 +189,10 @@ public class MainActivity extends AppCompatActivity
         ft.commit();
     }
 
-    public void showArticle(int article, int numberOfPara) {
+    public void showArticle(int article, int numberOfPara, int numberOfRadios) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        Fragment fragment = ArticleFragment.newInstance(article, numberOfPara);
+        Fragment fragment = ArticleFragment.newInstance(article, numberOfPara, numberOfRadios);
         ft.replace(R.id.fragment_container, fragment);
         ft.commit();
     }

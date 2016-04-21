@@ -8,10 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
@@ -27,9 +27,11 @@ public class ArticleFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM3 = "param3";
 
-    private int mParam1;
-    private int mParam2;
+    private int mArticle;
+    private int mParas;
+    private int mRadios;
 
     private OnFragmentInteractionListener mListener;
 
@@ -43,13 +45,15 @@ public class ArticleFragment extends Fragment {
      *
      * @param article Parameter 1.
      * @param numberOfPara Parameter 2.
+     * @param numberOfRadios Parameter 3.
      * @return A new instance of fragment ArticleFragment.
      */
-    public static ArticleFragment newInstance(int article, int numberOfPara) {
+    public static ArticleFragment newInstance(int article, int numberOfPara, int numberOfRadios) {
         ArticleFragment fragment = new ArticleFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, article);
         args.putInt(ARG_PARAM2, numberOfPara);
+        args.putInt(ARG_PARAM3, numberOfRadios);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,31 +62,52 @@ public class ArticleFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getInt(ARG_PARAM1);
-            mParam2 = getArguments().getInt(ARG_PARAM2);
+            mArticle = getArguments().getInt(ARG_PARAM1);
+            mParas = getArguments().getInt(ARG_PARAM2);
+            mRadios = getArguments().getInt(ARG_PARAM2);
         }
+        ((MainActivity)getActivity()).setInventoryVisibility(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).setToolbarTitle(Integer.toString(mParam1));
+        //TODO: Set toolbar title as LVU
+        ((MainActivity) getActivity()).setToolbarTitle(Integer.toString(mArticle));
         View view = inflater.inflate(R.layout.fragment_article, container, false);
 
-        TextView[] textView = new TextView[mParam2];
+        TextView[] textView = new TextView[mParas];
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.article_layout);
-        String articleID;
-        for (int i=0; i<mParam2; i++) {
-            textView[i] = new TextView(getContext());
-
-            layout.addView(textView[i]);
-            articleID = "article_" + Integer.toString(mParam1) + "_" + Integer.toString(i+1);
-            int resID = getResources().getIdentifier(articleID, "string", "com.zovsky.labyrinth");
-            textView[i].setText(resID);
+        String articleID, optionID, textID;
+        //generate text
+        for (int para = 0; para< mParas; para++) {
+            textView[para] = new TextView(getContext());
+            layout.addView(textView[para]);
+            articleID = "article_" + mArticle + "_" + (para+1);
+            int resID = getStringResourceByName(articleID);
+            textView[para].setText(resID);
             Log.d("com.zovsky.labyrinth", articleID);
         }
+        //generate radio buttons
+        RadioGroup radioGroup = new RadioGroup(getContext());
+        RadioButton[] radioButton = new RadioButton[mRadios];
+        layout.addView(radioGroup);
+        for (int radio = 0; radio< mRadios; radio++) {
+            radioButton[radio] = new RadioButton(getContext());
+            radioButton[radio].setId(View.generateViewId());
+            radioGroup.addView(radioButton[radio]);
+            optionID = "option_" + mArticle + "_" + (radio+1);
+            int resID = getStringResourceByName(optionID);
+            textID = "text_" + mArticle + "_" + (getResources().getString(resID));
+            int radioTextID = getStringResourceByName(textID);
+            if (mRadios == 1) {
+                //radioGroup.setVisibility(View.INVISIBLE);
+                radioGroup.check(radioButton[radio].getId());
+            }
+            radioButton[radio].setText(radioTextID);
+            Log.d("com.zovsky.labyrinth", optionID + " " + resID);
+        }
 
-        //TODO: Add inventory to toolbar
         return view;
     }
 
@@ -126,7 +151,8 @@ public class ArticleFragment extends Fragment {
     }
 
     private int getStringResourceByName(String aString) {
-        int resId = getResources().getIdentifier(aString, "string", null);
+        int resId = getResources().getIdentifier(aString, "string", "com.zovsky.labyrinth");
         return resId;
     }
+
 }

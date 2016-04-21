@@ -59,17 +59,8 @@ public class RulesFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        ((MainActivity)getActivity()).setInventoryVisibility(false);
     }
-
-//    @Override
-//    public void setUserVisibleHint(boolean isVisibleToUser) {
-//        super.setUserVisibleHint(isVisibleToUser);
-//
-////        if (isVisibleToUser) {
-////            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Правила игры");
-////        }
-//    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
