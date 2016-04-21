@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -86,7 +87,6 @@ public class ArticleFragment extends Fragment {
             articleID = "article_" + mArticle + "_" + (para+1);
             int resID = getStringResourceByName(articleID);
             textView[para].setText(resID);
-            Log.d("com.zovsky.labyrinth", articleID);
         }
         //generate radio buttons
         RadioGroup radioGroup = new RadioGroup(getContext());
@@ -103,10 +103,20 @@ public class ArticleFragment extends Fragment {
             if (mRadios == 1) {
                 //radioGroup.setVisibility(View.INVISIBLE);
                 radioGroup.check(radioButton[radio].getId());
+            } else {
+                radioButton[radio].setText(radioTextID);
             }
-            radioButton[radio].setText(radioTextID);
-            Log.d("com.zovsky.labyrinth", optionID + " " + resID);
         }
+        Button dalee = new Button(getContext());
+        layout.addView(dalee);
+        dalee.setText("Продолжить");
+        dalee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: Как узнать абзацы и варианты ходов у будущей статьи
+                ((MainActivity) getActivity()).showArticle(25, 1, 1);
+            }
+        });
 
         return view;
     }
