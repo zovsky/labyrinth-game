@@ -29,6 +29,8 @@ import java.util.Random;
  */
 public class NewGameFragment extends Fragment {
 
+    private final static String GAME = "com.zovsky.labyrinth";
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -89,16 +91,11 @@ public class NewGameFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new_game, container, false);
 
-        gamePref = getActivity().getSharedPreferences("game", Context.MODE_PRIVATE);
-        if (gamePref.getInt("gameOn", 0) == 0) {
-            editor.putInt("LLL", 0);
-            editor.putInt("VVV", 0);
-            editor.putInt("UUU", 0);
-            editor.commit();
-        }
+        gamePref = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE);
         editor = gamePref.edit();
-        editor.putInt("gameOn", 1);
-        editor.commit();
+        if (gamePref.getInt("gameOn", 0) == 0) {
+            ((MainActivity)getActivity()).setInitialParameters();
+        }
 
         generator = (Button) view.findViewById(R.id.init_calc_button);
         generator.setOnClickListener(new View.OnClickListener() {
@@ -109,8 +106,7 @@ public class NewGameFragment extends Fragment {
         });
 
         radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
-        int elixir = getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("elixir", 0);
-        Log.d("com.zovsky.labyrinth", "elixir " + Integer.toString(elixir));
+        int elixir = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE).getInt("elixir", 0);
         if (elixir != 0) {
             radioGroup.check(elixir);
         }
@@ -129,14 +125,14 @@ public class NewGameFragment extends Fragment {
             public void onClick(View view) {
 
                 int selectedId = radioGroup.getCheckedRadioButtonId();
-                if (selectedId == -1 || getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).
+                if (selectedId == -1 || getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE).
                                             getInt("VVV", 0) == 0) {
                     Toast.makeText(getContext(), "Рассчитайте начальные параметры и выберите эликсир", Toast.LENGTH_SHORT).show();
                 } else {
                     editor = gamePref.edit();
-                    editor.putInt("startLLL", getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("LLL", 0));
-                    editor.putInt("startVVV", getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("VVV", 0));
-                    editor.putInt("startUUU", getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("UUU", 0));
+                    editor.putInt("startLLL", getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE).getInt("LLL", 0));
+                    editor.putInt("startVVV", getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE).getInt("VVV", 0));
+                    editor.putInt("startUUU", getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE).getInt("UUU", 0));
                     editor.putInt("elixirCounter", 2);
                     switch (selectedId){
                         case R.id.radioButton1:
@@ -153,18 +149,10 @@ public class NewGameFragment extends Fragment {
                             break;
 
                     }
+                    editor.putInt("gameOn", 1);
+                    editor.commit();
                     ((MainActivity) getActivity()).showArticle(1);
                 }
-//                Toast.makeText(getContext(),
-//                  "sL " + Integer.toString(getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("startLLL", 0)) +
-//                  " L " + Integer.toString(getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("LLL", 0)) +
-//                  " sV " + Integer.toString(getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("startVVV", 0)) +
-//                  " V " + Integer.toString(getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("VVV", 0)) +
-//                  " sU " + Integer.toString(getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("startUUU", 0)) +
-//                  " U " + Integer.toString(getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("UUU", 0)) +
-//                  " el " + Integer.toString(getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("elixir", 0)) +
-//                  " game " + Integer.toString(getActivity().getSharedPreferences("game", Context.MODE_PRIVATE).getInt("gameOn", 0)),
-//                  Toast.LENGTH_LONG).show();
             }
         });
         return view;
