@@ -43,7 +43,19 @@
         android:background="@color/color_main"
         app:itemTextColor="@color/color_menu_item"
         app:menu="@menu/navigation"
-        app:headerLayout="@layout/navigation_header" />
+        app:headerLayout="@layout/navigation_header" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingLeft="@dimen/text_margin"
+            android:paddingBottom="@dimen/text_margin"
+            android:textColor="@color/color_menu_item"
+            android:text="Для выхода нажмите 'Назад'"/>
+
+    </android.support.design.widget.NavigationView>
+
 
 
 </android.support.v4.widget.DrawerLayout>

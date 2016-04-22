@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatRadioButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Map;
 
@@ -107,25 +109,29 @@ public class ArticleFragment extends Fragment {
         }
         //generate radio buttons
         final RadioGroup radioGroup = new RadioGroup(getContext());
-        RadioButton[] radioButton = new RadioButton[mRadios];
+        AppCompatRadioButton[] radioButton = new AppCompatRadioButton[mRadios];
         layout.addView(radioGroup);
+        int[] choice = new int[mRadios];
         for (int radio = 0; radio< mRadios; radio++) {
-            radioButton[radio] = new RadioButton(getContext());
+            radioButton[radio] = new AppCompatRadioButton(getContext(), null, R.attr.radioButtonStyle);
             radioButton[radio].setId(View.generateViewId());
             radioGroup.addView(radioButton[radio]);
             optionID = "option_" + mArticle + "_" + (radio+1); //option_25_1, option_25_2
             int resID = getStringResourceByName(optionID); //R.string
             textID = "text_" + mArticle + "_" + (radio+1); //text_25_1
             int radioTextID = getStringResourceByName(textID);
-            if (mRadios == 1) {
-                radioGroup.check(radioButton[radio].getId());
-                gamePref = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE);
-                editor = gamePref.edit();
-                editor.putInt("nextArticle", Integer.parseInt(getResources().getString(resID)));
-                editor.commit();
-            }
+            //TODO: Radiogroup set listener
+            choice[radio] = Integer.parseInt(getResources().getString(resID));
             String radioText = getResources().getString(resID) + ", " + getResources().getString(radioTextID);
             radioButton[radio].setText(radioText);
+            if (mRadios == 1) {
+                radioGroup.check(radioButton[radio].getId());
+            }
+            gamePref = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE);
+            editor = gamePref.edit();
+            editor.putInt("nextArticle", choice[radio]);
+            editor.commit();
+
         }
         Button dalee = new Button(getContext());
         //TODO: get nextArticle if select manually.
@@ -134,9 +140,11 @@ public class ArticleFragment extends Fragment {
         dalee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                int selectedRadioID = radioGroup.getCheckedRadioButtonId();
-                int nextArticle = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE).getInt("nextArticle", 0);
-                ((MainActivity) getActivity()).showArticle(nextArticle);
+                Toast.makeText(getContext(), "" + radioGroup.getCheckedRadioButtonId(), Toast.LENGTH_SHORT).show();
+                if (radioGroup.getCheckedRadioButtonId() > 0) {
+                    int nextArticle = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE).getInt("nextArticle", 0);
+                    ((MainActivity) getActivity()).showArticle(nextArticle);
+                } else Toast.makeText(getContext(), "Сделайте выбор", Toast.LENGTH_SHORT).show();
             }
         });
 

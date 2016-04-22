@@ -31,8 +31,7 @@ public class MainActivity extends AppCompatActivity
         implements  NewGameFragment.OnFragmentInteractionListener,
                     ButtonsFragment.OnFragmentInteractionListener,
                     RulesFragment.OnFragmentInteractionListener,
-                    ArticleFragment.OnFragmentInteractionListener,
-                    InventoryFragment.OnFragmentInteractionListener {
+                    ArticleFragment.OnFragmentInteractionListener {
 
     private final static String GAME = "com.zovsky.labyrinth";
 
@@ -238,7 +237,6 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         } else {
             mDrawerLayout.openDrawer(GravityCompat.START);
-
         }
     }
 
