@@ -22,8 +22,8 @@ import android.view.SubMenu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -268,7 +268,13 @@ public class MainActivity extends AppCompatActivity
         changeFood(gamePref.getInt("food", 0));
         changeGold(gamePref.getInt("gold", 0));
         changeElixir(gamePref.getInt("elixirCounter", 0));
-        changeThings(gamePref.getStringSet("things", new HashSet<String>()));
+
+        ArrayList<String> thingsList = new ArrayList<String>();
+        Set<String> things = gamePref.getStringSet("things", null);
+        for (String thing : things) {
+            thingsList.add(thing);
+        }
+        addAllThingsToMenu(thingsList);
     }
 
     public void changeFood(int count) {
@@ -314,7 +320,63 @@ public class MainActivity extends AppCompatActivity
         subMenu.add(1, 20, 20, elixirmenu);
     }
 
-    public void changeThings(Set<String> things) {
-        //TODO change things
+    public void addAllThingsToMenu(ArrayList<String> things) {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Menu menu = toolbar.getMenu();
+        MenuItem inventory = menu.getItem(0);
+        SubMenu subMenu = inventory.getSubMenu();
+        subMenu.removeGroup(2);
+        for (int i = 0; i < things.size(); i++) {
+            subMenu.add(2, i+40, i+40, things.get(i));
+        }
+    }
+
+    public void addThing(String thing) {
+        ArrayList<String> thingsList = new ArrayList<String>();
+        Set<String> things = gamePref.getStringSet("things", null);
+        for (String item : things) {
+            thingsList.add(item);
+        }
+        thingsList.add(thing);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Menu menu = toolbar.getMenu();
+        MenuItem inventory = menu.getItem(0);
+        SubMenu subMenu = inventory.getSubMenu();
+        subMenu.removeGroup(2);
+        editor.remove("things");
+        Set<String> newThings = new HashSet<String>();
+        for (int i = 0; i < thingsList.size(); i++) {
+            subMenu.add(2, i+40, i+40, thingsList.get(i));
+            newThings.add(thingsList.get(i));
+        }
+        editor.putStringSet("things", newThings).commit();
+    }
+
+    public void removeThing(String thing) {
+        ArrayList<String> thingsList = new ArrayList<String>();
+        Set<String> things = gamePref.getStringSet("things", null);
+        for (String item : things) {
+            thingsList.add(item);
+        }
+        for (int i = 0; i < thingsList.size(); i++) {
+            if (thingsList.get(i).equals(thing)) {
+                thingsList.remove(i);
+                break;
+            };
+        }
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Menu menu = toolbar.getMenu();
+        MenuItem inventory = menu.getItem(0);
+        SubMenu subMenu = inventory.getSubMenu();
+        subMenu.removeGroup(2);
+        editor.remove("things");
+        Set<String> newThings = new HashSet<String>();
+        for (int i = 0; i < thingsList.size(); i++) {
+            subMenu.add(2, i+40, i+40, thingsList.get(i));
+            newThings.add(thingsList.get(i));
+        }
+        editor.putStringSet("things", newThings).commit();
     }
 }
