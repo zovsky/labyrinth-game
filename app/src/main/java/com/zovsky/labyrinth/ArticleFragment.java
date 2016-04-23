@@ -1,12 +1,10 @@
 package com.zovsky.labyrinth;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatRadioButton;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +33,8 @@ public class ArticleFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param3";
 
-    private SharedPreferences gamePref;
-    private SharedPreferences.Editor editor;
+    //private SharedPreferences gamePref;
+    //private SharedPreferences.Editor editor;
 
     private int mArticle;
     private int mParas;
@@ -78,10 +76,7 @@ public class ArticleFragment extends Fragment {
             mRadios = getArguments().getInt(ARG_PARAM3);
         }
         choice = new int[mRadios];
-        gamePref = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE);
-        editor = gamePref.edit();
-        editor.putInt("currentArticle", mArticle);
-        editor.commit();
+        ((MainActivity)getActivity()).editor.putInt("currentArticle", mArticle).commit();
     }
 
     @Override
@@ -90,10 +85,9 @@ public class ArticleFragment extends Fragment {
         //show inventory button
         ((MainActivity)getActivity()).setInventoryVisibility(true);
         //set LVU as toolbar title
-        gamePref = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE);
-        String toolbarTitle = "Л:" + gamePref.getInt("LLL",0) +
-                                " В:" + gamePref.getInt("VVV",0) +
-                                " У:" + gamePref.getInt("UUU",0);
+        String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
+                                " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
+                                " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
         ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
 
         View view = inflater.inflate(R.layout.fragment_article, container, false);

@@ -36,28 +36,21 @@ public class MainActivity extends AppCompatActivity
 
     private final static String GAME = "com.zovsky.labyrinth";
 
-    private final static int MENUGOLD = 1;
-    private final static int MENUFOOD = 2;
-    private final static int MENUELIXIR = 3;
-    private final static int MENUKEYS = 4;
-    private final static int SUBMENUTHINGS = 5;
-    private final static int MENUTHINGS = 6;
-
-
     private DrawerLayout mDrawerLayout;
     private NavigationView mDrawerList;
     private Toolbar toolbar;
     private ActionMenuItemView inventory;
-    private SharedPreferences gamePref;
-    private SharedPreferences.Editor editor;
-
-
+    public SharedPreferences gamePref;
+    public SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        gamePref = getSharedPreferences(GAME, Context.MODE_PRIVATE);
+        editor = gamePref.edit();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
@@ -88,19 +81,16 @@ public class MainActivity extends AppCompatActivity
 
                         //Check to see which item was clicked and perform the appropriate action.
                         switch (menuItem.getItemId()) {
-
                             case R.id.rules:
                                 showRulesWebView();
                                 return true;
-
                             case R.id.new_game:
-                                if (getSharedPreferences(GAME, Context.MODE_PRIVATE).getInt("gameOn", 0) == 1) {
+                                if (gamePref.getInt("gameOn", 0) == 1) {
                                     showAlert();
                                     return true;
                                 }
                                 showNewGameFragment();
                                 return true;
-
                             default:
                                 return true;
                         }
@@ -108,7 +98,7 @@ public class MainActivity extends AppCompatActivity
                 });
 
 //
-        if (getSharedPreferences(GAME, Context.MODE_PRIVATE).getInt("gameOn", 0) == 0) {
+        if (gamePref.getInt("gameOn", 0) == 0) {
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             Fragment fragment = new ButtonsFragment();
@@ -117,7 +107,7 @@ public class MainActivity extends AppCompatActivity
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
             ft.commit();
         } else {
-            showArticle(getSharedPreferences(GAME, Context.MODE_PRIVATE).getInt("currentArticle", 0));
+            showArticle(gamePref.getInt("currentArticle", 0));
         }
     }
 
@@ -146,8 +136,6 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                SharedPreferences gamePref = getSharedPreferences(GAME, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = gamePref.edit();
                 editor.clear();
                 editor.commit();
                 showNewGameFragment();
@@ -196,6 +184,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void showArticle(int article) {
+        generateInitialMenu();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         String paras = "para_" + article;
@@ -209,22 +198,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void setInitialParameters() {
-        gamePref = getSharedPreferences(GAME, Context.MODE_PRIVATE);
-        editor = gamePref.edit();
         editor.putInt("LLL", 0);
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0);
-        editor.putInt("elixirCounter", 2);
         editor.putInt("gold", 0);
-        editor.putInt("food", 8);
+        editor.putInt("food", 0);
         editor.putInt("gameOn", 0);
         Set<String> things=new HashSet<String>();
         things.add("Меч");
         things.add("Фонарь");
         editor.putStringSet("things", things);
         editor.commit();
-
-        showAllParameters();
     }
 
     public void showAllParameters() {
@@ -282,17 +266,9 @@ public class MainActivity extends AppCompatActivity
         SubMenu subMenu = inventory.getSubMenu();
         subMenu.clear();
         changeFood(gamePref.getInt("food", 0));
-        String menugold = "Золото: " + gamePref.getInt("gold", 0);
-        subMenu.add(1, 30, 30, menugold);
-        String elixirmenu;
-        if (gamePref.getInt("elixir", 0) == 1) {
-            elixirmenu = "Эликсир ловкости: " + gamePref.getInt("elixirCounter", 0);
-        } else if (gamePref.getInt("elixir", 0) == 2) {
-            elixirmenu = "Эликсир выносливости: " + gamePref.getInt("elixirCounter", 0);
-        } else {
-            elixirmenu = "Эликсир удачи: " + gamePref.getInt("elixirCounter", 0);
-        }
-        subMenu.add(1, 20, 20, elixirmenu);
+        changeGold(gamePref.getInt("gold", 0));
+        changeElixir(gamePref.getInt("elixirCounter", 0));
+        changeThings(gamePref.getStringSet("things", new HashSet<String>()));
     }
 
     public void changeFood(int count) {
@@ -300,8 +276,45 @@ public class MainActivity extends AppCompatActivity
         Menu menu = toolbar.getMenu();
         MenuItem inventory = menu.getItem(0);
         SubMenu subMenu = inventory.getSubMenu();
-        //subMenu.removeItem(10);
+        subMenu.removeItem(10);
         String menufood = "Запасы еды: " + count;
+        editor.putInt("food", count).commit();
         subMenu.add(1, 10, 10, menufood);
+    }
+
+    public void changeGold(int count) {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Menu menu = toolbar.getMenu();
+        MenuItem inventory = menu.getItem(0);
+        SubMenu subMenu = inventory.getSubMenu();
+        subMenu.removeItem(30);
+        String menugold = "Золото: " + gamePref.getInt("gold", 0);
+        editor.putInt("gold", count).commit();
+        if (count > 0) {
+            subMenu.add(1, 30, 30, menugold);
+        }
+    }
+
+    public void changeElixir(int count) {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Menu menu = toolbar.getMenu();
+        MenuItem inventory = menu.getItem(0);
+        SubMenu subMenu = inventory.getSubMenu();
+        subMenu.removeItem(20);
+        String elixirmenu;
+        int elixir = gamePref.getInt("elixir", 0);
+        if (elixir == 1) {
+            elixirmenu = "Эликсир ловкости: " + gamePref.getInt("elixirCounter", 0);
+        } else if (elixir == 2) {
+            elixirmenu = "Эликсир выносливости: " + gamePref.getInt("elixirCounter", 0);
+        } else {
+            elixirmenu = "Эликсир удачи: " + gamePref.getInt("elixirCounter", 0);
+        }
+        editor.putInt("elixirCounter", count).commit();
+        subMenu.add(1, 20, 20, elixirmenu);
+    }
+
+    public void changeThings(Set<String> things) {
+        //TODO change things
     }
 }
