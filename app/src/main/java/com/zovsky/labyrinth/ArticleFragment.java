@@ -103,12 +103,19 @@ public class ArticleFragment extends Fragment {
             int resID = getStringResourceByName(articleID);
             textView[para].setText(resID);
         }
+
         //generate radio buttons
         final RadioGroup radioGroup = new RadioGroup(getContext());
         AppCompatRadioButton[] radioButton = new AppCompatRadioButton[mRadios];
         layout.addView(radioGroup);
-
-        for (int radio = 0; radio< mRadios; radio++) {
+        int var = 0;
+//        //was I here? if yes, show only first option, otherwise, show only second option
+//        if (((MainActivity)getActivity()).wasIHere(mArticle) == 1000) {
+//            mRadios = 1;
+//        } else if (((MainActivity)getActivity()).wasIHere(mArticle) == mArticle) {
+//            var = 1;
+//        }
+        for (int radio = var; radio< mRadios; radio++) {
             radioButton[radio] = new AppCompatRadioButton(getContext(), null, R.attr.radioButtonStyle);
             radioButton[radio].setId(radio+1);
             radioGroup.addView(radioButton[radio]);
@@ -136,6 +143,8 @@ public class ArticleFragment extends Fragment {
                 if (selectedId == -1) {
                     Toast.makeText(getContext(), "Сделайте выбор", Toast.LENGTH_SHORT).show();
                 } else {
+                    ((MainActivity) getActivity()).takeAction(mArticle);
+                    ((MainActivity) getActivity()).showAllParameters();
                     ((MainActivity) getActivity()).showArticle(choice[selectedId-1]);
                 }
             }

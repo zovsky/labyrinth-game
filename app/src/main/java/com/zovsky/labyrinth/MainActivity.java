@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0);
         editor.putInt("gold", 0);
-        editor.putInt("food", 0);
+        editor.putInt("food", 8);
         editor.putInt("gameOn", 0);
         Set<String> things=new HashSet<String>();
         things.add("Меч");
@@ -265,8 +265,8 @@ public class MainActivity extends AppCompatActivity
         MenuItem inventory = menu.getItem(0);
         SubMenu subMenu = inventory.getSubMenu();
         subMenu.clear();
-        changeFood(gamePref.getInt("food", 0));
-        changeGold(gamePref.getInt("gold", 0));
+        changeFood(0);
+        changeGold(0);
         changeElixir(gamePref.getInt("elixirCounter", 0));
 
         ArrayList<String> thingsList = new ArrayList<String>();
@@ -277,30 +277,32 @@ public class MainActivity extends AppCompatActivity
         addAllThingsToMenu(thingsList);
     }
 
-    public void changeFood(int count) {
+    public void changeFood(int difference) {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         Menu menu = toolbar.getMenu();
         MenuItem inventory = menu.getItem(0);
         SubMenu subMenu = inventory.getSubMenu();
         subMenu.removeItem(10);
-        String menufood = "Запасы еды: " + count;
-        editor.putInt("food", count).commit();
+        int food = gamePref.getInt("food", 0) + difference;
+        String menufood = "Запасы еды: " + food;
+        editor.putInt("food", food).commit();
         subMenu.add(1, 10, 10, menufood);
     }
 
-    public void changeGold(int count) {
+    public void changeGold(int difference) {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         Menu menu = toolbar.getMenu();
         MenuItem inventory = menu.getItem(0);
         SubMenu subMenu = inventory.getSubMenu();
         subMenu.removeItem(30);
-        String menugold = "Золото: " + gamePref.getInt("gold", 0);
-        editor.putInt("gold", count).commit();
-        if (count > 0) {
+        int gold = gamePref.getInt("gold", 0) + difference;
+        String menugold = "Золото: " + gold;
+        editor.putInt("gold", gold).commit();
+        if (gold > 0) {
             subMenu.add(1, 30, 30, menugold);
         }
     }
-
+    //TODO: if some parameters get to 0
     public void changeElixir(int count) {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         Menu menu = toolbar.getMenu();
@@ -378,5 +380,40 @@ public class MainActivity extends AppCompatActivity
             newThings.add(thingsList.get(i));
         }
         editor.putStringSet("things", newThings).commit();
+    }
+
+    public void changeVVV(int difference) {
+        int VVV = gamePref.getInt("VVV", 0) + difference;
+        if (VVV > gamePref.getInt("startVVV", 0)) {
+            editor.putInt("VVV", gamePref.getInt("startVVV", 0)).commit();
+        } else editor.putInt("VVV", VVV).commit();
+        if (VVV == 0) {
+            //TODO: gameOver();
+        }
+    }
+
+    public void takeAction(int article) {
+        if (article == 105 || article == 56) {
+            changeVVV(-1);
+        }
+    }
+
+    public void allowAction(int article) {
+        //TODO: Если есть в xml, то надувать одноразовую кнопку между абзацами
+    }
+
+    public int wasIHere(int article) {
+//        Set<String> set = gamePref.getStringSet("wasHere", new HashSet<String>());
+//        for (String room : set) {
+//            if (room.equals(Integer.toString(article))) {
+//                return 1000;
+//            }
+//        }
+        Set<String> room = new HashSet<String>();
+        room.add(Integer.toString(article));
+        editor.putStringSet("wasHere", room);
+        editor.commit();
+        showAllParameters();
+        return article;
     }
 }
