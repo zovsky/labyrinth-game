@@ -7,8 +7,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -92,7 +96,7 @@ public class NewGameFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_new_game, container, false);
 
         gamePref = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE);
-        editor = gamePref.edit();
+
         if (gamePref.getInt("gameOn", 0) == 0) {
             ((MainActivity)getActivity()).setInitialParameters();
         }
@@ -117,8 +121,9 @@ public class NewGameFragment extends Fragment {
 
         setLVUnumbers();
 
+        //TODO: generate menu
 
-
+        editor = gamePref.edit();
         mainEntrance = (Button) view.findViewById(R.id.entrance_button);
         mainEntrance.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,21 +141,24 @@ public class NewGameFragment extends Fragment {
                     editor.putInt("elixirCounter", 2);
                     switch (selectedId){
                         case R.id.radioButton1:
-                            editor.putInt("elixir", R.id.radioButton1);
+                            editor.putInt("elixir", 1);
                             editor.commit();
                             break;
                         case R.id.radioButton2:
-                            editor.putInt("elixir", R.id.radioButton2);
+                            editor.putInt("elixir", 2);
                             editor.commit();
                             break;
                         case R.id.radioButton3:
-                            editor.putInt("elixir", R.id.radioButton3);
+                            editor.putInt("elixir", 3);
                             editor.commit();
                             break;
 
                     }
                     editor.putInt("gameOn", 1);
+
                     editor.commit();
+                    ((MainActivity)getActivity()).generateInitialMenu();
+                    ((MainActivity)getActivity()).showAllParameters();
                     ((MainActivity) getActivity()).showArticle(1);
                 }
             }

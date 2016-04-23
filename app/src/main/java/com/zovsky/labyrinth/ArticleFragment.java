@@ -87,18 +87,21 @@ public class ArticleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //show inventory button
         ((MainActivity)getActivity()).setInventoryVisibility(true);
+        //set LVU as toolbar title
         gamePref = getActivity().getSharedPreferences(GAME, Context.MODE_PRIVATE);
         String toolbarTitle = "Л:" + gamePref.getInt("LLL",0) +
                                 " В:" + gamePref.getInt("VVV",0) +
                                 " У:" + gamePref.getInt("UUU",0);
         ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
+
         View view = inflater.inflate(R.layout.fragment_article, container, false);
 
         TextView[] textView = new TextView[mParas];
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.article_layout);
         String articleID, optionID, textID;
-        //generate text
+        //generate article paragraphs
         for (int para = 0; para< mParas; para++) {
             textView[para] = new TextView(getContext());
             layout.addView(textView[para]);
@@ -121,9 +124,11 @@ public class ArticleFragment extends Fragment {
             int radioTextID = getStringResourceByName(textID);
             choice[radio] = Integer.parseInt(getResources().getString(resID));
             String radioText = getResources().getString(resID) + ", " + getResources().getString(radioTextID);
+            //set radio button text
             radioButton[radio].setText(radioText);
 
             if (mRadios == 1) {
+                //check radio button if it is sole
                 radioGroup.check(radioButton[radio].getId());
             }
         }

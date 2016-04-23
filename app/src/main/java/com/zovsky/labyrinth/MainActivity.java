@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,6 +35,14 @@ public class MainActivity extends AppCompatActivity
                     ArticleFragment.OnFragmentInteractionListener {
 
     private final static String GAME = "com.zovsky.labyrinth";
+
+    private final static int MENUGOLD = 1;
+    private final static int MENUFOOD = 2;
+    private final static int MENUELIXIR = 3;
+    private final static int MENUKEYS = 4;
+    private final static int SUBMENUTHINGS = 5;
+    private final static int MENUTHINGS = 6;
+
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mDrawerList;
@@ -242,9 +251,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+        public boolean onPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -260,5 +273,35 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void generateInitialMenu() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Menu menu = toolbar.getMenu();
+        MenuItem inventory = menu.getItem(0);
+        SubMenu subMenu = inventory.getSubMenu();
+        subMenu.clear();
+        changeFood(gamePref.getInt("food", 0));
+        String menugold = "Золото: " + gamePref.getInt("gold", 0);
+        subMenu.add(1, 30, 30, menugold);
+        String elixirmenu;
+        if (gamePref.getInt("elixir", 0) == 1) {
+            elixirmenu = "Эликсир ловкости: " + gamePref.getInt("elixirCounter", 0);
+        } else if (gamePref.getInt("elixir", 0) == 2) {
+            elixirmenu = "Эликсир выносливости: " + gamePref.getInt("elixirCounter", 0);
+        } else {
+            elixirmenu = "Эликсир удачи: " + gamePref.getInt("elixirCounter", 0);
+        }
+        subMenu.add(1, 20, 20, elixirmenu);
+    }
+
+    public void changeFood(int count) {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Menu menu = toolbar.getMenu();
+        MenuItem inventory = menu.getItem(0);
+        SubMenu subMenu = inventory.getSubMenu();
+        //subMenu.removeItem(10);
+        String menufood = "Запасы еды: " + count;
+        subMenu.add(1, 10, 10, menufood);
     }
 }
