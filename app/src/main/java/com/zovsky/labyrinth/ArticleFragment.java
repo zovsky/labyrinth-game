@@ -109,12 +109,14 @@ public class ArticleFragment extends Fragment {
         AppCompatRadioButton[] radioButton = new AppCompatRadioButton[mRadios];
         layout.addView(radioGroup);
         int var = 0;
-//        //was I here? if yes, show only first option, otherwise, show only second option
-//        if (((MainActivity)getActivity()).wasIHere(mArticle) == 1000) {
-//            mRadios = 1;
-//        } else if (((MainActivity)getActivity()).wasIHere(mArticle) == mArticle) {
-//            var = 1;
-//        }
+        int wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
+        //was I here? if yes, show only first option, otherwise, show only second option
+        if (wasHere == 1000) {
+            mRadios = 1;
+        } else if (wasHere == mArticle) {
+            var = 1;
+        }
+        Log.d(GAME, "" + wasHere);
         for (int radio = var; radio< mRadios; radio++) {
             radioButton[radio] = new AppCompatRadioButton(getContext(), null, R.attr.radioButtonStyle);
             radioButton[radio].setId(radio+1);
@@ -128,8 +130,8 @@ public class ArticleFragment extends Fragment {
             //set radio button text
             radioButton[radio].setText(radioText);
 
-            if (mRadios == 1) {
-                //check radio button if it is sole
+            if (mRadios == 1 || wasHere == 1000 || wasHere == mArticle) {
+                //set checked radio button if it is sole
                 radioGroup.check(radioButton[radio].getId());
             }
         }

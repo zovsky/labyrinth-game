@@ -213,6 +213,7 @@ public class MainActivity extends AppCompatActivity
 
     public void showAllParameters() {
         Map<String, ?> allEntries = gamePref.getAll();
+        Log.d(GAME, "-----------------");
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
             Log.d(GAME, entry.getKey() + ": " + entry.getValue().toString());
         }
@@ -403,17 +404,20 @@ public class MainActivity extends AppCompatActivity
     }
 
     public int wasIHere(int article) {
-//        Set<String> set = gamePref.getStringSet("wasHere", new HashSet<String>());
-//        for (String room : set) {
-//            if (room.equals(Integer.toString(article))) {
-//                return 1000;
-//            }
-//        }
-        Set<String> room = new HashSet<String>();
-        room.add(Integer.toString(article));
-        editor.putStringSet("wasHere", room);
-        editor.commit();
-        showAllParameters();
-        return article;
+        if (article == 200) {
+            Set<String> set = gamePref.getStringSet("wasHere", new HashSet<String>());
+            for (String room : set) {
+                if (room.equals(Integer.toString(article))) {
+                    return 1000;
+                }
+            }
+            Set<String> room = new HashSet<String>();
+            room.add(Integer.toString(article));
+            editor.putStringSet("wasHere", room);
+            editor.commit();
+            showAllParameters();
+            return article;
+        }
+        return 3000;
     }
 }
