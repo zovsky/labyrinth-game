@@ -13,7 +13,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -140,7 +142,7 @@ public class NewGameFragment extends Fragment {
                     ((MainActivity)getActivity()).editor.commit();
                     ((MainActivity)getActivity()).generateInitialMenu();
                     //((MainActivity)getActivity()).showAllParameters();
-                    ((MainActivity)getActivity()).showArticle(1);
+                    ((MainActivity)getActivity()).showArticle(2);
                 }
             }
         });

@@ -25,7 +25,7 @@ import java.util.Set;
  * Use the {@link ArticleFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ArticleFragment extends Fragment {
+public class BattleFragment extends Fragment {
 
     private final static String GAME = "com.zovsky.labyrinth";
 
@@ -46,7 +46,7 @@ public class ArticleFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public ArticleFragment() {
+    public BattleFragment() {
         // Required empty public constructor
     }
 
@@ -88,11 +88,12 @@ public class ArticleFragment extends Fragment {
         ((MainActivity)getActivity()).setInventoryVisibility(true);
         //set LVU as toolbar title
         String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
-                                " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
-                                " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
+                " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
+                " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
         ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
 
-        View view = inflater.inflate(R.layout.fragment_article, container, false);
+        View view = inflater.inflate(R.layout.fragment_battle, container, false);
+        //TODO: battle fragment layout
 
         TextView[] textView = new TextView[mParas];
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.article_layout);
@@ -104,16 +105,6 @@ public class ArticleFragment extends Fragment {
             articleID = "article_" + mArticle + "_" + (para+1);
             int resID = getStringResourceByName(articleID);
             textView[para].setText(resID);
-        }
-        if (mArticle == 2) {
-            Set<String> things = ((MainActivity) getActivity()).gamePref.getStringSet("things", null);
-            for (String thing : things) {
-                if (thing.equals("Шлем")) {
-                    TextView extraTextView = new TextView(getContext());
-                    layout.addView(extraTextView);
-                    extraTextView.setText("У тебя есть шлем. Надень его - это добавит тебе 3В.");
-                }
-            }
         }
 
         //generate radio buttons

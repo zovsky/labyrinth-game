@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_1002">2</string>
+
+    <string name="article_1002_1">ГОБЛИН 10Л 10В</string>
+    <string name="article_1002_2">После каждого тура битвы можешь спастись бегством, в этом случае см. 372. Если победил, см. 380.</string>
+
+    <string name="opt_1002">2</string>
+
+    <string name="option_1002_1">372</string>
+    <string name="text_1002_1">Опять битва - поменять</string>
+    <string name="option_1002_2">200</string>
+    <string name="text_1002_2">перед битвой - поменять</string>
+
+</resources>

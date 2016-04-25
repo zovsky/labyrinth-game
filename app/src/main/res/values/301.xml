@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_301">1</string>
+
+    <string name="article_301_1">Можешь попробовать открыть двери, тогда см. 364, если не хочешь, см. 120.</string>
+
+    <string name="opt_301">2</string>
+
+    <string name="option_301_1">364</string>
+    <string name="text_301_1">Открыть двери</string>
+    <string name="option_301_2">120</string>
+    <string name="text_301_2">Не открывать</string>
+</resources>

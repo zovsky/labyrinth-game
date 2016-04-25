@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity
         implements  NewGameFragment.OnFragmentInteractionListener,
                     ButtonsFragment.OnFragmentInteractionListener,
                     RulesFragment.OnFragmentInteractionListener,
-                    ArticleFragment.OnFragmentInteractionListener {
+                    ArticleFragment.OnFragmentInteractionListener,
+                    BattleFragment.OnFragmentInteractionListener {
 
     private final static String GAME = "com.zovsky.labyrinth";
 
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
             ft.commit();
         } else {
+            debug();
             showArticle(gamePref.getInt("currentArticle", 0));
         }
     }
@@ -142,6 +144,26 @@ public class MainActivity extends AppCompatActivity
             }
         });
         alert.show();
+    }
+
+    public void debug() {
+//        editor.putInt("LLL", 0);
+//        editor.putInt("VVV", 0);
+//        editor.putInt("UUU", 0);
+//        editor.putInt("gold", 0);
+//        editor.putInt("food", 8);
+//        editor.putInt("gameOn", 0);
+        Set<String> things=new HashSet<String>();
+        things.add("Шлем");
+        editor.putStringSet("things", things);
+        editor.putInt("currentArticle", 2);
+        editor.commit();
+
+        Set<String> room = new HashSet<String>();
+        room.add("200");
+        editor.putStringSet("wasHere", room);
+        editor.commit();
+        showAllParameters();
     }
 
     public void setToolbarTitle(String title, String subtitle) {
@@ -184,17 +206,24 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void showArticle(int article) {
-        generateInitialMenu();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         String paras = "para_" + article;
         String opts = "opt_" + article;
         int numberOfPara = Integer.valueOf(getResources().getString(getResources().getIdentifier(paras, "string", GAME)));
         int numberOfRadios = Integer.valueOf(getResources().getString(getResources().getIdentifier(opts, "string", GAME)));
-        Fragment fragment = ArticleFragment.newInstance(article, numberOfPara, numberOfRadios);
-        ft.replace(R.id.fragment_container, fragment);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-        ft.commit();
+        if (article == 2) {
+            Fragment fragment = BattleFragment.newInstance(article, numberOfPara, numberOfRadios);
+            ft.replace(R.id.fragment_container, fragment);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+            ft.commit();
+        } else {
+            generateInitialMenu();
+            Fragment fragment = ArticleFragment.newInstance(article, numberOfPara, numberOfRadios);
+            ft.replace(R.id.fragment_container, fragment);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+            ft.commit();
+        }
     }
 
     public void setInitialParameters() {
@@ -397,6 +426,14 @@ public class MainActivity extends AppCompatActivity
         if (article == 105 || article == 56) {
             changeVVV(-1);
         }
+        if (article == 2) {
+            Set<String> things = gamePref.getStringSet("things", null);
+            for (String thing : things) {
+                if (thing.equals("Шлем")) {
+                    changeVVV(3);
+                }
+            }
+        }
     }
 
     public void allowAction(int article) {
@@ -405,7 +442,7 @@ public class MainActivity extends AppCompatActivity
 
     public int wasIHere(int article) {
         if (article == 200) {
-            Set<String> set = gamePref.getStringSet("wasHere", new HashSet<String>());
+            Set<String> set = gamePref.getStringSet("wasHere", null);
             for (String room : set) {
                 if (room.equals(Integer.toString(article))) {
                     return 1000;
@@ -419,5 +456,8 @@ public class MainActivity extends AppCompatActivity
             return article;
         }
         return 3000;
+    }
+
+    public void showBattle(int mArticle) {
     }
 }
