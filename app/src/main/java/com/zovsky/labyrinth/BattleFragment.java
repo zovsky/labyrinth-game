@@ -158,13 +158,11 @@ public class BattleFragment extends Fragment {
                 ((MainActivity) getActivity()).editor.putInt("hero_attack", hero_attack).commit();
                 calcHeroAttackButton.setEnabled(false);
                 heroAttackTextView.setText("" + hero_attack);
-                Log.d(GAME, "" +heroVVV);
-                setRoundResult();
-                Log.d(GAME, "" +heroVVV);
                 boolean isAllowed = ((MainActivity)getActivity()).isAllowedToTakeChance() &&
                         !roundResultTextView.getText().toString().equals("Равный раунд");
                 takeChanceButton.setEnabled(isAllowed);
                 fleeFromBattleButton.setEnabled(isFleeAllowed());
+                setRoundResult();
                 dalee.setEnabled(true);
                 ((MainActivity) getActivity()).editor.putInt("step", 2).commit();
             }
@@ -183,9 +181,7 @@ public class BattleFragment extends Fragment {
                 luck = ((MainActivity) getActivity()).takeChance();
                 ((MainActivity) getActivity()).editor.putInt("luck", luck).commit();
                 takeChanceButton.setEnabled(false);
-                Log.d(GAME, "" +heroVVV);
                 setRoundResult();
-                Log.d(GAME, "" +heroVVV);
                 ((MainActivity) getActivity()).editor.putInt("step", 3).commit();
             }
         });
@@ -212,17 +208,24 @@ public class BattleFragment extends Fragment {
                 ((MainActivity) getActivity()).editor.remove("luck").commit();
                 ((MainActivity) getActivity()).editor.remove("monster_attack").commit();
                 ((MainActivity) getActivity()).editor.remove("hero_attack").commit();
-                if (monsterVVV < 1) {
-                    ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("victoryArticle", 0));
-                } else ((MainActivity) getActivity()).editor.putInt("monsterVVV", monsterVVV);
                 if (heroVVV < 1) {
                     ((MainActivity) getActivity()).gameOver();
-                } else ((MainActivity) getActivity()).editor.putInt("VVV", heroVVV);
-                ((MainActivity) getActivity()).showBattle(mArticle);
+                    return;
+                } else {
+                    ((MainActivity) getActivity()).editor.putInt("VVV", heroVVV);
+                    ((MainActivity) getActivity()).showBattle(mArticle);
+                }
+                if (monsterVVV < 1) {
+                    ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("victoryArticle", 0));
+                    return;
+                } else {
+                    ((MainActivity) getActivity()).editor.putInt("monsterVVV", monsterVVV);
+                    ((MainActivity) getActivity()).showBattle(mArticle);
+                }
             }
         });
-        setBattleState(step);
-        ((MainActivity) getActivity()).showAllParameters();
+        restoreBattleState(step);
+//        ((MainActivity) getActivity()).showAllParameters();
         return view;
     }
 
@@ -230,10 +233,12 @@ public class BattleFragment extends Fragment {
         if (((MainActivity) getActivity()).gamePref.getInt("round", 0) > 1 &&
                 ((MainActivity) getActivity()).gamePref.getInt("fleeCondition", 0) == 1) {
             return false;
-        } else return true;
+        } else {
+            return true;
+        }
     }
 
-    private void setBattleState(int step) {
+    private void restoreBattleState(int step) {
         switch (step){
             case 0:
                 calcMonsterAttackButton.setEnabled(true);
@@ -242,16 +247,16 @@ public class BattleFragment extends Fragment {
                 calcHeroAttackButton.setEnabled(true);
                 break;
             case 2:
-                setRoundResult();
                 boolean isAllowed = ((MainActivity)getActivity()).isAllowedToTakeChance() &&
                         !roundResultTextView.getText().toString().equals("Равный раунд");
                 takeChanceButton.setEnabled(isAllowed);
                 fleeFromBattleButton.setEnabled(isFleeAllowed());
+                setRoundResult();
                 dalee.setEnabled(true);
                 break;
             case 3:
-                setRoundResult();
                 fleeFromBattleButton.setEnabled(isFleeAllowed());
+                setRoundResult();
                 dalee.setEnabled(true);
                 break;
         }
@@ -260,6 +265,7 @@ public class BattleFragment extends Fragment {
     private void setRoundResult() {
         String result = "";
         heroVVV = ((MainActivity) getActivity()).gamePref.getInt("VVV", 0);
+        monsterVVV = ((MainActivity) getActivity()).gamePref.getInt("monsterVVV", 0);
         int monsterA = ((MainActivity)getActivity()).gamePref.getInt("monster_attack", 0);
         int heroA = ((MainActivity)getActivity()).gamePref.getInt("hero_attack", 0);
         if (monsterA > heroA) {
@@ -289,8 +295,11 @@ public class BattleFragment extends Fragment {
         }
         if (monsterVVV < 1) {
             dalee.setText("Победа!");
-        } else dalee.setText("Продолжить битву");
-        Log.d(GAME, "!!! hero " + heroVVV + " monster " + monsterVVV);
+            takeChanceButton.setEnabled(false);
+            fleeFromBattleButton.setEnabled(false);
+        } else {
+            dalee.setText("Продолжить битву");
+        }
         roundResultTextView.setText(result);
     }
 

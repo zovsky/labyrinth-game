@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("LLL", 0);
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0);
-        editor.putInt("gold", 0);
+        editor.putInt("gold", 14);
         editor.putInt("food", 8);
         editor.putInt("gameOn", 0);
         Set<String> things=new HashSet<String>();
@@ -473,9 +473,19 @@ public class MainActivity extends AppCompatActivity
         } else editor.putInt("LLL", LLL).commit();
     }
 
+    public void takeSpecialAction(int article) {
+        if (article == 136) {
+            changeGold(-13);
+        }
+    }
+
+
     public void takeAction(int article) {
         if (article == 105 || article == 56) {
             changeVVV(-1);
+        }
+        if (article == 380) {
+            changeLLL(1);
         }
         if (article == 1002) {
             Set<String> things = gamePref.getStringSet("things", null);
@@ -511,6 +521,6 @@ public class MainActivity extends AppCompatActivity
 
     public void gameOver() {
         editor.putInt("gameOn", 0);
-        Toast.makeText(this, "Твой герой погиб", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Конец игры", Toast.LENGTH_SHORT).show();
     }
 }

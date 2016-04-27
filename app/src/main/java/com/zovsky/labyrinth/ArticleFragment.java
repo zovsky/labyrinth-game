@@ -117,12 +117,13 @@ public class ArticleFragment extends Fragment {
         int var = 0;
         int wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
         //was I here? if yes, show only first option, otherwise, show only second option
+        //1000 yes, 3000 - no
         if (wasHere == 1000) {
             mRadios = 1;
         } else if (wasHere == mArticle) {
             var = 1;
         }
-        Log.d(GAME, "" + wasHere);
+        Log.d(GAME, "was here:" + wasHere);
         for (int radio = var; radio < mRadios; radio++) {
             radioButton[radio] = new AppCompatRadioButton(getContext(), null, R.attr.radioButtonStyle);
             radioButton[radio].setId(radio+1);
@@ -143,9 +144,25 @@ public class ArticleFragment extends Fragment {
         }
         Button dalee = new Button(getContext());
         layout.addView(dalee);
+        //articles before battle;
         if (mArticle == 2) {
             dalee.setText("БИТВА");
         } else dalee.setText("Продолжить");
+
+        //special conditions;
+        if (mArticle == 3) {
+            if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 13) {
+                radioGroup.getChildAt(0).setEnabled(false);
+                radioButton[0].setText("Недостаточно золота");
+            }
+        }
+
+
+
+
+
+
+        ((MainActivity) getActivity()).takeSpecialAction(mArticle);
         dalee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,7 +175,7 @@ public class ArticleFragment extends Fragment {
                         Toast.makeText(getContext(), "Сделайте выбор", Toast.LENGTH_SHORT).show();
                     } else {
                         ((MainActivity) getActivity()).takeAction(mArticle);
-                        ((MainActivity) getActivity()).showAllParameters();
+//                        ((MainActivity) getActivity()).showAllParameters();
                         ((MainActivity) getActivity()).showArticle(choice[selectedId - 1]);
                     }
                 }
