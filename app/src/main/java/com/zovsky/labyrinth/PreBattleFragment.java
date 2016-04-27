@@ -21,12 +21,12 @@ import java.util.Set;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ArticleFragment.OnFragmentInteractionListener} interface
+ * {@link PreBattleFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ArticleFragment#newInstance} factory method to
+ * Use the {@link PreBattleFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ArticleFragment extends Fragment {
+public class PreBattleFragment extends Fragment {
 
     private final static String GAME = "com.zovsky.labyrinth";
 
@@ -43,11 +43,12 @@ public class ArticleFragment extends Fragment {
     private int mParas;
     private int mRadios;
 
-    private int[] choice;
+    private int monsterLLL;
+    private int monsterVVV;
 
     private OnFragmentInteractionListener mListener;
 
-    public ArticleFragment() {
+    public PreBattleFragment() {
         // Required empty public constructor
     }
 
@@ -58,10 +59,10 @@ public class ArticleFragment extends Fragment {
      * @param article Parameter 1.
      * @param numberOfPara Parameter 2.
      * @param numberOfRadios Parameter 3.
-     * @return A new instance of fragment ArticleFragment.
+     * @return A new instance of fragment PreBattleFragment.
      */
-    public static ArticleFragment newInstance(int article, int numberOfPara, int numberOfRadios) {
-        ArticleFragment fragment = new ArticleFragment();
+    public static PreBattleFragment newInstance(int article, int numberOfPara, int numberOfRadios) {
+        PreBattleFragment fragment = new PreBattleFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, article);
         args.putInt(ARG_PARAM2, numberOfPara);
@@ -78,7 +79,6 @@ public class ArticleFragment extends Fragment {
             mParas = getArguments().getInt(ARG_PARAM2);
             mRadios = getArguments().getInt(ARG_PARAM3);
         }
-        choice = new int[mRadios];
         ((MainActivity)getActivity()).editor.putInt("currentArticle", mArticle).commit();
     }
 
@@ -91,80 +91,78 @@ public class ArticleFragment extends Fragment {
         toolbar.getMenu().getItem(0).setTitle(R.string.action_settings).setEnabled(true);
         //set LVU as toolbar title
         String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
-                                " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
-                                " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
+                " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
+                " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
         ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
 
-        View view = inflater.inflate(R.layout.fragment_article, container, false);
+        View view = inflater.inflate(R.layout.fragment_pre_battle, container, false);
 
         TextView[] textView = new TextView[mParas];
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.article_layout);
         String articleID, optionID, textID;
-        //generate article paragraphs
+        //populate textViews
         for (int para = 0; para < mParas; para++) {
-            textView[para] = new TextView(getContext());
-            layout.addView(textView[para]);
-            articleID = "article_" + mArticle + "_" + (para+1);
+            articleID = "article_" + mArticle + "_" + (para);
             int resID = getStringResourceByName(articleID);
-            textView[para].setText(resID);
-        }
-        textView[mParas-1].setPadding(0, 0, 0, 20);
-
-        //generate radio buttons
-        final RadioGroup radioGroup = new RadioGroup(getContext());
-        AppCompatRadioButton[] radioButton = new AppCompatRadioButton[mRadios];
-        layout.addView(radioGroup);
-        int var = 0;
-        int wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
-        //was I here? if yes, show only first option, otherwise, show only second option
-        if (wasHere == 1000) {
-            mRadios = 1;
-        } else if (wasHere == mArticle) {
-            var = 1;
-        }
-        Log.d(GAME, "" + wasHere);
-        for (int radio = var; radio < mRadios; radio++) {
-            radioButton[radio] = new AppCompatRadioButton(getContext(), null, R.attr.radioButtonStyle);
-            radioButton[radio].setId(radio+1);
-            radioGroup.addView(radioButton[radio]);
-            optionID = "option_" + mArticle + "_" + (radio+1); //option_25_1, option_25_2
-            int resID = getStringResourceByName(optionID);
-            textID = "text_" + mArticle + "_" + (radio+1); //text_25_1
-            int radioTextID = getStringResourceByName(textID);
-            choice[radio] = Integer.parseInt(getResources().getString(resID));
-            String radioText = getResources().getString(resID) + ", " + getResources().getString(radioTextID);
-            //set radio button text
-            radioButton[radio].setText(radioText);
-
-            if (mRadios == 1 || wasHere == 1000 || wasHere == mArticle) {
-                //set checked radio button if it is sole
-                radioGroup.check(radioButton[radio].getId());
+            if (para == 0) {
+                textView[para] = (TextView) view.findViewById(R.id.monster_name);
+                textView[para].setText(resID);
+                ((MainActivity) getActivity()).editor.putString("monsterName", getResources().getString(resID)).commit();
             }
-        }
-        Button dalee = new Button(getContext());
-        layout.addView(dalee);
-        if (mArticle == 2) {
-            dalee.setText("БИТВА");
-        } else dalee.setText("Продолжить");
-        dalee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mRadios == 0) {
-                    ((MainActivity) getActivity()).takeAction(mArticle);
-                    ((MainActivity) getActivity()).showPreArticle(mArticle+1000);
-                } else {
-                    int selectedId = radioGroup.getCheckedRadioButtonId();
-                    if (selectedId == -1) {
-                        Toast.makeText(getContext(), "Сделайте выбор", Toast.LENGTH_SHORT).show();
-                    } else {
-                        ((MainActivity) getActivity()).takeAction(mArticle);
-                        ((MainActivity) getActivity()).showAllParameters();
-                        ((MainActivity) getActivity()).showArticle(choice[selectedId - 1]);
-                    }
+            if (para == 1) {
+                monsterLLL = Integer.parseInt(getResources().getString(resID));
+                textView[para] = (TextView) view.findViewById(R.id.monster_LLL);
+                textView[para].setText("Ловкость: " + monsterLLL);
+                ((MainActivity) getActivity()).editor.putInt("monsterLLL", monsterLLL).commit();
+            }
+            if (para == 2) {
+                monsterVVV = Integer.parseInt(getResources().getString(resID));
+                textView[para] = (TextView) view.findViewById(R.id.monster_VVV);
+                textView[para].setText("Выносливость: " + monsterVVV);
+                ((MainActivity) getActivity()).editor.putInt("monsterVVV", monsterVVV).commit();
+            }
+            if (para == 3) {
+                //TODO: надеть шлем
+                textView[para] = (TextView) view.findViewById(R.id.battle_condition_text);
+                if (getResources().getString(resID).equals("")) {
+                    textView[para].setEnabled(false);
                 }
             }
-        });
+            if (para == 4) {
+                textView[para] = (TextView) view.findViewById(R.id.flee_condition_text);
+                textView[para].setText(resID);
+            }
+        }
 
+        //find out pre_battle_action and flee_condition
+        //flee_conditions:
+        // 0 - после каждого раунда
+        // 1 - после первого раунда
+
+        String flee_condition = "option_" + mArticle + "_1";
+        int resID = getStringResourceByName(flee_condition);
+        ((MainActivity) getActivity()).editor.putInt("fleeCondition", Integer.parseInt(getResources().getString(resID))).commit();
+
+        String fleeArticle = "option_" + mArticle + "_2";
+        resID = getStringResourceByName(fleeArticle);
+        ((MainActivity) getActivity()).editor.putInt("fleeArticle", Integer.parseInt(getResources().getString(resID))).commit();
+
+        String victoryArticle = "option_" + mArticle + "_3";
+        resID = getStringResourceByName(victoryArticle);
+        ((MainActivity) getActivity()).editor.putInt("victoryArticle", Integer.parseInt(getResources().getString(resID))).commit();
+
+        Button startBattle = (Button) view.findViewById(R.id.start_battle_button);
+        startBattle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity) getActivity()).takeAction(mArticle);
+                ((MainActivity) getActivity()).showAllParameters();
+                ((MainActivity) getActivity()).editor.putInt("round", 1);
+                ((MainActivity) getActivity()).editor.remove("monster_attack");
+                ((MainActivity) getActivity()).editor.remove("hero_attack");
+                ((MainActivity) getActivity()).showBattle(mArticle + 1000);
+            }
+        });
         return view;
     }
 

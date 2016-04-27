@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/article_layout"
+              android:orientation="vertical"
+              android:padding="@dimen/text_margin"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/monster_name"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:text="ГОБЛИН"
+        android:textSize="30dp"/>
+
+    <TextView
+        android:id="@+id/monster_LLL"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:text="Ловкость: 10"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/monster_VVV"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:text="Выносливость: 10"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/battle_condition_text"
+        android:paddingTop="@dimen/text_margin"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:text="@string/article_1002_3" />
+
+    <TextView
+        android:id="@+id/flee_condition_text"
+        android:paddingTop="@dimen/text_margin"
+        android:paddingBottom="@dimen/text_margin"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:text="@string/article_1002_4" />
+
+    <Button
+        android:id="@+id/start_battle_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Начать битву"/>
+
+</LinearLayout>

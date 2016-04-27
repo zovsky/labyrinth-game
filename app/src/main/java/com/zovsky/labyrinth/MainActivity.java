@@ -26,6 +26,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity
                     ButtonsFragment.OnFragmentInteractionListener,
                     RulesFragment.OnFragmentInteractionListener,
                     ArticleFragment.OnFragmentInteractionListener,
-                    BattleFragment.OnFragmentInteractionListener {
+                    BattleFragment.OnFragmentInteractionListener,
+                    PreBattleFragment.OnFragmentInteractionListener {
 
     private final static String GAME = "com.zovsky.labyrinth";
 
@@ -54,13 +56,6 @@ public class MainActivity extends AppCompatActivity
         editor = gamePref.edit();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onBackPressed();
-//            }
-//        });
         toolbar.setTitle(R.string.app_name);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -108,8 +103,12 @@ public class MainActivity extends AppCompatActivity
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
             ft.commit();
         } else {
-            debug();
-            showArticle(gamePref.getInt("currentArticle", 0));
+            int current = gamePref.getInt("currentArticle", 0);
+            if (current < 1000) {
+                showArticle(current);
+            } else if (current > 2000) {
+                showBattle(current);
+            } else showPreArticle(current);
         }
     }
 
@@ -146,6 +145,16 @@ public class MainActivity extends AppCompatActivity
         alert.show();
     }
 
+    public int takeChance() {
+        int currentU = gamePref.getInt("UUU", 0);
+        changeUUU(-1);
+        Random rnd = new Random();
+        int dice = rnd.nextInt(6)+rnd.nextInt(6)+2;
+        if (dice <= currentU) {
+            return 1;
+        } else return -1;
+    }
+
     public void debug() {
 //        editor.putInt("LLL", 0);
 //        editor.putInt("VVV", 0);
@@ -156,7 +165,7 @@ public class MainActivity extends AppCompatActivity
         Set<String> things=new HashSet<String>();
         things.add("Шлем");
         editor.putStringSet("things", things);
-        editor.putInt("currentArticle", 2);
+//        editor.putInt("currentArticle", 2);
         editor.commit();
 
         Set<String> room = new HashSet<String>();
@@ -173,6 +182,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void setInventoryVisibility(boolean visibility) {
+//        if (toolbar.getMenu().getItem(1) != null) {
+//            toolbar.getMenu().removeItem(1);
+//            toolbar.getMenu().getItem(0).setVisible(true);
+//        }
         inventory = (ActionMenuItemView) findViewById(R.id.action_settings);
         if (visibility == false) {
             inventory.setVisibility(View.INVISIBLE);
@@ -212,18 +225,33 @@ public class MainActivity extends AppCompatActivity
         String opts = "opt_" + article;
         int numberOfPara = Integer.valueOf(getResources().getString(getResources().getIdentifier(paras, "string", GAME)));
         int numberOfRadios = Integer.valueOf(getResources().getString(getResources().getIdentifier(opts, "string", GAME)));
-        if (article == 2) {
-            Fragment fragment = BattleFragment.newInstance(article, numberOfPara, numberOfRadios);
-            ft.replace(R.id.fragment_container, fragment);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-            ft.commit();
-        } else {
-            generateInitialMenu();
-            Fragment fragment = ArticleFragment.newInstance(article, numberOfPara, numberOfRadios);
-            ft.replace(R.id.fragment_container, fragment);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-            ft.commit();
-        }
+        generateInitialMenu();
+        Fragment fragment = ArticleFragment.newInstance(article, numberOfPara, numberOfRadios);
+        ft.replace(R.id.fragment_container, fragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+        ft.commit();
+    }
+    public void showPreArticle(int article) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        String paras = "para_" + article;
+        String opts = "opt_" + article;
+        int numberOfPara = Integer.valueOf(getResources().getString(getResources().getIdentifier(paras, "string", GAME)));
+        int numberOfRadios = Integer.valueOf(getResources().getString(getResources().getIdentifier(opts, "string", GAME)));
+        Fragment fragment = PreBattleFragment.newInstance(article, numberOfPara, numberOfRadios);
+        ft.replace(R.id.fragment_container, fragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+        ft.commit();
+
+    }
+
+    public void showBattle(int article) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        Fragment fragment = BattleFragment.newInstance(article, 0, 0);
+        ft.replace(R.id.fragment_container, fragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+        ft.commit();
     }
 
     public void setInitialParameters() {
@@ -417,16 +445,36 @@ public class MainActivity extends AppCompatActivity
         if (VVV > gamePref.getInt("startVVV", 0)) {
             editor.putInt("VVV", gamePref.getInt("startVVV", 0)).commit();
         } else editor.putInt("VVV", VVV).commit();
-        if (VVV == 0) {
+        if (VVV <= 0) {
             //TODO: gameOver();
         }
+    }
+
+    public void changeUUU(int difference) {
+        int UUU = gamePref.getInt("UUU", 0) + difference;
+        if (UUU <= 0) {
+            UUU = 0;
+        }
+        if (UUU > gamePref.getInt("startUUU", 0)) {
+            editor.putInt("UUU", gamePref.getInt("startUUU", 0)).commit();
+        } else editor.putInt("UUU", UUU).commit();
+    }
+
+    public void changeLLL(int difference) {
+        int LLL = gamePref.getInt("LLL", 0) + difference;
+        if (LLL <= 1) {
+            LLL = 1;
+        }
+        if (LLL > gamePref.getInt("startLLL", 0)) {
+            editor.putInt("LLL", gamePref.getInt("startLLL", 0)).commit();
+        } else editor.putInt("LLL", LLL).commit();
     }
 
     public void takeAction(int article) {
         if (article == 105 || article == 56) {
             changeVVV(-1);
         }
-        if (article == 2) {
+        if (article == 1002) {
             Set<String> things = gamePref.getStringSet("things", null);
             for (String thing : things) {
                 if (thing.equals("Шлем")) {
@@ -442,7 +490,7 @@ public class MainActivity extends AppCompatActivity
 
     public int wasIHere(int article) {
         if (article == 200) {
-            Set<String> set = gamePref.getStringSet("wasHere", null);
+            Set<String> set = gamePref.getStringSet("wasHere", new HashSet<String>());
             for (String room : set) {
                 if (room.equals(Integer.toString(article))) {
                     return 1000;
@@ -456,8 +504,5 @@ public class MainActivity extends AppCompatActivity
             return article;
         }
         return 3000;
-    }
-
-    public void showBattle(int mArticle) {
     }
 }
