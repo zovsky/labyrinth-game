@@ -460,6 +460,12 @@ public class MainActivity extends AppCompatActivity
         } else editor.putInt("UUU", UUU).commit();
     }
 
+    public boolean isAllowedToTakeChance() {
+        if (gamePref.getInt("UUU", 0) == 0) {
+            return false;
+        } else return true;
+    }
+
     public void changeLLL(int difference) {
         int LLL = gamePref.getInt("LLL", 0) + difference;
         if (LLL <= 1) {

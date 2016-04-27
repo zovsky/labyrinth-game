@@ -4,20 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
-import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,16 +42,18 @@ public class BattleFragment extends Fragment {
 
     private int monsterLLL;
     private int monsterVVV;
-    private int roundText;
-    private String monster_name;
+    private int round;
+    private String monsterName;
+    private int step;
 
-    private Button calc_monster_attack;
-    private TextView text_monster_attack;
-    private Button calc_hero_attack;
-    private TextView text_hero_attack;
-    private Button good_luck;
-    private TextView round_result;
-    private Button fleeBattle;
+    private TextView roundTextView;
+    private Button calcMonsterAttackButton;
+    private TextView monsterAttackTextView;
+    private Button calcHeroAttackButton;
+    private TextView heroAttackTextView;
+    private Button takeChanceButton;
+    private TextView roundResultTextView;
+    private Button fleeFromBattleButton;
     private Button dalee;
 
     private OnFragmentInteractionListener mListener;
@@ -113,84 +109,83 @@ public class BattleFragment extends Fragment {
                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
                 " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
         ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle)); //null
-        luck = 0;
 
         View view = inflater.inflate(R.layout.fragment_battle, container, false);
+        round = ((MainActivity) getActivity()).gamePref.getInt("round", 0);
+        step = ((MainActivity) getActivity()).gamePref.getInt("step", 0);
+        luck = ((MainActivity) getActivity()).gamePref.getInt("luck", 0);
 
-        monster_name = ((MainActivity) getActivity()).gamePref.getString("monsterName", "");
-        TextView monster_name_corner = (TextView) view.findViewById(R.id.monster_name_corner);
-        monster_name_corner.setText(monster_name);
 
-        roundText = ((MainActivity) getActivity()).gamePref.getInt("round", 0);
-        final TextView round = (TextView) view.findViewById(R.id.battle_round_text);
-        round.setText("Раунд " + roundText);
+        monsterName = ((MainActivity) getActivity()).gamePref.getString("monsterName", "");
+        TextView monsterNameTextView = (TextView) view.findViewById(R.id.monster_name_corner);
+        monsterNameTextView.setText(monsterName);
 
-        calc_monster_attack = (Button) view.findViewById(R.id.calc_monster_attack);
-        calc_monster_attack.setOnClickListener(new View.OnClickListener() {
+        roundTextView = (TextView) view.findViewById(R.id.battle_round_text);
+        roundTextView.setText("Раунд " + round);
+
+        calcMonsterAttackButton = (Button) view.findViewById(R.id.calc_monster_attack);
+        calcMonsterAttackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Random rnd = new Random();
-                int monster_attack = rnd.nextInt(6)+rnd.nextInt(6)+2+((MainActivity)getActivity()).gamePref.getInt("monsterLLL",0);
+                int monster_attack = rnd.nextInt(6)+rnd.nextInt(6)+2+monsterLLL;
                 ((MainActivity) getActivity()).editor.putInt("monster_attack", monster_attack).commit();
-                calc_monster_attack.setEnabled(false);
-                text_monster_attack.setText("" + monster_attack);
-                calc_hero_attack.setEnabled(true);
+                calcMonsterAttackButton.setEnabled(false);
+                monsterAttackTextView.setText("" + monster_attack);
+                calcHeroAttackButton.setEnabled(true);
+                ((MainActivity) getActivity()).editor.putInt("step", 1).commit();
             }
         });
 
-        text_monster_attack = (TextView) view.findViewById(R.id.text_monster_attack);
+        monsterAttackTextView = (TextView) view.findViewById(R.id.text_monster_attack);
         if (((MainActivity) getActivity()).gamePref.getInt("monster_attack", 0) > 0) {
-            calc_monster_attack.setEnabled(false);
-            text_monster_attack.setText("" + ((MainActivity) getActivity()).gamePref.getInt("monster_attack", 0));
+            calcMonsterAttackButton.setEnabled(false);
+            monsterAttackTextView.setText("" + ((MainActivity) getActivity()).gamePref.getInt("monster_attack", 0));
         }
 
-        calc_hero_attack = (Button) view.findViewById(R.id.calc_hero_attack);
-        calc_hero_attack.setEnabled(false);
-        calc_hero_attack.setOnClickListener(new View.OnClickListener() {
+        calcHeroAttackButton = (Button) view.findViewById(R.id.calc_hero_attack);
+        calcHeroAttackButton.setEnabled(false);
+        calcHeroAttackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Random rnd = new Random();
                 int hero_attack = rnd.nextInt(6)+rnd.nextInt(6)+2+((MainActivity)getActivity()).gamePref.getInt("LLL",0);
                 ((MainActivity) getActivity()).editor.putInt("hero_attack", hero_attack).commit();
-                calc_hero_attack.setEnabled(false);
-                text_hero_attack.setText("" + hero_attack);
+                calcHeroAttackButton.setEnabled(false);
+                heroAttackTextView.setText("" + hero_attack);
                 setRoundResult();
-                if (((MainActivity) getActivity()).gamePref.getInt("hero_attack", 0) !=
-                        ((MainActivity) getActivity()).gamePref.getInt("monster_attack", 0)) {
-                    if (((MainActivity) getActivity()).gamePref.getInt("UUU", 0) > 0) {
-                        good_luck.setEnabled(true);
-                    }
-                    fleeBattle.setEnabled(true);
-                    dalee.setEnabled(true);
-                } else {
-                    fleeBattle.setEnabled(true);
-                    dalee.setEnabled(true);
-                }
+                boolean isAllowed = ((MainActivity)getActivity()).isAllowedToTakeChance() &&
+                        !roundResultTextView.getText().toString().equals("Равный раунд");
+                takeChanceButton.setEnabled(isAllowed);
+                fleeFromBattleButton.setEnabled(isFleeAllowed());
+                dalee.setEnabled(true);
+                ((MainActivity) getActivity()).editor.putInt("step", 2).commit();
             }
         });
-
-        text_hero_attack = (TextView) view.findViewById(R.id.text_hero_attack);
+        heroAttackTextView = (TextView) view.findViewById(R.id.text_hero_attack);
         if (((MainActivity) getActivity()).gamePref.getInt("hero_attack", 0) > 0) {
-            calc_hero_attack.setEnabled(false);
-            text_hero_attack.setText("" + ((MainActivity) getActivity()).gamePref.getInt("hero_attack", 0));
+            calcHeroAttackButton.setEnabled(false);
+            heroAttackTextView.setText("" + ((MainActivity) getActivity()).gamePref.getInt("hero_attack", 0));
         }
 
-        good_luck = (Button) view.findViewById(R.id.good_luck);
-        good_luck.setEnabled(false);
-        good_luck.setOnClickListener(new View.OnClickListener() {
+        takeChanceButton = (Button) view.findViewById(R.id.good_luck);
+        takeChanceButton.setEnabled(false);
+        takeChanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 luck = ((MainActivity) getActivity()).takeChance();
-                good_luck.setEnabled(false);
+                ((MainActivity) getActivity()).editor.putInt("luck", luck).commit();
+                takeChanceButton.setEnabled(false);
                 setRoundChanceResult();
+                ((MainActivity) getActivity()).editor.putInt("step", 3).commit();
             }
         });
 
-        round_result = (TextView) view.findViewById(R.id.round_result);
+        roundResultTextView = (TextView) view.findViewById(R.id.round_result);
 
-        fleeBattle = (Button) view.findViewById(R.id.battle_flee_button);
-        fleeBattle.setEnabled(false);
-        fleeBattle.setOnClickListener(new View.OnClickListener() {
+        fleeFromBattleButton = (Button) view.findViewById(R.id.battle_flee_button);
+        fleeFromBattleButton.setEnabled(false);
+        fleeFromBattleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO alert
@@ -204,18 +199,52 @@ public class BattleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ((MainActivity) getActivity()).showAllParameters();
-                ((MainActivity) getActivity()).editor.putInt("round", roundText + 1);
+                ((MainActivity) getActivity()).editor.putInt("round", round + 1);
+                ((MainActivity) getActivity()).editor.putInt("step", 0);
+                ((MainActivity) getActivity()).editor.putInt("luck", 0);
                 ((MainActivity) getActivity()).editor.remove("monster_attack");
                 ((MainActivity) getActivity()).editor.remove("hero_attack");
                 ((MainActivity) getActivity()).showBattle(mArticle);
             }
         });
-
+        setBattleState(step);
         ((MainActivity) getActivity()).showAllParameters();
         return view;
     }
 
+    private boolean isFleeAllowed() {
+        if (((MainActivity) getActivity()).gamePref.getInt("round", 0) > 1 &&
+                ((MainActivity) getActivity()).gamePref.getInt("fleeCondition", 0) == 1) {
+            return false;
+        } else return true;
+    }
+
+    private void setBattleState(int step) {
+        switch (step){
+            case 0:
+                calcMonsterAttackButton.setEnabled(true);
+                break;
+            case 1:
+                calcHeroAttackButton.setEnabled(true);
+                break;
+            case 2:
+                setRoundResult();
+                boolean isAllowed = ((MainActivity)getActivity()).isAllowedToTakeChance() &&
+                        !roundResultTextView.getText().toString().equals("Равный раунд");
+                takeChanceButton.setEnabled(isAllowed);
+                fleeFromBattleButton.setEnabled(isFleeAllowed());
+                dalee.setEnabled(true);
+                break;
+            case 3:
+                fleeFromBattleButton.setEnabled(isFleeAllowed());
+                dalee.setEnabled(true);
+                setRoundChanceResult();
+                break;
+        }
+    }
+
     private void setRoundChanceResult() {
+
         String result = "";
         int monsterA = ((MainActivity)getActivity()).gamePref.getInt("monster_attack", 0);
         int heroA = ((MainActivity)getActivity()).gamePref.getInt("hero_attack", 0);
@@ -228,7 +257,7 @@ public class BattleFragment extends Fragment {
         } else if (monsterA < heroA && luck < 0) {
             result = "" + ((MainActivity) getActivity()).gamePref.getString("monsterName", "") + " теряет 1В";
         }
-        round_result.setText(result);
+        roundResultTextView.setText(result);
     }
 
     private void setRoundResult() {
@@ -242,7 +271,7 @@ public class BattleFragment extends Fragment {
         } else {
             result = "Равный раунд";
         }
-        round_result.setText(result);
+        roundResultTextView.setText(result);
     }
 
     // Rename method, update argument and hook method into UI event
@@ -288,5 +317,4 @@ public class BattleFragment extends Fragment {
         int resId = getResources().getIdentifier(aString, "string", GAME);
         return resId;
     }
-
 }

@@ -122,7 +122,7 @@ public class PreBattleFragment extends Fragment {
                 ((MainActivity) getActivity()).editor.putInt("monsterVVV", monsterVVV).commit();
             }
             if (para == 3) {
-                //TODO: надеть шлем
+                //TODO: надеть шлем по желанию
                 textView[para] = (TextView) view.findViewById(R.id.battle_condition_text);
                 if (getResources().getString(resID).equals("")) {
                     textView[para].setEnabled(false);
@@ -158,6 +158,8 @@ public class PreBattleFragment extends Fragment {
                 ((MainActivity) getActivity()).takeAction(mArticle);
                 ((MainActivity) getActivity()).showAllParameters();
                 ((MainActivity) getActivity()).editor.putInt("round", 1);
+                ((MainActivity) getActivity()).editor.putInt("step", 0);
+                ((MainActivity) getActivity()).editor.putInt("luck", 0);
                 ((MainActivity) getActivity()).editor.remove("monster_attack");
                 ((MainActivity) getActivity()).editor.remove("hero_attack");
                 ((MainActivity) getActivity()).showBattle(mArticle + 1000);
