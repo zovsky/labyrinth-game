@@ -22,6 +22,7 @@ import android.view.SubMenu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -172,7 +173,7 @@ public class MainActivity extends AppCompatActivity
         room.add("200");
         editor.putStringSet("wasHere", room);
         editor.commit();
-        showAllParameters();
+        //showAllParameters();
     }
 
     public void setToolbarTitle(String title, String subtitle) {
@@ -182,10 +183,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void setInventoryVisibility(boolean visibility) {
-//        if (toolbar.getMenu().getItem(1) != null) {
-//            toolbar.getMenu().removeItem(1);
-//            toolbar.getMenu().getItem(0).setVisible(true);
-//        }
         inventory = (ActionMenuItemView) findViewById(R.id.action_settings);
         if (visibility == false) {
             inventory.setVisibility(View.INVISIBLE);
@@ -446,7 +443,7 @@ public class MainActivity extends AppCompatActivity
             editor.putInt("VVV", gamePref.getInt("startVVV", 0)).commit();
         } else editor.putInt("VVV", VVV).commit();
         if (VVV <= 0) {
-            //TODO: gameOver();
+            gameOver();
         }
     }
 
@@ -506,9 +503,14 @@ public class MainActivity extends AppCompatActivity
             room.add(Integer.toString(article));
             editor.putStringSet("wasHere", room);
             editor.commit();
-            showAllParameters();
+            //showAllParameters();
             return article;
         }
         return 3000;
+    }
+
+    public void gameOver() {
+        editor.putInt("gameOn", 0);
+        Toast.makeText(this, "Твой герой погиб", Toast.LENGTH_SHORT).show();
     }
 }

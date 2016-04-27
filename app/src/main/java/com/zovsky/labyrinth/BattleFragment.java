@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,8 @@ public class BattleFragment extends Fragment {
 
     private int monsterLLL;
     private int monsterVVV;
+    private int heroVVV;
+    private int heroLLL;
     private int round;
     private String monsterName;
     private int step;
@@ -98,6 +101,8 @@ public class BattleFragment extends Fragment {
         //show inventory button
         ((MainActivity)getActivity()).setInventoryVisibility(true);
 
+        heroVVV = ((MainActivity) getActivity()).gamePref.getInt("VVV", 0);
+        heroLLL = ((MainActivity) getActivity()).gamePref.getInt("LLL", 0);
         monsterLLL = ((MainActivity) getActivity()).gamePref.getInt("monsterLLL", 0);
         monsterVVV = ((MainActivity) getActivity()).gamePref.getInt("monsterVVV", 0);
         String monster_data = "Л:" + monsterLLL + " В:" + monsterVVV;
@@ -149,11 +154,13 @@ public class BattleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Random rnd = new Random();
-                int hero_attack = rnd.nextInt(6)+rnd.nextInt(6)+2+((MainActivity)getActivity()).gamePref.getInt("LLL",0);
+                int hero_attack = rnd.nextInt(6)+rnd.nextInt(6)+2+heroLLL;
                 ((MainActivity) getActivity()).editor.putInt("hero_attack", hero_attack).commit();
                 calcHeroAttackButton.setEnabled(false);
                 heroAttackTextView.setText("" + hero_attack);
+                Log.d(GAME, "" +heroVVV);
                 setRoundResult();
+                Log.d(GAME, "" +heroVVV);
                 boolean isAllowed = ((MainActivity)getActivity()).isAllowedToTakeChance() &&
                         !roundResultTextView.getText().toString().equals("Равный раунд");
                 takeChanceButton.setEnabled(isAllowed);
@@ -176,7 +183,9 @@ public class BattleFragment extends Fragment {
                 luck = ((MainActivity) getActivity()).takeChance();
                 ((MainActivity) getActivity()).editor.putInt("luck", luck).commit();
                 takeChanceButton.setEnabled(false);
-                setRoundChanceResult();
+                Log.d(GAME, "" +heroVVV);
+                setRoundResult();
+                Log.d(GAME, "" +heroVVV);
                 ((MainActivity) getActivity()).editor.putInt("step", 3).commit();
             }
         });
@@ -198,12 +207,17 @@ public class BattleFragment extends Fragment {
         dalee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity) getActivity()).showAllParameters();
                 ((MainActivity) getActivity()).editor.putInt("round", round + 1);
                 ((MainActivity) getActivity()).editor.putInt("step", 0);
-                ((MainActivity) getActivity()).editor.putInt("luck", 0);
-                ((MainActivity) getActivity()).editor.remove("monster_attack");
-                ((MainActivity) getActivity()).editor.remove("hero_attack");
+                ((MainActivity) getActivity()).editor.remove("luck").commit();
+                ((MainActivity) getActivity()).editor.remove("monster_attack").commit();
+                ((MainActivity) getActivity()).editor.remove("hero_attack").commit();
+                if (monsterVVV < 1) {
+                    ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("victoryArticle", 0));
+                } else ((MainActivity) getActivity()).editor.putInt("monsterVVV", monsterVVV);
+                if (heroVVV < 1) {
+                    ((MainActivity) getActivity()).gameOver();
+                } else ((MainActivity) getActivity()).editor.putInt("VVV", heroVVV);
                 ((MainActivity) getActivity()).showBattle(mArticle);
             }
         });
@@ -236,41 +250,47 @@ public class BattleFragment extends Fragment {
                 dalee.setEnabled(true);
                 break;
             case 3:
+                setRoundResult();
                 fleeFromBattleButton.setEnabled(isFleeAllowed());
                 dalee.setEnabled(true);
-                setRoundChanceResult();
                 break;
         }
     }
 
-    private void setRoundChanceResult() {
-
-        String result = "";
-        int monsterA = ((MainActivity)getActivity()).gamePref.getInt("monster_attack", 0);
-        int heroA = ((MainActivity)getActivity()).gamePref.getInt("hero_attack", 0);
-        if (monsterA > heroA && luck > 0 ) {
-            result = "Ты теряешь 1В";
-        } else if (monsterA > heroA && luck < 0) {
-            result = "Ты теряешь 3В";
-        } else if (monsterA < heroA && luck > 0) {
-            result = "" + ((MainActivity) getActivity()).gamePref.getString("monsterName", "") + " теряет 4В";
-        } else if (monsterA < heroA && luck < 0) {
-            result = "" + ((MainActivity) getActivity()).gamePref.getString("monsterName", "") + " теряет 1В";
-        }
-        roundResultTextView.setText(result);
-    }
-
     private void setRoundResult() {
         String result = "";
+        heroVVV = ((MainActivity) getActivity()).gamePref.getInt("VVV", 0);
         int monsterA = ((MainActivity)getActivity()).gamePref.getInt("monster_attack", 0);
         int heroA = ((MainActivity)getActivity()).gamePref.getInt("hero_attack", 0);
         if (monsterA > heroA) {
-            result = "Ты теряешь 2В";
+            if (luck > 0) {
+                result = "Ты теряешь 1В";
+                heroVVV-=1;
+            } else if (luck < 0) {
+                result = "Ты теряешь 3В";
+                heroVVV-=3;
+            } else {
+                result = "Ты теряешь 2В";
+                heroVVV-=2;
+            }
         } else if (monsterA < heroA) {
-            result = "" + ((MainActivity) getActivity()).gamePref.getString("monsterName", "") + " теряет 2В";
+            if (luck > 0) {
+                result = "" + monsterName + " теряет 4В";
+                monsterVVV-=4;
+            } else if (luck < 0) {
+                result = "" + monsterName + " теряет 1В";
+                monsterVVV-=1;
+            } else {
+                result = "" + monsterName + " теряет 2В";
+                monsterVVV-=2;
+            }
         } else {
             result = "Равный раунд";
         }
+        if (monsterVVV < 1) {
+            dalee.setText("Победа!");
+        } else dalee.setText("Продолжить битву");
+        Log.d(GAME, "!!! hero " + heroVVV + " monster " + monsterVVV);
         roundResultTextView.setText(result);
     }
 
