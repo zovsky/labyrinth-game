@@ -157,7 +157,7 @@ public class ArticleFragment extends Fragment {
             dalee.setText("БИТВА");
         } else dalee.setText("Продолжить");
 
-        //special conditions;
+        //special conditions; execute on article load
         if (mArticle == 3) {
             if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 13) {
                 radioGroup.getChildAt(0).setEnabled(false);
@@ -169,7 +169,7 @@ public class ArticleFragment extends Fragment {
 
 
 
-
+        //take special action on article load
         ((MainActivity) getActivity()).takeSpecialAction(mArticle);
         dalee.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,6 +235,13 @@ public class ArticleFragment extends Fragment {
     private int getStringResourceByName(String aString) {
         int resId = getResources().getIdentifier(aString, "string", GAME);
         return resId;
+    }
+
+    public void redrawToolbar() {
+        String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
+                " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
+                " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
+        ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
     }
 
 }

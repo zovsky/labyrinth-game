@@ -61,7 +61,16 @@ public class MainActivity extends AppCompatActivity
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                return true;
+                switch (item.getItemId()) {
+                    case 10:
+                        eatFood();
+                        toolbar.getMenu().findItem(10).setEnabled(false);
+                        ArticleFragment fragment = (ArticleFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                        fragment.redrawToolbar();
+                        return true;
+                    default:
+                        return true;
+                }
             }
         });
         toolbar.inflateMenu(R.menu.menu_main);
@@ -111,6 +120,11 @@ public class MainActivity extends AppCompatActivity
                 showBattle(current);
             } else showPreArticle(current);
         }
+    }
+
+    private void eatFood() {
+        changeFood(-1);
+        changeVVV(4);
     }
 
     private void showAlert() {
@@ -235,6 +249,7 @@ public class MainActivity extends AppCompatActivity
         String opts = "opt_" + article;
         int numberOfPara = Integer.valueOf(getResources().getString(getResources().getIdentifier(paras, "string", GAME)));
         int numberOfRadios = Integer.valueOf(getResources().getString(getResources().getIdentifier(opts, "string", GAME)));
+//        generateInitialMenu();
         Fragment fragment = PreBattleFragment.newInstance(article, numberOfPara, numberOfRadios);
         ft.replace(R.id.fragment_container, fragment);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
@@ -255,7 +270,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("LLL", 0);
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0);
-        editor.putInt("gold", 14);
+        editor.putInt("gold", 14); //default 0
         editor.putInt("food", 8);
         editor.putInt("gameOn", 0);
         Set<String> things=new HashSet<String>();
@@ -322,7 +337,7 @@ public class MainActivity extends AppCompatActivity
         subMenu.clear();
         changeFood(0);
         changeGold(0);
-        changeElixir(gamePref.getInt("elixirCounter", 0));
+        changeElixirCount(gamePref.getInt("elixirCounter", 0));
 
         ArrayList<String> thingsList = new ArrayList<String>();
         Set<String> things = gamePref.getStringSet("things", null);
@@ -330,6 +345,17 @@ public class MainActivity extends AppCompatActivity
             thingsList.add(thing);
         }
         addAllThingsToMenu(thingsList);
+        setMenuItemsInactive();
+    }
+
+    public void setMenuItemsInactive() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Menu menu = toolbar.getMenu();
+        MenuItem inventory = menu.getItem(0);
+        SubMenu subMenu = inventory.getSubMenu();
+        for (int i=0; i<subMenu.size(); i++) {
+            subMenu.getItem(i).setEnabled(false);
+        }
     }
 
     public void changeFood(int difference) {
@@ -358,7 +384,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
     //TODO: if some parameters get to 0
-    public void changeElixir(int count) {
+    public void changeElixirCount(int difference) {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         Menu menu = toolbar.getMenu();
         MenuItem inventory = menu.getItem(0);
@@ -373,7 +399,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             elixirmenu = "Эликсир удачи: " + gamePref.getInt("elixirCounter", 0);
         }
-        editor.putInt("elixirCounter", count).commit();
+        editor.putInt("elixirCounter", difference).commit();
         subMenu.add(1, 20, 20, elixirmenu);
     }
 
@@ -474,8 +500,24 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeSpecialAction(int article) {
+        if (article == 16) {
+            setOneMenuItemActive("Запасы еды");
+        }
         if (article == 136) {
             changeGold(-13);
+        }
+    }
+
+    private void setOneMenuItemActive(String string) {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Menu menu = toolbar.getMenu();
+        MenuItem inventory = menu.getItem(0);
+        SubMenu subMenu = inventory.getSubMenu();
+        for (int i=0; i<subMenu.size(); i++) {
+            MenuItem item = subMenu.getItem(i);
+            if (item.getTitle().toString().contains(string)) {
+                item.setEnabled(true);
+            }
         }
     }
 
