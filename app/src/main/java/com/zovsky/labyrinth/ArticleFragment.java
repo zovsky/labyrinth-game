@@ -133,8 +133,16 @@ public class ArticleFragment extends Fragment {
             textID = "text_" + mArticle + "_" + (radio+1); //text_25_1
             int radioTextID = getStringResourceByName(textID);
             choice[radio] = Integer.parseInt(getResources().getString(resID));
-            String radioText = getResources().getString(resID) + ", " + getResources().getString(radioTextID);
+            String radioTextNumber = getResources().getString(resID);
+            String radioTextShortDescription = ", " + getResources().getString(radioTextID);
+            if (radioTextNumber.equals("0")) {
+                int goBackID = ((MainActivity) getActivity()).gamePref.getInt("goBackArticleID", 0);
+                radioTextNumber = Integer.toString(goBackID);
+                choice[radio] = goBackID;
+            }
+            String radioText = radioTextNumber + radioTextShortDescription;
             //set radio button text
+
             radioButton[radio].setText(radioText);
 
             if (mRadios == 1 || wasHere == 1000 || wasHere == mArticle) {

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_9">1</string>
+
+    <string name="article_9_1">Приготовься, чтобы сокрушить Карлика деревянным колом. Он это заметил: \"О, какой хороший кол\", - говорит он. \"Продай мне его за 20 кусков золота.\" Если продашь, что см. 289. Если нет - см. 375.</string>
+
+    <string name="opt_9">2</string>
+
+    <string name="option_9_1">289</string>
+    <string name="text_9_1">Продать кол</string>
+    <string name="option_9_2">375</string>
+    <string name="text_9_2">Не продавать</string>
+</resources>

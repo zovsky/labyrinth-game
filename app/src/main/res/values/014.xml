@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_14">1</string>
+
+    <string name="article_14_1">Можешь выйти через северные двери, см. 197. Если выходишь через восточные - см. 39.</string>
+
+    <string name="opt_14">2</string>
+
+    <string name="option_14_1">197</string>
+    <string name="text_14_1">Северные двери</string>
+    <string name="option_14_2">39</string>
+    <string name="text_14_2">Восточные двери</string>
+</resources>

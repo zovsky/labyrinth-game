@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_7">2</string>
+
+    <string name="article_7_1">\"Может у тебя на складе есть что-нибудь мне в подарок?\" - говоришь ты.</string>
+    <string name="article_7_2">\"А как же? У нас всегда что-нибудь приготовлено для такого случая. Есть очаровательный деревянный кол и стеклянная банка с ядовитой пылью. Запаковать и ленточкой перевязать?\" Далее см. 219."</string>
+
+    <string name="opt_7">1</string>
+
+    <string name="option_7_1">219</string>
+    <string name="text_7_1">Далее</string>
+</resources>

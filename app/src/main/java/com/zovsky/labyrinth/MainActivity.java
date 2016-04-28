@@ -481,6 +481,12 @@ public class MainActivity extends AppCompatActivity
 
 
     public void takeAction(int article) {
+        if (article == 15) {
+            editor.putInt("goBackArticleID", article);
+        }
+        if (article == 13) {
+            changeVVV(-2);
+        }
         if (article == 105 || article == 56) {
             changeVVV(-1);
         }
