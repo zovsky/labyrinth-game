@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_1023">5</string>
+
+    <string name="article_1023_0">ОРКОНИК</string>
+    <string name="article_1023_1">6</string>
+    <string name="article_1023_2">4</string>
+    <string name="article_1023_3">На очереди ОРКОНИК.</string>
+    <string name="article_1023_4">Можешь спастись бегством.</string>
+
+    <string name="opt_1023">3</string>
+
+    <string name="option_1023_1">2</string>
+    <string name="text_1023_1">После какого тура можно убежать: 0-после любого, 1-после первого, 2-никогда</string>
+
+    <string name="option_1023_2">0</string>
+    <string name="text_1023_2">Спастись бегством</string>
+
+    <string name="option_1023_3">0</string>
+    <string name="text_1023_3">Победа</string>
+
+</resources>

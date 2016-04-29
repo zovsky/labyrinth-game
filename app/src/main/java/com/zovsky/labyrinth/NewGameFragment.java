@@ -118,10 +118,10 @@ public class NewGameFragment extends Fragment {
                 int selectedId = radioGroup.getCheckedRadioButtonId();
                 if (selectedId == -1 || ((MainActivity)getActivity()).gamePref.getInt("VVV", 0) == 0) {
                     Toast.makeText(getContext(), "Рассчитайте начальные параметры и выберите эликсир", Toast.LENGTH_SHORT).show();
-                } else {
-                    ((MainActivity)getActivity()).editor.putInt("startLLL", ((MainActivity)getActivity()).gamePref.getInt("LLL", 0));
+                } else {//default without 100+
+                    ((MainActivity)getActivity()).editor.putInt("startLLL", 100+ ((MainActivity)getActivity()).gamePref.getInt("LLL", 0));
                     ((MainActivity)getActivity()).editor.putInt("startVVV", 100 + ((MainActivity)getActivity()).gamePref.getInt("VVV", 0));
-                    ((MainActivity)getActivity()).editor.putInt("startUUU", ((MainActivity)getActivity()).gamePref.getInt("UUU", 0));
+                    ((MainActivity)getActivity()).editor.putInt("startUUU", 100+((MainActivity)getActivity()).gamePref.getInt("UUU", 0));
                     ((MainActivity)getActivity()).editor.putInt("elixirCounter", 2);
                     switch (selectedId){
                         case R.id.radioButton1:
@@ -141,7 +141,7 @@ public class NewGameFragment extends Fragment {
                     ((MainActivity)getActivity()).editor.putInt("gameOn", 1);
                     ((MainActivity)getActivity()).editor.commit();
                     ((MainActivity)getActivity()).generateInitialMenu();
-                    ((MainActivity)getActivity()).showArticle(16); //default 1
+                    ((MainActivity)getActivity()).showArticle(20); //default 1
                 }
             }
         });

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_238">1</string>
+
+    <string name="article_238_1">"Встретилась группа Странствующих Чудовищ: Гремлин, Лиха, Вронго, Орконик и Самаскура. Бейся с ними в той последовательности, как предписано. После битвы с очередным чудовищем ты можешь спастись бегством.
+ГРЕМЛИН 5Л, ЗВ
+ЛИХА 6Л, 5В
+ВРОНГО 8Л, 4В
+ОРКОНИК 6Л, 4В
+САМАСКУРА 6Л, 5В"
+</string>
+
+    <string name="opt_238">2</string>
+
+    <string name="option_238_1">56</string>
+    <string name="text_238_1">Повторить</string>
+    <string name="option_238_2">0</string>
+    <string name="text_238_2">Отступиться</string>
+</resources>

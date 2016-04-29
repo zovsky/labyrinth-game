@@ -164,6 +164,13 @@ public class ArticleFragment extends Fragment {
                 radioButton[0].setText("Недостаточно золота");
             }
         }
+        if (mArticle == 18) {
+            if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 5) {
+                radioGroup.check(radioButton[1].getId());
+                radioGroup.getChildAt(0).setEnabled(false);
+                radioButton[1].setText("286, Недостаточно золота");
+            }
+        }
 
 
 

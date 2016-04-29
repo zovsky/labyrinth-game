@@ -64,7 +64,9 @@ public class MainActivity extends AppCompatActivity
                 switch (item.getItemId()) {
                     case 10:
                         eatFood();
+                        int foodTries = gamePref.getInt("foodTries", 0);
                         toolbar.getMenu().findItem(10).setEnabled(false);
+                        editor.putInt("foodTries", foodTries-1).commit();
                         ArticleFragment fragment = (ArticleFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
                         fragment.redrawToolbar();
                         return true;
@@ -270,7 +272,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("LLL", 0);
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0);
-        editor.putInt("gold", 14); //default 0
+        editor.putInt("gold", 6); //default 0
         editor.putInt("food", 8);
         editor.putInt("gameOn", 0);
         Set<String> things=new HashSet<String>();
@@ -467,12 +469,14 @@ public class MainActivity extends AppCompatActivity
         int VVV = gamePref.getInt("VVV", 0) + difference;
         if (VVV > gamePref.getInt("startVVV", 0)) {
             editor.putInt("VVV", gamePref.getInt("startVVV", 0)).commit();
-        } else editor.putInt("VVV", VVV).commit();
+        } else {
+            editor.putInt("VVV", VVV).commit();
+        }
         if (VVV <= 0) {
             gameOver();
         }
     }
-
+    //TODO put all else in brackets
     public void changeUUU(int difference) {
         int UUU = gamePref.getInt("UUU", 0) + difference;
         if (UUU <= 0) {
@@ -480,13 +484,17 @@ public class MainActivity extends AppCompatActivity
         }
         if (UUU > gamePref.getInt("startUUU", 0)) {
             editor.putInt("UUU", gamePref.getInt("startUUU", 0)).commit();
-        } else editor.putInt("UUU", UUU).commit();
+        } else {
+            editor.putInt("UUU", UUU).commit();
+        }
     }
 
     public boolean isAllowedToTakeChance() {
         if (gamePref.getInt("UUU", 0) == 0) {
             return false;
-        } else return true;
+        } else {
+            return true;
+        }
     }
 
     public void changeLLL(int difference) {
@@ -496,12 +504,17 @@ public class MainActivity extends AppCompatActivity
         }
         if (LLL > gamePref.getInt("startLLL", 0)) {
             editor.putInt("LLL", gamePref.getInt("startLLL", 0)).commit();
-        } else editor.putInt("LLL", LLL).commit();
+        } else {
+            editor.putInt("LLL", LLL).commit();
+        }
     }
 
     public void takeSpecialAction(int article) {
         if (article == 16) {
-            setOneMenuItemActive("Запасы еды");
+            Log.d(GAME, "!" + gamePref.getInt("foodTries", 0));
+            if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0) {
+                setOneMenuItemActive("Запасы еды");
+            }
         }
         if (article == 136) {
             changeGold(-13);
@@ -517,14 +530,27 @@ public class MainActivity extends AppCompatActivity
             MenuItem item = subMenu.getItem(i);
             if (item.getTitle().toString().contains(string)) {
                 item.setEnabled(true);
+                break;
             }
         }
     }
 
-
+    //TODO flee = -2V in alert
     public void takeAction(int article) {
+        if (article == 20) {
+            editor.putInt("goBackArticleID", 316).commit();
+        }
+        if (article == 19) {
+            changeFood(1);
+            changeUUU(2);
+        }
+        if (article == 376) {
+            editor.putInt("foodTries", 1).commit();
+            changeLLL(1);
+            changeUUU(2);
+        }
         if (article == 15) {
-            editor.putInt("goBackArticleID", article);
+            editor.putInt("goBackArticleID", article).commit();
         }
         if (article == 13) {
             changeVVV(-2);
@@ -568,7 +594,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void gameOver() {
-        editor.putInt("gameOn", 0);
+        editor.putInt("gameOn", 0).commit();
         Toast.makeText(this, "Конец игры", Toast.LENGTH_SHORT).show();
     }
 }

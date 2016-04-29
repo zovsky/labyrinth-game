@@ -122,11 +122,9 @@ public class PreBattleFragment extends Fragment {
                 ((MainActivity) getActivity()).editor.putInt("monsterVVV", monsterVVV).commit();
             }
             if (para == 3) {
-                //TODO: надеть шлем по желанию
+                //TODO: надеть шлем по желанию battle2 + убрать шлем после битвы
                 textView[para] = (TextView) view.findViewById(R.id.battle_condition_text);
-                if (getResources().getString(resID).equals("")) {
-                    textView[para].setEnabled(false);
-                }
+                textView[para].setText(resID);
             }
             if (para == 4) {
                 textView[para] = (TextView) view.findViewById(R.id.flee_condition_text);
@@ -151,6 +149,17 @@ public class PreBattleFragment extends Fragment {
         resID = getStringResourceByName(victoryArticle);
         ((MainActivity) getActivity()).editor.putInt("victoryArticle", Integer.parseInt(getResources().getString(resID))).commit();
 
+        Button fleeBeforeBattle = (Button) view.findViewById(R.id.flee_before_battle_button);
+        if (mArticle == 1002 || mArticle == 1020) {
+            fleeBeforeBattle.setVisibility(View.INVISIBLE);
+        }
+        fleeBeforeBattle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("fleeArticle", 0));
+            }
+        });
+
         Button startBattle = (Button) view.findViewById(R.id.start_battle_button);
         startBattle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,8 +169,9 @@ public class PreBattleFragment extends Fragment {
                 ((MainActivity) getActivity()).editor.putInt("round", 1);
                 ((MainActivity) getActivity()).editor.putInt("step", 0);
                 ((MainActivity) getActivity()).editor.putInt("luck", 0);
-                ((MainActivity) getActivity()).editor.remove("monster_attack");
-                ((MainActivity) getActivity()).editor.remove("hero_attack");
+                ((MainActivity) getActivity()).editor.remove("monsterAttack");
+                ((MainActivity) getActivity()).editor.remove("heroAttack");
+                ((MainActivity) getActivity()).editor.commit();
                 ((MainActivity) getActivity()).showBattle(mArticle + 1000);
             }
         });
