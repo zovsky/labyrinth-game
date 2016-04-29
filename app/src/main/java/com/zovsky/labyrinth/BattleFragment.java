@@ -1,15 +1,18 @@
 package com.zovsky.labyrinth;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -194,11 +197,9 @@ public class BattleFragment extends Fragment {
         fleeFromBattleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO alert
-                ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("fleeArticle", 0));
+                showAlert();
             }
         });
-        //TODO check all putInt commit
         dalee = (Button) view.findViewById(R.id.battle_continue_button);
         dalee.setEnabled(false);
         dalee.setOnClickListener(new View.OnClickListener() {
@@ -210,35 +211,35 @@ public class BattleFragment extends Fragment {
                 ((MainActivity) getActivity()).editor.remove("monsterAttack");
                 ((MainActivity) getActivity()).editor.remove("heroAttack");
                 ((MainActivity) getActivity()).editor.commit();
-                if (heroVVV < 1) {
-                    Log.d(GAME, "branch1");
-                    ((MainActivity) getActivity()).gameOver();
-                } else {
-                    Log.d(GAME, "branch2");
-                    ((MainActivity) getActivity()).editor.putInt("VVV", heroVVV).commit();
-                    ((MainActivity) getActivity()).showBattle(mArticle);
-                }
-                if (monsterVVV < 1) {
-                    if (mArticle == 2020 || mArticle == 2021 || mArticle == 2022 || mArticle == 2023) {
-                        Log.d(GAME, "branch3");
-                        ((MainActivity) getActivity()).showPreArticle(mArticle - 1000 + 1);
+                if (heroVVV < 1 || monsterVVV < 1) {
+                    if (heroVVV < 1) {
+                        Log.d(GAME, "branch1");
+                        ((MainActivity) getActivity()).gameOver();
                         return;
                     } else {
-                        Log.d(GAME, "branch4");
-                        int victoryArticle = ((MainActivity) getActivity()).gamePref.getInt("victoryArticle", 0);
-                        if (victoryArticle == 0) {
-                            Log.d(GAME, "branch5");
-                            ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("goBackArticleID", 0));
+                        if (mArticle == 2020 || mArticle == 2021 || mArticle == 2022 || mArticle == 2023) {
+                            Log.d(GAME, "branch2");
+                            ((MainActivity) getActivity()).showPreArticle(mArticle - 1000 + 1);
                             return;
                         } else {
-                            Log.d(GAME, "branch6");
-                            ((MainActivity) getActivity()).showArticle(victoryArticle);
-                            return;
+                            Log.d(GAME, "branch3");
+                            int victoryArticle = ((MainActivity) getActivity()).gamePref.getInt("victoryArticle", 0);
+                            if (victoryArticle == 0) {
+                                Log.d(GAME, "branch4");
+                                ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("goBackArticleID", 0));
+                                return;
+                            } else {
+                                Log.d(GAME, "branch5");
+                                ((MainActivity) getActivity()).showArticle(victoryArticle);
+                                return;
+                            }
                         }
                     }
                 } else {
-                    Log.d(GAME, "branch7");
-                    ((MainActivity) getActivity()).editor.putInt("monsterVVV", monsterVVV).commit();
+                    Log.d(GAME, "branch6");
+                    ((MainActivity) getActivity()).editor.putInt("VVV", heroVVV);
+                    ((MainActivity) getActivity()).editor.putInt("monsterVVV", monsterVVV);
+                    ((MainActivity) getActivity()).editor.commit();
                     ((MainActivity) getActivity()).showBattle(mArticle);
                     return;
                 }
@@ -372,5 +373,44 @@ public class BattleFragment extends Fragment {
     private int getStringResourceByName(String aString) {
         int resId = getResources().getIdentifier(aString, "string", GAME);
         return resId;
+    }
+
+    private void showAlert() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+        LinearLayout layout       = new LinearLayout(getContext());
+        TextView tvMessage        = new TextView(getContext());
+
+        tvMessage.setText("Ты действительно хочешь убежать от чудовища?");
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.addView(tvMessage);
+        tvMessage.setPadding(50, 20, 50, 0);
+        alert.setTitle("Внимание");
+        alert.setView(layout);
+
+
+        alert.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alert.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                ((MainActivity) getActivity()).editor.putInt("VVV", heroVVV);
+                //((MainActivity) getActivity()).editor.putInt("monsterVVV", monsterVVV);
+                ((MainActivity) getActivity()).editor.commit();
+                int fleeArticle = ((MainActivity) getActivity()).gamePref.getInt("fleeArticle", 0);
+                if (fleeArticle == 0) {
+                    ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("goBackArticleID", 0));
+                } else {
+                    ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("fleeArticle", 0));
+                }
+            }
+        });
+        alert.show();
     }
 }

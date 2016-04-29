@@ -1,9 +1,11 @@
 package com.zovsky.labyrinth;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -122,9 +124,12 @@ public class PreBattleFragment extends Fragment {
                 ((MainActivity) getActivity()).editor.putInt("monsterVVV", monsterVVV).commit();
             }
             if (para == 3) {
-                //TODO: надеть шлем по желанию battle2 + убрать шлем после битвы
                 textView[para] = (TextView) view.findViewById(R.id.battle_condition_text);
-                textView[para].setText(resID);
+                if (textView[para].getText().toString().equals("")) {
+                    textView[para].setText("Предстоит битва.");
+                } else {
+                    textView[para].setText(resID);
+                }
             }
             if (para == 4) {
                 textView[para] = (TextView) view.findViewById(R.id.flee_condition_text);
@@ -156,10 +161,19 @@ public class PreBattleFragment extends Fragment {
         fleeBeforeBattle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("fleeArticle", 0));
+                showAlert();
             }
         });
-
+        //take special action on article load
+        ((MainActivity) getActivity()).takeSpecialAction(mArticle);
+        if (mArticle == 1002) {
+            Set<String> things = ((MainActivity)getActivity()).gamePref.getStringSet("things", null);
+            for (String thing : things) {
+                if (thing.equals("Шлем")) {
+                    textView[3].setText("У тебя есть шлем. Надень его - это добавит тебе 3В.");
+                }
+            }
+        }
         Button startBattle = (Button) view.findViewById(R.id.start_battle_button);
         startBattle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,6 +234,42 @@ public class PreBattleFragment extends Fragment {
     private int getStringResourceByName(String aString) {
         int resId = getResources().getIdentifier(aString, "string", GAME);
         return resId;
+    }
+
+    private void showAlert() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+        LinearLayout layout       = new LinearLayout(getContext());
+        TextView tvMessage        = new TextView(getContext());
+
+        tvMessage.setText("Ты действительно хочешь убежать от чудовища?");
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.addView(tvMessage);
+        tvMessage.setPadding(50, 20, 50, 0);
+        alert.setTitle("Внимание");
+        alert.setView(layout);
+
+
+        alert.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alert.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int fleeArticle = ((MainActivity) getActivity()).gamePref.getInt("fleeArticle", 0);
+                if (fleeArticle == 0) {
+                    ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("goBackArticleID", 0));
+                } else {
+                    ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("fleeArticle", 0));
+                }
+            }
+        });
+        alert.show();
     }
 
 }

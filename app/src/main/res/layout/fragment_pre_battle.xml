@@ -24,7 +24,6 @@
     android:layout_width="wrap_content"
     android:layout_gravity="center_horizontal"
     android:layout_height="wrap_content"
-    android:text="ГОБЛИН"
     android:textSize="30dp"/>
 
     <TextView
@@ -32,7 +31,6 @@
     android:layout_width="wrap_content"
     android:layout_gravity="center_horizontal"
     android:layout_height="wrap_content"
-    android:text="Ловкость: 10"
     android:textSize="20dp"/>
 
     <TextView
@@ -41,7 +39,6 @@
     android:layout_gravity="center_horizontal"
     android:layout_height="wrap_content"
     android:paddingBottom="@dimen/text_margin"
-    android:text="Выносливость: 10"
     android:textSize="20dp"/>
 
     <Button

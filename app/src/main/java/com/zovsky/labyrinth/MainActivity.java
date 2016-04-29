@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity
         String opts = "opt_" + article;
         int numberOfPara = Integer.valueOf(getResources().getString(getResources().getIdentifier(paras, "string", GAME)));
         int numberOfRadios = Integer.valueOf(getResources().getString(getResources().getIdentifier(opts, "string", GAME)));
-//        generateInitialMenu();
+        generateInitialMenu();
         Fragment fragment = PreBattleFragment.newInstance(article, numberOfPara, numberOfRadios);
         ft.replace(R.id.fragment_container, fragment);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
@@ -277,7 +277,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("gameOn", 0);
         Set<String> things=new HashSet<String>();
         things.add("Меч");
-        things.add("Фонарь");
+        things.add("Шлем"); //фонарь
         editor.putStringSet("things", things);
         editor.commit();
     }
@@ -535,7 +535,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    //TODO flee = -2V in alert
     public void takeAction(int article) {
         if (article == 20) {
             editor.putInt("goBackArticleID", 316).commit();
@@ -566,6 +565,7 @@ public class MainActivity extends AppCompatActivity
             for (String thing : things) {
                 if (thing.equals("Шлем")) {
                     changeVVV(3);
+                    removeThing("Шлем");
                 }
             }
         }

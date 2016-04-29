@@ -141,7 +141,7 @@ public class NewGameFragment extends Fragment {
                     ((MainActivity)getActivity()).editor.putInt("gameOn", 1);
                     ((MainActivity)getActivity()).editor.commit();
                     ((MainActivity)getActivity()).generateInitialMenu();
-                    ((MainActivity)getActivity()).showArticle(20); //default 1
+                    ((MainActivity)getActivity()).showArticle(2); //default 1
                 }
             }
         });
