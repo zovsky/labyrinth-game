@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_33">1</string>
+
+    <string name="article_33_1">Еще немного и будешь на перекрестке. От него можешь идти на север, на восток или на юг.</string>
+
+    <string name="opt_33">3</string>
+
+    <string name="option_33_1">293</string>
+    <string name="text_33_1">На север</string>
+    <string name="option_33_2">188</string>
+    <string name="text_33_2">На восток</string>
+    <string name="option_33_3">247</string>
+    <string name="text_33_3">На юг</string>
+</resources>

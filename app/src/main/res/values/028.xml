@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_28">1</string>
+
+    <string name="article_28_1">Подними большой камень, лежащий у стены. Чтобы его поднять, у тебя должно быть текущей выносливости не менее 18В. Если есть, то см. 177. Если нет, см. 330.</string>
+
+    <string name="opt_28">2</string>
+
+    <string name="option_28_1">177</string>
+    <string name="text_28_1">Выносливости достаточно</string>
+    <string name="option_28_2">330</string>
+    <string name="text_28_2">Не хватает выносливости</string>
+</resources>

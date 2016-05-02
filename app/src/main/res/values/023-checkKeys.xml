@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_23">1</string>
+
+    <string name="article_23_1">Двери хранилища перед тобой. Открыты? Нет, закрыты. На них висят два замка. Если у тебя не меньше двух пронумерованных ключей, можешь открыть замки и тогда см. 185. Если нет, то твое путешествие закончилось. А было так близко!</string>
+
+    <string name="opt_23">2</string>
+
+    <string name="option_23_1">185</string>
+    <string name="text_23_1">Использовать ключи</string>
+    <string name="option_23_2">1</string>
+    <string name="text_23_2">КонецTBD</string>
+</resources>

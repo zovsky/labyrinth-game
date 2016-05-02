@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_24">1</string>
+
+    <string name="article_24_1">А вот что решил случай:</string>
+
+    <string name="opt_24">2</string>
+
+    <string name="option_24_1">58</string>
+    <string name="text_24_1">Оружие будет эффективным</string>
+    <string name="option_24_2">168</string>
+    <string name="text_24_2">Оружие окажется неэффективным</string>
+</resources>

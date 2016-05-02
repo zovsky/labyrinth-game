@@ -258,7 +258,6 @@ public class MainActivity extends AppCompatActivity
         ft.commit();
 
     }
-
     public void showBattle(int article) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -275,10 +274,16 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("gold", 6); //default 0
         editor.putInt("food", 8);
         editor.putInt("gameOn", 0);
+
         Set<String> things=new HashSet<String>();
-        things.add("Меч");
-        things.add("Шлем"); //фонарь
+        things.add("Меч");//меч
+        things.add("Фонарь"); //фонарь
         editor.putStringSet("things", things);
+
+        Set<String> keys=new HashSet<String>();
+        keys.add("Ключ на 17"); //no keys
+        //keys.add("Ключ на 21");
+        editor.putStringSet("keys", keys);
         editor.commit();
     }
 
@@ -312,7 +317,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-        public boolean onPrepareOptionsMenu(Menu menu) {
+    public boolean onPrepareOptionsMenu(Menu menu) {
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -342,11 +347,18 @@ public class MainActivity extends AppCompatActivity
         changeElixirCount(gamePref.getInt("elixirCounter", 0));
 
         ArrayList<String> thingsList = new ArrayList<String>();
-        Set<String> things = gamePref.getStringSet("things", null);
+        Set<String> things = gamePref.getStringSet("things", new HashSet<String>());
         for (String thing : things) {
             thingsList.add(thing);
         }
         addAllThingsToMenu(thingsList);
+
+        ArrayList<String> keysList = new ArrayList<String>();
+        Set<String> keys = gamePref.getStringSet("keys", new HashSet<String>());
+        for (String key : keys) {
+            keysList.add(key);
+        }
+        addAllKeysToMenu(keysList);
         setMenuItemsInactive();
     }
 
@@ -405,6 +417,7 @@ public class MainActivity extends AppCompatActivity
         subMenu.add(1, 20, 20, elixirmenu);
     }
 
+
     public void addAllThingsToMenu(ArrayList<String> things) {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         Menu menu = toolbar.getMenu();
@@ -415,10 +428,20 @@ public class MainActivity extends AppCompatActivity
             subMenu.add(2, i+40, i+40, things.get(i));
         }
     }
+    public void addAllKeysToMenu(ArrayList<String> keys) {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Menu menu = toolbar.getMenu();
+        MenuItem inventory = menu.getItem(0);
+        SubMenu subMenu = inventory.getSubMenu();
+        subMenu.removeGroup(3);
+        for (int i = 0; i < keys.size(); i++) {
+            subMenu.add(3, i+70, i+70, keys.get(i));
+        }
+    }
 
     public void addThing(String thing) {
         ArrayList<String> thingsList = new ArrayList<String>();
-        Set<String> things = gamePref.getStringSet("things", null);
+        Set<String> things = gamePref.getStringSet("things", new HashSet<String>());
         for (String item : things) {
             thingsList.add(item);
         }
@@ -440,7 +463,7 @@ public class MainActivity extends AppCompatActivity
 
     public void removeThing(String thing) {
         ArrayList<String> thingsList = new ArrayList<String>();
-        Set<String> things = gamePref.getStringSet("things", null);
+        Set<String> things = gamePref.getStringSet("things", new HashSet<String>());
         for (String item : things) {
             thingsList.add(item);
         }
@@ -511,11 +534,18 @@ public class MainActivity extends AppCompatActivity
 
     public void takeSpecialAction(int article) {
         if (article == 16) {
-            Log.d(GAME, "!" + gamePref.getInt("foodTries", 0));
             if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0) {
                 setOneMenuItemActive("Запасы еды");
             }
         }
+        if (article == 32) {
+            int prevArticle = gamePref.getInt("goBackArticleID", 0);
+            if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0 &&
+                    (prevArticle == 157 || prevArticle == 181 || prevArticle == 216 || prevArticle == 329 || prevArticle == 377)) {
+                setOneMenuItemActive("Запасы еды");
+            }
+        }
+
         if (article == 136) {
             changeGold(-13);
         }
@@ -536,32 +566,41 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeAction(int article) {
-        if (article == 20) {
-            editor.putInt("goBackArticleID", 316).commit();
+        if (article == 13) {
+            changeVVV(-2);
+        }
+        if (article == 15 || article == 157 || article == 181 || article == 216 || article == 329 || article == 377) {
+            editor.putInt("goBackArticleID", article).commit();
         }
         if (article == 19) {
             changeFood(1);
             changeUUU(2);
+        }
+        if (article == 20) {
+            editor.putInt("goBackArticleID", 316).commit();
+        }
+        if (article == 31) {
+            changeGold(5);
+        }
+        if (article == 56 || article == 105) {
+            changeVVV(-1);
+        }
+        if (article == 157 || article == 181 || article == 216 || article == 329 || article == 377) {
+            editor.putInt("goBackArticleID", article);
+            editor.putInt("foodTries", 1);
+            editor.commit();
         }
         if (article == 376) {
             editor.putInt("foodTries", 1).commit();
             changeLLL(1);
             changeUUU(2);
         }
-        if (article == 15) {
-            editor.putInt("goBackArticleID", article).commit();
-        }
-        if (article == 13) {
-            changeVVV(-2);
-        }
-        if (article == 105 || article == 56) {
-            changeVVV(-1);
-        }
+
         if (article == 380) {
             changeLLL(1);
         }
         if (article == 1002) {
-            Set<String> things = gamePref.getStringSet("things", null);
+            Set<String> things = gamePref.getStringSet("things", new HashSet<String>());
             for (String thing : things) {
                 if (thing.equals("Шлем")) {
                     changeVVV(3);

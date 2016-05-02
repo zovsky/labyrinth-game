@@ -16,6 +16,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -169,6 +171,75 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[1].getId());
                 radioGroup.getChildAt(0).setEnabled(false);
                 radioButton[1].setText("286, Недостаточно золота");
+            }
+        }
+        if (mArticle == 22) {
+            radioGroup.getChildAt(0).setEnabled(false);
+            radioGroup.getChildAt(1).setEnabled(false);
+            radioGroup.getChildAt(2).setEnabled(false);
+            Set<String> things = ((MainActivity) getActivity()).gamePref.getStringSet("things", new HashSet<String>());
+            for (String thing : things) {
+                if (thing.equals("Железная бабочка")) {
+                    radioGroup.getChildAt(0).setEnabled(true);
+                }
+                if (thing.equals("Изумруд")) {
+                    radioGroup.getChildAt(1).setEnabled(true);
+                }
+                if (thing.equals("Деревянный кол")) {
+                    radioGroup.getChildAt(2).setEnabled(true);
+                }
+            }
+            if (!radioGroup.getChildAt(0).isEnabled() && !radioGroup.getChildAt(1).isEnabled() && !radioGroup.getChildAt(2).isEnabled()) {
+                radioGroup.check(radioButton[3].getId());
+            } else {
+                radioGroup.getChildAt(3).setVisibility(View.INVISIBLE);
+            }
+            if (radioGroup.getChildAt(0).isEnabled() && !radioGroup.getChildAt(1).isEnabled() && !radioGroup.getChildAt(2).isEnabled()) {
+                radioGroup.check(radioButton[0].getId());
+            }
+            if (!radioGroup.getChildAt(0).isEnabled() && radioGroup.getChildAt(1).isEnabled() && !radioGroup.getChildAt(2).isEnabled()) {
+                radioGroup.check(radioButton[1].getId());
+            }
+            if (!radioGroup.getChildAt(0).isEnabled() && !radioGroup.getChildAt(1).isEnabled() && radioGroup.getChildAt(2).isEnabled()) {
+                radioGroup.check(radioButton[2].getId());
+            }
+        }
+        if (mArticle == 23) {
+            Set<String> keys = ((MainActivity) getActivity()).gamePref.getStringSet("keys", new HashSet<String>());
+            if (keys.size() < 2) {
+                radioGroup.check(radioButton[1].getId());
+                radioGroup.getChildAt(0).setEnabled(false);
+                radioButton[1].setText("1 TBD, Недостаточно ключей");
+            }
+        }
+        if (mArticle == 24) {
+            Random rnd = new Random();
+            int r = rnd.nextInt(6);
+            Log.d(GAME, "" + r);
+            if (r <=2 ) {
+                radioGroup.check(radioButton[0].getId());
+                radioGroup.getChildAt(1).setEnabled(false);
+            } else {
+                radioGroup.check(radioButton[1].getId());
+                radioGroup.getChildAt(0).setEnabled(false);
+            }
+        }
+        if (mArticle == 28) {
+            if (((MainActivity) getActivity()).gamePref.getInt("VVV", 0) >= 18) {
+                radioGroup.check(radioButton[0].getId());
+                radioGroup.getChildAt(1).setEnabled(false);
+            } else {
+                radioGroup.check(radioButton[1].getId());
+                radioGroup.getChildAt(0).setEnabled(false);
+            }
+        }
+        if (mArticle == 30) {
+            if (((MainActivity) getActivity()).takeChance() == 1) {
+                radioGroup.check(radioButton[0].getId());
+                radioGroup.getChildAt(1).setEnabled(false);
+            } else {
+                radioGroup.check(radioButton[1].getId());
+                radioGroup.getChildAt(0).setEnabled(false);
             }
         }
 

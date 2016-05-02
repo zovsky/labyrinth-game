@@ -153,9 +153,9 @@ public class PreBattleFragment extends Fragment {
         String victoryArticle = "option_" + mArticle + "_3";
         resID = getStringResourceByName(victoryArticle);
         ((MainActivity) getActivity()).editor.putInt("victoryArticle", Integer.parseInt(getResources().getString(resID))).commit();
-
+        //убирать кнопку бегства если нельзя убежать перед битвой
         Button fleeBeforeBattle = (Button) view.findViewById(R.id.flee_before_battle_button);
-        if (mArticle == 1002 || mArticle == 1020) {
+        if (mArticle == 1002 || mArticle == 1020 || mArticle == 1032) {
             fleeBeforeBattle.setVisibility(View.INVISIBLE);
         }
         fleeBeforeBattle.setOnClickListener(new View.OnClickListener() {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_102">1</string>
+
+    <string name="article_102_1">Дойди до перекрестка. Коридоры расходятся на все четыре стороны. Если идешь на запад, см. 123, на север, см. 268, на восток, см. 374, на юг, см. 351.</string>
+
+    <string name="opt_102">4</string>
+
+    <string name="option_102_1">123</string>
+    <string name="text_102_1">На запад</string>
+    <string name="option_102_2">268</string>
+    <string name="text_102_2">На север</string>
+    <string name="option_102_3">374</string>
+    <string name="text_102_3">На восток</string>
+    <string name="option_102_4">351</string>
+    <string name="text_102_4">На юг</string>
+</resources>

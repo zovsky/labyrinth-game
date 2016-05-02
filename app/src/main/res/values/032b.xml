@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_32">2</string>
+
+    <string name="article_32_1">В изнеможении садишься под скалу. Можешь перекусить порцией еды. Только успеваешь доесть, как в пещеру ввалились три Злыдня, которые значительно слабее Оборотня, но зато их трое! Считая их как один, бейся.</string>
+    <string name="article_32_2">ЗЛЫДНИ 8Л, 7В</string>
+
+    <string name="opt_32">0</string>
+
+    <string name="option_32_1">56</string>
+    <string name="text_32_1">Повторить</string>
+    <string name="option_32_2">75</string>
+    <string name="text_32_2">Отступиться</string>
+</resources>

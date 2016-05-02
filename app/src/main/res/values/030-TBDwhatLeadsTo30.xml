@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_30">1</string>
+
+    <string name="article_30_1">Испытание удачи (-1У). Если выпало С - см. 159, если нет - см. 342.</string>
+
+    <string name="opt_30">2</string>
+
+    <string name="option_30_1">159</string>
+    <string name="text_30_1">Везет</string>
+    <string name="option_30_2">342</string>
+    <string name="text_30_2">Не везет</string>
+</resources>

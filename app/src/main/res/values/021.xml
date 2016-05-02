@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_21">1</string>
+
+    <string name="article_21_1">Если хочешь посмотреть, что находится за дверью, см. 332, если нет, возвращайся и см. 212.</string>
+
+    <string name="opt_21">2</string>
+
+    <string name="option_21_1">332</string>
+    <string name="text_21_1">Посмотреть</string>
+    <string name="option_21_2">212</string>
+    <string name="text_21_2">Вернуться</string>
+</resources>
