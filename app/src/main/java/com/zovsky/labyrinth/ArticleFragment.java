@@ -82,6 +82,7 @@ public class ArticleFragment extends Fragment {
         }
         choice = new int[mRadios];
         ((MainActivity)getActivity()).editor.putInt("currentArticle", mArticle).commit();
+        ((MainActivity)getActivity()).editor.putInt("breakIntoArticle", 0).commit();
     }
 
     @Override
@@ -215,18 +216,6 @@ public class ArticleFragment extends Fragment {
                 radioButton[1].setText("1 TBD, Недостаточно ключей");
             }
         }
-        if (mArticle == 24) {
-            Random rnd = new Random();
-            int r = rnd.nextInt(6);
-            Log.d(GAME, "" + r);
-            if (r <=2 ) {
-                radioGroup.check(radioButton[0].getId());
-                radioGroup.getChildAt(1).setVisibility(View.INVISIBLE);
-            } else {
-                radioGroup.check(radioButton[1].getId());
-                radioGroup.getChildAt(0).setVisibility(View.INVISIBLE);
-            }
-        }
         if (mArticle == 28) {
             if (((MainActivity) getActivity()).gamePref.getInt("VVV", 0) >= 18) {
                 radioGroup.check(radioButton[0].getId());
@@ -294,7 +283,10 @@ public class ArticleFragment extends Fragment {
                         ((MainActivity) getActivity()).editor.putInt("selectedRadio", selectedId - 1).commit();
                         ((MainActivity) getActivity()).takeAction(mArticle);
                         ((MainActivity) getActivity()).showAllParameters();
-                        ((MainActivity) getActivity()).showArticle(choice[selectedId - 1]);
+                        int breakInto = ((MainActivity) getActivity()).gamePref.getInt("breakIntoArticle",0);
+                        if (breakInto > 0){
+                            ((MainActivity) getActivity()).showArticle(breakInto);
+                        } else ((MainActivity) getActivity()).showArticle(choice[selectedId - 1]);
                     }
                 }
             }

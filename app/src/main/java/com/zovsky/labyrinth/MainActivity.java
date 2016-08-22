@@ -599,12 +599,21 @@ public class MainActivity extends AppCompatActivity
             if (slctd == 0) {
                 removeThing("Банка ядовитой пыли");
             } else removeThing("Всеядные ракообразные");
-
+            Random rnd = new Random();
+            int r = rnd.nextInt(6);
+            if (r <=2) {
+                editor.putInt("breakIntoArticle", 58).commit();
+                return;
+            } else {
+                editor.putInt("breakIntoArticle", 168).commit();
+                return;
+            }
         }
         if (article == 376) {
             editor.putInt("foodTries", 1).commit(); //food tries for article 16
             changeLLL(1);
             changeUUU(2);
+            return;
         }
 
         if (article == 380) {
