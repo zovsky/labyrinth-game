@@ -217,7 +217,7 @@ public class BattleFragment extends Fragment {
                         ((MainActivity) getActivity()).gameOver();
                         return;
                     } else {
-                        if (mArticle == 2020 || mArticle == 2021 || mArticle == 2022 || mArticle == 2023) {
+                        if (mArticle == 2238 || mArticle == 2239 || mArticle == 2240 || mArticle == 2241) {
                             Log.d(GAME, "branch2");
                             ((MainActivity) getActivity()).showPreArticle(mArticle - 1000 + 1);
                             return;

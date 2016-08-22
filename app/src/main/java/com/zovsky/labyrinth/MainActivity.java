@@ -271,18 +271,18 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("LLL", 0);
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0);
-        editor.putInt("gold", 13); //default 0
+        editor.putInt("gold", 4); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
 
         Set<String> things=new HashSet<String>();
-        things.add("Меч");//меч
-        things.add("Фонарь"); //фонарь
+        things.add("Всеядные ракообразные");//меч
+        things.add("Банка ядовитой пыли"); //фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<String>();
         keys.add("Ключ на 17"); //no keys
-        //keys.add("Ключ на 21");
+        keys.add("Ключ на 21");
         editor.putStringSet("keys", keys);
         editor.commit();
     }
@@ -415,6 +415,7 @@ public class MainActivity extends AppCompatActivity
         }
         editor.putInt("elixirCounter", difference).commit();
         subMenu.add(1, 20, 20, elixirmenu);
+        //TODO: когда и как использовать эликсир
     }
 
 
@@ -592,6 +593,13 @@ public class MainActivity extends AppCompatActivity
             editor.putInt("goBackArticleID", article);
             editor.putInt("foodTries", 1);
             editor.commit();
+        }
+        if (article == 292) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 0) {
+                removeThing("Банка ядовитой пыли");
+            } else removeThing("Всеядные ракообразные");
+
         }
         if (article == 376) {
             editor.putInt("foodTries", 1).commit(); //food tries for article 16

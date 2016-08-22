@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_292">1</string>
+
+    <string name="article_292_1">Что будешь использовать против Червей?</string>
+
+    <string name="opt_292">2</string>
+
+    <string name="option_292_1">24</string>
+    <string name="text_292_1">Ядовитую пыль</string>
+    <string name="option_292_2">24</string>
+    <string name="text_292_2">Всеядных голодных ракообразных</string>
+</resources>

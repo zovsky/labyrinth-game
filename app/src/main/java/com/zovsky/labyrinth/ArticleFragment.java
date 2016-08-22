@@ -118,7 +118,7 @@ public class ArticleFragment extends Fragment {
         layout.addView(radioGroup);
         int var = 0;
         int wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
-        //was I here? if yes, show only first option, otherwise, show only second option
+        //TODO:was I here? if yes, show only first option, otherwise, show only second option
         //1000 yes, 3000 - no
         if (wasHere == 1000) {
             mRadios = 1;
@@ -175,6 +175,7 @@ public class ArticleFragment extends Fragment {
             }
         }
         if (mArticle == 22) {
+            //TODO: если нету ничего из списка в пункте 22
             radioGroup.getChildAt(0).setEnabled(false);
             radioGroup.getChildAt(1).setEnabled(false);
             radioGroup.getChildAt(2).setEnabled(false);
@@ -210,6 +211,7 @@ public class ArticleFragment extends Fragment {
             if (keys.size() < 2) {
                 radioGroup.check(radioButton[1].getId());
                 radioGroup.getChildAt(0).setEnabled(false);
+                //TODO: the end
                 radioButton[1].setText("1 TBD, Недостаточно ключей");
             }
         }
@@ -219,10 +221,10 @@ public class ArticleFragment extends Fragment {
             Log.d(GAME, "" + r);
             if (r <=2 ) {
                 radioGroup.check(radioButton[0].getId());
-                radioGroup.getChildAt(1).setEnabled(false);
+                radioGroup.getChildAt(1).setVisibility(View.INVISIBLE);
             } else {
                 radioGroup.check(radioButton[1].getId());
-                radioGroup.getChildAt(0).setEnabled(false);
+                radioGroup.getChildAt(0).setVisibility(View.INVISIBLE);
             }
         }
         if (mArticle == 28) {
@@ -243,6 +245,37 @@ public class ArticleFragment extends Fragment {
                 radioGroup.getChildAt(0).setEnabled(false);
             }
         }
+        if (mArticle == 106) {
+            radioGroup.getChildAt(1).setEnabled(false);
+            Set<String> things = ((MainActivity) getActivity()).gamePref.getStringSet("things", new HashSet<String>());
+            for (String thing : things) {
+                if (thing.equals("Банка ядовитой пыли")) {
+                    radioGroup.getChildAt(1).setEnabled(true);
+                } else if (thing.equals("Всеядные ракообразные")) {
+                    radioGroup.getChildAt(1).setEnabled(true);
+                }
+            }
+            if (!radioGroup.getChildAt(1).isEnabled()) {
+                radioGroup.check(radioButton[0].getId());
+            }
+        }
+        if (mArticle == 292) {
+            radioGroup.getChildAt(0).setEnabled(false);
+            radioGroup.getChildAt(1).setEnabled(false);
+            Set<String> things = ((MainActivity) getActivity()).gamePref.getStringSet("things", new HashSet<String>());
+            for (String thing : things) {
+                if (thing.equals("Банка ядовитой пыли")) {
+                    radioGroup.getChildAt(0).setEnabled(true);
+                } else if (thing.equals("Всеядные ракообразные")) {
+                    radioGroup.getChildAt(1).setEnabled(true);
+                }
+            }
+            if (!radioGroup.getChildAt(1).isEnabled()) {
+                radioGroup.check(radioButton[0].getId());
+            } else if (!radioGroup.getChildAt(0).isEnabled()) {
+                radioGroup.check(radioButton[1].getId());
+            }
+        }
 
         //take special action on article load
         ((MainActivity) getActivity()).takeSpecialAction(mArticle);
@@ -258,6 +291,7 @@ public class ArticleFragment extends Fragment {
                     if (selectedId == -1) {
                         Toast.makeText(getContext(), "Сделайте выбор", Toast.LENGTH_SHORT).show();
                     } else {
+                        ((MainActivity) getActivity()).editor.putInt("selectedRadio", selectedId - 1).commit();
                         ((MainActivity) getActivity()).takeAction(mArticle);
                         ((MainActivity) getActivity()).showAllParameters();
                         ((MainActivity) getActivity()).showArticle(choice[selectedId - 1]);
