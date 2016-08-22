@@ -166,6 +166,7 @@ public class ArticleFragment extends Fragment {
                 radioButton[0].setText("Недостаточно золота");
             }
         }
+
         if (mArticle == 18) {
             if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 5) {
                 radioGroup.check(radioButton[1].getId());
@@ -243,12 +244,9 @@ public class ArticleFragment extends Fragment {
             }
         }
 
-
-
-
-
         //take special action on article load
         ((MainActivity) getActivity()).takeSpecialAction(mArticle);
+
         dalee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -261,7 +259,7 @@ public class ArticleFragment extends Fragment {
                         Toast.makeText(getContext(), "Сделайте выбор", Toast.LENGTH_SHORT).show();
                     } else {
                         ((MainActivity) getActivity()).takeAction(mArticle);
-//                        ((MainActivity) getActivity()).showAllParameters();
+                        ((MainActivity) getActivity()).showAllParameters();
                         ((MainActivity) getActivity()).showArticle(choice[selectedId - 1]);
                     }
                 }

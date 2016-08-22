@@ -271,8 +271,8 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("LLL", 0);
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0);
-        editor.putInt("gold", 6); //default 0
-        editor.putInt("food", 8);
+        editor.putInt("gold", 13); //default 0
+        editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
 
         Set<String> things=new HashSet<String>();
@@ -582,6 +582,9 @@ public class MainActivity extends AppCompatActivity
         if (article == 31) {
             changeGold(5);
         }
+        if (article == 35) {
+            changeGold(-10);
+        }
         if (article == 56 || article == 105) {
             changeVVV(-1);
         }
@@ -591,7 +594,7 @@ public class MainActivity extends AppCompatActivity
             editor.commit();
         }
         if (article == 376) {
-            editor.putInt("foodTries", 1).commit();
+            editor.putInt("foodTries", 1).commit(); //food tries for article 16
             changeLLL(1);
             changeUUU(2);
         }
