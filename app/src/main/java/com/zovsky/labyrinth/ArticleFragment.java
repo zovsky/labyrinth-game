@@ -83,6 +83,7 @@ public class ArticleFragment extends Fragment {
         choice = new int[mRadios];
         ((MainActivity)getActivity()).editor.putInt("currentArticle", mArticle).commit();
         ((MainActivity)getActivity()).editor.putInt("breakIntoArticle", 0).commit();
+        ((MainActivity)getActivity()).showAllParameters();
     }
 
     @Override
@@ -113,10 +114,7 @@ public class ArticleFragment extends Fragment {
         }
         textView[mParas-1].setPadding(0, 0, 0, 20);
 
-        //generate radio buttons
-        final RadioGroup radioGroup = new RadioGroup(getContext());
-        AppCompatRadioButton[] radioButton = new AppCompatRadioButton[mRadios];
-        layout.addView(radioGroup);
+        //TODO: article200 - check if wasHere; article 364 - make 200 wasHere;
         int var = 0;
         int wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
         //TODO:was I here? if yes, show only first option, otherwise, show only second option
@@ -127,6 +125,11 @@ public class ArticleFragment extends Fragment {
             var = 1;
         }
         Log.d(GAME, "was here:" + wasHere);
+
+        //generate radio buttons
+        final RadioGroup radioGroup = new RadioGroup(getContext());
+        AppCompatRadioButton[] radioButton = new AppCompatRadioButton[mRadios];
+        layout.addView(radioGroup);
         for (int radio = var; radio < mRadios; radio++) {
             radioButton[radio] = new AppCompatRadioButton(getContext(), null, R.attr.radioButtonStyle);
             radioButton[radio].setId(radio+1);
@@ -226,6 +229,27 @@ public class ArticleFragment extends Fragment {
             }
         }
         if (mArticle == 30) {
+            if (((MainActivity) getActivity()).takeChance() == 1) {
+                radioGroup.check(radioButton[0].getId());
+                radioGroup.getChildAt(1).setEnabled(false);
+            } else {
+                radioGroup.check(radioButton[1].getId());
+                radioGroup.getChildAt(0).setEnabled(false);
+            }
+        }
+        if (mArticle == 35) {
+            /*TODO: или сразу показывать нужный пункт, или вставлять кнопку после текста или сделать это в отдельном пункте 24
+            НАДО ДЕЛАТЬ КНОПКУ И ЗАПОМИНАТЬ СОСТОЯНИЕ: при нажатии на кнопку добавлять текущий пункт в wasHere*/
+
+            if (((MainActivity) getActivity()).takeChance() == 1) {
+                radioGroup.check(radioButton[0].getId());
+                radioGroup.getChildAt(1).setEnabled(false);
+            } else {
+                radioGroup.check(radioButton[1].getId());
+                radioGroup.getChildAt(0).setEnabled(false);
+            }
+        }
+        if (mArticle == 36) {
             if (((MainActivity) getActivity()).takeChance() == 1) {
                 radioGroup.check(radioButton[0].getId());
                 radioGroup.getChildAt(1).setEnabled(false);

@@ -642,12 +642,16 @@ public class MainActivity extends AppCompatActivity
                     return 1000;
                 }
             }
+
+            /* probably this code if (article == 364)
+
             Set<String> room = new HashSet<String>();
             room.add(Integer.toString(article));
             editor.putStringSet("wasHere", room);
             editor.commit();
             //showAllParameters();
             return article;
+            */
         }
         return 3000;
     }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_58">1</string>
+
+    <string name="article_58_1">Применяй свое тайное оружие. Черви целиком парализованы. Если хочешь протиснуться между их телами и снова обыскать бассейн, то см. 142, если нет - см. 320.</string>
+
+    <string name="opt_58">2</string>
+
+    <string name="option_58_1">142</string>
+    <string name="text_58_1">Обыскать бассейн</string>
+    <string name="option_58_2">320</string>
+    <string name="text_58_2">Нечего тут искать</string>
+</resources>
