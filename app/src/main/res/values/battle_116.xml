@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_1116">5</string>
+
+    <string name="article_1116_0">ОРК</string>
+    <string name="article_1116_1">6</string>
+    <string name="article_1116_2">4</string>
+    <string name="article_1116_3"></string>
+    <string name="article_1116_4"></string>
+
+    <string name="opt_1116">3</string>
+
+    <string name="option_1116_1">2</string>
+    <string name="text_1116_1">После какого тура можно убежать: 0-после любого, 1-после первого, 2-никогда</string>
+
+    <string name="option_1116_2">372</string>
+    <string name="text_1116_2">Спастись бегством</string>
+
+    <string name="option_1116_3">89</string>
+    <string name="text_1116_3">Победа</string>
+
+</resources>

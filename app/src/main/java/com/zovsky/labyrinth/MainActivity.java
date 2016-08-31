@@ -609,8 +609,17 @@ public class MainActivity extends AppCompatActivity
                 return;
             }
         }
+        if (article == 364) {
+            Set<String> room = new HashSet<>();
+            room.add("200");
+            room.add("224");
+            editor.putStringSet("wasHere", room);
+            editor.commit();
+            showAllParameters();
+        }
         if (article == 376) {
             editor.putInt("foodTries", 1).commit(); //food tries for article 16
+            //TODO check if food tries are zero after article 16
             changeLLL(1);
             changeUUU(2);
             return;
@@ -630,30 +639,14 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void allowAction(int article) {
-        //TODO: Если есть в xml, то надувать одноразовую кнопку между абзацами
-    }
-
-    public int wasIHere(int article) {
-        if (article == 200) {
-            Set<String> set = gamePref.getStringSet("wasHere", new HashSet<String>());
-            for (String room : set) {
-                if (room.equals(Integer.toString(article))) {
-                    return 1000;
-                }
+    public boolean wasIHere(int article) {
+        Set<String> set = gamePref.getStringSet("wasHere", new HashSet<String>());
+        for (String room : set) {
+            if (room.equals(Integer.toString(article))) {
+                return true;
             }
-
-            /* probably this code if (article == 364)
-
-            Set<String> room = new HashSet<String>();
-            room.add(Integer.toString(article));
-            editor.putStringSet("wasHere", room);
-            editor.commit();
-            //showAllParameters();
-            return article;
-            */
         }
-        return 3000;
+        return false;
     }
 
     public void gameOver() {

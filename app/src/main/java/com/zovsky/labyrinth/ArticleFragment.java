@@ -114,17 +114,18 @@ public class ArticleFragment extends Fragment {
         }
         textView[mParas-1].setPadding(0, 0, 0, 20);
 
-        //TODO: article200 - check if wasHere; article 364 - make 200 wasHere;
         int var = 0;
-        int wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
-        //TODO:was I here? if yes, show only first option, otherwise, show only second option
-        //1000 yes, 3000 - no
-        if (wasHere == 1000) {
-            mRadios = 1;
-        } else if (wasHere == mArticle) {
-            var = 1;
+        boolean wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
+        if (mArticle == 200 || mArticle == 224) {
+            //TODO:was I here? if yes, show only first option, otherwise, show only second option
+            //1000 yes, 3000 - no
+            if (wasHere == true) {
+                mRadios = 1;
+            } else if (wasHere == false) {
+                var = 1;
+            }
+            Log.d(GAME, "was here:" + wasHere);
         }
-        Log.d(GAME, "was here:" + wasHere);
 
         //generate radio buttons
         final RadioGroup radioGroup = new RadioGroup(getContext());
@@ -151,7 +152,7 @@ public class ArticleFragment extends Fragment {
 
             radioButton[radio].setText(radioText);
 
-            if (mRadios == 1 || wasHere == 1000 || wasHere == mArticle) {
+            if (mRadios == 1 || var == 1) {
                 //set checked radio button if it is sole
                 radioGroup.check(radioButton[radio].getId());
             }

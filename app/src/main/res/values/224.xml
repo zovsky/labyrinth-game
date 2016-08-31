@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_224">1</string>
+
+    <string name="article_224_1">Через несколько шагов коридор поворачивает на восток, иди дальше. В южной стене коридора найди двери. Если они открыты, см. 180, если закрыты, см. 301.</string>
+
+    <string name="opt_224">2</string>
+
+    <string name="option_224_1">180</string>
+    <string name="text_224_1">Двери открыты</string>
+    <string name="option_224_2">301</string>
+    <string name="text_224_2">Двери закрыты</string>
+</resources>
