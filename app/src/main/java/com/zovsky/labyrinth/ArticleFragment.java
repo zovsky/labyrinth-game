@@ -117,8 +117,7 @@ public class ArticleFragment extends Fragment {
         int var = 0;
         boolean wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
         if (mArticle == 200 || mArticle == 224) {
-            //TODO:was I here? if yes, show only first option, otherwise, show only second option
-            //1000 yes, 3000 - no
+            //was I here? if yes, show only first option, otherwise, show only second option
             if (wasHere == true) {
                 mRadios = 1;
             } else if (wasHere == false) {
@@ -157,7 +156,7 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[radio].getId());
             }
         }
-        Button dalee = new Button(getContext());
+        final Button dalee = new Button(getContext());
         layout.addView(dalee);
         //articles before battle;
         if (mArticle == 2) {
@@ -238,26 +237,54 @@ public class ArticleFragment extends Fragment {
                 radioGroup.getChildAt(0).setEnabled(false);
             }
         }
-        if (mArticle == 35) {
-            /*TODO: или сразу показывать нужный пункт, или вставлять кнопку после текста или сделать это в отдельном пункте 24
-            НАДО ДЕЛАТЬ КНОПКУ И ЗАПОМИНАТЬ СОСТОЯНИЕ: при нажатии на кнопку добавлять текущий пункт в wasHere*/
+        if (mArticle == 35 || mArticle == 36) {
+            final Button takeChance = new Button(getContext());
+            boolean wasHereForChance = ((MainActivity) getActivity()).wasIHere(mArticle);
+            if (wasHereForChance == false) {
+                layout.addView(takeChance, 1);
+                takeChance.setText("Испытай удачу (-1У)");
+                radioGroup.getChildAt(0).setEnabled(false);
+                radioGroup.getChildAt(1).setEnabled(false);
+                dalee.setEnabled(false);
+                final int firstRadioID = radioButton[0].getId();
+                final int secondRadioID = radioButton[1].getId();
+                takeChance.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        takeChance.setEnabled(false);
+                        if (((MainActivity) getActivity()).takeChance() == 1) {
+                            radioGroup.check(firstRadioID);
+                            radioGroup.getChildAt(0).setEnabled(true);
+                            ((MainActivity) getActivity()).editor.putInt("chanceRadioID", firstRadioID).commit();
+                        } else {
+                            radioGroup.check(secondRadioID);
+                            radioGroup.getChildAt(1).setEnabled(true);
+                            ((MainActivity) getActivity()).editor.putInt("chanceRadioID", secondRadioID).commit();
+                        }
+                        Set<String> room = new HashSet<>();
+                        if (mArticle == 35) {
+                            room.add("35");
+                        }
+                        if (mArticle == 36) {
+                            room.add("36");
+                        }
+                        ((MainActivity) getActivity()).editor.putStringSet("wasHere", room).commit();
+                        dalee.setEnabled(true);
+                    }
+                });
 
-            if (((MainActivity) getActivity()).takeChance() == 1) {
-                radioGroup.check(radioButton[0].getId());
-                radioGroup.getChildAt(1).setEnabled(false);
             } else {
-                radioGroup.check(radioButton[1].getId());
-                radioGroup.getChildAt(0).setEnabled(false);
+                int radioID = ((MainActivity) getActivity()).gamePref.getInt("chanceRadioID", 0);
+                if (radioID == radioButton[0].getId()) {
+                    radioGroup.check(radioID);
+                    radioGroup.getChildAt(1).setEnabled(false);
+                } else {
+                    radioGroup.check(radioID);
+                    radioGroup.getChildAt(0).setEnabled(false);
+                }
+                dalee.setEnabled(true);
             }
-        }
-        if (mArticle == 36) {
-            if (((MainActivity) getActivity()).takeChance() == 1) {
-                radioGroup.check(radioButton[0].getId());
-                radioGroup.getChildAt(1).setEnabled(false);
-            } else {
-                radioGroup.check(radioButton[1].getId());
-                radioGroup.getChildAt(0).setEnabled(false);
-            }
+
         }
         if (mArticle == 106) {
             radioGroup.getChildAt(1).setEnabled(false);

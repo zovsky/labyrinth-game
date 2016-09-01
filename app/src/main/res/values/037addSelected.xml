@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_37">1</string>
+
+    <string name="article_37_1">Какой щит выберешь: металлический, парадный или кожаный? Запиши свой выбор в графу "Список оснащения". Далее см. 324.</string>
+
+    <string name="opt_37">3</string>
+
+    <string name="option_37_1">324</string>
+    <string name="text_37_1">Металлический</string>
+    <string name="option_37_2">324</string>
+    <string name="text_37_2">Парадный</string>
+    <string name="option_37_3">324</string>
+    <string name="text_37_3">Кожаный</string>
+</resources>

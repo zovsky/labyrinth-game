@@ -6,8 +6,8 @@
 
     <string name="opt_35">2</string>
 
-    <string name="option_35_1">56</string>
-    <string name="text_35_1">Повторить</string>
-    <string name="option_35_2">75</string>
-    <string name="text_35_2">Отступиться</string>
+    <string name="option_35_1">186</string>
+    <string name="text_35_1">Перебираешься на другую сторону</string>
+    <string name="option_35_2">158</string>
+    <string name="text_35_2">Падаешь на край скалы</string>
 </resources>

@@ -586,6 +586,18 @@ public class MainActivity extends AppCompatActivity
         if (article == 35) {
             changeGold(-10);
         }
+        if (article == 37) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 0) {
+                addThing("Металлический щит");
+            }
+            if (slctd == 1) {
+                addThing("Парадный щит");
+            }
+            if (slctd == 2) {
+                addThing("Кожаный щит");
+            }
+        }
         if (article == 56 || article == 105) {
             changeVVV(-1);
         }
