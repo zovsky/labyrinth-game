@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_43">1</string>
+
+    <string name="article_43_1">Ты должен вернуться туда, откуда пришел, пока не окажешься на другом конце пропасти. По дороге ни с кем не бейся, ничего не покупай, ничего не бери. Ты должен попробовать найти другой ход. см. 186.</string>
+
+    <string name="opt_43">1</string>
+
+    <string name="option_43_1">186</string>
+    <string name="text_43_1">Возвращайся к краю пропасти</string>
+
+</resources>

@@ -104,8 +104,24 @@ public class ArticleFragment extends Fragment {
         TextView[] textView = new TextView[mParas];
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.article_layout);
         String articleID, optionID, textID;
+
+        int paraStartCount = 0;
+        int radioStartCount = 0;
+
+        if (mArticle == 401) {
+            ((MainActivity) getActivity()).showAllParameters();
+            boolean was122 = ((MainActivity) getActivity()).wasIHere(122);
+            if (was122 == true) {
+                mParas = 1;
+                mRadios = 1;
+            } else if (was122 == false) {
+                paraStartCount = 1;
+                radioStartCount = 1;
+            }
+        }
+
         //generate article paragraphs
-        for (int para = 0; para < mParas; para++) {
+        for (int para = paraStartCount; para < mParas; para++) {
             textView[para] = new TextView(getContext());
             layout.addView(textView[para]);
             articleID = "article_" + mArticle + "_" + (para+1);
@@ -114,14 +130,13 @@ public class ArticleFragment extends Fragment {
         }
         textView[mParas-1].setPadding(0, 0, 0, 20);
 
-        int var = 0;
         boolean wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
         if (mArticle == 200 || mArticle == 224 || mArticle == 38) {
             //was I here? if yes, show only first option, otherwise, show only second option
             if (wasHere == true) {
                 mRadios = 1;
             } else if (wasHere == false) {
-                var = 1;
+                radioStartCount = 1;
             }
             Log.d(GAME, "was here:" + wasHere);
         }
@@ -130,7 +145,7 @@ public class ArticleFragment extends Fragment {
         final RadioGroup radioGroup = new RadioGroup(getContext());
         AppCompatRadioButton[] radioButton = new AppCompatRadioButton[mRadios];
         layout.addView(radioGroup);
-        for (int radio = var; radio < mRadios; radio++) {
+        for (int radio = radioStartCount; radio < mRadios; radio++) {
             radioButton[radio] = new AppCompatRadioButton(getContext(), null, R.attr.radioButtonStyle);
             radioButton[radio].setId(radio+1);
             radioGroup.addView(radioButton[radio]);
@@ -151,7 +166,7 @@ public class ArticleFragment extends Fragment {
 
             radioButton[radio].setText(radioText);
 
-            if (mRadios == 1 || var == 1) {
+            if (mRadios == 1 || radioStartCount == 1) {
                 //set checked radio button if it is sole
                 radioGroup.check(radioButton[radio].getId());
             }
@@ -310,18 +325,6 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[0].getId());
             } else if (!radioGroup.getChildAt(0).isEnabled()) {
                 radioGroup.check(radioButton[1].getId());
-            }
-        }
-        if (mArticle == 401) {
-            boolean knowSpell = ((MainActivity) getActivity()).wasIHere(122);
-            if (knowSpell == true) {
-                textView[1].setVisibility(View.INVISIBLE);
-                radioGroup.check(radioButton[0].getId());
-                radioButton[1].setVisibility(View.INVISIBLE);
-            } else {
-                textView[0].setVisibility(View.INVISIBLE);
-                radioGroup.check(radioButton[1].getId());
-                radioButton[0].setVisibility(View.INVISIBLE);
             }
         }
 

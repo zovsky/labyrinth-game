@@ -274,13 +274,19 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("gold", 4); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
+        //TODO Remove on release
+        Set<String> room = new HashSet<>();
+        room.add("122");
+        editor.putStringSet("wasHere", room);
+        editor.commit();
+        //REMOVE on release
 
-        Set<String> things=new HashSet<String>();
+        Set<String> things=new HashSet<>();
         things.add("Всеядные ракообразные");//меч
         things.add("Банка ядовитой пыли"); //фонарь
         editor.putStringSet("things", things);
 
-        Set<String> keys=new HashSet<String>();
+        Set<String> keys=new HashSet<>();
         keys.add("Ключ на 17"); //no keys
         keys.add("Ключ на 21");
         editor.putStringSet("keys", keys);
