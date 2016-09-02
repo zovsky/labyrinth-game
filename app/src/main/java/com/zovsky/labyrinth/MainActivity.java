@@ -601,6 +601,12 @@ public class MainActivity extends AppCompatActivity
         if (article == 56 || article == 105) {
             changeVVV(-1);
         }
+        if (article == 151) {
+            Set<String> room = new HashSet<>();
+            room.add("38");
+            editor.putStringSet("wasHere", room);
+            editor.commit();
+        }
         if (article == 157 || article == 181 || article == 216 || article == 329 || article == 377) {
             editor.putInt("goBackArticleID", article);
             editor.putInt("foodTries", 1);
@@ -631,7 +637,7 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 376) {
             editor.putInt("foodTries", 1).commit(); //food tries for article 16
-            //TODO check if food tries are zero after article 16
+            //TODO make sure food tries are zero after article 16
             changeLLL(1);
             changeUUU(2);
             return;

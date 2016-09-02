@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_328">1</string>
+
+    <string name="article_328_1">Приложи ухо к двери. Слышен какой-то разговор, шуршание. Если хочешь войти в комнату - см. 151, если нет - см. 90.</string>
+
+    <string name="opt_328">2</string>
+
+    <string name="option_328_1">151</string>
+    <string name="text_328_1">Войти в комнату</string>
+    <string name="option_328_2">90</string>
+    <string name="text_328_2">Не входить</string>
+</resources>

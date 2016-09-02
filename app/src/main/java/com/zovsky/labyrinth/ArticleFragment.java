@@ -116,7 +116,7 @@ public class ArticleFragment extends Fragment {
 
         int var = 0;
         boolean wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
-        if (mArticle == 200 || mArticle == 224) {
+        if (mArticle == 200 || mArticle == 224 || mArticle == 38) {
             //was I here? if yes, show only first option, otherwise, show only second option
             if (wasHere == true) {
                 mRadios = 1;
@@ -237,7 +237,7 @@ public class ArticleFragment extends Fragment {
                 radioGroup.getChildAt(0).setEnabled(false);
             }
         }
-        if (mArticle == 35 || mArticle == 36) {
+        if (mArticle == 35 || mArticle == 36 || mArticle == 41) {
             final Button takeChance = new Button(getContext());
             boolean wasHereForChance = ((MainActivity) getActivity()).wasIHere(mArticle);
             if (wasHereForChance == false) {
@@ -262,12 +262,7 @@ public class ArticleFragment extends Fragment {
                             ((MainActivity) getActivity()).editor.putInt("chanceRadioID", secondRadioID).commit();
                         }
                         Set<String> room = new HashSet<>();
-                        if (mArticle == 35) {
-                            room.add("35");
-                        }
-                        if (mArticle == 36) {
-                            room.add("36");
-                        }
+                        room.add(Integer.toString(mArticle));
                         ((MainActivity) getActivity()).editor.putStringSet("wasHere", room).commit();
                         dalee.setEnabled(true);
                     }
@@ -315,6 +310,18 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[0].getId());
             } else if (!radioGroup.getChildAt(0).isEnabled()) {
                 radioGroup.check(radioButton[1].getId());
+            }
+        }
+        if (mArticle == 401) {
+            boolean knowSpell = ((MainActivity) getActivity()).wasIHere(122);
+            if (knowSpell == true) {
+                textView[1].setVisibility(View.INVISIBLE);
+                radioGroup.check(radioButton[0].getId());
+                radioButton[1].setVisibility(View.INVISIBLE);
+            } else {
+                textView[0].setVisibility(View.INVISIBLE);
+                radioGroup.check(radioButton[1].getId());
+                radioButton[0].setVisibility(View.INVISIBLE);
             }
         }
 

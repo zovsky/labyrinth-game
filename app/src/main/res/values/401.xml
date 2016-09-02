@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_401">2</string>
+
+    <string name="article_401_1">Заклинание тотчас всплывает в памяти, как будто ты прочел его минуту назад.</string>
+    <string name="article_401_2">Попробуй еще раз с самого начала. А сейчас твоя игра закончилась... В следующий раз ищи старую книгу гремлинов. Дальнейшее продолжение невозможно даже для такого настоящего смельчака как ты.</string>
+
+    <string name="opt_401">2</string>
+
+    <string name="option_401_1">376</string>
+    <string name="text_401_1">Барум! Барам! Барота! Открывайтеся ворота!</string>
+    <string name="option_401_2">376</string>
+    <string name="text_401_2">TBD Конец</string>
+</resources>

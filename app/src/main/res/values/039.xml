@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_39">1</string>
+
+    <string name="article_39_1">Дойди до перекрестка. Он ответвляется дорогами на запад - см. 331, на север - см. 228, на юг - см. 146. Какое направление выбираешь?</string>
+
+    <string name="opt_39">3</string>
+
+    <string name="option_39_1">331</string>
+    <string name="text_39_1">На запад</string>
+    <string name="option_39_2">228</string>
+    <string name="text_39_2">На север</string>
+    <string name="option_39_3">146</string>
+    <string name="text_39_3">На юг</string>
+</resources>
