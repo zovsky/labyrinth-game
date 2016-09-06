@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_60">1</string>
+
+    <string name="article_60_1">Карлик предлагает 20 кусков золота. Принимаешь? Если да, см. 262, если нет, см. 338.</string>
+
+    <string name="opt_60">2</string>
+
+    <string name="option_60_1">262</string>
+    <string name="text_60_1">Принимаешь</string>
+    <string name="option_60_2">338</string>
+    <string name="text_60_2">Не принимаешь</string>
+</resources>

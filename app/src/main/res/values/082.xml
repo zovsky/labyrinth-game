@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_82">1</string>
+
+    <string name="article_82_1">Едва делаешь несколько шагов, как коридор поворачивает на юг и тут же кончается. Проход завален валунами. Может чудовища прорыли какие-то обходные проходы? Хочешь поискать?</string>
+
+    <string name="opt_82">2</string>
+
+    <string name="option_82_1">155</string>
+    <string name="text_82_1">Да</string>
+    <string name="option_82_2">212</string>
+    <string name="text_82_2">Нет, вернуться к перекрестку</string>
+</resources>

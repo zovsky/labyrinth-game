@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="para_0">1</string>
+    <string name="para_50">1</string>
 
-    <string name="article_0_1"></string>
+    <string name="article_50_1"></string>
 
-    <string name="opt_0">2</string>
+    <string name="opt_50">2</string>
 
-    <string name="option_0_1">56</string>
-    <string name="text_0_1">Повторить</string>
-    <string name="option_0_2">75</string>
-    <string name="text_0_2">Отступиться</string>
+    <string name="option_50_1">56</string>
+    <string name="text_50_1">Повторить</string>
+    <string name="option_50_2">75</string>
+    <string name="text_50_2">Отступиться</string>
 </resources>

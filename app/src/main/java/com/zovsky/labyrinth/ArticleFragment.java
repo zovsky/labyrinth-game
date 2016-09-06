@@ -334,6 +334,7 @@ public class ArticleFragment extends Fragment {
         dalee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ((MainActivity) getActivity()).editor.putInt("foodTries", 1).commit();
                 if (mRadios == 0) {
                     ((MainActivity) getActivity()).takeAction(mArticle);
                     ((MainActivity) getActivity()).showPreArticle(mArticle+1000);

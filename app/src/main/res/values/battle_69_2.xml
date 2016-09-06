@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_1070">4</string>
+
+    <string name="article_1070_0">УПЫРЬ 2</string>
+    <string name="article_1070_1">5</string>
+    <string name="article_1070_2">4</string>
+    <string name="article_1070_3">С одним покончено, на очереди второй.</string>
+    <string name="article_1070_4">После каждого тура битвы можешь спастись бегством.</string>
+
+    <string name="opt_1070">3</string>
+
+    <string name="option_1070_1">2</string>
+    <string name="text_1070_1">После какого тура можно убежать: 0-после любого, 1-после первого, 2-никогда</string>
+
+    <string name="option_1070_2">291</string>
+    <string name="text_1070_2">Спастись бегством</string>
+
+    <string name="option_1070_3">305</string>
+    <string name="text_1070_3">Победа</string>
+
+</resources>
