@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_48">1</string>
+
+    <string name="article_48_1">Сними мешок, чтобы разобраться в своем скарбе. В эту самую минуту золото посыпалось во все стороны, а вазы превращаются в двух сильных крылатых Демонов. Они возносятся на выступ скалы. Если ты готов атаковать, тогда см. 169, а можешь заняться сбором рассыпанного золота, тогда см. 133.</string>
+
+    <string name="opt_48">2</string>
+
+    <string name="option_48_1">169</string>
+    <string name="text_48_1">Атаковать Демонов</string>
+    <string name="option_48_2">133</string>
+    <string name="text_48_2">Собрать золото</string>
+</resources>

@@ -540,7 +540,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeSpecialAction(int article) {
-        if (article == 16) {
+        if (article == 16 || article == 47) {
             if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0) {
                 setOneMenuItemActive("Запасы еды");
             }
@@ -578,6 +578,10 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 15 || article == 157 || article == 181 || article == 216 || article == 329 || article == 377) {
             editor.putInt("goBackArticleID", article).commit();
+        }
+        if (article == 16 || article == 47) {
+            editor.putInt("foodTries", 0).commit(); //food tries to zero
+            return;
         }
         if (article == 19) {
             changeFood(1);
@@ -618,6 +622,10 @@ public class MainActivity extends AppCompatActivity
             editor.putInt("foodTries", 1);
             editor.commit();
         }
+        if (article == 279) {
+            editor.putInt("foodTries", 1).commit(); //food tries for article 47
+            return;
+        }
         if (article == 292) {
             int slctd = gamePref.getInt("selectedRadio", 0);
             if (slctd == 0) {
@@ -643,7 +651,6 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 376) {
             editor.putInt("foodTries", 1).commit(); //food tries for article 16
-            //TODO make sure food tries are zero after article 16
             changeLLL(1);
             changeUUU(2);
             return;
