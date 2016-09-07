@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_1092">5</string>
+
+    <string name="article_1092_0">МИНОТАВР</string>
+    <string name="article_1092_1">10</string>
+    <string name="article_1092_2">10</string>
+    <string name="article_1092_3">Начинай с Минотавра.</string>
+    <string name="article_1092_4">Если битва для тебя складывается неудачно, спасайся бегством, но только после первого раунда.</string>
+
+    <string name="opt_1092">3</string>
+
+    <string name="option_1092_1">1</string>
+    <string name="text_1092_1">После какого тура можно убежать: 0-после любого, 1-после первого, 2-никогда</string>
+
+    <string name="option_1092_2">193</string>
+    <string name="text_1092_2">Спастись бегством</string>
+
+    <string name="option_1092_3">277</string>
+    <string name="text_1092_3">Победа</string>
+
+</resources>

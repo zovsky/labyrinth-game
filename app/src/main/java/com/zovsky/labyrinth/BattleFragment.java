@@ -116,7 +116,15 @@ public class BattleFragment extends Fragment {
         String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
                 " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
-        ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle)); //null
+        if (mArticle == 2098) {
+            heroLLL += 3;
+            Log.d(GAME, "heroLLL: " + heroLLL);
+            toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
+                    "+3 В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
+                    " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
+        }
+
+        ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle)); //TODO subtitle null
 
         View view = inflater.inflate(R.layout.fragment_battle, container, false);
         round = ((MainActivity) getActivity()).gamePref.getInt("round", 0);
@@ -217,7 +225,8 @@ public class BattleFragment extends Fragment {
                         ((MainActivity) getActivity()).gameOver();
                         return;
                     } else {
-                        if (mArticle == 2238 || mArticle == 2239 || mArticle == 2240 || mArticle == 2241 || mArticle == 2069) {
+                        if (mArticle == 2238 || mArticle == 2239 || mArticle == 2240 || mArticle == 2241 || mArticle == 2069 ||
+                                mArticle == 2277) {
                             Log.d(GAME, "branch2");
                             ((MainActivity) getActivity()).showPreArticle(mArticle - 1000 + 1);
                             return;

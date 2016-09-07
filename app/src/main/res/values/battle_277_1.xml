@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_1277">5</string>
+
+    <string name="article_1277_0">ВАМПИР</string>
+    <string name="article_1277_1">9</string>
+    <string name="article_1277_2">7</string>
+    <string name="article_1277_3">Сначала ВАМПИР</string>
+    <string name="article_1277_4">Помни, что в ходе битвы можешь спастись бегством. Но только после первых раундов с каждым из монстров.</string>
+
+    <string name="opt_1277">3</string>
+
+    <string name="option_1277_1">1</string>
+    <string name="text_1277_1">После какого тура можно убежать: 0-после любого, 1-после первого, 2-никогда</string>
+
+    <string name="option_1277_2">193</string>
+    <string name="text_1277_2">Спастись бегством</string>
+
+    <string name="option_1277_3">312</string>
+    <string name="text_1277_3">Победа</string>
+
+</resources>

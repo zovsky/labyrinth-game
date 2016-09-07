@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_111">1</string>
+
+    <string name="article_111_1">Возвращайся. Подземная часовня совсем пуста. Выходи из нее через западный выход. см. 194.</string>
+
+    <string name="opt_111">1</string>
+
+    <string name="option_111_1">194</string>
+    <string name="text_111_1">Выходи</string>
+
+</resources>

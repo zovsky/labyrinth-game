@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_250">1</string>
+
+    <string name="article_250_1">Гоблины отбежали, но не сдались. Они готовятся опять напасть на вас, точнее на тебя, потому что твой союзник едва живой сидит у стены. Но гоблины не начинают битву, стараясь придумать коварную уловку. Хочешь атаковать первым?</string>
+
+    <string name="opt_250">2</string>
+
+    <string name="option_250_1">143</string>
+    <string name="text_250_1">Да</string>
+    <string name="option_250_2">210</string>
+    <string name="text_250_2">Нет</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_108">1</string>
+
+    <string name="article_108_1">Иди либо на север, см. 363, либо на юг, см. 141.</string>
+
+    <string name="opt_108">2</string>
+
+    <string name="option_108_1">363</string>
+    <string name="text_108_1">На север</string>
+    <string name="option_108_2">141</string>
+    <string name="text_108_2">На юг</string>
+</resources>
