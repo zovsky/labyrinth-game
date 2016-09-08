@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_115">1</string>
+
+    <string name="article_115_1">Выбирай: меч - см. 232, костяной нож - см. 324, рукавицы - см. 95, щит - см. 37, шлем - см. 298, молот- см. 324.</string>
+
+    <string name="opt_115">6</string>
+
+    <string name="option_115_1">232</string>
+    <string name="text_115_1">Меч</string>
+    <string name="option_115_2">324</string>
+    <string name="text_115_2">Костяной нож</string>
+    <string name="option_115_3">95</string>
+    <string name="text_115_3">Рукавицы</string>
+    <string name="option_115_4">37</string>
+    <string name="text_115_4">Щит</string>
+    <string name="option_115_5">398</string>
+    <string name="text_115_5">Шлем</string>
+    <string name="option_115_6">324</string>
+    <string name="text_115_6">Молот</string>
+</resources>
