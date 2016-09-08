@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_130">1</string>
+
+    <string name="article_130_1">Коридор теперь имеет ширину 5 шагов. Идти легко, свободно. Едва прошагал 100 шагов, как очутился перед следующим перекрестком. см. 212.</string>
+
+    <string name="opt_130">1</string>
+
+    <string name="option_130_1">212</string>
+    <string name="text_130_1">Далее</string>
+
+</resources>

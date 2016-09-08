@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_148">1</string>
+
+    <string name="article_148_1">Коридор поворачивает на север, и сразу попадаются на глаза двери. Если хочешь посмотреть, что за ними, см. 8, если нет, см. 93.</string>
+
+    <string name="opt_148">2</string>
+
+    <string name="option_148_1">8</string>
+    <string name="text_148_1">Да</string>
+    <string name="option_148_2">93</string>
+    <string name="text_148_2">Нет</string>
+</resources>

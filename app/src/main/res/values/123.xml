@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_123">1</string>
+
+    <string name="article_123_1">Коридор убегает на запад и поворачивает на юг. Вот и перекресток, см. 39.</string>
+
+    <string name="opt_123">1</string>
+
+    <string name="option_123_1">39</string>
+    <string name="text_123_1">Далее</string>
+
+</resources>

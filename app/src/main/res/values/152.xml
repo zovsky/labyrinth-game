@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_152">1</string>
+
+    <string name="article_152_1">Препятствие преодолено. Иди коридором на восток, а потом поворачивай на север. Наткнешься на перекресток. Можешь пойти или на запад, тогда см. 73, или на север, тогда см. 20.</string>
+
+    <string name="opt_152">2</string>
+
+    <string name="option_152_1">73</string>
+    <string name="text_152_1">На запад</string>
+    <string name="option_152_2">20</string>
+    <string name="text_152_2">На север</string>
+</resources>

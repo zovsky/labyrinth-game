@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_141">1</string>
+
+    <string name="article_141_1">Ты находишься в глухом тупике. Можешь перекусить порцией еды. Отсюда можно идти только на север. см. 357.</string>
+
+    <string name="opt_141">1</string>
+
+    <string name="option_141_1">357</string>
+    <string name="text_141_1">Далее</string>
+
+</resources>

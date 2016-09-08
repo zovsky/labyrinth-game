@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_131">1</string>
+
+    <string name="article_131_1">Действительно, решетка поднимается, но ключ не удается вынуть. Оставь его. Выходи из комнаты через двери, в которые ты входил. 39</string>
+
+    <string name="opt_131">1</string>
+
+    <string name="option_131_1">39</string>
+    <string name="text_131_1">Далее</string>
+
+</resources>

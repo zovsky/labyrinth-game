@@ -287,8 +287,8 @@ public class MainActivity extends AppCompatActivity
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
-        keys.add("Ключ на 17"); //no keys
-        keys.add("Ключ на 21");
+        keys.add("17"); //no keys
+        keys.add("21");
         editor.putStringSet("keys", keys);
         editor.commit();
     }
@@ -442,8 +442,29 @@ public class MainActivity extends AppCompatActivity
         SubMenu subMenu = inventory.getSubMenu();
         subMenu.removeGroup(3);
         for (int i = 0; i < keys.size(); i++) {
-            subMenu.add(3, i+70, i+70, keys.get(i));
+            subMenu.add(3, i+70, i+70, "Ключ на " + keys.get(i));
         }
+    }
+    public void addKeyNumber(String keyNumber) {
+        ArrayList<String> keysList = new ArrayList<String>();
+        Set<String> keys = gamePref.getStringSet("keys", new HashSet<String>());
+        for (String item : keys) {
+            keysList.add(item);
+        }
+        keysList.add(keyNumber);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Menu menu = toolbar.getMenu();
+        MenuItem inventory = menu.getItem(0);
+        SubMenu subMenu = inventory.getSubMenu();
+        subMenu.removeGroup(3);
+        editor.remove("keys");
+        Set<String> newKeys = new HashSet<String>();
+        for (int i = 0; i < keysList.size(); i++) {
+            subMenu.add(3, i+70, i+70, "Ключ на " + keysList.get(i));
+            newKeys.add(keysList.get(i));
+        }
+        editor.putStringSet("keys", newKeys).commit();
     }
 
     public void addThing(String thing) {
@@ -540,7 +561,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeSpecialAction(int article) {
-        if (article == 16 || article == 47 || article == 61 || article == 68) {
+        if (article == 16 || article == 47 || article == 61 || article == 68 || article == 137) {
             if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0) {
                 setOneMenuItemActive("Запасы еды");
             }
@@ -617,6 +638,9 @@ public class MainActivity extends AppCompatActivity
         if (article == 89) {
             changeGold(3);
             //TODO add wasHere?
+        }
+        if (article == 142) {
+            addKeyNumber("93");
         }
         if (article == 151) {
             Set<String> room = new HashSet<>();

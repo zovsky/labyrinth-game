@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_140">1</string>
+
+    <string name="article_140_1">Оглянись назад. За дверями спрятались Орк и Вампир. Опять битва? Если да, то см. 277, если нет, то см. 235.</string>
+
+    <string name="opt_140">2</string>
+
+    <string name="option_140_1">277</string>
+    <string name="text_140_1">Да</string>
+    <string name="option_140_2">235</string>
+    <string name="text_140_2">Нет</string>
+</resources>
