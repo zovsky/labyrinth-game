@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_171">1</string>
+
+    <string name="article_171_1">Быстро выходи из комнаты. Здесь два выхода - тот, через который ты вошел, и другой - на восточной стене. Если выберешь первый, см. 50. Если второй - см. 99.</string>
+
+    <string name="opt_171">2</string>
+
+    <string name="option_171_1">50</string>
+    <string name="text_171_1">Первый</string>
+    <string name="option_171_2">99</string>
+    <string name="text_171_2">Второй</string>
+</resources>

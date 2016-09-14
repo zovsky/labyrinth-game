@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_166">1</string>
+
+    <string name="article_166_1">Ты шутливо препираешься с Гномом. Благодаря этому получаешь (+ЗВ) и (+2Л). В конце концов уступаешь ему бабочку, Если даром, то см. 202, если за золото, то см. 353.</string>
+
+    <string name="opt_166">2</string>
+
+    <string name="option_166_1">202</string>
+    <string name="text_166_1">Даром</string>
+    <string name="option_166_2">353</string>
+    <string name="text_166_2">За золото</string>
+</resources>

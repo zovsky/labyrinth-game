@@ -653,6 +653,10 @@ public class MainActivity extends AppCompatActivity
             editor.putInt("foodTries", 1);
             editor.commit();
         }
+        if (article == 166) {
+            changeVVV(3);
+            changeLLL(2);
+        }
         if (article == 292) {
             int slctd = gamePref.getInt("selectedRadio", 0);
             if (slctd == 0) {

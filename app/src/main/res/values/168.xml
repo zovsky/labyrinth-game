@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_168">1</string>
+
+    <string name="article_168_1">Можешь использовать меч, см. 213. Если не хочешь боя, то спасайся бегством, см. 320.</string>
+
+    <string name="opt_168">2</string>
+
+    <string name="option_168_1">213</string>
+    <string name="text_168_1">Биться мечом</string>
+    <string name="option_168_2">320</string>
+    <string name="text_168_2">Спасаться бегством</string>
+</resources>

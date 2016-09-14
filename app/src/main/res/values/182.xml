@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_182">1</string>
+
+    <string name="article_182_1">Не хочешь ли поискать тайных ходов? Если да, то см. 30, если хочешь вернуться, то см. 259.</string>
+
+    <string name="opt_182">2</string>
+
+    <string name="option_182_1">30</string>
+    <string name="text_182_1">Искать</string>
+    <string name="option_182_2">259</string>
+    <string name="text_182_2">Не искать</string>
+</resources>

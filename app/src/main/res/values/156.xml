@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_156">1</string>
+
+    <string name="article_156_1">Прикончишь обоих Злыдней? Если да, то см. 350, если нет, то см. 286.</string>
+
+    <string name="opt_156">2</string>
+
+    <string name="option_156_1">350</string>
+    <string name="text_156_1">Да</string>
+    <string name="option_156_2">286</string>
+    <string name="text_156_2">Нет</string>
+</resources>
