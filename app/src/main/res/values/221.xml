@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_221">1</string>
+
+    <string name="article_221_1">Дойди до перекрестка, с которого можешь последовать на север - см. 339, восток - см. 41, юг - см. 173.</string>
+
+    <string name="opt_221">2</string>
+
+    <string name="option_221_1">339</string>
+    <string name="text_221_1">На север</string>
+    <string name="option_221_2">41</string>
+    <string name="text_221_2">На восток</string>
+    <string name="option_221_3">173</string>
+    <string name="text_221_3">На юг</string>
+</resources>

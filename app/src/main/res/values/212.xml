@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_212">1</string>
+
+    <string name="article_212_1">Дойди до ровной площадки, на которой дорога расходится в четырех направлениях. Какое выберешь? Запад - см. 287, север - см. 38, восток - см. 82, юг - см. 336.</string>
+
+    <string name="opt_212">4</string>
+
+    <string name="option_212_1">287</string>
+    <string name="text_212_1">На запад</string>
+    <string name="option_212_2">38</string>
+    <string name="text_212_2">На север</string>
+    <string name="option_212_3">82</string>
+    <string name="text_212_3">На восток</string>
+    <string name="option_212_4">336</string>
+    <string name="text_212_4">На юг</string>
+</resources>

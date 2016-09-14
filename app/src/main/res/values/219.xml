@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_219">1</string>
+
+    <string name="article_219_1">Так что, берешь этот деревянный кол и банку ядовитой пыли? Может лучше все-таки взять? Если эта мысль по душе, то см. 323, если нет, см. 147.</string>
+
+    <string name="opt_219">2</string>
+
+    <string name="option_219_1">323</string>
+    <string name="text_219_1">Да</string>
+    <string name="option_219_2">147</string>
+    <string name="text_219_2">Нет</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_234">1</string>
+
+    <string name="article_234_1">Битва с Демоном закончилась. Не хочешь заглянуть в каменную шкатулку, стоящую на алтаре? см. 205. Или тебя интересует только золото? Тогда см. 199.</string>
+
+    <string name="opt_234">2</string>
+
+    <string name="option_234_1">205</string>
+    <string name="text_234_1">Заглянуть в шкатулку</string>
+    <string name="option_234_2">199</string>
+    <string name="text_234_2">Собрать золото</string>
+</resources>

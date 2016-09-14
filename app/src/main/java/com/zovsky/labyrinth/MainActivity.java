@@ -594,7 +594,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeAction(int article) {
-        if (article == 13) {
+        if (article == 13 || article == 88) {
             changeVVV(-2);
         }
         if (article == 15 || article == 157 || article == 181 || article == 216 || article == 329 || article == 377) {
@@ -625,15 +625,12 @@ public class MainActivity extends AppCompatActivity
                 addThing("Кожаный щит");
             }
         }
-        if (article == 56 || article == 105) {
+        if (article == 56 || article == 105 || article == 198 || article == 244 || article == 245) {
             changeVVV(-1);
         }
         if (article == 81) {
             changeVVV(2);
             changeLLL(1);
-        }
-        if (article == 88) {
-            changeVVV(-2);
         }
         if (article == 89) {
             changeGold(3);
@@ -656,6 +653,9 @@ public class MainActivity extends AppCompatActivity
         if (article == 166) {
             changeVVV(3);
             changeLLL(2);
+        }
+        if (article == 199) {
+            changeGold(20);
         }
         if (article == 292) {
             int slctd = gamePref.getInt("selectedRadio", 0);

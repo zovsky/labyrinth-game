@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_186">1</string>
+
+    <string name="article_186_1">Тебе удалось достичь другого берега. У тебя три пути: один ведет на запад, другой на северо-запад, и третий на северо-северо-запад. Который выбираешь? А - см. 368, Б - см. 117, С - см. 360.</string>
+
+    <string name="opt_186">3</string>
+
+    <string name="option_186_1">368</string>
+    <string name="text_186_1">На запад</string>
+    <string name="option_186_2">117</string>
+    <string name="text_186_2">На северо-запад</string>
+    <string name="option_186_3">360</string>
+    <string name="text_186_3">На северо-северо-запад</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_230">1</string>
+
+    <string name="article_230_1">После нескольких больших шагов коридор закончился. Будешь искать тайные ходы? Если да, то см. 36, если нет, см. 176.</string>
+
+    <string name="opt_230">2</string>
+
+    <string name="option_230_1">36</string>
+    <string name="text_230_1">Да</string>
+    <string name="option_230_2">176</string>
+    <string name="text_230_2">Нет</string>
+</resources>

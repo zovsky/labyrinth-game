@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_235">1</string>
+
+    <string name="article_235_1">В дверях стоит Минотавр. Готов биться? Если да, то см. 92, если нет, см. 327.</string>
+
+    <string name="opt_235">2</string>
+
+    <string name="option_235_1">92</string>
+    <string name="text_235_1">Да</string>
+    <string name="option_235_2">327</string>
+    <string name="text_235_2">Нет</string>
+</resources>
