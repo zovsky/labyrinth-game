@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_260">2</string>
+
+    <string name="article_260_1">\"Тут есть чудодейственное средство для лечения ран?\" - спрашиваешь ты.</string>
+    <string name="article_260_2">\"Сейчас посмотрим. Что тут у нас есть? Ага, вот деревянный кол и банка ядовитой пыли.\" см. 7.</string>
+
+    <string name="opt_260">1</string>
+
+    <string name="option_260_1">7</string>
+    <string name="text_260_1">Далее</string>
+
+</resources>

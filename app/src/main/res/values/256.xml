@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_256">1</string>
+
+    <string name="article_256_1">Никакого прохода здесь нет.</string>
+
+    <string name="opt_256">1</string>
+
+    <string name="option_256_1">378</string>
+    <string name="text_256_1">Далее</string>
+
+</resources>

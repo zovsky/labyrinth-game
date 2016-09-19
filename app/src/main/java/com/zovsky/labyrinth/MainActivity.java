@@ -561,7 +561,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeSpecialAction(int article) {
-        if (article == 16 || article == 47 || article == 61 || article == 68 || article == 137) {
+        if (article == 16 || article == 47 || article == 61 || article == 68 || article == 137 ||
+                article == 248) {
+            //enable eatFood here
             if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0) {
                 setOneMenuItemActive("Запасы еды");
             }
@@ -594,7 +596,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeAction(int article) {
-        if (article == 13 || article == 88) {
+        if (article == 13 || article == 88 || article == 263) {
             changeVVV(-2);
         }
         if (article == 15 || article == 157 || article == 181 || article == 216 || article == 329 || article == 377) {
@@ -656,6 +658,9 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 199) {
             changeGold(20);
+        }
+        if (article == 254) {
+            changeGold(10);
         }
         if (article == 292) {
             int slctd = gamePref.getInt("selectedRadio", 0);
