@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_297">1</string>
+
+    <string name="article_297_1">Можешь приняться за сбор рассыпанного золота, тогда см. 254. А можешь посмотреть, что там, в каменной шкатулке на алтаре, тогда см. 205. Если сохранил силу и смелость, можешь начать битву с другим Демоном, см. 184.</string>
+
+    <string name="opt_297">3</string>
+
+    <string name="option_297_1">254</string>
+    <string name="text_297_1">Собрать золото</string>
+    <string name="option_297_2">205</string>
+    <string name="text_297_2">Посмотреть, что в шкатулке</string>
+    <string name="option_297_3">184</string>
+    <string name="text_297_3">Начать битву со вторым Демоном</string>
+</resources>

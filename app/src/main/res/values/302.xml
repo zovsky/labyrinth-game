@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_302">1</string>
+
+    <string name="article_302_1">Видел ли ты чудовище страшнее Гоблина? Неверное нет. Именно Гоблин живет в этой пещере. Поправь доспехи, приготовь оружие. А может, ты не хочешь туда идти? Тогда см. 372. Если хочешь биться, см. 2.</string>
+
+    <string name="opt_302">2</string>
+
+    <string name="option_302_1">372</string>
+    <string name="text_302_1">Разворачиваешься и уходишь</string>
+    <string name="option_302_2">2</string>
+    <string name="text_302_2">Решаешься войти в пещеру</string>
+</resources>

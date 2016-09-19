@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_299">1</string>
+
+    <string name="article_299_1">Хочешь открыть?</string>
+
+    <string name="opt_299">2</string>
+
+    <string name="option_299_1">349</string>
+    <string name="text_299_1">Да</string>
+    <string name="option_299_2">194</string>
+    <string name="text_299_2">Нет</string>
+</resources>

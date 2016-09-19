@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_286">1</string>
+
+    <string name="article_286_1">Уходи из комнаты. Какой выход выберешь?</string>
+
+    <string name="opt_286">2</string>
+
+    <string name="option_286_1">206</string>
+    <string name="text_286_1">Западный</string>
+    <string name="option_286_2">148</string>
+    <string name="text_286_2">Восточный</string>
+</resources>
