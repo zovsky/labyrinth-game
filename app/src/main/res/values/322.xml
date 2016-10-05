@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_322">1</string>
+
+    <string name="article_322_1">Комната совершенно пуста.</string>
+
+    <string name="opt_322">2</string>
+
+    <string name="option_322_1">194</string>
+    <string name="text_322_1">Вернуться</string>
+    <string name="option_322_2">242</string>
+    <string name="text_322_2">Выйти через восточные двери</string>
+</resources>

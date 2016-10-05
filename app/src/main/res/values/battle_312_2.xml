@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_1313">5</string>
+
+    <string name="article_1313_0">ЗОМБИ</string>
+    <string name="article_1313_1">6</string>
+    <string name="article_1313_2">5</string>
+    <string name="article_1313_3">Теперь ЗОМБИ</string>
+    <string name="article_1313_4">Можешь спастись бегством.</string>
+
+    <string name="opt_1313">3</string>
+
+    <string name="option_1313_1">2</string>
+    <string name="text_1313_1">После какого тура можно убежать: 0-после любого, 1-после первого, 2-никогда</string>
+
+    <string name="option_1313_2">193</string>
+    <string name="text_1313_2">Спастись бегством</string>
+
+    <string name="option_1313_3">193</string>
+    <string name="text_1313_3">Победа</string>
+
+</resources>

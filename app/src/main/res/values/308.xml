@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_308">1</string>
+
+    <string name="article_308_1">Короткий туннель кончается глухим переулком. Хочешь поискать тайные ходы?</string>
+
+    <string name="opt_308">2</string>
+
+    <string name="option_308_1">114</string>
+    <string name="text_308_1">Да</string>
+    <string name="option_308_2">276</string>
+    <string name="text_308_2">Нет</string>
+</resources>

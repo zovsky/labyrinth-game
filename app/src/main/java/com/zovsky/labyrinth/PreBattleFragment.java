@@ -158,7 +158,8 @@ public class PreBattleFragment extends Fragment {
         if (mArticle == 1002 || mArticle == 1032 || mArticle == 1092 || mArticle == 1098 ||
                 mArticle == 1107 || mArticle == 1116 || mArticle == 1157 || mArticle == 1169 ||
                 mArticle == 1213 || mArticle == 1216 || mArticle == 1238 || mArticle == 1255 ||
-                mArticle == 1277 || mArticle == 1278 || mArticle == 1288) {
+                mArticle == 1277 || mArticle == 1278 || mArticle == 1288 || mArticle == 1312 ||
+                mArticle == 1317) {
             fleeBeforeBattle.setVisibility(View.INVISIBLE);
         }
         fleeBeforeBattle.setOnClickListener(new View.OnClickListener() {

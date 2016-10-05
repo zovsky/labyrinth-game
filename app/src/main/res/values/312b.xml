@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_312">4</string>
+
+    <string name="article_312_1">Людоед, Зомби и Скелет ждут тебя. Бейся с ними в такой последовательности:</string>
+    <string name="article_312_2">ЛЮДОЕД 7Л, 5В</string>
+    <string name="article_312_3">ЗОМБИ 6Л, 5В</string>
+    <string name="article_312_4">СКЕЛЕТ 5Л, 4В</string>
+
+
+    <string name="opt_312">0</string>
+
+</resources>

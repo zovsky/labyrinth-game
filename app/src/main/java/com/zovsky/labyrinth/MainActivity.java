@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu); //why is this commented?
         return true;
     }
 
@@ -676,6 +676,14 @@ public class MainActivity extends AppCompatActivity
                 editor.putInt("breakIntoArticle", 168).commit();
                 return;
             }
+        }
+        if (article == 318) {
+            changeVVV(-3);
+            changeLLL(-2);
+        }
+        if (article == 326) {
+            changeUUU(3);
+            changeGold(30);
         }
         if (article == 364) {
             Set<String> room = new HashSet<>();

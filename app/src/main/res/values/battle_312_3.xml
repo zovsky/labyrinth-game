@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_1314">5</string>
+
+    <string name="article_1314_0">СКЕЛЕТ</string>
+    <string name="article_1314_1">5</string>
+    <string name="article_1314_2">4</string>
+    <string name="article_1314_3">А теперь СКЕЛЕТ</string>
+    <string name="article_1314_4">Можешь спастись бегством.</string>
+
+    <string name="opt_1314">3</string>
+
+    <string name="option_1314_1">2</string>
+    <string name="text_1314_1">После какого тура можно убежать: 0-после любого, 1-после первого, 2-никогда</string>
+
+    <string name="option_1314_2">193</string>
+    <string name="text_1314_2">Спастись бегством</string>
+
+    <string name="option_1314_3">193</string>
+    <string name="text_1314_3">Победа</string>
+
+</resources>

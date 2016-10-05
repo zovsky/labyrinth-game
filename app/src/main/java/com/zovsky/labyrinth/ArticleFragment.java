@@ -310,6 +310,9 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[0].getId());
             }
         }
+        if (mArticle == 193) {
+            //TODO: +5gold for every monster defeated
+        }
         if (mArticle == 292) {
             radioGroup.getChildAt(0).setEnabled(false);
             radioGroup.getChildAt(1).setEnabled(false);

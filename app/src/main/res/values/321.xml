@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_321">1</string>
+
+    <string name="article_321_1">Железная бабочка очень понравилась Карлику. Он мечтает заполучить ее себе. Хочешь сбыть ему бабочку?</string>
+
+    <string name="opt_321">2</string>
+
+    <string name="option_321_1">166</string>
+    <string name="text_321_1">Да</string>
+    <string name="option_321_2">81</string>
+    <string name="text_321_2">Нет</string>
+</resources>

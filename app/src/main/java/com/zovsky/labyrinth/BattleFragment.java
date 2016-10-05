@@ -226,7 +226,7 @@ public class BattleFragment extends Fragment {
                         return;
                     } else {
                         if (mArticle == 2238 || mArticle == 2239 || mArticle == 2240 || mArticle == 2241 || mArticle == 2069 ||
-                                mArticle == 2277) {
+                                mArticle == 2277 || mArticle == 2312 || mArticle == 2313) {
                             Log.d(GAME, "branch2");
                             ((MainActivity) getActivity()).showPreArticle(mArticle - 1000 + 1);
                             return;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_323">3</string>
+
+    <string name="article_323_1">\"Сколько это стоит?\" - спроси у него.</string>
+    <string name="article_323_2">\"Пустяк. 15 кусков золота за кол и 10 за банку ядовитой пыли. Почти даром.\"</string>
+    <string name="article_323_3">Покупаешь?</string>
+
+    <string name="opt_323">2</string>
+
+    <string name="option_323_1">55</string>
+    <string name="text_323_1">Да</string>
+    <string name="option_323_2">196</string>
+    <string name="text_323_2">Нет</string>
+</resources>
