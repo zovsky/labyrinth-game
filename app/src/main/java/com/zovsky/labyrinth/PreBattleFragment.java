@@ -159,9 +159,10 @@ public class PreBattleFragment extends Fragment {
                 mArticle == 1107 || mArticle == 1116 || mArticle == 1157 || mArticle == 1169 ||
                 mArticle == 1213 || mArticle == 1216 || mArticle == 1238 || mArticle == 1255 ||
                 mArticle == 1277 || mArticle == 1278 || mArticle == 1288 || mArticle == 1312 ||
-                mArticle == 1317) {
+                mArticle == 1317 || mArticle == 1361 || mArticle == 1367) {
             fleeBeforeBattle.setVisibility(View.INVISIBLE);
         }
+        //TODO: change default fleeBeforeBattle to invisible
         fleeBeforeBattle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

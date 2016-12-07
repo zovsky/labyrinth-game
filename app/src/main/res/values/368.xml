@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_368">1</string>
+
+    <string name="article_368_1">Проходи несколько десятков шагов и увидишь, что коридор поворачивает на север. Слышен какой-то рокот. Приложи ухо к Восточной стене. Да, кто-то смеется. Хочешь поискать тайный ход? Если да - см.87, если нет - см. 354.</string>
+
+    <string name="opt_368">2</string>
+
+    <string name="option_368_1">87</string>
+    <string name="text_368_1">Да</string>
+    <string name="option_368_2">354</string>
+    <string name="text_368_2">Нет</string>
+</resources>

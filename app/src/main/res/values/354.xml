@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_354">1</string>
+
+    <string name="article_354_1">Иди на север. Со временем коридор поворачивает на восток. Через 50 шагов вновь слышен странный шум: смех и попискивания. Если хочешь исследовать, есть ли в южной стене тайные двери, см. 256, если решаешь идти дальше – см. 378.</string>
+
+    <string name="opt_354">2</string>
+
+    <string name="option_354_1">256</string>
+    <string name="text_354_1">Исследовать южную стену</string>
+    <string name="option_354_2">378</string>
+    <string name="text_354_2">Идти дальше</string>
+</resources>

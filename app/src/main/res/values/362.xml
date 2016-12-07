@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_362">1</string>
+
+    <string name="article_362_1">Благодарное чудовище выдает тайну. В каменной коробочке, стоящей на алтаре, лежит волшебный изумруд. Тому, кто его достанет, дается сколько угодно раз Дар Крыльев. Но должен помнить, нельзя касаться изумруда. Надо взять коробочку и вывалить изумруд прямо в заплечный мешок. Веришь чудовищу? Если да, см. 263, если нет, см. 72.</string>
+
+    <string name="opt_362">2</string>
+
+    <string name="option_362_1">263</string>
+    <string name="text_362_1">Да</string>
+    <string name="option_362_2">72</string>
+    <string name="text_362_2">Нет</string>
+</resources>

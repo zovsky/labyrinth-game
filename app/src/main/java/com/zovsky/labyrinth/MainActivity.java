@@ -562,10 +562,12 @@ public class MainActivity extends AppCompatActivity
 
     public void takeSpecialAction(int article) {
         if (article == 16 || article == 47 || article == 61 || article == 68 || article == 137 ||
-                article == 248 || article == 293 || article == 296) {
+                article == 248 || article == 293 || article == 296 || article == 339 || article == 374 ||
+                article == 382) {
             //enable eatFood here
             if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0) {
                 setOneMenuItemActive("Запасы еды");
+                //TODO что-то сделать с активацией Еды
             }
         }
         if (article == 32) {

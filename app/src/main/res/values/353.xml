@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_353">1</string>
+
+    <string name="article_353_1">Карлик предлагает за бабочку 10 кусков золота. Принимаешь? Если да - см. 262, если нет - см. 60.</string>
+
+    <string name="opt_353">2</string>
+
+    <string name="option_353_1">262</string>
+    <string name="text_353_1">Да</string>
+    <string name="option_353_2">60</string>
+    <string name="text_353_2">Нет</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_385">1</string>
+
+    <string name="article_385_1">Можешь покинуть комнату Демонов через восточные или через западные двери. Что выбираешь? Западные двери - см. 194. Восточные - см. 242.</string>
+
+    <string name="opt_385">2</string>
+
+    <string name="option_385_1">194</string>
+    <string name="text_385_1">Западные двери</string>
+    <string name="option_385_2">242</string>
+    <string name="text_385_2">Восточные двери</string>
+</resources>

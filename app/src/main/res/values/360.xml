@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_360">1</string>
+
+    <string name="article_360_1">Короткий коридор ведет к дверям. см. 135.</string>
+
+    <string name="opt_360">1</string>
+
+    <string name="option_360_1">135</string>
+    <string name="text_360_1">Далее</string>
+</resources>
