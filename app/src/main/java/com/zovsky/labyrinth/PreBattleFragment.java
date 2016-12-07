@@ -9,10 +9,12 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -100,7 +102,7 @@ public class PreBattleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pre_battle, container, false);
 
         TextView[] textView = new TextView[mParas];
-        LinearLayout layout = (LinearLayout) view.findViewById(R.id.article_layout);
+        final LinearLayout layout = (LinearLayout) view.findViewById(R.id.article_layout);
         String articleID, optionID, textID;
         //populate textViews
         for (int para = 0; para < mParas; para++) {
@@ -171,20 +173,31 @@ public class PreBattleFragment extends Fragment {
         });
         //take special action on article load
         ((MainActivity) getActivity()).takeSpecialAction(mArticle);
+
         if (mArticle == 1002) {
-            Set<String> things = ((MainActivity)getActivity()).gamePref.getStringSet("things", null);
-            for (String thing : things) {
-                if (thing.equals("Шлем")) {
-                    textView[3].setText("У тебя есть шлем. Надень его - это добавит тебе 3В.");
-                }
+            if (((MainActivity)getActivity()).isThingAvailable("Шлем")) {
+                    int initVVV = ((MainActivity)getActivity()).gamePref.getInt("startVVV", 0);
+                    textView[3].setText("У тебя есть шлем. Можешь его надеть - это добавит тебе 3В, но помни, что нельзя превышать начальное значение " + initVVV + "В)");
+                    CheckBox helmetCheckBox = new CheckBox(getContext());
+                    helmetCheckBox.setText("Надеть шлем");
+                    helmetCheckBox.setId(R.id.helmetCheckBox);
+                    layout.addView(helmetCheckBox, 1);
             }
         }
+
         Button startBattle = (Button) view.findViewById(R.id.start_battle_button);
         startBattle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity) getActivity()).takeAction(mArticle);
                 ((MainActivity) getActivity()).showAllParameters();
+                if (layout.findViewById(R.id.helmetCheckBox) != null) {
+                    CheckBox hCB = (CheckBox) layout.findViewById(R.id.helmetCheckBox);
+                    if (hCB.isChecked()) {
+                        ((MainActivity) getActivity()).changeVVV(3);
+                        ((MainActivity) getActivity()).removeThing("Шлем");
+                    }
+                }
                 ((MainActivity) getActivity()).editor.putInt("round", 1);
                 ((MainActivity) getActivity()).editor.putInt("step", 0);
                 ((MainActivity) getActivity()).editor.putInt("luck", 0);

@@ -142,7 +142,7 @@ public class NewGameFragment extends Fragment {
                     ((MainActivity)getActivity()).editor.commit();
                     ((MainActivity)getActivity()).generateInitialMenu();
                     ((MainActivity) getActivity()).showAllParameters();
-                    ((MainActivity)getActivity()).showArticle(374); //default 1
+                    ((MainActivity)getActivity()).showArticle(7); //default 1
                 }
             }
         });

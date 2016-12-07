@@ -282,8 +282,8 @@ public class MainActivity extends AppCompatActivity
         //REMOVE on release
 
         Set<String> things=new HashSet<>();
-        things.add("Всеядные ракообразные");//меч
-        things.add("Банка ядовитой пыли"); //фонарь
+        things.add("Веревка с крюком");//default меч
+        things.add("Банка ядовитой пыли"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
@@ -516,6 +516,16 @@ public class MainActivity extends AppCompatActivity
         editor.putStringSet("things", newThings).commit();
     }
 
+    public boolean isThingAvailable(String thingToCheck) {
+        Set<String> things = gamePref.getStringSet("things", null);
+        for (String thing : things) {
+            if (thing.equals(thingToCheck)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void changeVVV(int difference) {
         int VVV = gamePref.getInt("VVV", 0) + difference;
         if (VVV > gamePref.getInt("startVVV", 0)) {
@@ -703,15 +713,6 @@ public class MainActivity extends AppCompatActivity
 
         if (article == 380) {
             changeLLL(1);
-        }
-        if (article == 1002) {
-            Set<String> things = gamePref.getStringSet("things", new HashSet<String>());
-            for (String thing : things) {
-                if (thing.equals("Шлем")) {
-                    changeVVV(3);
-                    removeThing("Шлем");
-                }
-            }
         }
     }
 

@@ -171,18 +171,22 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[radio].getId());
             }
         }
-        final Button dalee = new Button(getContext());
-        layout.addView(dalee);
+        final Button daleeButton = new Button(getContext());
+        layout.addView(daleeButton);
         //articles before battle;
         if (mArticle == 2) {
-            dalee.setText("БИТВА");
-        } else dalee.setText("Продолжить");
+            daleeButton.setText("БИТВА");
+        } else daleeButton.setText("Продолжить");
 
         //special conditions; execute on article load
         if (mArticle == 3) {
             if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 13) {
                 radioGroup.getChildAt(0).setEnabled(false);
-                radioButton[0].setText("Недостаточно золота");
+                //radioButton[0].setText("Недостаточно золота");
+            }
+            if (!((MainActivity) getActivity()).isThingAvailable("Веревка с крюком")) {
+                radioGroup.getChildAt(1).setEnabled(false);
+                //radioButton[1].setText("Нет веревки");
             }
         }
 
@@ -260,7 +264,7 @@ public class ArticleFragment extends Fragment {
                 takeChance.setText("Испытай удачу (-1У)");
                 radioGroup.getChildAt(0).setEnabled(false);
                 radioGroup.getChildAt(1).setEnabled(false);
-                dalee.setEnabled(false);
+                daleeButton.setEnabled(false);
                 final int firstRadioID = radioButton[0].getId();
                 final int secondRadioID = radioButton[1].getId();
                 takeChance.setOnClickListener(new View.OnClickListener() {
@@ -279,7 +283,7 @@ public class ArticleFragment extends Fragment {
                         Set<String> room = new HashSet<>();
                         room.add(Integer.toString(mArticle));
                         ((MainActivity) getActivity()).editor.putStringSet("wasHere", room).commit();
-                        dalee.setEnabled(true);
+                        daleeButton.setEnabled(true);
                     }
                 });
 
@@ -292,7 +296,7 @@ public class ArticleFragment extends Fragment {
                     radioGroup.check(radioID);
                     radioGroup.getChildAt(0).setEnabled(false);
                 }
-                dalee.setEnabled(true);
+                daleeButton.setEnabled(true);
             }
 
         }
@@ -334,7 +338,7 @@ public class ArticleFragment extends Fragment {
         //take special action on article load
         ((MainActivity) getActivity()).takeSpecialAction(mArticle);
 
-        dalee.setOnClickListener(new View.OnClickListener() {
+        daleeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity) getActivity()).editor.putInt("foodTries", 1).commit();
