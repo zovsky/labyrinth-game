@@ -194,7 +194,7 @@ public class ArticleFragment extends Fragment {
             if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 5) {
                 radioGroup.check(radioButton[1].getId());
                 radioGroup.getChildAt(0).setEnabled(false);
-                radioButton[1].setText("286, Недостаточно золота");
+                radioButton[1].setText("286, Недостаточно золота"); //TODO remove 286
             }
         }
         if (mArticle == 22) {

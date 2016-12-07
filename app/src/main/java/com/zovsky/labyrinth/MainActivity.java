@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("LLL", 0);
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0);
-        editor.putInt("gold", 4); //default 0
+        editor.putInt("gold", 5); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
         //TODO Remove on release
@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity
         //REMOVE on release
 
         Set<String> things=new HashSet<>();
-        things.add("Веревка с крюком");//default меч
+        things.add("Изумруд");//default меч
         things.add("Банка ядовитой пыли"); //default фонарь
         editor.putStringSet("things", things);
 
@@ -571,22 +571,20 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeSpecialAction(int article) {
-        if (article == 16 || article == 47 || article == 61 || article == 68 || article == 137 ||
+        if (article == 16 || article == 32 || article == 47 || article == 61 || article == 68 || article == 137 ||
                 article == 248 || article == 293 || article == 296 || article == 339 || article == 374 ||
                 article == 382) {
-            //enable eatFood here
             if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0) {
                 setOneMenuItemActive("Запасы еды");
-                //TODO что-то сделать с активацией Еды
             }
         }
-        if (article == 32) {
+        /*if (article == 32) {
             int prevArticle = gamePref.getInt("goBackArticleID", 0);
             if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0 &&
                     (prevArticle == 157 || prevArticle == 181 || prevArticle == 216 || prevArticle == 329 || prevArticle == 377)) {
                 setOneMenuItemActive("Запасы еды");
             }
-        }
+        }*/
 
         if (article == 136) {
             changeGold(-13);
@@ -608,11 +606,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeAction(int article) {
+        if (article == 12) {
+            removeThing("Изумруд");
+        }
+
         if (article == 13 || article == 88 || article == 263 || article == 291) {
             changeVVV(-2);
         }
-        if (article == 15 || article == 157 || article == 181 || article == 216 || article == 329 || article == 377) {
+        if (article == 15) {
             editor.putInt("goBackArticleID", article).commit();
+            //int lakeSwimCount = gamePref.getInt("lakeSwimCount", 0);
+            //editor.putInt("lakeSwimCount", lakeSwimCount + 1).commit();
         }
         if (article == 19) {
             changeFood(1);
@@ -659,11 +663,11 @@ public class MainActivity extends AppCompatActivity
             editor.putStringSet("wasHere", room);
             editor.commit();
         }
-        if (article == 157 || article == 181 || article == 216 || article == 329 || article == 377) {
+        /*if (article == 157 || article == 181 || article == 216 || article == 329) {
             editor.putInt("goBackArticleID", article);
-            editor.putInt("foodTries", 1);
+            //editor.putInt("foodTries", 1);
             editor.commit();
-        }
+        }*/
         if (article == 166) {
             changeVVV(3);
             changeLLL(2);

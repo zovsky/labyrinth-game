@@ -2,12 +2,12 @@
 <resources>
     <string name="para_17">1</string>
 
-    <string name="article_17_1">Если хочешь посмотреть, что за ними находится, см. 265, если нет, см. 50.</string>
+    <string name="article_17_1">Хочешь посмотреть, что за ними находится?</string>
 
     <string name="opt_17">2</string>
 
     <string name="option_17_1">265</string>
-    <string name="text_17_1">Посмотреть</string>
+    <string name="text_17_1">Да</string>
     <string name="option_17_2">50</string>
     <string name="text_17_2">Нет</string>
 </resources>
