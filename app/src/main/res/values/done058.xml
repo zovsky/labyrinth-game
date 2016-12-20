@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_58">1</string>
+
+    <string name="article_58_1">Твое тайное оружие действительно оказалось эффективным. Черви целиком парализованы. Хочешь протиснуться между их телами и снова обыскать бассейн.</string>
+
+    <string name="opt_58">2</string>
+
+    <string name="option_58_1">142</string>
+    <string name="text_58_1">Да</string>
+    <string name="option_58_2">320</string>
+    <string name="text_58_2">Нет</string>
+</resources>

@@ -278,17 +278,18 @@ public class MainActivity extends AppCompatActivity
         Set<String> room = new HashSet<>();
         room.add("122");
         editor.putStringSet("wasHere", room);
+        editor.putInt("fatHitCount", 2);
         editor.commit();
         //REMOVE on release
 
         Set<String> things=new HashSet<>();
-        things.add("Изумруд");//default меч
-        things.add("Банка ядовитой пыли"); //default фонарь
+        things.add("Банка ядовитой пыли");//default меч
+        things.add("Всеядные ракообразные"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
         keys.add("17"); //no keys
-        keys.add("21");
+        //keys.add("21");
         editor.putStringSet("keys", keys);
         editor.commit();
     }
@@ -624,6 +625,9 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 20) {
             editor.putInt("goBackArticleID", 316).commit();
+        }
+        if (article == 26) {
+            changeGold(5 * gamePref.getInt("fatHitCount", 0));
         }
         if (article == 31) {
             changeGold(5);

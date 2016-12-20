@@ -202,23 +202,21 @@ public class ArticleFragment extends Fragment {
             radioGroup.getChildAt(0).setEnabled(false);
             radioGroup.getChildAt(1).setEnabled(false);
             radioGroup.getChildAt(2).setEnabled(false);
-            Set<String> things = ((MainActivity) getActivity()).gamePref.getStringSet("things", new HashSet<String>());
-            for (String thing : things) {
-                if (thing.equals("Железная бабочка")) {
-                    radioGroup.getChildAt(0).setEnabled(true);
-                }
-                if (thing.equals("Изумруд")) {
-                    radioGroup.getChildAt(1).setEnabled(true);
-                }
-                if (thing.equals("Деревянный кол")) {
-                    radioGroup.getChildAt(2).setEnabled(true);
-                }
+            if (((MainActivity) getActivity()).isThingAvailable("Железная бабочка")) {
+                radioGroup.getChildAt(0).setEnabled(true);
             }
-            if (!radioGroup.getChildAt(0).isEnabled() && !radioGroup.getChildAt(1).isEnabled() && !radioGroup.getChildAt(2).isEnabled()) {
+            if (((MainActivity) getActivity()).isThingAvailable("Изумруд")) {
+                radioGroup.getChildAt(1).setEnabled(true);
+            }
+            if (((MainActivity) getActivity()).isThingAvailable("Деревянный кол")) {
+                radioGroup.getChildAt(2).setEnabled(true);
+            }
+
+            /*if (!radioGroup.getChildAt(0).isEnabled() && !radioGroup.getChildAt(1).isEnabled() && !radioGroup.getChildAt(2).isEnabled()) {
                 radioGroup.check(radioButton[3].getId());
             } else {
                 radioGroup.getChildAt(3).setVisibility(View.INVISIBLE);
-            }
+            }*/
             if (radioGroup.getChildAt(0).isEnabled() && !radioGroup.getChildAt(1).isEnabled() && !radioGroup.getChildAt(2).isEnabled()) {
                 radioGroup.check(radioButton[0].getId());
             }
@@ -236,6 +234,9 @@ public class ArticleFragment extends Fragment {
                 radioGroup.getChildAt(0).setEnabled(false);
                 //TODO: the end
                 radioButton[1].setText("1 TBD, Недостаточно ключей");
+            } else {
+                radioGroup.check(radioButton[0].getId());
+                radioGroup.getChildAt(1).setEnabled(false);
             }
         }
         if (mArticle == 28) {
@@ -302,16 +303,12 @@ public class ArticleFragment extends Fragment {
         }
         if (mArticle == 106) {
             radioGroup.getChildAt(1).setEnabled(false);
-            Set<String> things = ((MainActivity) getActivity()).gamePref.getStringSet("things", new HashSet<String>());
-            for (String thing : things) {
-                if (thing.equals("Банка ядовитой пыли")) {
-                    radioGroup.getChildAt(1).setEnabled(true);
-                } else if (thing.equals("Всеядные ракообразные")) {
-                    radioGroup.getChildAt(1).setEnabled(true);
-                }
-            }
-            if (!radioGroup.getChildAt(1).isEnabled()) {
+            if (((MainActivity) getActivity()).isThingAvailable("Банка ядовитой пыли") ||
+                    ((MainActivity) getActivity()).isThingAvailable("Всеядные ракообразные")) {
+                radioGroup.getChildAt(1).setEnabled(true);
+            } else {
                 radioGroup.check(radioButton[0].getId());
+                radioButton[1].setText("Кроме меча, ничего нет");
             }
         }
         if (mArticle == 193) {
@@ -320,13 +317,11 @@ public class ArticleFragment extends Fragment {
         if (mArticle == 292) {
             radioGroup.getChildAt(0).setEnabled(false);
             radioGroup.getChildAt(1).setEnabled(false);
-            Set<String> things = ((MainActivity) getActivity()).gamePref.getStringSet("things", new HashSet<String>());
-            for (String thing : things) {
-                if (thing.equals("Банка ядовитой пыли")) {
-                    radioGroup.getChildAt(0).setEnabled(true);
-                } else if (thing.equals("Всеядные ракообразные")) {
-                    radioGroup.getChildAt(1).setEnabled(true);
-                }
+            if (((MainActivity) getActivity()).isThingAvailable("Банка ядовитой пыли")) {
+                radioGroup.getChildAt(0).setEnabled(true);
+            }
+            if (((MainActivity) getActivity()).isThingAvailable("Всеядные ракообразные")) {
+                radioGroup.getChildAt(1).setEnabled(true);
             }
             if (!radioGroup.getChildAt(1).isEnabled()) {
                 radioGroup.check(radioButton[0].getId());
