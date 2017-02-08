@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_35">1</string>
+
+    <string name="article_35_1">Плати 10 кусков золота. Он расставляет ноги над расщелиной. Протягивает тебе хвост. Иди, он, может быть, перенесет тебя на другую сторону ущелья. Но... у Дракона свои шутки. Сейчас, обхватив его хвост, ты висишь над красной бездной.</string>
+
+    <string name="opt_35">2</string>
+
+    <string name="option_35_1">186</string>
+    <string name="text_35_1">Благополучно перебираешься на другую сторону</string>
+    <string name="option_35_2">158</string>
+    <string name="text_35_2">Дракон сбрасывает тебя обратно на край скалы</string>
+</resources>

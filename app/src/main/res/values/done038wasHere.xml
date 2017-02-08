@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_38">1</string>
+
+    <string name="article_38_1">Коридор поворачивает сначала на север, постепенно изгибается к востоку. Он расширяется и уходит ступеньками вниз. Остановись перед дверями, украшенными изысканными по красоте узорами.</string>
+
+    <string name="opt_38">2</string>
+
+    <string name="option_38_1">167</string>
+    <string name="text_38_1">Ты уже был здесь.</string>
+    <string name="option_38_2">328</string>
+    <string name="text_38_2">Ты тут еще не был.</string>
+</resources>

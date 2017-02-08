@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity
         editor.commit();
 
         Set<String> room = new HashSet<String>();
-        room.add("200");
+        room.add("38");
         editor.putStringSet("wasHere", room);
         editor.commit();
         //showAllParameters();
@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("gameOn", 0);
         //TODO Remove on release
         Set<String> room = new HashSet<>();
-        room.add("122");
+        room.add("38");
         editor.putStringSet("wasHere", room);
         editor.putInt("fatHitCount", 2);
         editor.commit();
@@ -288,7 +288,7 @@ public class MainActivity extends AppCompatActivity
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
-        keys.add("17"); //no keys
+        keys.add("17"); //no keys on start
         //keys.add("21");
         editor.putStringSet("keys", keys);
         editor.commit();

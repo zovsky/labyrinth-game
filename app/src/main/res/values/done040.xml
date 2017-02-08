@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_40">1</string>
+
+    <string name="article_40_1">Ты будешь полагаться на карты или свою удачу?</string>
+
+    <string name="opt_40">2</string>
+
+    <string name="option_40_1">334</string>
+    <string name="text_40_1">На карты</string>
+    <string name="option_40_2">62</string>
+    <string name="text_40_2">На свою удачу</string>
+</resources>
