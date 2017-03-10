@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_77">1</string>
+
+    <string name="article_77_1">Можешь заставить чудовище поднять решетку. А можешь продолжить битву. Что выбираешь?</string>
+
+    <string name="opt_77">2</string>
+
+    <string name="option_77_1">340</string>
+    <string name="text_77_1">Заставить чудовище поднять решетку</string>
+    <string name="option_77_2">163</string>
+    <string name="text_77_2">Продолжить битву</string>
+</resources>

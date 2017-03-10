@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_83">1</string>
+
+    <string name="article_83_1">Хозяин угощает тебя напитком со стола. Какие твои действия?</string>
+
+    <string name="opt_83">2</string>
+
+    <string name="option_83_1">124</string>
+    <string name="text_83_1">Отказываешься пить</string>
+    <string name="option_83_2">217</string>
+    <string name="text_83_2">Выпиваешь</string>
+    <string name="option_83_3">171</string>
+    <string name="text_83_3">Переливаешь во флягу (если она не пустая, то придется вылить содержимое)</string>
+</resources>

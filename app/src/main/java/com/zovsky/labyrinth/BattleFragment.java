@@ -221,34 +221,41 @@ public class BattleFragment extends Fragment {
                 ((MainActivity) getActivity()).editor.commit();
                 if (heroVVV < 1 || monsterVVV < 1) {
                     if (heroVVV < 1) {
-                        Log.d(GAME, "branch1");
+                        Log.d(GAME, "branch1 - game over");
                         ((MainActivity) getActivity()).gameOver();
                         return;
                     } else {
                         if (mArticle == 2238 || mArticle == 2239 || mArticle == 2240 || mArticle == 2241 || mArticle == 2069 ||
                                 mArticle == 2277 || mArticle == 2312 || mArticle == 2313) {
-                            Log.d(GAME, "branch2");
+                            Log.d(GAME, "branch2 - monster pack battles");
                             ((MainActivity) getActivity()).showPreArticle(mArticle - 1000 + 1);
                             return;
                         } else {
                             Log.d(GAME, "branch3");
                             int victoryArticle = ((MainActivity) getActivity()).gamePref.getInt("victoryArticle", 0);
                             if (victoryArticle == 0) {
-                                Log.d(GAME, "branch4");
+                                Log.d(GAME, "branch4 - custom victory");
                                 ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("goBackArticleID", 0));
                                 return;
                             } else {
-                                Log.d(GAME, "branch5");
+                                Log.d(GAME, "branch5 - normal victory");
                                 ((MainActivity) getActivity()).showArticle(victoryArticle);
                                 return;
                             }
                         }
                     }
                 } else {
-                    Log.d(GAME, "branch6");
+                    Log.d(GAME, "branch6 - next round");
                     ((MainActivity) getActivity()).editor.putInt("VVV", heroVVV);
                     ((MainActivity) getActivity()).editor.putInt("monsterVVV", monsterVVV);
                     ((MainActivity) getActivity()).editor.commit();
+                    if (mArticle == 2355) {
+                        if (((MainActivity) getActivity()).gamePref.getInt("firstWinningRound355", 0) == 1
+                                && ((MainActivity) getActivity()).gamePref.getInt("round", 0) == 2) {
+                            ((MainActivity) getActivity()).showArticle(379);
+                            return;
+                        }
+                    }
                     ((MainActivity) getActivity()).showBattle(mArticle);
                     return;
                 }
@@ -317,6 +324,13 @@ public class BattleFragment extends Fragment {
                 heroVVV-=2;
             }
         } else if (monsterA < heroA) {
+            if (mArticle == 2355) {
+                // 0 - не было, 1 - сейчас, 2 - было
+                if (((MainActivity) getActivity()).gamePref.getInt("firstWinningRound355", 0) == 0) {
+                    ((MainActivity) getActivity()).editor.putInt("firstWinningRound355", 1).commit();
+                    Log.d(GAME, "set 1");
+                }
+            }
             if (luck > 0) {
                 result = "" + monsterName + " теряет 4В";
                 monsterVVV-=4;
@@ -335,7 +349,7 @@ public class BattleFragment extends Fragment {
             takeChanceButton.setEnabled(false);
             fleeFromBattleButton.setEnabled(false);
         } else {
-            dalee.setText("Продолжить битву");
+            dalee.setText("Продолжить");
         }
         roundResultTextView.setText(result);
     }

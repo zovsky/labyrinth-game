@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_1086">3</string>
+
+    <string name="article_1086_0">ГИГАНТ</string>
+    <string name="article_1086_1">10</string>
+    <string name="article_1086_2">12</string>
+
+
+    <string name="opt_1086">3</string>
+
+    <string name="option_1086_1">2</string>
+    <string name="text_1086_1">После какого тура можно убежать: 0-после любого, 1-после первого, 2-никогда</string>
+
+    <string name="option_1086_2">94</string>
+    <string name="text_1086_2">Спастись бегством</string>
+
+    <string name="option_1086_3">94</string>
+    <string name="text_1086_3">Победа</string>
+
+</resources>

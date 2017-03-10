@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_85">1</string>
+
+    <string name="article_85_1">Бери левее. Ты решил идти вдоль северной стены. Скалы острыми краями обдирают плечо. Посреди стены едва заметна какая-то тайная дверь. Ничего не говори, двигайся дальше.</string>
+
+    <string name="opt_85">1</string>
+
+    <string name="option_85_1">10</string>
+    <string name="text_85_1">Подходи к столу</string>
+
+</resources>

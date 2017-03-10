@@ -184,11 +184,6 @@ public class MainActivity extends AppCompatActivity
         editor.putStringSet("things", things);
 //        editor.putInt("currentArticle", 2);
         editor.commit();
-
-        Set<String> room = new HashSet<String>();
-        room.add("38");
-        editor.putStringSet("wasHere", room);
-        editor.commit();
         //showAllParameters();
     }
 
@@ -271,27 +266,28 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("LLL", 0);
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0);
-        editor.putInt("gold", 5); //default 0
+        editor.putInt("gold", 10); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
+        editor.putInt("stoneDown", 0); //stone for 24 and 284
+
         //TODO Remove on release
-        Set<String> room = new HashSet<>();
-        room.add("38");
-        editor.putStringSet("wasHere", room);
+        addRoomToWasHere(163);
         editor.putInt("fatHitCount", 2);
         editor.commit();
-        //REMOVE on release
 
         Set<String> things=new HashSet<>();
-        things.add("Банка ядовитой пыли");//default меч
-        things.add("Всеядные ракообразные"); //default фонарь
+        things.add("Меч");//default меч
+        things.add("Молот гномов"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
         keys.add("17"); //no keys on start
-        //keys.add("21");
+        keys.add("21");
+        keys.add("56");
         editor.putStringSet("keys", keys);
         editor.commit();
+        //REMOVE on release
     }
 
     public void showAllParameters() {
@@ -538,6 +534,7 @@ public class MainActivity extends AppCompatActivity
             gameOver();
         }
     }
+    //todo опустошить флягу в начале
     //TODO put all else in brackets
     public void changeUUU(int difference) {
         int UUU = gamePref.getInt("UUU", 0) + difference;
@@ -579,13 +576,6 @@ public class MainActivity extends AppCompatActivity
                 setOneMenuItemActive("Запасы еды");
             }
         }
-        /*if (article == 32) {
-            int prevArticle = gamePref.getInt("goBackArticleID", 0);
-            if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0 &&
-                    (prevArticle == 157 || prevArticle == 181 || prevArticle == 216 || prevArticle == 329 || prevArticle == 377)) {
-                setOneMenuItemActive("Запасы еды");
-            }
-        }*/
 
         if (article == 136) {
             changeGold(-13);
@@ -618,6 +608,7 @@ public class MainActivity extends AppCompatActivity
             editor.putInt("goBackArticleID", article).commit();
             //int lakeSwimCount = gamePref.getInt("lakeSwimCount", 0);
             //editor.putInt("lakeSwimCount", lakeSwimCount + 1).commit();
+            //TODO 266, marked on graph
         }
         if (article == 19) {
             changeFood(1);
@@ -626,6 +617,7 @@ public class MainActivity extends AppCompatActivity
         if (article == 20) {
             editor.putInt("goBackArticleID", 316).commit();
         }
+        //24 see 284
         if (article == 26) {
             changeGold(5 * gamePref.getInt("fatHitCount", 0));
         }
@@ -647,8 +639,34 @@ public class MainActivity extends AppCompatActivity
                 addThing("Кожаный щит");
             }
         }
+        if (article == 41) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 1) {
+                editor.remove("chanceInArticle41").commit();
+            }
+        }
+        if (article == 45) {
+            changeUUU(2);
+            addThing("Банка с водой");
+        }
+        if (article == 49) {
+            addThing("Книга");
+        }
+        if (article == 51) {
+            addRoomToWasHere(247);
+            addRoomToWasHere(270);
+        }
+        if (article == 55) {
+            changeGold(-25);
+            addThing("Деревянный кол");
+            addThing("Банка ядовитой пыли");
+        }
         if (article == 56 || article == 105 || article == 198 || article == 244 || article == 245) {
             changeVVV(-1);
+        }
+        if (article == 66) {
+            changeGold(gamePref.getInt("savedGold66", 0));
+            editor.remove("savedGold66").commit();
         }
         if (article == 81) {
             changeVVV(2);
@@ -656,22 +674,14 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 89) {
             changeGold(3);
-            //TODO add wasHere?
+            changeUUU(2);
         }
         if (article == 142) {
             addKeyNumber("93");
         }
         if (article == 151) {
-            Set<String> room = new HashSet<>();
-            room.add("38");
-            editor.putStringSet("wasHere", room);
-            editor.commit();
+            addRoomToWasHere(38);
         }
-        /*if (article == 157 || article == 181 || article == 216 || article == 329) {
-            editor.putInt("goBackArticleID", article);
-            //editor.putInt("foodTries", 1);
-            editor.commit();
-        }*/
         if (article == 166) {
             changeVVV(3);
             changeLLL(2);
@@ -681,6 +691,23 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 254) {
             changeGold(10);
+        }
+
+        if (article == 284 || article == 24) {
+            int selectedRadio = gamePref.getInt("selectedRadio", 0);
+            if (selectedRadio == 0) {
+                editor.remove("chanceInArticle284");
+                editor.remove("chanceInArticle24");
+                editor.commit();
+            } else {
+                if (gamePref.getInt("stoneDown", 0) == 0){
+                    editor.putInt("chanceInArticle284", 2);
+                    editor.putInt("chanceInArticle24", 2);
+                    changeVVV(-2);
+                    editor.putInt("stoneDown", 1);
+                    editor.commit();
+                }
+            }
         }
         if (article == 292) {
             int slctd = gamePref.getInt("selectedRadio", 0);
@@ -706,12 +733,8 @@ public class MainActivity extends AppCompatActivity
             changeGold(30);
         }
         if (article == 364) {
-            Set<String> room = new HashSet<>();
-            room.add("200");
-            room.add("224");
-            editor.putStringSet("wasHere", room);
-            editor.commit();
-            showAllParameters();
+            addRoomToWasHere(200);
+            addRoomToWasHere(224);
         }
         if (article == 376) {
             changeLLL(1);
@@ -721,6 +744,9 @@ public class MainActivity extends AppCompatActivity
 
         if (article == 380) {
             changeLLL(1);
+        }
+        if (article == 385) {
+            addRoomToWasHere(53);
         }
     }
 
@@ -737,5 +763,18 @@ public class MainActivity extends AppCompatActivity
     public void gameOver() {
         editor.putInt("gameOn", 0).commit();
         Toast.makeText(this, "Конец игры", Toast.LENGTH_SHORT).show();
+    }
+
+    public void addRoomToWasHere(int roomToAdd) {
+        Set<String> set = gamePref.getStringSet("wasHere", new HashSet<String>());
+        set.add(Integer.toString(roomToAdd));
+        editor.putStringSet("wasHere", set);
+        editor.commit();
+    }
+
+    public int howManyKeys() {
+        ArrayList<String> keysList = new ArrayList<String>();
+        Set<String> keys = gamePref.getStringSet("keys", new HashSet<String>());
+        return keys.size();
     }
 }

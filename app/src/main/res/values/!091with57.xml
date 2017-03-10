@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_91">1</string>
+
+    <string name="article_91_1">Если ты на том берегу, с которого начинал путешествие, то Летучая Мышь к твоему появлению уже улетела. Попробуй другой способ оказаться перед расщелиной. см. 35, 74 или 110. Если ты на другом берегу, см. 288.</string>
+
+    <string name="opt_91">2</string>
+
+    <string name="option_91_1">56</string>
+    <string name="text_91_1">Повторить</string>
+    <string name="option_91_2">75</string>
+    <string name="text_91_2">Отступиться</string>
+</resources>

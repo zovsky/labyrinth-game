@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_66">2</string>
+
+    <string name="article_66_1">Сколько очков выпадет, столько золота и получишь.</string>
+    <string name="article_66_2">Хочешь сыграть еще?</string>
+
+    <string name="opt_66">2</string>
+
+    <string name="option_66_1">229</string>
+    <string name="text_66_1">Да</string>
+    <string name="option_66_2">19</string>
+    <string name="text_66_2">Нет</string>
+</resources>

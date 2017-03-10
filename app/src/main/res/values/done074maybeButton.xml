@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_74">2</string>
+
+    <string name="article_74_1">Подходи к мосту. Деревянные брусья скрипят под каждым твоим шагом. Вдруг один из них вываливается из-под ног и падает с грохотом в пропасть. Тебе удается удержать равновесие.</string>
+    <string name="article_74_2">Иди дальше. Мост идет круче. Видно, что в самой верхней точке зияет огромная дыра. Да, есть только один верный способ перебраться через нее. Но для этого нужна сеть. Если ее нет, тогда возвращайся назад и попробуй что-нибудь другое.</string>
+
+    <string name="opt_74">4</string>
+
+    <string name="option_74_1">240</string>
+    <string name="text_74_1">Использовать сеть</string>
+    <string name="option_74_2">35</string>
+    <string name="text_74_2">Заплатить дракону 10 кусков</string>
+    <string name="option_74_3">269</string>
+    <string name="text_74_3">Воспользоваться веревкой с крюком</string>
+    <string name="option_74_4">110</string>
+    <string name="text_74_4">Прыгнуть изо всех сил</string>
+</resources>

@@ -108,6 +108,7 @@ public class ArticleFragment extends Fragment {
         int paraStartCount = 0;
         int radioStartCount = 0;
 
+        //check wasHere in another article
         if (mArticle == 401) {
             ((MainActivity) getActivity()).showAllParameters();
             boolean was122 = ((MainActivity) getActivity()).wasIHere(122);
@@ -116,6 +117,16 @@ public class ArticleFragment extends Fragment {
                 mRadios = 1;
             } else if (was122 == false) {
                 paraStartCount = 1;
+                radioStartCount = 1;
+            }
+        }
+
+        if (mArticle == 59) {
+            ((MainActivity) getActivity()).showAllParameters();
+            boolean was163 = ((MainActivity) getActivity()).wasIHere(163);
+            if (was163 == true) {
+                mRadios = 1;
+            } else if (was163 == false) {
                 radioStartCount = 1;
             }
         }
@@ -131,7 +142,8 @@ public class ArticleFragment extends Fragment {
         textView[mParas-1].setPadding(0, 0, 0, 20);
 
         boolean wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
-        if (mArticle == 200 || mArticle == 224 || mArticle == 38) {
+        if (mArticle == 38 || mArticle == 53 || mArticle == 200 || mArticle == 224 || mArticle == 247 ||
+                mArticle == 270) {
             //was I here? if yes, show only first option, otherwise, show only second option
             if (wasHere == true) {
                 mRadios = 1;
@@ -174,7 +186,7 @@ public class ArticleFragment extends Fragment {
         final Button daleeButton = new Button(getContext());
         layout.addView(daleeButton);
         //articles before battle;
-        if (mArticle == 2) {
+        if (mArticle == 2) { //TODO: all articles before battle? maybe if mRadios == 0?
             daleeButton.setText("БИТВА");
         } else daleeButton.setText("Продолжить");
 
@@ -257,10 +269,12 @@ public class ArticleFragment extends Fragment {
                 radioGroup.getChildAt(0).setEnabled(false);
             }
         }
-        if (mArticle == 35 || mArticle == 36 || mArticle == 41) {
+
+        if (mArticle == 35 || mArticle == 36 || mArticle == 41 || mArticle == 284 || mArticle == 24) {
             final Button takeChance = new Button(getContext());
-            boolean wasHereForChance = ((MainActivity) getActivity()).wasIHere(mArticle);
-            if (wasHereForChance == false) {
+            final String rememberedChanceInArticle = "chanceInArticle" + mArticle;
+            int radioID = ((MainActivity) getActivity()).gamePref.getInt(rememberedChanceInArticle, -1);
+            if (radioID < 0) {
                 layout.addView(takeChance, 1);
                 takeChance.setText("Испытай удачу (-1У)");
                 radioGroup.getChildAt(0).setEnabled(false);
@@ -275,21 +289,17 @@ public class ArticleFragment extends Fragment {
                         if (((MainActivity) getActivity()).takeChance() == 1) {
                             radioGroup.check(firstRadioID);
                             radioGroup.getChildAt(0).setEnabled(true);
-                            ((MainActivity) getActivity()).editor.putInt("chanceRadioID", firstRadioID).commit();
+                            ((MainActivity) getActivity()).editor.putInt(rememberedChanceInArticle, firstRadioID).commit();
                         } else {
                             radioGroup.check(secondRadioID);
                             radioGroup.getChildAt(1).setEnabled(true);
-                            ((MainActivity) getActivity()).editor.putInt("chanceRadioID", secondRadioID).commit();
+                            ((MainActivity) getActivity()).editor.putInt(rememberedChanceInArticle, secondRadioID).commit();
                         }
-                        Set<String> room = new HashSet<>();
-                        room.add(Integer.toString(mArticle));
-                        ((MainActivity) getActivity()).editor.putStringSet("wasHere", room).commit();
                         daleeButton.setEnabled(true);
                     }
                 });
 
             } else {
-                int radioID = ((MainActivity) getActivity()).gamePref.getInt("chanceRadioID", 0);
                 if (radioID == radioButton[0].getId()) {
                     radioGroup.check(radioID);
                     radioGroup.getChildAt(1).setEnabled(false);
@@ -300,6 +310,88 @@ public class ArticleFragment extends Fragment {
                 daleeButton.setEnabled(true);
             }
 
+        }
+        if (mArticle == 63) {
+            boolean isAnyWeaponAvailable = false;
+            for (int i = 0; i<5; i++) {
+                radioGroup.getChildAt(i).setEnabled(false);
+            }
+            if (((MainActivity) getActivity()).isThingAvailable("Кость чудовища")) {
+                radioGroup.getChildAt(0).setEnabled(true);
+                isAnyWeaponAvailable = true;
+            }
+            if (((MainActivity) getActivity()).isThingAvailable("Молот гномов")) {
+                radioGroup.getChildAt(1).setEnabled(true);
+                isAnyWeaponAvailable = true;
+            }
+            if (((MainActivity) getActivity()).isThingAvailable("Металлический щит")) {
+                radioGroup.getChildAt(2).setEnabled(true);
+                isAnyWeaponAvailable = true;
+            }
+            if (((MainActivity) getActivity()).isThingAvailable("Сеть")) {
+                radioGroup.getChildAt(3).setEnabled(true);
+                isAnyWeaponAvailable = true;
+            }
+            if (((MainActivity) getActivity()).isThingAvailable("Связка ключей")) {
+                radioGroup.getChildAt(4).setEnabled(true);
+                isAnyWeaponAvailable = true;
+            }
+            if (!isAnyWeaponAvailable) {
+                radioGroup.check(radioButton[5].getId());
+            }
+        }
+        if (mArticle == 66) {
+            final Button diceForGold = new Button(getContext());
+            layout.addView(diceForGold, 1);
+            int savedGold66 = ((MainActivity) getActivity()).gamePref.getInt("savedGold66", 0);
+            if (savedGold66 == 0) {
+                diceForGold.setText("Играть в кости");
+                radioGroup.getChildAt(0).setEnabled(false);
+                radioGroup.getChildAt(1).setEnabled(false);
+                daleeButton.setEnabled(false);
+                diceForGold.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        diceForGold.setEnabled(false);
+                        Random rnd = new Random();
+                        int dice = rnd.nextInt(6)+rnd.nextInt(6)+2;
+                        ((MainActivity) getActivity()).editor.putInt("savedGold66", dice).commit();
+                        diceForGold.setText("Получаешь золота: " + dice);
+                        radioGroup.getChildAt(0).setEnabled(true);
+                        radioGroup.getChildAt(1).setEnabled(true);
+                        daleeButton.setEnabled(true);                    }
+                });
+            } else {
+                diceForGold.setEnabled(false);
+                diceForGold.setText("Получаешь золота: " + ((MainActivity) getActivity()).gamePref.getInt("savedGold66", 0));
+                radioGroup.getChildAt(0).setEnabled(true);
+                radioGroup.getChildAt(1).setEnabled(true);
+                daleeButton.setEnabled(true);
+            }
+
+        }
+        if (mArticle == 74) {
+            //todo: add button for 1K
+            if (!((MainActivity) getActivity()).isThingAvailable("Сеть")) {
+                radioGroup.getChildAt(0).setEnabled(false);
+            }
+            if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 10) {
+                radioGroup.getChildAt(1).setEnabled(false);
+            }
+            if (!((MainActivity) getActivity()).isThingAvailable("Веревка с крюком")) {
+                radioGroup.getChildAt(2).setEnabled(false);
+            }
+            if (!radioGroup.getChildAt(0).isEnabled() && !radioGroup.getChildAt(1).isEnabled() &&
+                    !radioGroup.getChildAt(2).isEnabled()) {
+                radioGroup.check(radioButton[3].getId());
+            }
+        }
+        if (mArticle == 76) {
+            if (((MainActivity) getActivity()).howManyKeys() >= 3) {
+                radioGroup.getChildAt(1).setEnabled(false);
+            } else {
+                radioGroup.getChildAt(0).setEnabled(false);
+            }
         }
         if (mArticle == 106) {
             radioGroup.getChildAt(1).setEnabled(false);

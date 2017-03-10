@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_45">1</string>
+
+    <string name="article_45_1">Направляйся в сторону фонтана. Набери воды в банку, которую предусмотрительно кто-то поставил возле фонтана. Спрячь банку с водой в мешок. Заметь, фонтан мгновенно опустел. Получаешь (+2У).</string>
+
+    <string name="opt_45">1</string>
+
+    <string name="option_45_1">251</string>
+    <string name="text_45_1">Далее</string>
+
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_24">1</string>
+
+    <string name="article_24_1">Коридор очень узкий. У потолка качается, едва держась, камень. Он может в любой момент сорваться. Испытай удачу (-1У).</string>
+
+    <string name="opt_24">2</string>
+
+    <string name="option_24_1">64</string>
+    <string name="text_24_1">Удача на твоей стороне. Камень остался висеть.</string>
+    <string name="option_24_2">64</string>
+    <string name="text_24_2">Камень падает как раз в тот момент, когда ты проходил под ним (-2В).</string>
+
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_379">1</string>
+
+    <string name="article_379_1">\"Информация или смерть\", - говори Гиганту. Ответ монстра выбери сам:</string>
+
+    <string name="opt_379">2</string>
+
+    <string name="option_379_1">347</string>
+    <string name="text_379_1">Гигант готов все рассказать</string>
+    <string name="option_379_2">86</string>
+    <string name="text_379_2">Чудовище хочет биться</string>
+
+</resources>

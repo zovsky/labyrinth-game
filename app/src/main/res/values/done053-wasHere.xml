@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_53">1</string>
+
+    <string name="article_53_1">Оказываешься в просторном коридоре, ведущем на север, а потом резко поворачивающем на восток. Через сотню шагов остановишься перед тяжелыми дверями.</string>
+
+    <string name="opt_53">2</string>
+
+    <string name="option_53_1">322</string>
+    <string name="text_53_1">Ты здесь уже был</string>
+    <string name="option_53_2">299</string>
+    <string name="text_53_2">Ты тут еще не был</string>
+</resources>
