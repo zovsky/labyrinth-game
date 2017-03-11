@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_99">1</string>
+
+    <string name="article_99_1">Коридор ведет на восток, но вскоре заворачивает на север, чтобы потом опять повернуть на восток. Отсчитай от поворота 23 шага и... коридор закончился.</string>
+
+    <string name="opt_99">1</string>
+
+    <string name="option_99_1">182</string>
+    <string name="text_99_1">Далее</string>
+</resources>

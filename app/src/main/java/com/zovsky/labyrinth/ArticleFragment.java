@@ -142,13 +142,17 @@ public class ArticleFragment extends Fragment {
         textView[mParas-1].setPadding(0, 0, 0, 20);
 
         boolean wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
-        if (mArticle == 38 || mArticle == 53 || mArticle == 200 || mArticle == 224 || mArticle == 247 ||
+        if (mArticle == 38 || mArticle == 53 ||
+                mArticle == 200 || mArticle == 224 || mArticle == 247 ||
                 mArticle == 270) {
-            //was I here? if yes, show only first option, otherwise, show only second option
-            if (wasHere == true) {
+            //was I here? if yes, show only first option (door open), otherwise, show only second option (door closed)
+            if (wasHere) {
                 mRadios = 1;
-            } else if (wasHere == false) {
+            } else if (!wasHere) {
                 radioStartCount = 1;
+                if (mArticle == 247 || mArticle == 270) {
+                    radioStartCount = 0;
+                }
             }
             Log.d(GAME, "was here:" + wasHere);
         }
@@ -172,6 +176,10 @@ public class ArticleFragment extends Fragment {
                 int goBackID = ((MainActivity) getActivity()).gamePref.getInt("goBackArticleID", 0);
                 radioTextNumber = Integer.toString(goBackID);
                 choice[radio] = goBackID;
+            }
+            if ((mArticle == 247 || mArticle == 270) && radioStartCount == 0 && radio == 0 && wasHere) {
+                radioTextShortDescription = ", Ты тут уже был. Возвращайся к перекрестку.";
+                //TODO: remove ", "
             }
             String radioText = radioTextNumber + radioTextShortDescription;
             //set radio button text
@@ -268,7 +276,7 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[1].getId());
                 radioGroup.getChildAt(0).setEnabled(false);
             }
-        }
+        } //todo почему 30 отдельно?
 
         if (mArticle == 35 || mArticle == 36 || mArticle == 41 || mArticle == 284 || mArticle == 24) {
             final Button takeChance = new Button(getContext());

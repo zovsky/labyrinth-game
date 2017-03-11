@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_95">1</string>
+
+    <string name="article_95_1">Натягиваешь руквицы, но с ними что-то не так. Они сжиают руку. Никак не можешь их снять... Испытай удачу. Если выпало С, то удается снять рукавицу, если не выпало С, терпи до ближайшей битвы, в которой Л уменьши на 1 балл. Если рукавицы были выбраны в первую очередь, то см. 115, если во вторую, см. 68.
+</string>
+
+    <string name="opt_95">2</string>
+
+    <string name="option_95_1">56</string>
+    <string name="text_95_1">Повторить</string>
+    <string name="option_95_2">75</string>
+    <string name="text_95_2">Отступиться</string>
+</resources>

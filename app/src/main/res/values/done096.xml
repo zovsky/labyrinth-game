@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_96">1</string>
+
+    <string name="article_96_1">Нашел ключ. У него номер 12. Получаешь два балла удачи (+2У).</string>
+
+    <string name="opt_96">1</string>
+
+    <string name="option_96_1">253</string>
+    <string name="text_96_1">Далее</string>
+
+</resources>

@@ -600,7 +600,6 @@ public class MainActivity extends AppCompatActivity
         if (article == 12) {
             removeThing("Изумруд");
         }
-
         if (article == 13 || article == 88 || article == 263 || article == 291) {
             changeVVV(-2);
         }
@@ -672,9 +671,17 @@ public class MainActivity extends AppCompatActivity
             changeVVV(2);
             changeLLL(1);
         }
+        //todo 86 see excel
         if (article == 89) {
             changeGold(3);
             changeUUU(2);
+        }
+        if (article == 96) {
+            addKeyNumber("12");
+            changeUUU(2);
+        }
+        if (article == 98) {
+            editor.putInt("extraLLL", 3).commit();
         }
         if (article == 142) {
             addKeyNumber("93");
@@ -688,6 +695,9 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 199) {
             changeGold(20);
+        }
+        if (article == 250) {
+            editor.remove("extraLLL").commit();
         }
         if (article == 254) {
             changeGold(10);

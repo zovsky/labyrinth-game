@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_101">1</string>
+
+    <string name="article_101_1">Демон просит о милости. Ты даруешь ему жизнь или прикончишь его?</string>
+
+    <string name="opt_101">2</string>
+
+    <string name="option_101_1">362</string>
+    <string name="text_101_1">Даруешь жизнь</string>
+    <string name="option_101_2">234</string>
+    <string name="text_101_2">Убиваешь</string>
+</resources>

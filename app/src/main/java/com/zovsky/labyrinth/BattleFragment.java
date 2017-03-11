@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -61,6 +62,8 @@ public class BattleFragment extends Fragment {
     private TextView roundResultTextView;
     private Button fleeFromBattleButton;
     private Button dalee;
+    private String extraLLLstring = "";
+    private int extraLLL;
 
     private OnFragmentInteractionListener mListener;
 
@@ -101,8 +104,15 @@ public class BattleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        extraLLL = ((MainActivity) getActivity()).gamePref.getInt("extraLLL", 0);
+        if (extraLLL > 0) {
+            extraLLLstring = "+" + extraLLL;
+        } else if (extraLLL < 0) {
+            extraLLLstring = "-" + extraLLL;
+        }
         //show inventory button
         ((MainActivity)getActivity()).setInventoryVisibility(true);
+
 
         heroVVV = ((MainActivity) getActivity()).gamePref.getInt("VVV", 0);
         heroLLL = ((MainActivity) getActivity()).gamePref.getInt("LLL", 0);
@@ -114,15 +124,9 @@ public class BattleFragment extends Fragment {
         toolbar.getMenu().getItem(0).setTitle(monster_data).setEnabled(false);
         //set LVU as toolbar title
         String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
+                extraLLLstring +
                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
                 " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
-        if (mArticle == 2098) {
-            heroLLL += 3;
-            Log.d(GAME, "heroLLL: " + heroLLL);
-            toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
-                    "+3 В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
-                    " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
-        }
 
         ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle)); //TODO subtitle null
 
@@ -165,10 +169,11 @@ public class BattleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Random rnd = new Random();
-                int hero_attack = rnd.nextInt(6)+rnd.nextInt(6)+2+heroLLL;
+                int hero_attack = rnd.nextInt(6)+rnd.nextInt(6)+2+heroLLL+extraLLL;
+                Toast.makeText(getContext() ,hero_attack-extraLLL + "", Toast.LENGTH_SHORT).show();
                 ((MainActivity) getActivity()).editor.putInt("heroAttack", hero_attack).commit();
                 calcHeroAttackButton.setEnabled(false);
-                heroAttackTextView.setText("" + hero_attack);
+                heroAttackTextView.setText("" + (hero_attack-extraLLL) + extraLLLstring);
                 boolean isAllowed = ((MainActivity)getActivity()).isAllowedToTakeChance() &&
                         ((MainActivity) getActivity()).gamePref.getInt("heroAttack",0) !=
                                 ((MainActivity) getActivity()).gamePref.getInt("monsterAttack",0);
@@ -182,7 +187,10 @@ public class BattleFragment extends Fragment {
         heroAttackTextView = (TextView) view.findViewById(R.id.text_hero_attack);
         if (((MainActivity) getActivity()).gamePref.getInt("heroAttack", 0) > 0) {
             calcHeroAttackButton.setEnabled(false);
-            heroAttackTextView.setText("" + ((MainActivity) getActivity()).gamePref.getInt("heroAttack", 0));
+            heroAttackTextView.setText("" +
+                    (((MainActivity) getActivity()).gamePref.getInt("heroAttack", 0)
+                            - ((MainActivity) getActivity()).gamePref.getInt("extraLLL", 0))
+                    + extraLLLstring);
         }
 
         takeChanceButton = (Button) view.findViewById(R.id.good_luck);

@@ -94,7 +94,15 @@ public class PreBattleFragment extends Fragment {
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         toolbar.getMenu().getItem(0).setTitle(R.string.action_settings).setEnabled(true);
         //set LVU as toolbar title
+        int extraLLL = ((MainActivity)getActivity()).gamePref.getInt("extraLLL",0);
+        String extraLLLstring = "";
+        if (extraLLL > 0) {
+            extraLLLstring = "+" + extraLLL;
+        } else if (extraLLL < 0) {
+            extraLLLstring = "-" + extraLLL;
+        }
         String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
+                extraLLLstring +
                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
                 " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
         ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
