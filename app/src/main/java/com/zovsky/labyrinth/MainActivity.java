@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity
 
         Set<String> things=new HashSet<>();
         things.add("Меч");//default меч
-        things.add("Молот гномов"); //default фонарь
+        things.add("Жестяная бабочка"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
@@ -569,7 +569,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeSpecialAction(int article) {
-        if (article == 16 || article == 32 || article == 47 || article == 61 || article == 68 || article == 137 ||
+        if (article == 16 || article == 32 || article == 47 || article == 61 || article == 68 || article == 114 ||
+                article == 137 ||
                 article == 248 || article == 293 || article == 296 || article == 339 || article == 374 ||
                 article == 382) {
             if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0) {
@@ -622,6 +623,10 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 31) {
             changeGold(5);
+            changeFood(-1);
+            changeVVV(4);
+            changeLLL(1);
+            changeUUU(1);
         }
         if (article == 35) {
             changeGold(-10);
@@ -682,6 +687,24 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 98) {
             editor.putInt("extraLLL", 3).commit();
+        }
+        if (article == 104) {
+            changeGold(30);
+            addThing("Соска");
+            removeThing("Жестяная бабочка");
+        }
+        if (article == 119) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 0) {
+                addThing("Канат с крюком");
+                addThing("Пустая бутылка");
+            } else if (slctd == 1) {
+                addThing("Канат с крюком");
+                addThing("Скальп Оборотня");
+            } else {
+                addThing("Скальп Оборотня");
+                addThing("Пустая бутылка");
+            }
         }
         if (article == 142) {
             addKeyNumber("93");

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_112">1</string>
+
+    <string name="article_112_1">Бросай кубик 4 раза.</string>
+
+    <string name="opt_112">2</string>
+
+    <string name="option_112_1">28</string>
+    <string name="text_112_1">&gt;=18</string>
+    <string name="option_112_2">291</string>
+    <string name="text_112_2">&lt;18</string>
+</resources>

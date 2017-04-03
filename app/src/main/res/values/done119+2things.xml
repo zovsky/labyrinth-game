@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_119">1</string>
+
+    <string name="article_119_1">Что эта бестия тут закрывала? Потрогай стену в том самом месте, где волосатый Огре опирался спиной. Часть стены отстранилась. Это тайник! В нем длинный канат с крюком, пустая замшелая бутылка и скальп Оборотня. Можешь взять любые две вещи.</string>
+
+    <string name="opt_119">3</string>
+
+    <string name="option_119_1">31</string>
+    <string name="text_119_1">Канат с крюком + бутылка</string>
+    <string name="option_119_2">31</string>
+    <string name="text_119_2">Канат с крюком + скальп</string>
+    <string name="option_119_3">31</string>
+    <string name="text_119_3">Скальп + бутылка</string>
+
+</resources>

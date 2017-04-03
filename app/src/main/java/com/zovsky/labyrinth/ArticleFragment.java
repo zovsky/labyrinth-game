@@ -411,6 +411,60 @@ public class ArticleFragment extends Fragment {
                 radioButton[1].setText("Кроме меча, ничего нет");
             }
         }
+        if (mArticle == 112) {
+            final Button throwDiceButton = new Button(getContext());
+            final TextView scoreCounterTextView = new TextView(getContext());
+            layout.addView(throwDiceButton, 1);
+            layout.addView(scoreCounterTextView,2);
+            throwDiceButton.setText("Бросить кубик");
+            scoreCounterTextView.setText(((MainActivity) getActivity()).gamePref.getString("scoreText", ""));
+            radioGroup.getChildAt(0).setEnabled(false);
+            radioGroup.getChildAt(1).setEnabled(false);
+            final int firstRadioID = radioButton[0].getId();
+            final int secondRadioID = radioButton[1].getId();
+            if (((MainActivity) getActivity()).gamePref.getInt("thrownDice112", 0) < 4) {
+                daleeButton.setEnabled(false);
+                throwDiceButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Random rnd = new Random();
+                        int dice = rnd.nextInt(6) + 1;
+                        ((MainActivity) getActivity()).editor.putInt("thrownDice112", ((MainActivity) getActivity()).gamePref.getInt("thrownDice112", 0) + 1);
+                        ((MainActivity) getActivity()).editor.putInt("score112", ((MainActivity) getActivity()).gamePref.getInt("score112", 0) + dice);
+                        ((MainActivity) getActivity()).editor.putString("scoreText", ((MainActivity) getActivity()).gamePref.getString("scoreText", "")
+                                + Integer.toString(dice) + " + ");
+                        ((MainActivity) getActivity()).editor.commit();
+                        scoreCounterTextView.setText(((MainActivity) getActivity()).gamePref.getString("scoreText", ""));
+                        if (((MainActivity) getActivity()).gamePref.getInt("thrownDice112", 0) == 4) {
+                            throwDiceButton.setEnabled(false);
+                            String finalScoreString = ((MainActivity) getActivity()).gamePref.getString("scoreText", "").substring(0, 13);
+                            int score = ((MainActivity) getActivity()).gamePref.getInt("score112", 0);
+                            scoreCounterTextView.setText(finalScoreString + " = " + score);
+                            ((MainActivity) getActivity()).editor.putString("scoreText", finalScoreString + " = " + score);
+                            ((MainActivity) getActivity()).editor.commit();
+                            if (score >= 18) {
+                                radioGroup.getChildAt(0).setEnabled(true);
+                                radioGroup.check(firstRadioID);
+                            } else {
+                                radioGroup.getChildAt(1).setEnabled(true);
+                                radioGroup.check(secondRadioID);
+                            }
+                            daleeButton.setEnabled(true);
+                        }
+                    }
+                });
+            } else {
+                throwDiceButton.setEnabled(false);
+                if (((MainActivity) getActivity()).gamePref.getInt("score112", 0) >= 18) {
+                    radioGroup.getChildAt(0).setEnabled(true);
+                    radioGroup.check(radioButton[0].getId());
+                } else {
+                    radioGroup.getChildAt(1).setEnabled(true);
+                    radioGroup.check(radioButton[1].getId());
+                }
+                daleeButton.setEnabled(true);
+            }
+        }
         if (mArticle == 193) {
             //TODO: +5gold for every monster defeated
         }

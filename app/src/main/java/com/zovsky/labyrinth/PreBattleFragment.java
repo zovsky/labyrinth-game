@@ -123,7 +123,7 @@ public class PreBattleFragment extends Fragment {
             }
             if (para == 1) {
                 monsterLLL = Integer.parseInt(getResources().getString(resID));
-                if (mArticle == 1086) {
+                if (mArticle == 1062 || mArticle == 1086) {
                     monsterLLL = ((MainActivity) getActivity()).gamePref.getInt("monsterLLL", 0);
                 }
                 textView[para] = (TextView) view.findViewById(R.id.monster_LLL);
@@ -132,7 +132,7 @@ public class PreBattleFragment extends Fragment {
             }
             if (para == 2) {
                 monsterVVV = Integer.parseInt(getResources().getString(resID));
-                if (mArticle == 1086) {
+                if (mArticle == 1062 || mArticle == 1086) {
                     monsterVVV = ((MainActivity) getActivity()).gamePref.getInt("monsterVVV", 0);
                 }
                 textView[para] = (TextView) view.findViewById(R.id.monster_VVV);
@@ -171,8 +171,9 @@ public class PreBattleFragment extends Fragment {
         //убирать кнопку бегства, если нельзя убежать перед битвой
         Button fleeBeforeBattle = (Button) view.findViewById(R.id.flee_before_battle_button);
 
-        if (mArticle == 1002 || mArticle == 1032 || mArticle == 1086 ||mArticle == 1092 || mArticle == 1098 ||
-                mArticle == 1107 || mArticle == 1116 || mArticle == 1157 || mArticle == 1169 ||
+        if (
+                mArticle == 1002 || mArticle == 1032 || mArticle == 1062 || mArticle == 1086 || mArticle == 1092 || mArticle == 1098 ||
+                mArticle == 1107 || mArticle == 1109 || mArticle == 1116 || mArticle == 1157 || mArticle == 1169 ||
                 mArticle == 1213 || mArticle == 1216 || mArticle == 1238 || mArticle == 1255 ||
                 mArticle == 1277 || mArticle == 1278 || mArticle == 1288 || mArticle == 1312 ||
                 mArticle == 1317 || mArticle == 1355 || mArticle == 1361 || mArticle == 1367) {
@@ -212,7 +213,7 @@ public class PreBattleFragment extends Fragment {
                         ((MainActivity) getActivity()).removeThing("Шлем");
                     }
                 }
-                if (mArticle != 1086) {
+                if (mArticle != 1062 || mArticle != 1086) {
                     ((MainActivity) getActivity()).editor.putInt("round", 1);
                 }
                 ((MainActivity) getActivity()).editor.putInt("step", 0);

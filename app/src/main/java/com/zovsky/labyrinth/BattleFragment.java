@@ -257,6 +257,13 @@ public class BattleFragment extends Fragment {
                     ((MainActivity) getActivity()).editor.putInt("VVV", heroVVV);
                     ((MainActivity) getActivity()).editor.putInt("monsterVVV", monsterVVV);
                     ((MainActivity) getActivity()).editor.commit();
+                    if (mArticle == 2109) {
+                        if (((MainActivity) getActivity()).gamePref.getInt("firstWinningRound109", 0) == 1
+                                && ((MainActivity) getActivity()).gamePref.getInt("round", 0) == 2) {
+                            ((MainActivity) getActivity()).showArticle(77);
+                            return;
+                        }
+                    }
                     if (mArticle == 2355) {
                         if (((MainActivity) getActivity()).gamePref.getInt("firstWinningRound355", 0) == 1
                                 && ((MainActivity) getActivity()).gamePref.getInt("round", 0) == 2) {
@@ -332,11 +339,17 @@ public class BattleFragment extends Fragment {
                 heroVVV-=2;
             }
         } else if (monsterA < heroA) {
+            if (mArticle == 2109) {
+                if (((MainActivity) getActivity()).gamePref.getInt("firstWinningRound109", 0) == 0) {
+                    ((MainActivity) getActivity()).editor.putInt("firstWinningRound109", 1).commit();
+                    Log.d(GAME, "set 1"); //todo remove log
+                }
+            }
             if (mArticle == 2355) {
-                // 0 - не было, 1 - сейчас, 2 - было
+                // 0 - не было, 1 - сейчас
                 if (((MainActivity) getActivity()).gamePref.getInt("firstWinningRound355", 0) == 0) {
                     ((MainActivity) getActivity()).editor.putInt("firstWinningRound355", 1).commit();
-                    Log.d(GAME, "set 1");
+                    Log.d(GAME, "set 1"); //todo remove log
                 }
             }
             if (luck > 0) {
