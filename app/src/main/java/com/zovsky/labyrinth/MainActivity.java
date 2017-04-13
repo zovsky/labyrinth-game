@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("LLL", 0);
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0);
-        editor.putInt("gold", 10); //default 0
+        editor.putInt("gold", 14); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
         editor.putInt("stoneDown", 0); //stone for 24 and 284
@@ -277,8 +277,8 @@ public class MainActivity extends AppCompatActivity
         editor.commit();
 
         Set<String> things=new HashSet<>();
-        things.add("Меч");//default меч
-        things.add("Жестяная бабочка"); //default фонарь
+        things.add("Изумруд");//default меч
+        //things.add("Жестяная бабочка"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
@@ -570,16 +570,12 @@ public class MainActivity extends AppCompatActivity
 
     public void takeSpecialAction(int article) {
         if (article == 16 || article == 32 || article == 47 || article == 61 || article == 68 || article == 114 ||
-                article == 137 ||
+                article == 137 || article == 141 || article == 144 ||
                 article == 248 || article == 293 || article == 296 || article == 339 || article == 374 ||
                 article == 382) {
             if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0) {
                 setOneMenuItemActive("Запасы еды");
             }
-        }
-
-        if (article == 136) {
-            changeGold(-13);
         }
     }
 
@@ -706,8 +702,21 @@ public class MainActivity extends AppCompatActivity
                 addThing("Пустая бутылка");
             }
         }
+        if (article == 128) {
+            addThing("Связка ключей");
+        }
+        if (article == 136) {
+            changeGold(-13);
+        }
         if (article == 142) {
             addKeyNumber("93");
+        }
+        if (article == 144) {
+            changeUUU(1);
+        }
+        if (article == 147) {
+            addThing("Деревянный кол");
+            addThing("Банка ядовитой пыли");
         }
         if (article == 151) {
             addRoomToWasHere(38);

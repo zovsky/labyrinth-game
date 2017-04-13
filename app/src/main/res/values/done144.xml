@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_144">1</string>
+
+    <string name="article_144_1">Выходи в короткий коридор. Он только начался, а уже и закончился. Сядь на каменный порог. Можешь перекусить порцией еды. Послышался шум. Прячься за скальный выступ. Это толпа чудовищ движется по главному коридору. Тебе повезло (+1У). Пора уходить.</string>
+
+    <string name="opt_144">1</string>
+
+    <string name="option_144_1">84</string>
+    <string name="text_144_1">Далее</string>
+
+</resources>

@@ -143,7 +143,7 @@ public class ArticleFragment extends Fragment {
 
         boolean wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
         if (mArticle == 38 || mArticle == 53 ||
-                mArticle == 200 || mArticle == 224 || mArticle == 247 ||
+                mArticle == 200 || mArticle == 224 || mArticle == 239 || mArticle == 247 ||
                 mArticle == 270) {
             //was I here? if yes, show only first option (door open), otherwise, show only second option (door closed)
             if (wasHere) {
@@ -218,11 +218,10 @@ public class ArticleFragment extends Fragment {
             }
         }
         if (mArticle == 22) {
-            //TODO: если нету ничего из списка в пункте 22
             radioGroup.getChildAt(0).setEnabled(false);
             radioGroup.getChildAt(1).setEnabled(false);
             radioGroup.getChildAt(2).setEnabled(false);
-            if (((MainActivity) getActivity()).isThingAvailable("Железная бабочка")) {
+            if (((MainActivity) getActivity()).isThingAvailable("Жестяная бабочка")) {
                 radioGroup.getChildAt(0).setEnabled(true);
             }
             if (((MainActivity) getActivity()).isThingAvailable("Изумруд")) {
@@ -231,12 +230,7 @@ public class ArticleFragment extends Fragment {
             if (((MainActivity) getActivity()).isThingAvailable("Деревянный кол")) {
                 radioGroup.getChildAt(2).setEnabled(true);
             }
-
-            /*if (!radioGroup.getChildAt(0).isEnabled() && !radioGroup.getChildAt(1).isEnabled() && !radioGroup.getChildAt(2).isEnabled()) {
-                radioGroup.check(radioButton[3].getId());
-            } else {
-                radioGroup.getChildAt(3).setVisibility(View.INVISIBLE);
-            }*/
+            //check radio if single thing
             if (radioGroup.getChildAt(0).isEnabled() && !radioGroup.getChildAt(1).isEnabled() && !radioGroup.getChildAt(2).isEnabled()) {
                 radioGroup.check(radioButton[0].getId());
             }
@@ -464,6 +458,18 @@ public class ArticleFragment extends Fragment {
                 }
                 daleeButton.setEnabled(true);
             }
+        }
+        if (mArticle == 135) {
+            boolean iHaveAnything = ((MainActivity) getActivity()).isThingAvailable("Жестяная бабочка") ||
+                    ((MainActivity) getActivity()).isThingAvailable("Изумруд") ||
+                    ((MainActivity) getActivity()).isThingAvailable("Деревянный кол");
+            if (!iHaveAnything) {
+                radioGroup.getChildAt(0).setEnabled(false);
+                radioGroup.check(radioButton[1].getId());
+            }
+        }
+        if (mArticle == 138) {
+
         }
         if (mArticle == 193) {
             //TODO: +5gold for every monster defeated

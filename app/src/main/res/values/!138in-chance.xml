@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_138">1</string>
+
+    <string name="article_138_1">Твоя атака выглядит слишком слабой. Если в заплечном мешке у тебя есть соска, то запусти ее в Стражника.</string>
+
+    <string name="opt_138">2</string>
+
+    <string name="option_138_1">361</string>
+    <string name="text_138_1">Удачно</string>
+    <string name="option_138_2">255</string>
+    <string name="text_138_2">Неудачно</string>
+</resources>

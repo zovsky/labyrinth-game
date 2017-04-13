@@ -2,7 +2,7 @@
 <resources>
     <string name="para_134">1</string>
 
-    <string name="article_134_1">Перед тобой перекресток. Ты можешь идти на север, тогда см. 270, восток, см. 384, на юг, см. 276.</string>
+    <string name="article_134_1">Перед тобой перекресток. Ты можешь идти на север, на восток или на юг.</string>
 
     <string name="opt_134">3</string>
 

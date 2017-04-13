@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_137">1</string>
+
+    <string name="article_137_1">Вот извилистый коридор, в котором можешь по пути съесть порцию еды, ведет к перекрестку, имеющему форму буквы Т. Можешь повернуть только на восток. Затем коридор поворачивает на юг и снова на восток и вот... Перед тобой двери. Открывай.</string>
+
+    <string name="opt_137">1</string>
+
+    <string name="option_137_1">13</string>
+    <string name="text_137_1">Далее</string>
+
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_127">1</string>
+
+    <string name="article_127_1">finish TBD</string>
+
+    <string name="opt_127">2</string>
+
+    <string name="option_127_1">56</string>
+    <string name="text_127_1">Далее</string>
+    <string name="option_127_2">75</string>
+    <string name="text_127_2">Отступиться</string>
+</resources>

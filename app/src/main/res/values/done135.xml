@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_135">1</string>
+
+    <string name="article_135_1">В эту комнату можно войти, только если имеешь хотя бы один из следующих предметов: жестяную бабочку, деревянный кол, изумруд (тот который Дар Крыльев). Если ничего нет - как ни жаль, придется разворачиваться.</string>
+
+    <string name="opt_135">2</string>
+
+    <string name="option_135_1">22</string>
+    <string name="text_135_1">Войти в комнату</string>
+    <string name="option_135_2">43</string>
+    <string name="text_135_2">Идти назад</string>
+</resources>
