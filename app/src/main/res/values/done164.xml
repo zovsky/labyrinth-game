@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_164">2</string>
+
+    <string name="article_164_1">Коридор идет на восток, затем поворачивает на север и снова на восток. Через несколько шагов видны ступеньки, ведущие к двери.</string>
+    <string name="article_164_2">Хочешь их открыть?</string>
+
+    <string name="opt_164">3</string>
+
+    <string name="option_164_1">290</string>
+    <string name="text_164_1">Ты тут уже был</string>
+    <string name="option_164_2">302</string>
+    <string name="text_164_2">Да</string>
+    <string name="option_164_3">253</string>
+    <string name="text_164_3">Нет</string>
+</resources>

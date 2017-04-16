@@ -273,7 +273,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("stoneDown", 0); //stone for 24 and 284
 
         //TODO Remove on release
-        //addRoomToWasHere(163);
+        //addRoomToWasHere(164);
         editor.putInt("fatHitCount", 2);
         editor.commit();
 
@@ -795,6 +795,9 @@ public class MainActivity extends AppCompatActivity
         if (article == 364) {
             addRoomToWasHere(200);
             addRoomToWasHere(224);
+        }
+        if (article == 372) {
+            addRoomToWasHere(164);
         }
         if (article == 376) {
             changeLLL(1);

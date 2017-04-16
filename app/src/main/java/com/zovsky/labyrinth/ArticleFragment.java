@@ -109,24 +109,30 @@ public class ArticleFragment extends Fragment {
         int radioStartCount = 0;
 
         //check wasHere in another article
-        if (mArticle == 401) {
-            ((MainActivity) getActivity()).showAllParameters();
-            boolean was122 = ((MainActivity) getActivity()).wasIHere(122);
-            if (was122 == true) {
-                mParas = 1;
+        if (mArticle == 59) {
+            ((MainActivity) getActivity()).showAllParameters(); //todo remove
+            boolean was163 = ((MainActivity) getActivity()).wasIHere(163);
+            if (was163) {
                 mRadios = 1;
-            } else if (was122 == false) {
-                paraStartCount = 1;
+            } else if (!was163) {
                 radioStartCount = 1;
             }
         }
-
-        if (mArticle == 59) {
+        if (mArticle == 164) {
             ((MainActivity) getActivity()).showAllParameters();
-            boolean was163 = ((MainActivity) getActivity()).wasIHere(163);
-            if (was163 == true) {
+            boolean was164 = ((MainActivity) getActivity()).wasIHere(164);
+            if (was164) {
+                mParas = 1;
+            }
+        }
+        if (mArticle == 401) {
+            ((MainActivity) getActivity()).showAllParameters();
+            boolean was122 = ((MainActivity) getActivity()).wasIHere(122);
+            if (was122) {
+                mParas = 1;
                 mRadios = 1;
-            } else if (was163 == false) {
+            } else if (!was122) {
+                paraStartCount = 1;
                 radioStartCount = 1;
             }
         }
@@ -142,7 +148,7 @@ public class ArticleFragment extends Fragment {
         textView[mParas-1].setPadding(0, 0, 0, 20);
 
         boolean wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
-        if (mArticle == 38 || mArticle == 53 ||
+        if (mArticle == 38 || mArticle == 53 || mArticle == 164 ||
                 mArticle == 200 || mArticle == 224 || mArticle == 239 || mArticle == 247 ||
                 mArticle == 270) {
             //was I here? if yes, show only first option (door open), otherwise, show only second option (door closed)
@@ -186,7 +192,7 @@ public class ArticleFragment extends Fragment {
 
             radioButton[radio].setText(radioText);
 
-            if (mRadios == 1 || radioStartCount == 1) {
+            if (mRadios == 1 || (radioStartCount == 1 && mRadios == 1)) {
                 //set checked radio button if it is sole
                 radioGroup.check(radioButton[radio].getId());
             }
@@ -195,7 +201,7 @@ public class ArticleFragment extends Fragment {
         layout.addView(daleeButton);
         //articles before battle;
         if (mArticle == 2) { //TODO: all articles before battle? maybe if mRadios == 0?
-            daleeButton.setText("БИТВА");
+            daleeButton.setText("БИТВА"); //todo про шлем
         } else daleeButton.setText("Продолжить");
 
         //special conditions; execute on article load

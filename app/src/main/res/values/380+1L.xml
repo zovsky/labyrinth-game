@@ -2,12 +2,12 @@
 <resources>
     <string name="para_380">1</string>
 
-    <string name="article_380_1">Хочешь осмотреть комнату? Если да, то см. 118, если нет, то см. 372. За отвагу получаешь (+1Л).</string>
+    <string name="article_380_1">Есть желание осмотреть комнату? За отвагу получаешь (+1Л).</string>
 
     <string name="opt_380">2</string>
 
     <string name="option_380_1">118</string>
-    <string name="text_380_1">Осмотреть комнату</string>
+    <string name="text_380_1">Да</string>
     <string name="option_380_2">372</string>
-    <string name="text_380_2">Выйти</string>
+    <string name="text_380_2">Нет</string>
 </resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_165">1</string>
+
+    <string name="article_165_1">Будешь атаковать. Чем? Мечом? Сначала поищи у себя другое оружие. Можешь выбрать что-нибудь из следующего:</string>
+
+    <string name="opt_165">5</string>
+
+    <string name="option_165_1">54</string>
+    <string name="text_165_1">Молот гномов</string>
+    <string name="option_165_2">198</string>
+    <string name="text_165_2">Алмазную шпору</string>
+    <string name="option_165_3">344</string>
+    <string name="text_165_3">Огненное ядро</string>
+    <string name="option_165_4">281</string>
+    <string name="text_165_4">Копье</string>
+    <string name="option_165_5">255</string>
+    <string name="text_165_5">Кроме меча ничего нет</string>
+
+</resources>
