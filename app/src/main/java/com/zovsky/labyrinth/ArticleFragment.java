@@ -471,6 +471,16 @@ public class ArticleFragment extends Fragment {
         if (mArticle == 138) {
 
         }
+        if (mArticle == 158) {
+            if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 10) {
+                radioGroup.getChildAt(0).setEnabled(false);
+                //radioButton[0].setText("Недостаточно золота");
+            }
+            if (!((MainActivity) getActivity()).isThingAvailable("Веревка с крюком")) {
+                radioGroup.getChildAt(1).setEnabled(false);
+                //radioButton[1].setText("Нет веревки");
+            }
+        }
         if (mArticle == 193) {
             //TODO: +5gold for every monster defeated
         }

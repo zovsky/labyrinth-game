@@ -265,14 +265,15 @@ public class MainActivity extends AppCompatActivity
     public void setInitialParameters() {
         editor.putInt("LLL", 0);
         editor.putInt("VVV", 0);
-        editor.putInt("UUU", 0);
-        editor.putInt("gold", 14); //default 0
+        editor.putInt("UUU", 0); //todo понять Удачу на Карму, использовать либо Карму игрока, либо шанс 50/50.
+        editor.putInt("extraLLL", 0);
+        editor.putInt("gold", 9); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
         editor.putInt("stoneDown", 0); //stone for 24 and 284
 
         //TODO Remove on release
-        addRoomToWasHere(163);
+        //addRoomToWasHere(163);
         editor.putInt("fatHitCount", 2);
         editor.commit();
 
@@ -548,6 +549,11 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void changeExtraLLL(int difference) {
+        int newExtraLLL = gamePref.getInt("extraLLL", 0) + difference;
+        editor.putInt("extraLLL", newExtraLLL).commit();
+    }
+
     public boolean isAllowedToTakeChance() {
         if (gamePref.getInt("UUU", 0) == 0) {
             return false;
@@ -597,7 +603,7 @@ public class MainActivity extends AppCompatActivity
         if (article == 12) {
             removeThing("Изумруд");
         }
-        if (article == 13 || article == 88 || article == 263 || article == 291) {
+        if (article == 13 || article == 263 || article == 291) {
             changeVVV(-2);
         }
         if (article == 15) {
@@ -672,6 +678,10 @@ public class MainActivity extends AppCompatActivity
             changeVVV(2);
             changeLLL(1);
         }
+        if (article == 88) {
+            changeVVV(-2);
+            addThing("Сеть");
+        }
         //todo 86 see excel
         if (article == 89) {
             changeGold(3);
@@ -682,7 +692,7 @@ public class MainActivity extends AppCompatActivity
             changeUUU(2);
         }
         if (article == 98) {
-            editor.putInt("extraLLL", 3).commit();
+            changeExtraLLL(3);
         }
         if (article == 104) {
             changeGold(30);
@@ -721,6 +731,14 @@ public class MainActivity extends AppCompatActivity
         if (article == 151) {
             addRoomToWasHere(38);
         }
+        if (article == 153) {
+            changeUUU(1);
+            changeExtraLLL(1);
+        }
+        if (article == 163) {
+            changeUUU(1);
+            addRoomToWasHere(163);
+        }
         if (article == 166) {
             changeVVV(3);
             changeLLL(2);
@@ -729,7 +747,7 @@ public class MainActivity extends AppCompatActivity
             changeGold(20);
         }
         if (article == 250) {
-            editor.remove("extraLLL").commit();
+            changeExtraLLL(-3);
         }
         if (article == 254) {
             changeGold(10);

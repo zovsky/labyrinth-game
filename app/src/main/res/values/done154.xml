@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_154">1</string>
+
+    <string name="article_154_1">Засунь сеть за ремень, которым ты перепоясан. Плыви в сторону берега. У самой линии береговых зарослей камыша видны три пары больших поблескивающих червей. У тебя есть два выхода:</string>
+
+    <string name="opt_154">2</string>
+
+    <string name="option_154_1">341</string>
+    <string name="text_154_1">Начать битву с чудовищами</string>
+    <string name="option_154_2">88</string>
+    <string name="text_154_2">Спастись бегством</string>
+</resources>
