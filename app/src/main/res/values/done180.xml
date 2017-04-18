@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_180">1</string>
+
+    <string name="article_180_1">Вновь пройдись по комнате. В сумке Орка, которую ты раньше не заметил, лежит ключ. На нем выгравировано число 45. Клади его себе в мешок. Выходи из комнаты через открытые двери.</string>
+
+    <string name="opt_180">1</string>
+
+    <string name="option_180_1">120</string>
+    <string name="text_180_1">Далее</string>
+
+</resources>

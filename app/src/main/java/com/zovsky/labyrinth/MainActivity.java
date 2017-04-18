@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity
 
         Set<String> things=new HashSet<>();
         things.add("Изумруд");//default меч
-        //things.add("Жестяная бабочка"); //default фонарь
+        things.add("Копье"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
@@ -523,6 +523,15 @@ public class MainActivity extends AppCompatActivity
         }
         return false;
     }
+    public boolean isKeyAvailable(String keyToCheck) {
+        Set<String> keys = gamePref.getStringSet("keys", new HashSet<String>());
+        for (String item : keys) {
+            if (item.contains(keyToCheck)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void changeVVV(int difference) {
         int VVV = gamePref.getInt("VVV", 0) + difference;
@@ -686,6 +695,7 @@ public class MainActivity extends AppCompatActivity
         if (article == 89) {
             changeGold(3);
             changeUUU(2);
+            addRoomToWasHere(224);
         }
         if (article == 96) {
             addKeyNumber("12");
@@ -742,6 +752,16 @@ public class MainActivity extends AppCompatActivity
         if (article == 166) {
             changeVVV(3);
             changeLLL(2);
+        }
+        if (article == 177) {
+            changeUUU(3);
+            addThing("Огненное ядро");
+        }
+        if (article == 180) {
+            addRoomToWasHere(180);
+            if (!isKeyAvailable("45")) {
+                addKeyNumber("45");
+            }
         }
         if (article == 199) {
             changeGold(20);

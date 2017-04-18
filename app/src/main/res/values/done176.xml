@@ -2,8 +2,7 @@
 <resources>
     <string name="para_176">1</string>
 
-    <string name="article_176_1">Приближайся к перекрестку. Можешь пойти на север, см. 27, на восток, см. 230, или на юг, см. 333.
-</string>
+    <string name="article_176_1">Приближайся к перекрестку. Можешь пойти на север, на восток или на юг.</string>
 
     <string name="opt_176">3</string>
 

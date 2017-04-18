@@ -487,6 +487,38 @@ public class ArticleFragment extends Fragment {
                 //radioButton[1].setText("Нет веревки");
             }
         }
+        if (mArticle == 165) {
+            boolean isAnyWeaponAvailable = false;
+            radioGroup.getChildAt(4).setVisibility(View.INVISIBLE);
+            for (int i = 0; i<4; i++) {
+                radioGroup.getChildAt(i).setEnabled(false);
+            }
+            if (((MainActivity) getActivity()).isThingAvailable("Молот гномов")) {
+                radioGroup.getChildAt(0).setEnabled(true);
+                isAnyWeaponAvailable = true;
+            }
+            if (((MainActivity) getActivity()).isThingAvailable("Алмазную шпору")) {
+                radioGroup.getChildAt(1).setEnabled(true);
+                isAnyWeaponAvailable = true;
+            }
+            if (((MainActivity) getActivity()).isThingAvailable("Огненное ядро")) {
+                radioGroup.getChildAt(2).setEnabled(true);
+                isAnyWeaponAvailable = true;
+            }
+            if (((MainActivity) getActivity()).isThingAvailable("Копье")) {
+                radioGroup.getChildAt(3).setEnabled(true);
+                isAnyWeaponAvailable = true;
+            }
+            if (!isAnyWeaponAvailable) {
+                radioGroup.getChildAt(4).setVisibility(View.VISIBLE);
+                radioGroup.check(radioButton[4].getId());
+            }
+        }
+        if (mArticle == 180) {
+            if (wasHere) {
+                textView[0].setText("Тут ты уже все осмотрел.");
+            }
+        }
         if (mArticle == 193) {
             //TODO: +5gold for every monster defeated
         }
