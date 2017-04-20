@@ -273,13 +273,13 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("stoneDown", 0); //stone for 24 and 284
 
         //TODO Remove on release
-        //addRoomToWasHere(164);
+        addRoomToWasHere(164);
         editor.putInt("fatHitCount", 2);
         editor.commit();
 
         Set<String> things=new HashSet<>();
-        things.add("Изумруд");//default меч
-        things.add("Копье"); //default фонарь
+        things.add("Канат с крюком");//default меч
+        things.add("Связка ключей"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
@@ -762,6 +762,9 @@ public class MainActivity extends AppCompatActivity
             if (!isKeyAvailable("45")) {
                 addKeyNumber("45");
             }
+        }
+        if (article == 181) {
+            removeThing("Связка ключей");
         }
         if (article == 199) {
             changeGold(20);

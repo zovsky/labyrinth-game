@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_189">1</string>
+
+    <string name="article_189_1">Ты сыграл с одним Злыднем. Будешь играть с другим?</string>
+
+    <string name="opt_189">2</string>
+
+    <string name="option_189_1">303</string>
+    <string name="text_189_1">Да</string>
+    <string name="option_189_2">156</string>
+    <string name="text_189_2">Нет</string>
+</resources>

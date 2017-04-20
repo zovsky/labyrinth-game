@@ -162,6 +162,13 @@ public class ArticleFragment extends Fragment {
             }
             Log.d(GAME, "was here:" + wasHere);
         }
+        if (mArticle == 181) {
+            if (((MainActivity) getActivity()).isThingAvailable("Канат с крюком")) {
+                mRadios = 1;
+            } else {
+                radioStartCount = 1;
+            }
+        }
 
         //generate radio buttons
         final RadioGroup radioGroup = new RadioGroup(getContext());
@@ -192,7 +199,7 @@ public class ArticleFragment extends Fragment {
 
             radioButton[radio].setText(radioText);
 
-            if (mRadios == 1 || (radioStartCount == 1 && mRadios == 1)) {
+            if (mRadios == 1 || (radioStartCount == 1 && mRadios == 2)) { //second part for article 164
                 //set checked radio button if it is sole
                 radioGroup.check(radioButton[radio].getId());
             }
@@ -201,7 +208,7 @@ public class ArticleFragment extends Fragment {
         layout.addView(daleeButton);
         //articles before battle;
         if (mArticle == 2) { //TODO: all articles before battle? maybe if mRadios == 0?
-            daleeButton.setText("БИТВА"); //todo про шлем
+            daleeButton.setText("БИТВА"); //todo remove шлем если использовался
         } else daleeButton.setText("Продолжить");
 
         //special conditions; execute on article load
@@ -482,7 +489,7 @@ public class ArticleFragment extends Fragment {
                 radioGroup.getChildAt(0).setEnabled(false);
                 //radioButton[0].setText("Недостаточно золота");
             }
-            if (!((MainActivity) getActivity()).isThingAvailable("Веревка с крюком")) {
+            if (!((MainActivity) getActivity()).isThingAvailable("Канат с крюком")) {
                 radioGroup.getChildAt(1).setEnabled(false);
                 //radioButton[1].setText("Нет веревки");
             }
