@@ -2,9 +2,9 @@
 <resources>
     <string name="para_221">1</string>
 
-    <string name="article_221_1">Дойди до перекрестка, с которого можешь последовать на север - см. 339, восток - см. 41, юг - см. 173.</string>
+    <string name="article_221_1">Дойди до перекрестка, с которого можешь проследовать на север, на восток или на юг.</string>
 
-    <string name="opt_221">2</string>
+    <string name="opt_221">3</string>
 
     <string name="option_221_1">339</string>
     <string name="text_221_1">На север</string>

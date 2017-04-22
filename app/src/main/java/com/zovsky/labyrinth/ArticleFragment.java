@@ -125,6 +125,11 @@ public class ArticleFragment extends Fragment {
                 mParas = 1;
             }
         }
+        if (mArticle == 207) {
+            if (!((MainActivity) getActivity()).isThingAvailable("Заколдованная вода")) {
+                mParas = 6;
+            }
+        }
         if (mArticle == 401) {
             ((MainActivity) getActivity()).showAllParameters();
             boolean was122 = ((MainActivity) getActivity()).wasIHere(122);
@@ -149,7 +154,7 @@ public class ArticleFragment extends Fragment {
 
         boolean wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
         if (mArticle == 38 || mArticle == 53 || mArticle == 164 ||
-                mArticle == 200 || mArticle == 224 || mArticle == 239 || mArticle == 247 ||
+                mArticle == 224 || mArticle == 239 || mArticle == 247 ||
                 mArticle == 270) {
             //was I here? if yes, show only first option (door open), otherwise, show only second option (door closed)
             if (wasHere) {
@@ -217,8 +222,8 @@ public class ArticleFragment extends Fragment {
                 radioGroup.getChildAt(0).setEnabled(false);
                 //radioButton[0].setText("Недостаточно золота");
             }
-            if (!((MainActivity) getActivity()).isThingAvailable("Веревка с крюком")) {
-                radioGroup.getChildAt(1).setEnabled(false);
+            if (!((MainActivity) getActivity()).isThingAvailable("Канат с крюком")) {
+                radioGroup.getChildAt(1).setEnabled(false); //toDo веревку поменять на канат
                 //radioButton[1].setText("Нет веревки");
             }
         }
@@ -393,7 +398,7 @@ public class ArticleFragment extends Fragment {
             if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 10) {
                 radioGroup.getChildAt(1).setEnabled(false);
             }
-            if (!((MainActivity) getActivity()).isThingAvailable("Веревка с крюком")) {
+            if (!((MainActivity) getActivity()).isThingAvailable("Канат с крюком")) {
                 radioGroup.getChildAt(2).setEnabled(false);
             }
             if (!radioGroup.getChildAt(0).isEnabled() && !radioGroup.getChildAt(1).isEnabled() &&
@@ -470,6 +475,16 @@ public class ArticleFragment extends Fragment {
                     radioGroup.check(radioButton[1].getId());
                 }
                 daleeButton.setEnabled(true);
+            }
+        }
+        if (mArticle == 125) {
+            if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 10) {
+                radioGroup.getChildAt(0).setEnabled(false);
+                //radioButton[0].setText("Недостаточно золота");
+            }
+            if (!((MainActivity) getActivity()).isThingAvailable("Канат с крюком")) {
+                radioGroup.getChildAt(1).setEnabled(false);
+                //radioButton[1].setText("Нет веревки");
             }
         }
         if (mArticle == 135) {

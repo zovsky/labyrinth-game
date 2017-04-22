@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0); //todo понять Удачу на Карму, использовать либо Карму игрока, либо шанс 50/50.
         editor.putInt("extraLLL", 0);
-        editor.putInt("gold", 9); //default 0
+        editor.putInt("gold", 10); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
         editor.putInt("stoneDown", 0); //stone for 24 and 284
@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity
 
         Set<String> things=new HashSet<>();
         things.add("Канат с крюком");//default меч
-        things.add("Связка ключей"); //default фонарь
+        things.add("Металлический щит"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
@@ -766,8 +766,20 @@ public class MainActivity extends AppCompatActivity
         if (article == 181) {
             removeThing("Связка ключей");
         }
+        if (article == 192) {
+         //todo про заколдованную воду вместе с арт45, ну и предметы
+        }
         if (article == 199) {
             changeGold(20);
+        }
+        if (article == 207) {
+            if (isThingAvailable("Заколдованная вода")) {
+                changeLLL(3);
+                changeVVV(3);
+            }
+        }
+        if (article == 216) {
+            removeThing("Металлический щит"); //todo оборотень против волкодава
         }
         if (article == 250) {
             changeExtraLLL(-3);
@@ -816,7 +828,6 @@ public class MainActivity extends AppCompatActivity
             changeGold(30);
         }
         if (article == 364) {
-            addRoomToWasHere(200);
             addRoomToWasHere(224);
         }
         if (article == 372) {

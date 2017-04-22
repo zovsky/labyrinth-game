@@ -9,9 +9,9 @@
     <string name="option_3_1">136</string>
     <string name="text_3_1">Попробовать еще раз с Драконом</string>
     <string name="option_3_2">269</string>
-    <string name="text_3_2">Воспользоваться веревкой с крюком</string>
+    <string name="text_3_2">Воспользоваться канатом с крюком</string>
     <string name="option_3_3">74</string>
     <string name="text_3_3">Прогуляться по мосту</string>
     <string name="option_3_4">110</string>
-    <string name="text_3_4">Прыгнуть изо всех сил</string>
+    <string name="text_3_4">Попытаться прыгнуть изо всех сил</string>
 </resources>

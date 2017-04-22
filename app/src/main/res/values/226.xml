@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_226">1</string>
+
+    <string name="article_226_1">Битва продолжается. В следующем раунде можешь спастись бегством, тогда см. 385. Но может хочешь биться дальше? Если да, то см. 101.</string>
+
+    <string name="opt_226">2</string>
+
+    <string name="option_226_1">56</string>
+    <string name="text_226_1">Далее</string>
+    <string name="option_226_2">75</string>
+    <string name="text_226_2">Отступиться</string>
+</resources>

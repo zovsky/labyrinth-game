@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_200">1</string>
+
+    <string name="article_200_1">Вскоре доходишь до дверей в южной стене. Они закрыты.</string>
+
+    <string name="opt_200">1</string>
+
+    <string name="option_200_1">301</string>
+    <string name="text_200_1">Далее</string>
+
+</resources>
