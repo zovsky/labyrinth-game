@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_238">6</string>
+
+    <string name="article_238_1">"Встретилась группа Странствующих Чудовищ: Гремлин, Лиха, Вронго, Орконик и Самаскура.</string>
+    <string name="article_238_2">ГРЕМЛИН 5Л, ЗВ</string>
+    <string name="article_238_3">ЛИХА 6Л, 5В</string>
+    <string name="article_238_4">ВРОНГО 8Л, 4В</string>
+    <string name="article_238_5">ОРКОНИК 6Л, 4В</string>
+    <string name="article_238_6">САМАСКУРА 6Л, 5В"</string>
+
+    <string name="opt_238">0</string>
+</resources>

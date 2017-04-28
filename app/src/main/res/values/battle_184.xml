@@ -6,17 +6,17 @@
     <string name="article_1184_1">7</string>
     <string name="article_1184_2">6</string>
     <string name="article_1184_3"></string>
-    <string name="article_1184_4">После первого тура битвы можешь спастись бегством.</string>
+    <string name="article_1184_4">После очередного тура битвы можешь спастись бегством.</string>
 
     <string name="opt_1184">3</string>
 
-    <string name="option_1184_1">1</string>
+    <string name="option_1184_1">0</string>
     <string name="text_1184_1">После какого тура можно убежать: 0-после любого, 1-после первого, 2-никогда</string>
 
     <string name="option_1184_2">385</string>
     <string name="text_1184_2">Спастись бегством</string>
 
-    <string name="option_1184_3">226</string>
+    <string name="option_1184_3">101</string>
     <string name="text_1184_3">Победа</string>
 
 </resources>

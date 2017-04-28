@@ -273,7 +273,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("stoneDown", 0); //stone for 24 and 284
 
         //TODO Remove on release
-        addRoomToWasHere(164);
+        addRoomToWasHere(247);
         editor.putInt("fatHitCount", 2);
         editor.commit();
 
@@ -787,7 +787,9 @@ public class MainActivity extends AppCompatActivity
         if (article == 254) {
             changeGold(10);
         }
-
+        if (article == 262) {
+            changeGold(20); //todo OR 10
+        }
         if (article == 284 || article == 24) {
             int selectedRadio = gamePref.getInt("selectedRadio", 0);
             if (selectedRadio == 0) {

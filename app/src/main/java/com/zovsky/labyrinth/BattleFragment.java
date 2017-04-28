@@ -264,6 +264,12 @@ public class BattleFragment extends Fragment {
                             return;
                         }
                     }
+                    if (mArticle == 2184) {
+                        if (((MainActivity) getActivity()).gamePref.getInt("monsterVVV", 0) <= 2) {
+                            ((MainActivity) getActivity()).showArticle(101);
+                            return;
+                        }
+                    }
                     if (mArticle == 2355) {
                         if (((MainActivity) getActivity()).gamePref.getInt("firstWinningRound355", 0) == 1
                                 && ((MainActivity) getActivity()).gamePref.getInt("round", 0) == 2) {

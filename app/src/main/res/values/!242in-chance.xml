@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_242">1</string>
+
+    <string name="article_242_1">Отсчитай несколько десятков шагов и... проход оказывается закрытым скалой. ССС. Если выпало С, см. 233, если не выпало, см. 111.</string>
+
+    <string name="opt_242">2</string>
+
+    <string name="option_242_1">233</string>
+    <string name="text_242_1">Тебе везет</string>
+    <string name="option_242_2">111</string>
+    <string name="text_242_2">Не повезло</string>
+</resources>
