@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_268">1</string>
+
+    <string name="article_268_1">Короткий туннель ведет к разбитым старым дверям.</string>
+
+    <string name="opt_268">2</string>
+
+    <string name="option_268_1">102</string>
+    <string name="text_268_1">Ты тут уже был. Разворачивайся и иди назад.</string>
+    <string name="option_268_2">317</string>
+    <string name="text_268_2">Открывай.</string>
+</resources>

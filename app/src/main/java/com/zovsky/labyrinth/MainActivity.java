@@ -265,9 +265,9 @@ public class MainActivity extends AppCompatActivity
     public void setInitialParameters() {
         editor.putInt("LLL", 0);
         editor.putInt("VVV", 0);
-        editor.putInt("UUU", 0); //todo понять Удачу на Карму, использовать либо Карму игрока, либо шанс 50/50.
+        editor.putInt("UUU", 0); //todo поменять Удачу на Карму, использовать либо Карму игрока, либо шанс 50/50.
         editor.putInt("extraLLL", 0);
-        editor.putInt("gold", 10); //default 0
+        editor.putInt("gold", 9); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
         editor.putInt("stoneDown", 0); //stone for 24 and 284
@@ -586,7 +586,7 @@ public class MainActivity extends AppCompatActivity
     public void takeSpecialAction(int article) {
         if (article == 16 || article == 32 || article == 47 || article == 61 || article == 68 || article == 114 ||
                 article == 137 || article == 141 || article == 144 ||
-                article == 248 || article == 293 || article == 296 || article == 339 || article == 374 ||
+                article == 248 || article == 269 || article == 293 || article == 296 || article == 339 || article == 374 ||
                 article == 382) {
             if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0) {
                 setOneMenuItemActive("Запасы еды");
@@ -676,7 +676,7 @@ public class MainActivity extends AppCompatActivity
             addThing("Деревянный кол");
             addThing("Банка ядовитой пыли");
         }
-        if (article == 56 || article == 105 || article == 198 || article == 244 || article == 245) {
+        if (article == 56 || article == 105 || article == 198 || article == 244 || article == 245 || article == 271) {
             changeVVV(-1);
         }
         if (article == 66) {
@@ -788,7 +788,14 @@ public class MainActivity extends AppCompatActivity
             changeGold(10);
         }
         if (article == 262) {
-            changeGold(20); //todo OR 10
+            int previousArticle = gamePref.getInt("previousArticle", 0);
+            if (previousArticle == 60) {
+                changeGold(20);
+            } else changeGold(10);
+        }
+        if (article == 269) {
+            changeVVV(-2);
+            removeThing("Канат с крюком");
         }
         if (article == 284 || article == 24) {
             int selectedRadio = gamePref.getInt("selectedRadio", 0);
@@ -820,6 +827,9 @@ public class MainActivity extends AppCompatActivity
                 editor.putInt("breakIntoArticle", 168).commit();
                 return;
             }
+        }
+        if (article == 317) {
+            addRoomToWasHere(268);
         }
         if (article == 318) {
             changeVVV(-3);

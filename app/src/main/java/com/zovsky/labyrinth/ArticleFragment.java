@@ -154,7 +154,7 @@ public class ArticleFragment extends Fragment {
 
         boolean wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
         if (mArticle == 38 || mArticle == 53 || mArticle == 164 ||
-                mArticle == 224 || mArticle == 239 || mArticle == 247 ||
+                mArticle == 224 || mArticle == 239 || mArticle == 247 || mArticle == 268 ||
                 mArticle == 270) {
             //was I here? if yes, show only first option (door open), otherwise, show only second option (door closed)
             if (wasHere) {
@@ -544,6 +544,12 @@ public class ArticleFragment extends Fragment {
         if (mArticle == 193) {
             //TODO: +5gold for every monster defeated
         }
+        if (mArticle == 269) {
+            if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 10) {
+                radioGroup.getChildAt(1).setEnabled(false);
+                //radioButton[0].setText("Недостаточно золота");
+            }
+        }
         if (mArticle == 292) {
             radioGroup.getChildAt(0).setEnabled(false);
             radioGroup.getChildAt(1).setEnabled(false);
@@ -578,6 +584,7 @@ public class ArticleFragment extends Fragment {
                         ((MainActivity) getActivity()).editor.putInt("selectedRadio", selectedId - 1).commit();
                         ((MainActivity) getActivity()).takeAction(mArticle);
                         ((MainActivity) getActivity()).showAllParameters();
+                        ((MainActivity) getActivity()).editor.putInt("previousArticle", mArticle).commit();
                         int breakInto = ((MainActivity) getActivity()).gamePref.getInt("breakIntoArticle",0);
                         if (breakInto > 0){
                             ((MainActivity) getActivity()).showArticle(breakInto);
