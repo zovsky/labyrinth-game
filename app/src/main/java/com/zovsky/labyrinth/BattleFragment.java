@@ -108,7 +108,7 @@ public class BattleFragment extends Fragment {
         if (extraLLL > 0) {
             extraLLLstring = "+" + extraLLL;
         } else if (extraLLL < 0) {
-            extraLLLstring = "-" + extraLLL;
+            extraLLLstring = "" + extraLLL;
         }
         //show inventory button
         ((MainActivity)getActivity()).setInventoryVisibility(true);

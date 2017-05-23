@@ -155,7 +155,7 @@ public class ArticleFragment extends Fragment {
         boolean wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
         if (mArticle == 38 || mArticle == 53 || mArticle == 164 ||
                 mArticle == 224 || mArticle == 239 || mArticle == 247 || mArticle == 268 ||
-                mArticle == 270) {
+                mArticle == 270 || mArticle == 304) {
             //was I here? if yes, show only first option (door open), otherwise, show only second option (door closed)
             if (wasHere) {
                 mRadios = 1;
@@ -562,6 +562,15 @@ public class ArticleFragment extends Fragment {
             if (!radioGroup.getChildAt(1).isEnabled()) {
                 radioGroup.check(radioButton[0].getId());
             } else if (!radioGroup.getChildAt(0).isEnabled()) {
+                radioGroup.check(radioButton[1].getId());
+            }
+        }
+        if (mArticle == 295) {
+            radioGroup.getChildAt(0).setEnabled(false);
+            if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) > 0) {
+                radioGroup.getChildAt(0).setEnabled(true);
+            }
+            if (!radioGroup.getChildAt(0).isEnabled()) {
                 radioGroup.check(radioButton[1].getId());
             }
         }

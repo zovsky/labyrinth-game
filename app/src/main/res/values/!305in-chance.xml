@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_305">1</string>
+
+    <string name="article_305_1">В этой комнате есть много ценного. Чтобы там оказаться, надо в четырех бросках одним кубиком набрать 18 очков и тогда см. 112, или ССС - см. 381.</string>
+
+    <string name="opt_305">2</string>
+
+    <string name="option_305_1">112</string>
+    <string name="text_305_1">Далее</string>
+    <string name="option_305_2">381</string>
+    <string name="text_305_2">Отступиться</string>
+</resources>

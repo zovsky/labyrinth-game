@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_295">1</string>
+
+    <string name="article_295_1">Два Гнома держат в руках карты. Все ухмыляются. Если есть золото, можешь сыграть с ними. Если нет золота или не хочешь играть, то делать тут больше нечего - надо уходить.</string>
+
+    <string name="opt_295">2</string>
+
+    <string name="option_295_1">183</string>
+    <string name="text_295_1">Играть</string>
+    <string name="option_295_2">19</string>
+    <string name="text_295_2">Уйти</string>
+</resources>

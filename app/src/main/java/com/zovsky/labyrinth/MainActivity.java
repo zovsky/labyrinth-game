@@ -267,18 +267,18 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0); //todo поменять Удачу на Карму, использовать либо Карму игрока, либо шанс 50/50.
         editor.putInt("extraLLL", 0);
-        editor.putInt("gold", 9); //default 0
+        editor.putInt("gold", 0); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
         editor.putInt("stoneDown", 0); //stone for 24 and 284
 
         //TODO Remove on release
-        addRoomToWasHere(247);
+        addRoomToWasHere(304);
         editor.putInt("fatHitCount", 2);
         editor.commit();
 
         Set<String> things=new HashSet<>();
-        things.add("Канат с крюком");//default меч
+        things.add("Деревянный кол");//default меч
         things.add("Металлический щит"); //default фонарь
         editor.putStringSet("things", things);
 
@@ -586,7 +586,7 @@ public class MainActivity extends AppCompatActivity
     public void takeSpecialAction(int article) {
         if (article == 16 || article == 32 || article == 47 || article == 61 || article == 68 || article == 114 ||
                 article == 137 || article == 141 || article == 144 ||
-                article == 248 || article == 269 || article == 293 || article == 296 || article == 339 || article == 374 ||
+                article == 248 || article == 269 || article == 273 || article == 293 || article == 296 || article == 339 || article == 374 ||
                 article == 382) {
             if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0) {
                 setOneMenuItemActive("Запасы еды");
@@ -722,6 +722,10 @@ public class MainActivity extends AppCompatActivity
                 addThing("Пустая бутылка");
             }
         }
+        if (article == 127) {
+            changeUUU(2);
+            changeExtraLLL(2);
+        }
         if (article == 128) {
             addThing("Связка ключей");
         }
@@ -797,6 +801,9 @@ public class MainActivity extends AppCompatActivity
             changeVVV(-2);
             removeThing("Канат с крюком");
         }
+        if (article == 278) {
+            addKeyNumber("122");
+        }
         if (article == 284 || article == 24) {
             int selectedRadio = gamePref.getInt("selectedRadio", 0);
             if (selectedRadio == 0) {
@@ -813,6 +820,10 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         }
+        if (article == 289) {
+            changeGold(20);
+            removeThing("Деревянный кол");
+        }
         if (article == 292) {
             int slctd = gamePref.getInt("selectedRadio", 0);
             if (slctd == 0) {
@@ -828,6 +839,17 @@ public class MainActivity extends AppCompatActivity
                 return;
             }
         }
+        if (article == 294) {
+            changeUUU(2);
+            addThing("Бутылка с эликсиром невидимости");
+        }
+        if (article == 306) {
+            changeUUU(2);
+            addThing("ЕМКОСТЬ с заколдованной водой"); //todo какая емкость?
+        }
+        if (article == 307) {
+            changeExtraLLL(-2);
+        }
         if (article == 317) {
             addRoomToWasHere(268);
         }
@@ -838,6 +860,9 @@ public class MainActivity extends AppCompatActivity
         if (article == 326) {
             changeUUU(3);
             changeGold(30);
+        }
+        if (article == 355) {
+            addRoomToWasHere(304);
         }
         if (article == 364) {
             addRoomToWasHere(224);

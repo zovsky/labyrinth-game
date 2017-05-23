@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_304">1</string>
+
+    <string name="article_304_1">Сначала туннель поворачивает на юг. Еще несколько шагов и в восточной стене коридора виден узкий проход. Это вход в пещеру.</string>
+
+    <string name="opt_304">2</string>
+
+    <string name="option_304_1">203</string>
+    <string name="text_304_1">Ты там уже был</string>
+    <string name="option_304_2">243</string>
+    <string name="text_304_2">Ты там еще не был</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_272">6</string>
+
+    <string name="article_272_1">К тебе подбегают три Гнома. Приглашают к столу, который находится в другом конце комнаты. О, да тут везде грядки!</string>
+    <string name="article_272_2">\"Не хочу топтать ваш салат,\" - говоришь ты.</string>
+    <string name="article_272_3">\"Иди вдоль стены,\" - говорит первый Карлик.</string>
+    <string name="article_272_4">\"Иди по тропинке посреди комнаты,\" - говорит другой.</string>
+    <string name="article_272_5">\"Чего задумался? Не обращай внимания, иди прямо,\" - говорит третий.</string>
+    <string name="article_272_6">Чьим советом воспользуешься?</string>
+
+    <string name="opt_272">3</string>
+
+    <string name="option_272_1">85</string>
+    <string name="text_272_1">Первого Гнома</string>
+    <string name="option_272_2">160</string>
+    <string name="text_272_2">Второго Гнома</string>
+    <string name="option_272_3">356</string>
+    <string name="text_272_3">Третьего Гнома</string>
+</resources>

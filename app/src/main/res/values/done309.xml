@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_309">2</string>
+
+    <string name="article_309_1">ВОЛКОДАВ 9Л, 6В</string>
+    <string name="article_309_2">После первого раунда оказывается, что твои удары не действенны. Чудовище не получает тяжелых ран. Можешь или спастись бегством, или выбрать другое оружие.</string>
+
+    <string name="opt_309">2</string>
+
+    <string name="option_309_1">275</string>
+    <string name="text_309_1">Спастись бегством</string>
+    <string name="option_309_2">63</string>
+    <string name="text_309_2">Выбрать другое оружие</string>
+</resources>

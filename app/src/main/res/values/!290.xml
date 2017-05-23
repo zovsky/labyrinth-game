@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_290">1</string>
+
+    <string name="article_290_1">если есть ключ 12 то только 253. add 290 to washere</string>
+
+    <string name="opt_290">2</string>
+
+    <string name="option_290_1">96</string>
+    <string name="text_290_1">К ключу</string>
+    <string name="option_290_2">253</string>
+    <string name="text_290_2">Уже был</string>
+
+</resources>

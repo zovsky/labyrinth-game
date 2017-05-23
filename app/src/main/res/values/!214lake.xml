@@ -2,12 +2,12 @@
 <resources>
     <string name="para_214">1</string>
 
-    <string name="article_214_1"></string>
+    <string name="article_214_1">Ты в первый раз переплываешь с одного берега на другой? Если да, см. 65, если нет, см. 172.</string>
 
     <string name="opt_214">2</string>
 
-    <string name="option_214_1">56</string>
+    <string name="option_214_1">65</string>
     <string name="text_214_1">Далее</string>
-    <string name="option_214_2">75</string>
+    <string name="option_214_2">172</string>
     <string name="text_214_2">Отступиться</string>
 </resources>
