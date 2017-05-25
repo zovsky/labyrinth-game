@@ -2,7 +2,7 @@
 <resources>
     <string name="para_330">1</string>
 
-    <string name="article_330_1">В той/этой комнате только один выход - тот, через который ты вошел. Выходи в коридор. см. 170.</string>
+    <string name="article_330_1">В этой комнате только один выход. Выходи через него в коридор.</string>
 
     <string name="opt_330">1</string>
 

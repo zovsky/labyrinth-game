@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_334">1</string>
+
+    <string name="article_334_1">Если выпадет четное число, то проигрываешь столько кусков золота, сколько выпало очков. Если число нечетное, то выигрываешь столько кусков, сколько выпало очков. Можешь так играть, сколько захочешь.</string>
+
+    <string name="opt_334">2</string>
+
+    <string name="option_334_1">334</string>
+    <string name="text_334_1">Сыграть еще раз</string>
+    <string name="option_334_2">19</string>
+    <string name="text_334_2">Хватит</string>
+</resources>

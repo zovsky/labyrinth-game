@@ -267,19 +267,19 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0); //todo поменять Удачу на Карму, использовать либо Карму игрока, либо шанс 50/50.
         editor.putInt("extraLLL", 0);
-        editor.putInt("gold", 0); //default 0
+        editor.putInt("gold", 24); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
         editor.putInt("stoneDown", 0); //stone for 24 and 284
 
         //TODO Remove on release
-        addRoomToWasHere(304);
+        addRoomToWasHere(5);
         editor.putInt("fatHitCount", 2);
         editor.commit();
 
         Set<String> things=new HashSet<>();
-        things.add("Деревянный кол");//default меч
-        things.add("Металлический щит"); //default фонарь
+        things.add("Канат с крюком");//default меч
+        things.add("Молот гномов"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
@@ -609,10 +609,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeAction(int article) {
-        if (article == 12) {
-            removeThing("Изумруд");
+        if (article == 6) {
+            addRoomToWasHere(336);
+            changeUUU(1);
         }
-        if (article == 13 || article == 263 || article == 291) {
+        if (article == 11) {
+            addRoomToWasHere(331);
+        }
+        if (article == 12) {
+            removeThing("Изумруд (Дар Крыльев)");
+        }
+        if (article == 13 || article == 263 || article == 291 || article == 332) {
             changeVVV(-2);
         }
         if (article == 15) {
@@ -782,8 +789,14 @@ public class MainActivity extends AppCompatActivity
                 changeVVV(3);
             }
         }
+        if (article == 211) {
+            addRoomToWasHere(313);
+        }
         if (article == 216) {
             removeThing("Металлический щит"); //todo оборотень против волкодава
+        }
+        if (article == 220) {
+            changeLLL(1);
         }
         if (article == 250) {
             changeExtraLLL(-3);
@@ -796,6 +809,10 @@ public class MainActivity extends AppCompatActivity
             if (previousArticle == 60) {
                 changeGold(20);
             } else changeGold(10);
+        }
+        //263
+        if (article == 265) {
+            addRoomToWasHere(310);
         }
         if (article == 269) {
             changeVVV(-2);
@@ -823,7 +840,7 @@ public class MainActivity extends AppCompatActivity
         if (article == 289) {
             changeGold(20);
             removeThing("Деревянный кол");
-        }
+        } //291
         if (article == 292) {
             int slctd = gamePref.getInt("selectedRadio", 0);
             if (slctd == 0) {
@@ -860,6 +877,26 @@ public class MainActivity extends AppCompatActivity
         if (article == 326) {
             changeUUU(3);
             changeGold(30);
+        }
+        if (article == 329) {
+            addKeyNumber("70");
+            removeThing("Канат с крюком");
+            changeUUU(1);
+        }
+        if (article == 330) {
+            addRoomToWasHere(319);//todo 319: allow second entry but with no battle at 69
+        }
+        //332 - see
+        if (article == 334) {
+            changeGold(gamePref.getInt("savedGold334", 0));
+            editor.putInt("savedGold334", 0).commit();
+        }
+        if (article == 344) {
+            changeExtraLLL(2);
+        }
+        if (article == 346) {
+            changeVVV(-1);
+            removeThing("Молот гномов");
         }
         if (article == 355) {
             addRoomToWasHere(304);

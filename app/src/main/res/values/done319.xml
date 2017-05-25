@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_319">1</string>
+
+    <string name="article_319_1">По короткому узкому коридору дойди до дверей.</string>
+
+    <string name="opt_319">2</string>
+
+    <string name="option_319_1">170</string>
+    <string name="text_319_1">Ты тут уже был</string>
+    <string name="option_319_2">69</string>
+    <string name="text_319_2">Далее</string>
+</resources>

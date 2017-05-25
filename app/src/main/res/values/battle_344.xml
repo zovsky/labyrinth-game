@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_1344">3</string>
+
+    <string name="article_1344_0">СТРАЖНИК ТАИНСТВА</string>
+    <string name="article_1344_1">10</string>
+    <string name="article_1344_2">16</string>
+
+
+    <string name="opt_1344">3</string>
+
+    <string name="option_1344_1">2</string>
+    <string name="text_1344_1">После какого тура можно убежать: 0-после любого, 1-после первого, 2-никогда</string>
+
+    <string name="option_1344_2">23</string>
+    <string name="text_1344_2">Спастись бегством</string>
+
+    <string name="option_1344_3">23</string>
+    <string name="text_1344_3">Победа</string>
+
+</resources>

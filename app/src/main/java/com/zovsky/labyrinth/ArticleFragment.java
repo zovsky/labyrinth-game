@@ -155,7 +155,8 @@ public class ArticleFragment extends Fragment {
         boolean wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
         if (mArticle == 38 || mArticle == 53 || mArticle == 164 ||
                 mArticle == 224 || mArticle == 239 || mArticle == 247 || mArticle == 268 ||
-                mArticle == 270 || mArticle == 304) {
+                mArticle == 270 || mArticle == 304 || mArticle == 310 || mArticle == 313 ||
+                mArticle == 319 || mArticle == 331 || mArticle == 336) {
             //was I here? if yes, show only first option (door open), otherwise, show only second option (door closed)
             if (wasHere) {
                 mRadios = 1;
@@ -573,6 +574,58 @@ public class ArticleFragment extends Fragment {
             if (!radioGroup.getChildAt(0).isEnabled()) {
                 radioGroup.check(radioButton[1].getId());
             }
+        }
+        if (mArticle == 314) {
+            radioGroup.getChildAt(0).setEnabled(false);
+            radioGroup.getChildAt(1).setEnabled(false);
+            if (((MainActivity) getActivity()).isThingAvailable("Изумруд (Дар Крыльев)")) {
+                radioGroup.getChildAt(0).setEnabled(true);
+                radioGroup.check(radioButton[0].getId());
+            } else {
+                radioGroup.getChildAt(1).setEnabled(true);
+                radioGroup.check(radioButton[1].getId());
+            }
+        }
+        if (mArticle == 323) {
+            if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 25) {
+                radioGroup.getChildAt(0).setEnabled(false);
+                radioGroup.check(radioButton[1].getId());
+            }
+        }
+        if (mArticle == 334) {
+            final Button twoDiceForGold = new Button(getContext());
+            layout.addView(twoDiceForGold, 1);
+            int savedGold66 = ((MainActivity) getActivity()).gamePref.getInt("savedGold334", 0);
+            if (savedGold66 == 0) {
+                twoDiceForGold.setText("Играть в кости");
+                daleeButton.setEnabled(false);
+                twoDiceForGold.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        twoDiceForGold.setEnabled(false);
+                        Random rnd = new Random();
+                        int dice = rnd.nextInt(6)+rnd.nextInt(6)+2;
+                        if (dice % 2 == 0) {
+                            ((MainActivity) getActivity()).editor.putInt("savedGold334", -dice).commit();
+                            twoDiceForGold.setText("Проигрываешь золота: " + dice);
+                        } else {
+                            ((MainActivity) getActivity()).editor.putInt("savedGold334", dice).commit();
+                            twoDiceForGold.setText("Выигрываешь золота: " + dice);
+                        }
+                        daleeButton.setEnabled(true);
+                    }
+                });
+            } else {
+                twoDiceForGold.setEnabled(false);
+                int dice = ((MainActivity) getActivity()).gamePref.getInt("savedGold334", 0);
+                if (dice < 0) {
+                    twoDiceForGold.setText("Проигрываешь золота: " + -dice);
+                } else {
+                    twoDiceForGold.setText("Выигрываешь золота: " + dice);
+                }
+                //daleeButton.setEnabled(true);
+            }
+
         }
 
         //take special action on article load

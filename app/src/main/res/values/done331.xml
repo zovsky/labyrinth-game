@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_331">1</string>
+
+    <string name="article_331_1">Короткий, туннель ведет в какое-то помещение.</string>
+
+    <string name="opt_331">2</string>
+
+    <string name="option_331_1">59</string>
+    <string name="text_331_1">Ты тут уже был</string>
+    <string name="option_331_2">11</string>
+    <string name="text_331_2">Далее</string>
+</resources>

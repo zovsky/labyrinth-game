@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_335">1</string>
+
+    <string name="article_335_1">Соглашайся. Если находишься на берегу, где ты уже был, то попробуй другой способ, см. 35, 74 или 110. Если ты на другом берегу, см. 186.</string>
+
+    <string name="opt_335">4</string>
+
+    <string name="option_335_1">35</string>
+    <string name="text_335_1">Далее</string>
+    <string name="option_335_2">74</string>
+    <string name="text_335_2">Отступиться</string>
+    <string name="option_335_3">110</string>
+    <string name="text_335_3">Далее</string>
+    <string name="option_335_4">186</string>
+    <string name="text_335_4">Отступиться</string>
+</resources>
