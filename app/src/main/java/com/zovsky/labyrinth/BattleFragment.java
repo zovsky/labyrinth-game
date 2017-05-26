@@ -131,7 +131,9 @@ public class BattleFragment extends Fragment {
         ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle)); //TODO subtitle null
 
         View view = inflater.inflate(R.layout.fragment_battle, container, false);
+
         round = ((MainActivity) getActivity()).gamePref.getInt("round", 0);
+
         step = ((MainActivity) getActivity()).gamePref.getInt("step", 0);
         luck = ((MainActivity) getActivity()).gamePref.getInt("luck", 0);
 

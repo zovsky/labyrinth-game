@@ -672,7 +672,7 @@ public class MainActivity extends AppCompatActivity
             addThing("Банка с водой");
         }
         if (article == 49) {
-            addThing("Книга");
+            addThing("Книга"); //todo а чо с ней делать?
         }
         if (article == 51) {
             addRoomToWasHere(247);
@@ -689,6 +689,9 @@ public class MainActivity extends AppCompatActivity
         if (article == 66) {
             changeGold(gamePref.getInt("savedGold66", 0));
             editor.remove("savedGold66").commit();
+        }
+        if (article == 71) {
+            addRoomToWasHere(350); //TODO чото не то с возвратом на 93,313, 18, 350
         }
         if (article == 81) {
             changeVVV(2);
@@ -897,6 +900,12 @@ public class MainActivity extends AppCompatActivity
         if (article == 346) {
             changeVVV(-1);
             removeThing("Молот гномов");
+        }
+        if (article == 350) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 1) {
+                changeUUU(2);
+            }
         }
         if (article == 355) {
             addRoomToWasHere(304);

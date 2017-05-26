@@ -213,7 +213,7 @@ public class PreBattleFragment extends Fragment {
                         ((MainActivity) getActivity()).removeThing("Шлем");
                     }
                 }
-                if (mArticle != 1062 || mArticle != 1086) {
+                if (mArticle != 1062 && mArticle != 1086) {
                     ((MainActivity) getActivity()).editor.putInt("round", 1);
                 }
                 ((MainActivity) getActivity()).editor.putInt("step", 0);

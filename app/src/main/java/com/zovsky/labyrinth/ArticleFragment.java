@@ -156,7 +156,7 @@ public class ArticleFragment extends Fragment {
         if (mArticle == 38 || mArticle == 53 || mArticle == 164 ||
                 mArticle == 224 || mArticle == 239 || mArticle == 247 || mArticle == 268 ||
                 mArticle == 270 || mArticle == 304 || mArticle == 310 || mArticle == 313 ||
-                mArticle == 319 || mArticle == 331 || mArticle == 336) {
+                mArticle == 319 || mArticle == 331 || mArticle == 336 || mArticle == 350) {
             //was I here? if yes, show only first option (door open), otherwise, show only second option (door closed)
             if (wasHere) {
                 mRadios = 1;
