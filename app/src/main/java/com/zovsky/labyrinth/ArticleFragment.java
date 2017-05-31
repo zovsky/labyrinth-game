@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -626,6 +627,36 @@ public class ArticleFragment extends Fragment {
                 //daleeButton.setEnabled(true);
             }
 
+        }
+        if (mArticle == 358) {
+            radioGroup.getChildAt(0).setEnabled(false);
+            if (((MainActivity)getActivity()).isThingAvailable("Бутылка с эликсиром невидимости")) {
+                radioGroup.getChildAt(0).setEnabled(true);
+            } else {
+                radioGroup.check(radioButton[1].getId());
+            }
+        }
+        if (mArticle == 371) {
+            radioGroup.getChildAt(0).setEnabled(false);
+            if (((MainActivity)getActivity()).isThingAvailable("Бутылка с водой")) { //todo ?? бутылка с водой? менять текст в абзацах?
+                radioGroup.getChildAt(0).setEnabled(true);
+            }
+        }
+        if (mArticle == 377) {
+            radioGroup.getChildAt(0).setEnabled(false);
+            radioGroup.getChildAt(1).setEnabled(false);
+            if (((MainActivity)getActivity()).isThingAvailable("Деревянный кол")) {
+                radioGroup.getChildAt(0).setEnabled(true);
+                radioGroup.getChildAt(2).setEnabled(false);
+                radioGroup.check(radioButton[0].getId());
+            } else if (((MainActivity)getActivity()).isThingAvailable("Кость чудовища") ||
+                       ((MainActivity)getActivity()).isThingAvailable("Молот гномов") ||
+                       ((MainActivity)getActivity()).isThingAvailable("Металлический щит") ||
+                       ((MainActivity)getActivity()).isThingAvailable("Связка ключей")) {
+                radioGroup.getChildAt(1).setEnabled(true);
+            } else {
+                radioGroup.check(radioButton[2].getId());
+            }
         }
 
         //take special action on article load

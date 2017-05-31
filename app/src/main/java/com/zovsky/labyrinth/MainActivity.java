@@ -278,8 +278,8 @@ public class MainActivity extends AppCompatActivity
         editor.commit();
 
         Set<String> things=new HashSet<>();
-        things.add("Канат с крюком");//default меч
-        things.add("Молот гномов"); //default фонарь
+        things.add("Связка ключей");//default меч
+        things.add("Сеть"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
@@ -619,7 +619,7 @@ public class MainActivity extends AppCompatActivity
         if (article == 12) {
             removeThing("Изумруд (Дар Крыльев)");
         }
-        if (article == 13 || article == 263 || article == 291 || article == 332) {
+        if (article == 13 || article == 291 || article == 332) {
             changeVVV(-2);
         }
         if (article == 15) {
@@ -646,6 +646,7 @@ public class MainActivity extends AppCompatActivity
             changeLLL(1);
             changeUUU(1);
         }
+        //todo 32 alter text if come from 377 e.g. что нельзя забрать сеть и кол
         if (article == 35) {
             changeGold(-10);
         }
@@ -723,7 +724,7 @@ public class MainActivity extends AppCompatActivity
             int slctd = gamePref.getInt("selectedRadio", 0);
             if (slctd == 0) {
                 addThing("Канат с крюком");
-                addThing("Пустая бутылка");
+                addThing("Пустая бутылка"); //todo может быть две пустые бутылки? 343
             } else if (slctd == 1) {
                 addThing("Канат с крюком");
                 addThing("Скальп Оборотня");
@@ -741,6 +742,9 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 136) {
             changeGold(-13);
+        }
+        if (article == 138) {
+            removeThing("Соска");
         }
         if (article == 142) {
             addKeyNumber("93");
@@ -813,7 +817,10 @@ public class MainActivity extends AppCompatActivity
                 changeGold(20);
             } else changeGold(10);
         }
-        //263
+        if (article == 263) {
+            changeVVV(-2);
+            addThing("Изумруд (Дар Крыльев)");
+        }
         if (article == 265) {
             addRoomToWasHere(310);
         }
@@ -894,6 +901,11 @@ public class MainActivity extends AppCompatActivity
             changeGold(gamePref.getInt("savedGold334", 0));
             editor.putInt("savedGold334", 0).commit();
         }
+        if (article == 343) {
+            if (!isThingAvailable("Пустая бутылка")) {
+                addThing("Пустая бутылка");
+            }
+        }
         if (article == 344) {
             changeExtraLLL(2);
         }
@@ -910,8 +922,15 @@ public class MainActivity extends AppCompatActivity
         if (article == 355) {
             addRoomToWasHere(304);
         }
+        if (article == 358) {
+            removeThing("Бутылка с эликсиром невидимости");
+        }
         if (article == 364) {
             addRoomToWasHere(224);
+        }
+        if (article == 369) {
+            addThing("Соска");
+            removeThing("Деревянный кол");
         }
         if (article == 372) {
             addRoomToWasHere(164);
@@ -919,9 +938,16 @@ public class MainActivity extends AppCompatActivity
         if (article == 376) {
             changeLLL(1);
             changeUUU(2);
-            return;
+            return; //todo why return here?
         }
-
+        if (article == 377) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 0) {
+                removeThing("Деревянный кол");
+            }
+            removeThing("Сеть");
+        }
+        //todo check 378 text
         if (article == 380) {
             changeLLL(1);
         }

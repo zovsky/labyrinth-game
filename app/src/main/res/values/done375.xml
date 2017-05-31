@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_375">1</string>
+
+    <string name="article_375_1">Хочешь поднять цену? Хочешь напасть на Карлика, чтобы забрать все золото, что у него есть? А может, просто тебе не надо золота?</string>
+
+    <string name="opt_375">3</string>
+
+    <string name="option_375_1">246</string>
+    <string name="text_375_1">Поднять цену</string>
+    <string name="option_375_2">223</string>
+    <string name="text_375_2">Напасть на Карлика</string>
+    <string name="option_375_3">81</string>
+    <string name="text_375_3">Не надо золота</string>
+</resources>

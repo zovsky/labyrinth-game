@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_358">1</string>
+
+    <string name="article_358_1">Зацепись веревкой и иди по ней. На дне расщелины полыхает море огня. Если у тебя есть эликсир невидимости, выпей его и огонь не причинит тебе вреда. Но напиток быстро перестает действовать. Поэтому торопись на другой берег. Если у тебя нет напитка, море огня тебя свалит с веревки и... Воспользуешься эликсиром?</string>
+
+    <string name="opt_358">2</string>
+
+    <string name="option_358_1">343</string>
+    <string name="text_358_1">Да</string>
+    <string name="option_358_2">162</string>
+    <string name="text_358_2">Нет/Нет эликсира</string>
+</resources>

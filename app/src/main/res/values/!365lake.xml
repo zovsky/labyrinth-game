@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_365">1</string>
+
+    <string name="article_365_1">Если переплываешь через озеро четное количество раз, см, 15, если нечетное, см. 195.</string>
+
+    <string name="opt_365">2</string>
+
+    <string name="option_365_1">56</string>
+    <string name="text_365_1">Далее</string>
+    <string name="option_365_2">75</string>
+    <string name="text_365_2">Отступиться</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_373">1</string>
+
+    <string name="article_373_1">Это неподходящий набор ключей. Если ты уже использовал все комбинации и ни одного соответствующего, то это конец!</string>
+
+    <string name="opt_373">2</string>
+
+    <string name="option_373_1">1</string>
+    <string name="text_373_1">Конец</string>
+
+</resources>
