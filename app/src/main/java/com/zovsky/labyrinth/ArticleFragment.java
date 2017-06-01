@@ -128,11 +128,25 @@ public class ArticleFragment extends Fragment {
                 radioStartCount = 1;
             }
         }
+        if (mArticle == 37 || mArticle == 95 || mArticle == 153 || mArticle == 298 || mArticle == 324) {
+            if (((MainActivity) getActivity()).gamePref.getInt("weaponSelectionCount", 0) == 2) {
+                ((MainActivity) getActivity()).editor.putInt("goBackArticleID", 68).commit();
+            } else {
+                ((MainActivity) getActivity()).editor.putInt("goBackArticleID", 115).commit();
+            }
+        }
         if (mArticle == 164) {
             ((MainActivity) getActivity()).showAllParameters();
             boolean was164 = ((MainActivity) getActivity()).wasIHere(164);
             if (was164) {
                 mParas = 1;
+            }
+        }
+        if (mArticle == 198 || mArticle == 281) {
+            if (((MainActivity) getActivity()).isThingAvailable("Соска")) {
+                ((MainActivity) getActivity()).editor.putInt("goBackArticleID", 138).commit();
+            } else {
+                ((MainActivity) getActivity()).editor.putInt("goBackArticleID", 255).commit();
             }
         }
         if (mArticle == 207) {
@@ -224,7 +238,7 @@ public class ArticleFragment extends Fragment {
         layout.addView(daleeButton);
         //articles before battle;
         if (mArticle == 2) { //TODO: all articles before battle? maybe if mRadios == 0?
-            daleeButton.setText("БИТВА"); //todo remove шлем если использовался
+            daleeButton.setText("БИТВА");
         } else daleeButton.setText("Продолжить");
 
         //special conditions; execute on article load
@@ -291,23 +305,15 @@ public class ArticleFragment extends Fragment {
                 radioGroup.getChildAt(0).setEnabled(false);
             }
         }
-        if (mArticle == 30) {
-            if (((MainActivity) getActivity()).takeChance() == 1) {
-                radioGroup.check(radioButton[0].getId());
-                radioGroup.getChildAt(1).setEnabled(false);
-            } else {
-                radioGroup.check(radioButton[1].getId());
-                radioGroup.getChildAt(0).setEnabled(false);
-            }
-        } //todo почему 30 отдельно?
 
-        if (mArticle == 35 || mArticle == 36 || mArticle == 41 || mArticle == 284 || mArticle == 24) {
+        if (mArticle == 24 || mArticle == 30 || mArticle == 35 || mArticle == 36 || mArticle == 41 || mArticle == 95 ||
+                mArticle == 126 || mArticle == 138 || mArticle == 149 || mArticle == 284) {
             final Button takeChance = new Button(getContext());
             final String rememberedChanceInArticle = "chanceInArticle" + mArticle;
             int radioID = ((MainActivity) getActivity()).gamePref.getInt(rememberedChanceInArticle, -1);
             if (radioID < 0) {
                 layout.addView(takeChance, 1);
-                takeChance.setText("Испытай удачу (-1У)");
+                takeChance.setText("Проверь карму (-1К)");
                 radioGroup.getChildAt(0).setEnabled(false);
                 radioGroup.getChildAt(1).setEnabled(false);
                 daleeButton.setEnabled(false);
@@ -488,6 +494,23 @@ public class ArticleFragment extends Fragment {
                 daleeButton.setEnabled(true);
             }
         }
+        if (mArticle == 115) {
+            if (((MainActivity) getActivity()).wasIHere(271)) {
+                radioGroup.getChildAt(0).setEnabled(false);
+            }
+            if (((MainActivity) getActivity()).wasIHere(95)) {
+                radioGroup.getChildAt(1).setEnabled(false);
+            }
+            if (((MainActivity) getActivity()).wasIHere(37)) {
+                radioGroup.getChildAt(2).setEnabled(false);
+            }
+            if (((MainActivity) getActivity()).wasIHere(298)) {
+                radioGroup.getChildAt(3).setEnabled(false);
+            }
+            if (((MainActivity) getActivity()).wasIHere(324)) {
+                radioGroup.getChildAt(4).setEnabled(false);
+            }
+        }
         if (mArticle == 125) {
             if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 10) {
                 radioGroup.getChildAt(0).setEnabled(false);
@@ -508,7 +531,7 @@ public class ArticleFragment extends Fragment {
             }
         }
         if (mArticle == 138) {
-
+            //todo smth here
         }
         if (mArticle == 158) {
             if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 10) {
