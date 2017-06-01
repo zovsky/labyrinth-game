@@ -6,10 +6,10 @@
 
     <string name="opt_37">3</string>
 
-    <string name="option_37_1">324</string>
+    <string name="option_37_1">0</string>
     <string name="text_37_1">Металлический</string>
-    <string name="option_37_2">324</string>
-    <string name="text_37_2">Парадный</string>
-    <string name="option_37_3">324</string>
+    <string name="option_37_2">0</string>
+    <string name="text_37_2">Деревянный</string>
+    <string name="option_37_3">0</string>
     <string name="text_37_3">Кожаный</string>
 </resources>

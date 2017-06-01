@@ -172,21 +172,6 @@ public class MainActivity extends AppCompatActivity
         } else return -1;
     }
 
-    public void debug() {
-//        editor.putInt("LLL", 0);
-//        editor.putInt("VVV", 0);
-//        editor.putInt("UUU", 0);
-//        editor.putInt("gold", 0);
-//        editor.putInt("food", 8);
-//        editor.putInt("gameOn", 0);
-        Set<String> things=new HashSet<String>();
-        things.add("Шлем");
-        editor.putStringSet("things", things);
-//        editor.putInt("currentArticle", 2);
-        editor.commit();
-        //showAllParameters();
-    }
-
     public void setToolbarTitle(String title, String subtitle) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(title);
@@ -279,7 +264,7 @@ public class MainActivity extends AppCompatActivity
 
         Set<String> things=new HashSet<>();
         things.add("Связка ключей");//default меч
-        things.add("Сеть"); //default фонарь
+        things.add("Соска"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
@@ -650,11 +635,12 @@ public class MainActivity extends AppCompatActivity
                 addThing("Металлический щит");
             }
             if (slctd == 1) {
-                addThing("Парадный щит");
+                addThing("Деревянный щит");
             }
             if (slctd == 2) {
                 addThing("Кожаный щит");
             }
+            addRoomToWasHere(37);
         }
         if (article == 41) {
             int slctd = gamePref.getInt("selectedRadio", 0);
@@ -678,7 +664,7 @@ public class MainActivity extends AppCompatActivity
             addThing("Деревянный кол");
             addThing("Банка ядовитой пыли");
         }
-        if (article == 56 || article == 105 || article == 198 || article == 244 || article == 245 || article == 271) {
+        if (article == 56 || article == 105 || article == 198 || article == 244 || article == 245) {
             changeVVV(-1);
         }
         if (article == 66) {
@@ -703,6 +689,14 @@ public class MainActivity extends AppCompatActivity
             changeUUU(2);
             addRoomToWasHere(224);
         }
+        if (article == 95) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 1) {
+                changeExtraLLL(-1);
+            }
+            addRoomToWasHere(95);
+            //todo убрать -1 extra после ближайшей битвы
+        }
         if (article == 96) {
             addKeyNumber("12");
             changeUUU(2);
@@ -714,6 +708,10 @@ public class MainActivity extends AppCompatActivity
             changeGold(30);
             addThing("Соска");
             removeThing("Жестяная бабочка");
+        }
+        if (article == 115) {
+            int count = gamePref.getInt("weaponSelectionCount", 0);
+            editor.putInt("weaponSelectionCount", count + 1);
         }
         if (article == 119) {
             int slctd = gamePref.getInt("selectedRadio", 0);
@@ -758,6 +756,11 @@ public class MainActivity extends AppCompatActivity
         if (article == 153) {
             changeUUU(1);
             changeExtraLLL(1);
+            removeThing("Меч");
+            addThing("Заколдованный меч");
+        }
+        if (article == 162) {
+
         }
         if (article == 163) {
             changeUUU(1);
@@ -825,6 +828,10 @@ public class MainActivity extends AppCompatActivity
             changeVVV(-2);
             removeThing("Канат с крюком");
         }
+        if (article == 271) {
+            changeVVV(-1);
+            addRoomToWasHere(271);
+        }
         if (article == 278) {
             addKeyNumber("122");
         }
@@ -867,6 +874,16 @@ public class MainActivity extends AppCompatActivity
             changeUUU(2);
             addThing("Бутылка с эликсиром невидимости");
         }
+        if (article == 298) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 0) {
+                addThing("Боевой шлем");
+            }
+            if (slctd == 1) {
+                addThing("Герметичный шлем");
+            }
+            addRoomToWasHere(298);
+        }
         if (article == 306) {
             changeUUU(2);
             addThing("ЕМКОСТЬ с заколдованной водой"); //todo какая емкость?
@@ -880,6 +897,10 @@ public class MainActivity extends AppCompatActivity
         if (article == 318) {
             changeVVV(-3);
             changeLLL(-2);
+        }
+        if (article == 324) {
+            addRoomToWasHere(324);
+            addThing("Молот Гномов");
         }
         if (article == 326) {
             changeUUU(3);

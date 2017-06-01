@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_115">1</string>
+
+    <string name="article_115_1">Выбирай:</string>
+
+    <string name="opt_115">5</string>
+
+    <string name="option_115_1">271</string>
+    <string name="text_115_1">Меч</string>
+    <string name="option_115_2">95</string>
+    <string name="text_115_2">Рукавицы</string>
+    <string name="option_115_3">37</string>
+    <string name="text_115_3">Щит</string>
+    <string name="option_115_4">298</string>
+    <string name="text_115_4">Шлем</string>
+    <string name="option_115_5">324</string>
+    <string name="text_115_5">Молот</string>
+</resources>

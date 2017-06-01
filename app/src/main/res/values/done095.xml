@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_95">1</string>
+
+    <string name="article_95_1">Натягиваешь рукавицы, но с ними что-то не так. Они сжимают руку. Никак не можешь их снять... Проверь карму. Если везет, то удается снять рукавицу, если не везет, терпи до ближайшей битвы, в которой Ловкость будет уменьшена на 1 балл.</string>
+
+    <string name="opt_95">2</string>
+
+    <string name="option_95_1">0</string>
+    <string name="text_95_1">Снимаешь рукавицу без последствий</string>
+    <string name="option_95_2">0</string>
+    <string name="text_95_2">-1Л в ближашей битве</string>
+</resources>

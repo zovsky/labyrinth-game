@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_126">1</string>
+
+    <string name="article_126_1">Нападай на него с мечом, но перед этим проверь карму:</string>
+
+    <string name="opt_126">2</string>
+
+    <string name="option_126_1">309</string>
+    <string name="text_126_1">Везет</string>
+    <string name="option_126_2">244</string>
+    <string name="text_126_2">Не везет</string>
+</resources>
