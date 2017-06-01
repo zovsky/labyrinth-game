@@ -622,12 +622,6 @@ public class MainActivity extends AppCompatActivity
         if (article == 13 || article == 291 || article == 332) {
             changeVVV(-2);
         }
-        if (article == 15) {
-            editor.putInt("goBackArticleID", article).commit();
-            //int lakeSwimCount = gamePref.getInt("lakeSwimCount", 0);
-            //editor.putInt("lakeSwimCount", lakeSwimCount + 1).commit();
-            //TODO 266, marked on graph
-        }
         if (article == 19) {
             changeFood(1);
             changeUUU(2);
@@ -701,6 +695,7 @@ public class MainActivity extends AppCompatActivity
         if (article == 88) {
             changeVVV(-2);
             addThing("Сеть");
+            editor.putInt("lakeSwimCount", 2).commit();
         }
         //todo 86 see excel
         if (article == 89) {
@@ -736,6 +731,7 @@ public class MainActivity extends AppCompatActivity
         if (article == 127) {
             changeUUU(2);
             changeExtraLLL(2);
+            editor.putInt("lakeSwimCount", 1).commit();
         }
         if (article == 128) {
             addThing("Связка ключей");
@@ -804,6 +800,7 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 220) {
             changeLLL(1);
+            editor.putInt("lakeSwimCount", 2).commit();
         }
         if (article == 250) {
             changeExtraLLL(-3);
