@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_195">1</string>
+
+    <string name="article_195_1">Можешь попробовать переплыть озеро в обратном направлении. Решаешься?</string>
+
+    <string name="opt_195">2</string>
+
+    <string name="option_195_1">266</string>
+    <string name="text_195_1">Да</string>
+    <string name="option_195_2">46</string>
+    <string name="text_195_2">Нет</string>
+</resources>

@@ -109,6 +109,15 @@ public class ArticleFragment extends Fragment {
         int paraStartCount = 0;
         int radioStartCount = 0;
 
+        if (mArticle == 15) {
+            if (((MainActivity) getActivity()).gamePref.getInt("lakeSwimCount", 0) == 0) {
+                ((MainActivity) getActivity()).editor.putInt("goBackArticleID", 113).commit();
+            } else if (((MainActivity) getActivity()).gamePref.getInt("lakeSwimCount", 0) == 1) {
+                ((MainActivity) getActivity()).editor.putInt("goBackArticleID", 283).commit();
+            } else {
+                ((MainActivity) getActivity()).editor.putInt("goBackArticleID", 139).commit();
+            }
+        }
         //check wasHere in another article
         if (mArticle == 59) {
             ((MainActivity) getActivity()).showAllParameters(); //todo remove

@@ -2,12 +2,12 @@
 <resources>
     <string name="para_232">1</string>
 
-    <string name="article_232_1"></string>
+    <string name="article_232_1">Если ты выбрал в качестве оружия меч, см. 271, если другое, см. 68.</string>
 
     <string name="opt_232">2</string>
 
-    <string name="option_232_1">56</string>
+    <string name="option_232_1">271</string>
     <string name="text_232_1">Далее</string>
-    <string name="option_232_2">75</string>
+    <string name="option_232_2">68</string>
     <string name="text_232_2">Отступиться</string>
 </resources>

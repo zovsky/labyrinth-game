@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_113">2</string>
+
+    <string name="article_113_1">Шаг за шагом заходи в воду. Ноги попадают в топкое болото. На глубине можешь плыть. Слышны странные звуки. Как будто кто-то хлопает доской по воде. Потарапливайся. За зарослями камыша какое-то странное движение воды.</string>
+    <string name="article_113_2">\"Ничего хорошего в этом, конечно, нет\", - думаешь ты. Решаешься плыть дальше или хочешь вернуться?</string>
+
+    <string name="opt_113">2</string>
+
+    <string name="option_113_1">307</string>
+    <string name="text_113_1">Плыть дальше</string>
+    <string name="option_113_2">15</string>
+    <string name="text_113_2">Вернуться на берег</string>
+</resources>

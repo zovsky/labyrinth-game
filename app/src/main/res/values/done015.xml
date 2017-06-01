@@ -2,11 +2,11 @@
 <resources>
     <string name="para_15">1</string>
 
-    <string name="article_15_1">Ты стоишь на южном берегу подземного озера. Хочешь попробовать переплыть его?</string>
+    <string name="article_15_1">Ты стоишь на южном берегу подземного озера. Хочешь переплыть его?</string>
 
     <string name="opt_15">2</string>
 
-    <string name="option_15_1">113</string>
+    <string name="option_15_1">0</string>
     <string name="text_15_1">Да</string>
     <string name="option_15_2">241</string>
     <string name="text_15_2">Нет</string>
