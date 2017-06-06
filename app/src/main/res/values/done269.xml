@@ -7,11 +7,11 @@
     <string name="opt_269">4</string>
 
     <string name="option_269_1">358</string>
-    <string name="text_269_1">Попробовать еще раз с веревкой</string>
+    <string name="text_269_1">Попробовать еще раз с канатом</string>
     <string name="option_269_2">35</string>
     <string name="text_269_2">Заплатить Дракону 10 кусков золота</string>
     <string name="option_269_3">74</string>
     <string name="text_269_3">Прогуляться по мосту</string>
     <string name="option_269_4">110</string>
-    <string name="text_269_4">Попытаться прыгнуть изо всех сил</string>
+    <string name="text_269_4">Попытаться прыгнуть изо всех сил (требуется не менее 18В и 9Л)</string>
 </resources>

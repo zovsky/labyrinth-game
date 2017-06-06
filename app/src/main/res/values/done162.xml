@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_162">1</string>
+
+    <string name="article_162_1">Расходуешь 1 балл выносливости (-1В). Теперь проверь карму.</string>
+
+    <string name="opt_162">2</string>
+
+    <string name="option_162_1">65</string>
+    <string name="text_162_1">Везет</string>
+    <string name="option_162_2">150</string>
+    <string name="text_162_2">Не везет</string>
+</resources>

@@ -13,5 +13,5 @@
     <string name="option_3_3">74</string>
     <string name="text_3_3">Прогуляться по мосту</string>
     <string name="option_3_4">110</string>
-    <string name="text_3_4">Попытаться прыгнуть изо всех сил</string>
+    <string name="text_3_4">Попытаться прыгнуть изо всех сил (требуется не менее 18В и 9Л)</string>
 </resources>

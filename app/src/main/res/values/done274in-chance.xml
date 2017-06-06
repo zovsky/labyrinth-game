@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_274">1</string>
+
+    <string name="article_274_1">Вдруг подул ветер. Ты начинаешь терять равновесие. Ветер мотает тебя как листок на дереве. Проверь карму.</string>
+
+    <string name="opt_274">2</string>
+
+    <string name="option_274_1">210</string>
+    <string name="text_274_1">Везет</string>
+    <string name="option_274_2">174</string>
+    <string name="text_274_2">Не везет</string>
+</resources>

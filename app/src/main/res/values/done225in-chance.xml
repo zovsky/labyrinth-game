@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_225">1</string>
+
+    <string name="article_225_1">Платишь еще 10 кусков золота, Дракон расставляет ноги над бездной и... Проверь карму. Если везет, переходишь на другой берег, если не везет, Дракон скидывает тебя обратно.</string>
+
+    <string name="opt_225">2</string>
+
+    <string name="option_225_1">186</string>
+    <string name="text_225_1">Везет</string>
+    <string name="option_225_2">3</string>
+    <string name="text_225_2">Не везет</string>
+</resources>

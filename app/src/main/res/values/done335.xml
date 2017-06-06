@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_335">1</string>
+
+    <string name="article_335_1">Живой, но ты так и не перебрался через ущелье. Можешь попробовать другой способ это сделать:</string>
+
+    <string name="opt_335">3</string>
+
+    <string name="option_335_1">35</string>
+    <string name="text_335_1">Заплатить дракону 10 кусков золота</string>
+    <string name="option_335_2">74</string>
+    <string name="text_335_2">Прогуляться по мосту</string>
+    <string name="option_335_3">110</string>
+    <string name="text_335_3">Попытаться прыгнуть изо всех сил (требуется не менее 18В и 9Л)</string>
+
+</resources>

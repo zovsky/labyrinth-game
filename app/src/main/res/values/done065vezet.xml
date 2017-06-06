@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_65">1</string>
+
+    <string name="article_65_1">Летучая Мышь тебя поймала, но за помощь требует золото. Если обещаешь ей 10 кусков золота, то Мышь донесет тебя на берег, на котором ты был. Если обещаешь 20 кусков, то Мышь перенесет тебя на другую сторону. Если не хватает золота, то Мышь бросает тебя вниз.</string>
+
+    <string name="opt_65">3</string>
+
+    <string name="option_65_1">57</string>
+    <string name="text_65_1">Обещаешь 10 кусков золота</string>
+    <string name="option_65_2">172</string>
+    <string name="text_65_2">Обещаешь 20 кусков золота</string>
+    <string name="option_65_3">150</string>
+    <string name="text_65_3">Не хватает золота</string>
+</resources>

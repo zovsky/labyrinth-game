@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0); //todo поменять Удачу на Карму, использовать либо Карму игрока, либо шанс 50/50.
         editor.putInt("extraLLL", 0);
-        editor.putInt("gold", 24); //default 0
+        editor.putInt("gold", 9); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
         editor.putInt("stoneDown", 0); //stone for 24 and 284
@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity
 
         Set<String> things=new HashSet<>();
         things.add("Связка ключей");//default меч
-        things.add("Соска"); //default фонарь
+        things.add("Канат с крюком"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
@@ -569,7 +569,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeSpecialAction(int article) {
-        if (article == 16 || article == 32 || article == 47 || article == 61 || article == 68 || article == 114 ||
+        if (article == 16 || article == 32 || article == 47 || article == 61 || article == 68 || article == 110 || article == 114 ||
                 article == 137 || article == 141 || article == 144 ||
                 article == 248 || article == 269 || article == 273 || article == 293 || article == 296 || article == 339 || article == 374 ||
                 article == 382) {
@@ -594,6 +594,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeAction(int article) {
+        if (article == 3) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 0) {
+                changeGold(-13);
+            }
+        }
         if (article == 6) {
             addRoomToWasHere(336);
             changeUUU(1);
@@ -664,8 +670,14 @@ public class MainActivity extends AppCompatActivity
             addThing("Деревянный кол");
             addThing("Банка ядовитой пыли");
         }
-        if (article == 56 || article == 105 || article == 198 || article == 244 || article == 245) {
+        if (article == 56 || article == 74 || article == 105 || article == 198 || article == 244 || article == 245) {
             changeVVV(-1);
+        }
+        if (article == 57) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 0) {
+                changeGold(-10);
+            }
         }
         if (article == 66) {
             changeGold(gamePref.getInt("savedGold66", 0));
@@ -674,6 +686,7 @@ public class MainActivity extends AppCompatActivity
         if (article == 71) {
             addRoomToWasHere(350); //TODO чото не то с возвратом на 93,313, 18, 350
         }
+        //74 see 56
         if (article == 81) {
             changeVVV(2);
             changeLLL(1);
@@ -708,6 +721,12 @@ public class MainActivity extends AppCompatActivity
             changeGold(30);
             addThing("Соска");
             removeThing("Жестяная бабочка");
+        }
+        if (article == 110) {
+            changeLLL(-3);
+            int vvv = gamePref.getInt("VVV", 0);
+            int changeV = vvv/2;
+            changeVVV(-changeV);
         }
         if (article == 115) {
             int count = gamePref.getInt("weaponSelectionCount", 0);
@@ -751,6 +770,11 @@ public class MainActivity extends AppCompatActivity
             addThing("Банка ядовитой пыли");
         }
         if (article == 151) {
+            changeVVV(5);
+            changeLLL(2);
+            changeUUU(3);
+        }
+        if (article == 151) {
             addRoomToWasHere(38);
         }
         if (article == 153) {
@@ -760,7 +784,7 @@ public class MainActivity extends AppCompatActivity
             addThing("Заколдованный меч");
         }
         if (article == 162) {
-
+            changeVVV(-1);
         }
         if (article == 163) {
             changeUUU(1);
@@ -769,6 +793,12 @@ public class MainActivity extends AppCompatActivity
         if (article == 166) {
             changeVVV(3);
             changeLLL(2);
+        }
+        if (article == 172) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 0) {
+                changeGold(-20);
+            }
         }
         if (article == 177) {
             changeUUU(3);
@@ -804,6 +834,12 @@ public class MainActivity extends AppCompatActivity
         if (article == 220) {
             changeLLL(1);
             editor.putInt("lakeSwimCount", 2).commit();
+        }
+        if (article == 225) {
+            changeGold(-10);
+        }
+        if (article == 229) {
+            editor.remove("chanceInArticle229").commit();
         }
         if (article == 250) {
             changeExtraLLL(-3);

@@ -2,16 +2,16 @@
 <resources>
     <string name="para_158">1</string>
 
-    <string name="article_158_1">Обидно же (Не Надоело?). Если хочешь еще раз попробовать с Драконом, то у тебя должно быть еще хотя бы 10 кусков золота. А можешь попробовать и и другие варианты:</string>
+    <string name="article_158_1">Обидно же. Не надоело еще? Если хочешь еще раз попробовать с Драконом, то у тебя должно быть еще хотя бы 10 кусков золота. А можешь попробовать и и другие варианты:</string>
 
     <string name="opt_158">4</string>
 
     <string name="option_158_1">225</string>
     <string name="text_158_1">Заплатить Дракону еще 10 кусков золота</string>
     <string name="option_158_2">269</string>
-    <string name="text_158_2">Воспользоваться веревкой с крюком</string>
+    <string name="text_158_2">Воспользоваться канатом с крюком</string>
     <string name="option_158_3">74</string>
     <string name="text_158_3">Прогуляться по мосту</string>
     <string name="option_158_4">110</string>
-    <string name="text_158_4">Прыгнуть изо всех сил</string>
+    <string name="text_158_4">Прыгнуть изо всех сил (требуется не менее 18В и 9Л)</string>
 </resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_57">1</string>
+
+    <string name="article_57_1">После приземления тварь требует от тебя обещанное золото. Как поступишь?</string>
+
+    <string name="opt_57">2</string>
+
+    <string name="option_57_1">335</string>
+    <string name="text_57_1">Отдаешь 10 кусков, как обещал</string>
+    <string name="option_57_2">91</string>
+    <string name="text_57_2">Ничего не отдаешь</string>
+</resources>

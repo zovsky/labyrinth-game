@@ -245,14 +245,18 @@ public class ArticleFragment extends Fragment {
         if (mArticle == 3) {
             if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 13) {
                 radioGroup.getChildAt(0).setEnabled(false);
-                //radioButton[0].setText("Недостаточно золота");
             }
             if (!((MainActivity) getActivity()).isThingAvailable("Канат с крюком")) {
                 radioGroup.getChildAt(1).setEnabled(false); //toDo веревку поменять на канат
-                //radioButton[1].setText("Нет веревки");
+            }
+            if (((MainActivity) getActivity()).gamePref.getInt("VVV", 0) < 18 || ((MainActivity) getActivity()).gamePref.getInt("LLL", 0) < 9) {
+                radioGroup.getChildAt(3).setEnabled(false);
+            }
+            if (!radioGroup.getChildAt(0).isEnabled() && !radioGroup.getChildAt(1).isEnabled() &&
+                    !radioGroup.getChildAt(3).isEnabled()) {
+                radioGroup.check(radioButton[2].getId());
             }
         }
-
         if (mArticle == 18) {
             if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 5) {
                 radioGroup.check(radioButton[1].getId());
@@ -307,9 +311,10 @@ public class ArticleFragment extends Fragment {
         }
 
         if (mArticle == 24 || mArticle == 30 || mArticle == 35 || mArticle == 36 || mArticle == 41 || mArticle == 95 ||
-                mArticle == 126 || mArticle == 138 || mArticle == 149 || mArticle == 284) {
+                mArticle == 126 || mArticle == 138 || mArticle == 149 || mArticle == 162 || mArticle == 225 ||
+                mArticle == 229 || mArticle == 242 || mArticle == 274 || mArticle == 284 || mArticle == 381) {
             final Button takeChance = new Button(getContext());
-            final String rememberedChanceInArticle = "chanceInArticle" + mArticle;
+            final String rememberedChanceInArticle = "chanceInArticle" + mArticle; //todo probably remove remembered chance in some articles (e.g. 229)
             int radioID = ((MainActivity) getActivity()).gamePref.getInt(rememberedChanceInArticle, -1);
             if (radioID < 0) {
                 layout.addView(takeChance, 1);
@@ -377,6 +382,20 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[5].getId());
             }
         }
+        if (mArticle == 65) {
+            int gold =((MainActivity) getActivity()).gamePref.getInt("gold", 0);
+            if (gold >= 20) {
+                radioGroup.getChildAt(2).setEnabled(false);
+            } else if (gold >= 10) {
+                radioGroup.getChildAt(1).setEnabled(false);
+                radioGroup.getChildAt(2).setEnabled(false);
+                radioGroup.check(radioButton[0].getId());
+            } else {
+                radioGroup.getChildAt(0).setEnabled(false);
+                radioGroup.getChildAt(1).setEnabled(false);
+                radioGroup.check(radioButton[2].getId());
+            }
+        }
         if (mArticle == 66) {
             final Button diceForGold = new Button(getContext());
             layout.addView(diceForGold, 1);
@@ -408,7 +427,6 @@ public class ArticleFragment extends Fragment {
 
         }
         if (mArticle == 74) {
-            //todo: add button for 1K
             if (!((MainActivity) getActivity()).isThingAvailable("Сеть")) {
                 radioGroup.getChildAt(0).setEnabled(false);
             }
@@ -430,6 +448,7 @@ public class ArticleFragment extends Fragment {
                 radioGroup.getChildAt(0).setEnabled(false);
             }
         }
+        //91 see 335
         if (mArticle == 106) {
             radioGroup.getChildAt(1).setEnabled(false);
             if (((MainActivity) getActivity()).isThingAvailable("Банка ядовитой пыли") ||
@@ -439,6 +458,49 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[0].getId());
                 radioButton[1].setText("Кроме меча, ничего нет");
             }
+        }
+        if (mArticle == 110) {
+            final Button oneDiceButton = new Button(getContext());
+            final String rememberedChanceInArticle = "chanceInArticle" + mArticle; //todo probably remove remembered chance in some articles (e.g. 229)
+            int radioID = ((MainActivity) getActivity()).gamePref.getInt(rememberedChanceInArticle, -1);
+            if (radioID < 0) {
+                layout.addView(oneDiceButton, 1);
+                if (mArticle == 110) {
+                    oneDiceButton.setText("Шанс 2 к 1");
+                }
+                radioGroup.getChildAt(0).setEnabled(false);
+                radioGroup.getChildAt(1).setEnabled(false);
+                daleeButton.setEnabled(false);
+                final int firstRadioID = radioButton[0].getId();
+                final int secondRadioID = radioButton[1].getId();
+                oneDiceButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        oneDiceButton.setEnabled(false);
+                        if (buttonCondition()) { //condition for positive result
+                            radioGroup.check(firstRadioID);
+                            radioGroup.getChildAt(0).setEnabled(true);
+                            ((MainActivity) getActivity()).editor.putInt(rememberedChanceInArticle, firstRadioID).commit();
+                        } else {
+                            radioGroup.check(secondRadioID);
+                            radioGroup.getChildAt(1).setEnabled(true);
+                            ((MainActivity) getActivity()).editor.putInt(rememberedChanceInArticle, secondRadioID).commit();
+                        }
+                        daleeButton.setEnabled(true);
+                    }
+                });
+
+            } else {
+                if (radioID == radioButton[0].getId()) {
+                    radioGroup.check(radioID);
+                    radioGroup.getChildAt(1).setEnabled(false);
+                } else {
+                    radioGroup.check(radioID);
+                    radioGroup.getChildAt(0).setEnabled(false);
+                }
+                daleeButton.setEnabled(true);
+            }
+
         }
         if (mArticle == 112) {
             final Button throwDiceButton = new Button(getContext());
@@ -511,14 +573,19 @@ public class ArticleFragment extends Fragment {
                 radioGroup.getChildAt(4).setEnabled(false);
             }
         }
-        if (mArticle == 125) {
+        if (mArticle == 125 || mArticle == 158) {
             if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 10) {
                 radioGroup.getChildAt(0).setEnabled(false);
-                //radioButton[0].setText("Недостаточно золота");
             }
             if (!((MainActivity) getActivity()).isThingAvailable("Канат с крюком")) {
                 radioGroup.getChildAt(1).setEnabled(false);
-                //radioButton[1].setText("Нет веревки");
+            }
+            if (((MainActivity) getActivity()).gamePref.getInt("VVV", 0) < 18 || ((MainActivity) getActivity()).gamePref.getInt("LLL", 0) < 9) {
+                radioGroup.getChildAt(3).setEnabled(false);
+            }
+            if (!radioGroup.getChildAt(0).isEnabled() && !radioGroup.getChildAt(1).isEnabled() &&
+                    !radioGroup.getChildAt(3).isEnabled()) {
+                radioGroup.check(radioButton[2].getId());
             }
         }
         if (mArticle == 135) {
@@ -533,16 +600,7 @@ public class ArticleFragment extends Fragment {
         if (mArticle == 138) {
             //todo smth here
         }
-        if (mArticle == 158) {
-            if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 10) {
-                radioGroup.getChildAt(0).setEnabled(false);
-                //radioButton[0].setText("Недостаточно золота");
-            }
-            if (!((MainActivity) getActivity()).isThingAvailable("Канат с крюком")) {
-                radioGroup.getChildAt(1).setEnabled(false);
-                //radioButton[1].setText("Нет веревки");
-            }
-        }
+        //158 see 125
         if (mArticle == 165) {
             boolean isAnyWeaponAvailable = false;
             radioGroup.getChildAt(4).setVisibility(View.INVISIBLE);
@@ -581,7 +639,9 @@ public class ArticleFragment extends Fragment {
         if (mArticle == 269) {
             if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 10) {
                 radioGroup.getChildAt(1).setEnabled(false);
-                //radioButton[0].setText("Недостаточно золота");
+            }
+            if (((MainActivity) getActivity()).gamePref.getInt("VVV", 0) < 18 || ((MainActivity) getActivity()).gamePref.getInt("LLL", 0) < 9) {
+                radioGroup.getChildAt(3).setEnabled(false);
             }
         }
         if (mArticle == 292) {
@@ -658,7 +718,17 @@ public class ArticleFragment extends Fragment {
                 }
                 //daleeButton.setEnabled(true);
             }
-
+        }
+        if (mArticle == 335 || mArticle == 91) {
+            if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 10) {
+                radioGroup.getChildAt(0).setEnabled(false);
+            }
+            if (((MainActivity) getActivity()).gamePref.getInt("VVV", 0) < 18 || ((MainActivity) getActivity()).gamePref.getInt("LLL", 0) < 9) {
+                radioGroup.getChildAt(2).setEnabled(false);
+            }
+            if (!radioGroup.getChildAt(0).isEnabled() && !radioGroup.getChildAt(2).isEnabled()) {
+                radioGroup.check(radioButton[1].getId());
+            }
         }
         if (mArticle == 358) {
             radioGroup.getChildAt(0).setEnabled(false);
@@ -720,6 +790,18 @@ public class ArticleFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private boolean buttonCondition() {
+        Random rnd = new Random();
+        if (mArticle == 110) {
+            int dice = rnd.nextInt(6) + 1;
+            Toast.makeText(getContext(), "" + dice, Toast.LENGTH_SHORT).show();
+            if (dice > 2) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // Rename method, update argument and hook method into UI event

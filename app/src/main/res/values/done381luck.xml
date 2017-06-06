@@ -2,12 +2,12 @@
 <resources>
     <string name="para_381">1</string>
 
-    <string name="article_381_1">Если есть С, то см. 28, если нет С,.то см. 291.</string>
+    <string name="article_381_1">Проверка кармы:</string>
 
     <string name="opt_381">2</string>
 
     <string name="option_381_1">28</string>
-    <string name="text_381_1">Далее</string>
+    <string name="text_381_1">Везет</string>
     <string name="option_381_2">291</string>
-    <string name="text_381_2">Далее</string>
+    <string name="text_381_2">Не везет</string>
 </resources>

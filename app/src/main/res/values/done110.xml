@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_110">1</string>
+
+    <string name="article_110_1">Можешь попробовать перепрыгнуть расщелину. Перед этим можешь перекусить порцией еды. Прыжок "стоит" 3Л и половину имеющихся баллов В (округляется в меньшую сторону). Делай длинный разбег и...</string>
+
+    <string name="opt_110">2</string>
+
+    <string name="option_110_1">288</string>
+    <string name="text_110_1">Прыжок оказался удачным</string>
+    <string name="option_110_2">314</string>
+    <string name="text_110_2">Прыжок оказался коротким</string>
+
+</resources>

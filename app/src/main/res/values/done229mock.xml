@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_229">1</string>
+
+    <string name="article_229_1">Проверка кармы:</string>
+
+    <string name="opt_229">2</string>
+
+    <string name="option_229_1">66</string>
+    <string name="text_229_1">Везет</string>
+    <string name="option_229_2">383</string>
+    <string name="text_229_2">Не везет</string>
+
+</resources>
