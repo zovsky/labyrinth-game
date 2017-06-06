@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_315">1</string>
+
+    <string name="article_315_1">Испытай удачу:</string>
+
+    <string name="opt_315">2</string>
+
+    <string name="option_315_1">274</string>
+    <string name="text_315_1">Везет - нет ущерба</string>
+    <string name="option_315_2">274</string>
+    <string name="text_315_2">Не везет: -3В и -1Л</string>
+</resources>

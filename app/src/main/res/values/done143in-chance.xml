@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_143">1</string>
+
+    <string name="article_143_1">Из темного конца комнаты в твою сторону вылетает туча стрел. Проверь удачу.</string>
+
+    <string name="opt_143">2</string>
+
+    <string name="option_143_1">52</string>
+    <string name="text_143_1">Везет - нет ущерба</string>
+    <string name="option_143_2">52</string>
+    <string name="text_143_2">Не везет: -3В и -1Л</string>
+
+</resources>

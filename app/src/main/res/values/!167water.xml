@@ -2,12 +2,12 @@
 <resources>
     <string name="para_167">1</string>
 
-    <string name="article_167_1">У тебя есть какой-нибудь напиток или вода (незаколдованная)? Если да, то см. 236, если нет, то см. 90.</string>
+    <string name="article_167_1">У тебя есть какой-нибудь напиток или вода (незаколдованная)?</string>
 
     <string name="opt_167">2</string>
 
-    <string name="option_167_1">56</string>
-    <string name="text_167_1">Далее</string>
-    <string name="option_167_2">75</string>
-    <string name="text_167_2">Отступиться</string>
+    <string name="option_167_1">236</string>
+    <string name="text_167_1">Есть вода</string>
+    <string name="option_167_2">90</string>
+    <string name="text_167_2">Нет воды</string>
 </resources>

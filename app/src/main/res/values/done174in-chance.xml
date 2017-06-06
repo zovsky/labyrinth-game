@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_174">1</string>
+
+    <string name="article_174_1">Куда ни ступишь, везде земля обжигает ноги. Проверь удачу.</string>
+
+    <string name="opt_174">2</string>
+
+    <string name="option_174_1">210</string>
+    <string name="text_174_1">Везет - нет ущерба</string>
+    <string name="option_174_2">210</string>
+    <string name="text_174_2">Не везет: -3В и -1Л</string>
+
+</resources>

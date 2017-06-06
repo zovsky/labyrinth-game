@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity
         editor.commit();
 
         Set<String> things=new HashSet<>();
-        things.add("Связка ключей");//default меч
+        things.add("Молот гномов");//default меч
         things.add("Канат с крюком"); //default фонарь
         editor.putStringSet("things", things);
 
@@ -665,6 +665,15 @@ public class MainActivity extends AppCompatActivity
             addRoomToWasHere(247);
             addRoomToWasHere(270);
         }
+        if (article == 52) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 0) {
+                removeThing("Герметичный шлем");
+            }
+        }
+        if (article == 54) {
+            removeThing("Молот гномов");
+        }
         if (article == 55) {
             changeGold(-25);
             addThing("Деревянный кол");
@@ -762,6 +771,13 @@ public class MainActivity extends AppCompatActivity
         if (article == 142) {
             addKeyNumber("93");
         }
+        if (article == 143 || article == 174 || article == 315) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 1) {
+                changeLLL(-1);
+                changeVVV(-3);
+            }
+        }
         if (article == 144) {
             changeUUU(1);
         }
@@ -800,6 +816,7 @@ public class MainActivity extends AppCompatActivity
                 changeGold(-20);
             }
         }
+        //174 see 143
         if (article == 177) {
             changeUUU(3);
             addThing("Огненное ядро");
@@ -840,6 +857,10 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 229) {
             editor.remove("chanceInArticle229").commit();
+        }
+        if (article == 240) {
+            int loseAmount = gamePref.getInt("loseAmount240", 0);
+            changeVVV(-loseAmount);
         }
         if (article == 250) {
             changeExtraLLL(-3);
@@ -927,6 +948,7 @@ public class MainActivity extends AppCompatActivity
         if (article == 307) {
             changeExtraLLL(-2);
         }
+        //315 see 143
         if (article == 317) {
             addRoomToWasHere(268);
         }

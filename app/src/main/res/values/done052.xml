@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_52">1</string>
+
+    <string name="article_52_1">Из отверстия в стене выбивается струя ядовитого газа. Если у тебя есть герметичный шлем, то от газа ты не пострадаешь. Если нет такого шлема, то надеяться можно только на удачу.</string>
+
+    <string name="opt_52">2</string>
+
+    <string name="option_52_1">274</string>
+    <string name="text_52_1">Есть шлем</string>
+    <string name="option_52_2">315</string>
+    <string name="text_52_2">Нет шлема</string>
+</resources>
