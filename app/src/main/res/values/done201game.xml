@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_201">1</string>
+
+    <string name="article_201_1">Нажми на кнопку. Выиграешь столько кусков золота, сколько выпадет. Хочешь еще сыграть?</string>
+
+    <string name="opt_201">2</string>
+
+    <string name="option_201_1">40</string>
+    <string name="text_201_1">Да</string>
+    <string name="option_201_2">19</string>
+    <string name="text_201_2">Нет</string>
+</resources>

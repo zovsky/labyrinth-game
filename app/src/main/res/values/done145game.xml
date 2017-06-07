@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_145">1</string>
+
+    <string name="article_145_1">Нажми на кнопку. Ты теряешь столько кусков золота, сколько выпадет. Если выпавшее число превышает количество имеющихся у тебя кусков золота, то проигрываешь все. Хочешь снова сыграть?</string>
+
+    <string name="opt_145">2</string>
+
+    <string name="option_145_1">40</string>
+    <string name="text_145_1">Далее</string>
+    <string name="option_145_2">19</string>
+    <string name="text_145_2">Отступиться</string>
+</resources>

@@ -8,7 +8,7 @@
     <string name="opt_401">2</string>
 
     <string name="option_401_1">376</string>
-    <string name="text_401_1">Барум! Барам! Барота! Открывайтеся ворота!</string>
-    <string name="option_401_2">1</string>
+    <string name="text_401_1">\"Барум! Барам! Барота! Открывайтеся ворота!\"</string>
+    <string name="option_401_2">500</string>
     <string name="text_401_2">Конец</string>
 </resources>

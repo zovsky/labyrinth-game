@@ -8,6 +8,6 @@
 
     <string name="option_23_1">185</string>
     <string name="text_23_1">Использовать ключи</string>
-    <string name="option_23_2">1</string>
-    <string name="text_23_2">КонецTBD</string>
+    <string name="option_23_2">500</string>
+    <string name="text_23_2">Конец - недостаточно ключей</string>
 </resources>

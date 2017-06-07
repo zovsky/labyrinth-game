@@ -258,19 +258,19 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("stoneDown", 0); //stone for 24 and 284
 
         //TODO Remove on release
-        addRoomToWasHere(5);
+        addRoomToWasHere(122);
         editor.putInt("fatHitCount", 2);
         editor.commit();
 
         Set<String> things=new HashSet<>();
-        things.add("Молот гномов");//default меч
+        things.add("Бутылка с вод");//default меч
         things.add("Канат с крюком"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
-        keys.add("17"); //no keys on start
-        keys.add("21");
-        keys.add("56");
+        keys.add("12"); //no keys on start
+        //keys.add("70");
+
         editor.putStringSet("keys", keys);
         editor.commit();
         //REMOVE on release
@@ -380,6 +380,9 @@ public class MainActivity extends AppCompatActivity
         SubMenu subMenu = inventory.getSubMenu();
         subMenu.removeItem(30);
         int gold = gamePref.getInt("gold", 0) + difference;
+        if (gold < 0) {
+            gold = 0;
+        }
         String menugold = "Золото: " + gold;
         editor.putInt("gold", gold).commit();
         if (gold > 0) {
@@ -696,6 +699,9 @@ public class MainActivity extends AppCompatActivity
             addRoomToWasHere(350); //TODO чото не то с возвратом на 93,313, 18, 350
         }
         //74 see 56
+        if (article == 76) {
+            addToSelectedCombinations(gamePref.getInt("selectedRadio", 0));
+        }
         if (article == 81) {
             changeVVV(2);
             changeLLL(1);
@@ -781,6 +787,10 @@ public class MainActivity extends AppCompatActivity
         if (article == 144) {
             changeUUU(1);
         }
+        if (article == 145) {
+            changeGold(-gamePref.getInt("loseGold145", 0));
+            editor.remove("loseGold145").commit();
+        }
         if (article == 147) {
             addThing("Деревянный кол");
             addThing("Банка ядовитой пыли");
@@ -830,11 +840,18 @@ public class MainActivity extends AppCompatActivity
         if (article == 181) {
             removeThing("Связка ключей");
         }
+        if (article == 190) {
+            editor.remove("chanceInArticle190").commit();
+        }
         if (article == 192) {
          //todo про заколдованную воду вместе с арт45, ну и предметы
         }
         if (article == 199) {
             changeGold(20);
+        }
+        if (article == 201) {
+            changeGold(gamePref.getInt("winGold201", 0));
+            editor.remove("winGold201").commit();
         }
         if (article == 207) {
             if (isThingAvailable("Заколдованная вода")) {
@@ -857,6 +874,10 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 229) {
             editor.remove("chanceInArticle229").commit();
+        }
+        if (article == 237) {
+            int tried = gamePref.getInt("triedCombinations", 0);
+            editor.putInt("triedCombinations", tried + 1).commit();
         }
         if (article == 240) {
             int loseAmount = gamePref.getInt("loseAmount240", 0);
@@ -1030,6 +1051,13 @@ public class MainActivity extends AppCompatActivity
         if (article == 385) {
             addRoomToWasHere(53);
         }
+    }
+
+    private void addToSelectedCombinations(int slctd) {
+        Set<String> set = gamePref.getStringSet("selectedCombinations", new HashSet<String>());
+        set.add(Integer.toString(slctd));
+        editor.putStringSet("selectedCombinations", set);
+        editor.commit();
     }
 
     public boolean wasIHere(int article) {
