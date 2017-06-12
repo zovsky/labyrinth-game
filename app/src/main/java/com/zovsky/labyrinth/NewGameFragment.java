@@ -118,7 +118,7 @@ public class NewGameFragment extends Fragment {
                 int selectedId = radioGroup.getCheckedRadioButtonId();
                 if (selectedId == -1 || ((MainActivity)getActivity()).gamePref.getInt("VVV", 0) == 0) {
                     Toast.makeText(getContext(), "Рассчитайте начальные параметры и выберите эликсир", Toast.LENGTH_SHORT).show();
-                } else {//default without 100+
+                } else {//todo default without 100+
                     ((MainActivity)getActivity()).editor.putInt("startLLL", 100+ ((MainActivity)getActivity()).gamePref.getInt("LLL", 0));
                     ((MainActivity)getActivity()).editor.putInt("startVVV", 100 + ((MainActivity)getActivity()).gamePref.getInt("VVV", 0));
                     ((MainActivity)getActivity()).editor.putInt("startUUU", 100+((MainActivity)getActivity()).gamePref.getInt("UUU", 0));
@@ -142,7 +142,7 @@ public class NewGameFragment extends Fragment {
                     ((MainActivity)getActivity()).editor.commit();
                     ((MainActivity)getActivity()).generateInitialMenu();
                     ((MainActivity) getActivity()).showAllParameters();
-                    ((MainActivity)getActivity()).showArticle(23); //todo default 1
+                    ((MainActivity)getActivity()).showArticle(211); //todo default 1
                 }
             }
         });

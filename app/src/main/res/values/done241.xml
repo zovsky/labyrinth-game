@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_241">1</string>
+
+    <string name="article_241_1">Можешь набрать воды из озера. Для этого надо иметь емкость. Если она у тебя есть, но уже заполнена чем-то, надо вылить из нее содержимое.</string>
+
+    <string name="opt_241">2</string>
+
+    <string name="option_241_1">132</string>
+    <string name="text_241_1">Не хочешь набирать/Нет емкости/Вода уже есть</string>
+    <string name="option_241_2">132</string>
+    <string name="text_241_2">Набрать воды</string>
+
+</resources>

@@ -192,9 +192,9 @@ public class PreBattleFragment extends Fragment {
         if (mArticle == 1002) {
             if (((MainActivity)getActivity()).isThingAvailable("Боевой шлем")) {
                     int initVVV = ((MainActivity)getActivity()).gamePref.getInt("startVVV", 0);
-                    textView[3].setText("У тебя есть шлем. Можешь его надеть - это добавит тебе 3В, но помни, что нельзя превышать начальное значение " + initVVV + "В)");
+                    textView[3].setText("У тебя есть боевой шлем. Можешь его надеть - это добавит тебе 3В, но помни, что нельзя превышать начальное значение " + initVVV + "В)");
                     CheckBox helmetCheckBox = new CheckBox(getContext());
-                    helmetCheckBox.setText("Надеть шлем");
+                    helmetCheckBox.setText("Надеть боевой шлем");
                     helmetCheckBox.setId(R.id.helmetCheckBox);
                     layout.addView(helmetCheckBox, 1);
             }

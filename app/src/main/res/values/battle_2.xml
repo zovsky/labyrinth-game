@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="para_1002">4</string>
+    <string name="para_1002">5</string>
 
     <string name="article_1002_0">ГОБЛИН</string>
     <string name="article_1002_1">10</string>
@@ -10,7 +10,7 @@
 
     <string name="opt_1002">3</string>
 
-    <string name="option_1002_1">2</string>
+    <string name="option_1002_1">0</string>
     <string name="text_1002_1">После какого тура можно убежать: 0-после любого, 1-после первого, 2-никогда</string>
 
     <string name="option_1002_2">372</string>

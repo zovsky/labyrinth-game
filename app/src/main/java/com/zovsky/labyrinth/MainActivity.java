@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0); //todo поменять Удачу на Карму, использовать либо Карму игрока, либо шанс 50/50.
         editor.putInt("extraLLL", 0);
-        editor.putInt("gold", 9); //default 0
+        editor.putInt("gold", 10); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
         editor.putInt("stoneDown", 0); //stone for 24 and 284
@@ -263,12 +263,12 @@ public class MainActivity extends AppCompatActivity
         editor.commit();
 
         Set<String> things=new HashSet<>();
-        things.add("Бутылка с вод");//default меч
-        things.add("Канат с крюком"); //default фонарь
+        things.add("Боевой шлем");//default меч
+        things.add("Бутылка с водой"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
-        keys.add("12"); //no keys on start
+        //keys.add("12"); //no keys on start
         //keys.add("70");
 
         editor.putStringSet("keys", keys);
@@ -659,10 +659,7 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 45) {
             changeUUU(2);
-            addThing("Банка с водой");
-        }
-        if (article == 49) {
-            addThing("Книга"); //todo а чо с ней делать?
+            addThing("Бутылка с водой");
         }
         if (article == 51) {
             addRoomToWasHere(247);
@@ -696,7 +693,7 @@ public class MainActivity extends AppCompatActivity
             editor.remove("savedGold66").commit();
         }
         if (article == 71) {
-            addRoomToWasHere(350); //TODO чото не то с возвратом на 93,313, 18, 350
+            addRoomToWasHere(350);
         }
         //74 see 56
         if (article == 76) {
@@ -759,6 +756,10 @@ public class MainActivity extends AppCompatActivity
                 addThing("Скальп Оборотня");
                 addThing("Пустая бутылка");
             }
+        }
+        if (article == 122) {
+            removeThing("Бутылка с водой");
+            addThing("Пустая бутылка");
         }
         if (article == 127) {
             changeUUU(2);
@@ -844,7 +845,19 @@ public class MainActivity extends AppCompatActivity
             editor.remove("chanceInArticle190").commit();
         }
         if (article == 192) {
-         //todo про заколдованную воду вместе с арт45, ну и предметы
+            int selectedRadio = gamePref.getInt("selectedRadio", 0);
+            if (selectedRadio == 1) {
+                addThing("Кость чудовища");
+            }
+            if (selectedRadio == 2) {
+                addThing("Банка с всеядными");
+            }
+            if (selectedRadio == 3) {
+                addThing("Жестяная бабочка");
+            }
+            if (selectedRadio == 4) {
+                addThing("Копье");
+            }
         }
         if (article == 199) {
             changeGold(20);
@@ -875,6 +888,9 @@ public class MainActivity extends AppCompatActivity
         if (article == 229) {
             editor.remove("chanceInArticle229").commit();
         }
+        if (article == 231) {
+            addRoomToWasHere(239);
+        }
         if (article == 237) {
             int tried = gamePref.getInt("triedCombinations", 0);
             editor.putInt("triedCombinations", tried + 1).commit();
@@ -882,6 +898,18 @@ public class MainActivity extends AppCompatActivity
         if (article == 240) {
             int loseAmount = gamePref.getInt("loseAmount240", 0);
             changeVVV(-loseAmount);
+        }
+        if (article == 241) {
+            int selectedRadio = gamePref.getInt("selectedRadio", 0);
+            if (selectedRadio == 1) {
+                if (isThingAvailable("Пустая бутылка")) {
+                    removeThing("Пустая бутылка");
+                    addThing("Бутылка с водой");
+                } else if (isThingAvailable("Бутылка с эликсиром невидимости")) {
+                    removeThing("Бутылка с эликсиром невидимости");
+                    addThing("Бутылка с водой");
+                }
+            }
         }
         if (article == 250) {
             changeExtraLLL(-3);
@@ -964,7 +992,13 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 306) {
             changeUUU(2);
-            addThing("ЕМКОСТЬ с заколдованной водой"); //todo какая емкость?
+            if (isThingAvailable("Пустая бутылка")) {
+                removeThing("Пустая бутылка");
+                addThing("Бутылка с водой");
+            } else if (isThingAvailable("Бутылка с эликсиром невидимости") || isThingAvailable("Бутылка с водой")) {
+                removeThing("Бутылка с эликсиром невидимости");
+                addThing("Бутылка с водой");
+            }
         }
         if (article == 307) {
             changeExtraLLL(-2);
@@ -993,7 +1027,7 @@ public class MainActivity extends AppCompatActivity
         if (article == 330) {
             addRoomToWasHere(319);//todo 319: allow second entry but with no battle at 69
         }
-        //332 - see
+        //332 see 13
         if (article == 334) {
             changeGold(gamePref.getInt("savedGold334", 0));
             editor.putInt("savedGold334", 0).commit();
@@ -1029,9 +1063,6 @@ public class MainActivity extends AppCompatActivity
             addThing("Соска");
             removeThing("Деревянный кол");
         }
-        if (article == 372) {
-            addRoomToWasHere(164);
-        }
         if (article == 376) {
             changeLLL(1);
             changeUUU(2);
@@ -1047,9 +1078,13 @@ public class MainActivity extends AppCompatActivity
         //todo check 378 text
         if (article == 380) {
             changeLLL(1);
+            addRoomToWasHere(164);
         }
         if (article == 385) {
             addRoomToWasHere(53);
+        }
+        if (article == 500) {
+            gameOver(); //todo show buttonfragment
         }
     }
 
@@ -1073,6 +1108,13 @@ public class MainActivity extends AppCompatActivity
     public void gameOver() {
         editor.putInt("gameOn", 0).commit();
         Toast.makeText(this, "Конец игры", Toast.LENGTH_SHORT).show();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        Fragment fragment = new ButtonsFragment();
+        ft.replace(R.id.fragment_container, fragment);
+        //ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+        ft.commit();
     }
 
     public void addRoomToWasHere(int roomToAdd) {
