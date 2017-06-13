@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="para_189">1</string>
+    <string name="para_189">3</string>
 
-    <string name="article_189_1">Ты сыграл с одним Злыднем. Будешь играть с другим?</string>
+    <string name="article_189_1">Оказывается, Гуманоид совершенно не любит проигрывать и он с яростным шипением набрасывается на тебя.</string>
+    <string name="article_189_2">Гуманоид не ожидал, что игра закончится так скоро. Он обиделся не на шутку и готов наброситься на тебя.</string>
+    <string name="article_189_3">Гуманоида охватила радость. Атакуй его!</string>
 
-    <string name="opt_189">2</string>
+    <string name="opt_189">1</string>
 
-    <string name="option_189_1">303</string>
-    <string name="text_189_1">Да</string>
-    <string name="option_189_2">156</string>
-    <string name="text_189_2">Нет</string>
+    <string name="option_189_1">367</string>
+    <string name="text_189_1">Далее</string>
+
 </resources>

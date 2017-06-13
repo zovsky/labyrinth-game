@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0); //todo поменять Удачу на Карму, использовать либо Карму игрока, либо шанс 50/50.
         editor.putInt("extraLLL", 0);
-        editor.putInt("gold", 10); //default 0
+        editor.putInt("gold", 20); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
         editor.putInt("stoneDown", 0); //stone for 24 and 284
@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity
 
         Set<String> things=new HashSet<>();
         things.add("Боевой шлем");//default меч
-        things.add("Бутылка с водой"); //default фонарь
+        things.add("Бутылка"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
@@ -693,7 +693,7 @@ public class MainActivity extends AppCompatActivity
             editor.remove("savedGold66").commit();
         }
         if (article == 71) {
-            addRoomToWasHere(350);
+            addRoomToWasHere(71);
         }
         //74 see 56
         if (article == 76) {
@@ -873,7 +873,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
         if (article == 211) {
-            addRoomToWasHere(313);
+            addRoomToWasHere(18);
         }
         if (article == 216) {
             removeThing("Металлический щит"); //todo оборотень против волкодава
@@ -1043,12 +1043,6 @@ public class MainActivity extends AppCompatActivity
         if (article == 346) {
             changeVVV(-1);
             removeThing("Молот гномов");
-        }
-        if (article == 350) {
-            int slctd = gamePref.getInt("selectedRadio", 0);
-            if (slctd == 1) {
-                changeUUU(2);
-            }
         }
         if (article == 355) {
             addRoomToWasHere(304);

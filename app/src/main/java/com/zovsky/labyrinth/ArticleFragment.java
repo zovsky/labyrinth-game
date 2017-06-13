@@ -180,8 +180,8 @@ public class ArticleFragment extends Fragment {
         boolean wasHere = ((MainActivity) getActivity()).wasIHere(mArticle);
         if (mArticle == 38 || mArticle == 53 || mArticle == 164 ||
                 mArticle == 224 || mArticle == 239 || mArticle == 247 || mArticle == 268 ||
-                mArticle == 270 || mArticle == 304 || mArticle == 310 || mArticle == 313 ||
-                mArticle == 319 || mArticle == 331 || mArticle == 336 || mArticle == 350) {
+                mArticle == 270 || mArticle == 304 || mArticle == 310 ||
+                mArticle == 319 || mArticle == 331 || mArticle == 336) {
             //was I here? if yes, show only first option (door open), otherwise, show only second option (door closed)
             if (wasHere) {
                 mRadios = 1;
@@ -198,6 +198,18 @@ public class ArticleFragment extends Fragment {
                 mRadios = 1;
             } else {
                 radioStartCount = 1;
+            }
+        }
+        if (mArticle == 189) {
+            if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) == 0) {
+                textView[0].setVisibility(View.GONE);
+                textView[1].setVisibility(View.GONE);
+            } else if (((MainActivity) getActivity()).gamePref.getInt("zlydGold", 10) == 0) {
+                textView[1].setVisibility(View.GONE);
+                textView[2].setVisibility(View.GONE);
+            } else {
+                textView[0].setVisibility(View.GONE);
+                textView[2].setVisibility(View.GONE);
             }
         }
         if (mArticle == 211) {
@@ -786,7 +798,39 @@ public class ArticleFragment extends Fragment {
             layout.addView(arrowResult, 3);
             radioGroup.getChildAt(1).setEnabled(false);
             final RadioGroup sixArrowsGroup = (RadioGroup) view.findViewById(R.id.rgSix);
-            arrowResult.setText("Золота у тебя " + ((MainActivity) getActivity()).gamePref.getInt("gold", 0) + ", у Злыдня " + ((MainActivity) getActivity()).gamePref.getInt("zlydGold", 10));
+            for (int i=0; i<5; i++) {
+                sixArrowsGroup.getChildAt(i).setEnabled(true);
+            }
+            int yourInitialGold = ((MainActivity) getActivity()).gamePref.getInt("gold", 0);
+            int zlydInitialGold = ((MainActivity) getActivity()).gamePref.getInt("zlydGold", 15);
+            arrowResult.setText("Золота у тебя " + yourInitialGold + ", у Гуманоида " + zlydInitialGold);
+            if (yourInitialGold < 5 || zlydInitialGold < 5 ) {
+                sixArrowsGroup.getChildAt(4).setEnabled(false);
+                if (yourInitialGold < 4 || zlydInitialGold < 4 ) {
+                    sixArrowsGroup.getChildAt(3).setEnabled(false);
+                    if (yourInitialGold < 3 || zlydInitialGold < 3) {
+                        sixArrowsGroup.getChildAt(2).setEnabled(false);
+                        if (yourInitialGold < 2 || zlydInitialGold < 2) {
+                            sixArrowsGroup.getChildAt(1).setEnabled(false);
+                            if (yourInitialGold < 1 || zlydInitialGold < 1) {
+                                sixArrowsGroup.getChildAt(0).setEnabled(false);
+                                arrowResult.setEnabled(false);
+                                if (zlydInitialGold < 1) {
+                                    arrowResult.setEnabled(false);
+                                    radioGroup.getChildAt(1).setEnabled(false);
+                                    radioGroup.check(radioButton[0].getId());
+                                }
+                                if (yourInitialGold == 0) {
+                                    arrowResult.setEnabled(false);
+                                    radioGroup.getChildAt(0).setEnabled(false);
+                                    radioGroup.getChildAt(1).setEnabled(true);
+                                    radioGroup.check(radioButton[1].getId());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             arrowResult.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -795,7 +839,7 @@ public class ArticleFragment extends Fragment {
                         Toast.makeText(getContext(), "Сделай ставку", Toast.LENGTH_SHORT).show();
                     } else {
                         int bet = 0;
-                        int zlydGold = ((MainActivity) getActivity()).gamePref.getInt("zlydGold", 10); //todo limit bet amount if not enough gold
+                        int zlydGold = ((MainActivity) getActivity()).gamePref.getInt("zlydGold", 15);
                         switch (selectedBet) {
                             case R.id.rb1:
                                 bet = 1;
@@ -815,6 +859,9 @@ public class ArticleFragment extends Fragment {
                         }
                         int zlyd = randomOneDice();
                         int your = randomOneDice();
+                        if (zlyd == your) {
+                            your = randomOneDice();
+                        }
                         if (your > zlyd) {
                             ((MainActivity) getActivity()).changeGold(bet);
                             ((MainActivity) getActivity()).editor.putInt("zlydGold", zlydGold - bet).commit();
@@ -838,7 +885,26 @@ public class ArticleFragment extends Fragment {
                             radioGroup.getChildAt(1).setEnabled(true);
                             radioGroup.check(radioButton[1].getId());
                         }
-                        arrowResult.setText("Попаданий у тебя: " + your + ", у Злыдня: " + zlyd + "\n Золота у тебя " + yourGold + ", у Злыдня " + zlydGold);
+                        arrowResult.setText("Попаданий у тебя: " + your + ", у Гуманоида: " + zlyd + "\n Золота у тебя " + yourGold + ", у Гуманоида " + zlydGold);
+                        for (int i=0; i<5; i++) {
+                            sixArrowsGroup.getChildAt(i).setEnabled(true);
+                        }
+                        if (yourGold < 5 || zlydGold < 5 ) {
+                            sixArrowsGroup.getChildAt(4).setEnabled(false);
+                            if (yourGold < 4 || zlydGold < 4 ) {
+                                sixArrowsGroup.getChildAt(3).setEnabled(false);
+                                if (yourGold < 3 || zlydGold < 3) {
+                                    sixArrowsGroup.getChildAt(2).setEnabled(false);
+                                    if (yourGold < 2 || zlydGold < 2) {
+                                        sixArrowsGroup.getChildAt(1).setEnabled(false);
+                                        if (yourGold < 1 || zlydGold < 1) {
+                                            sixArrowsGroup.getChildAt(0).setEnabled(false);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        sixArrowsGroup.clearCheck();
                     }
                 }
             });
@@ -893,6 +959,21 @@ public class ArticleFragment extends Fragment {
             } else {
                 radioGroup.getChildAt(0).setVisibility(View.GONE);
                 radioGroup.check(radioButton[1].getId());
+            }
+        }
+        if (mArticle == 261) {
+            if (!((MainActivity) getActivity()).wasIHere(18)) {
+                radioGroup.getChildAt(0).setVisibility(View.GONE);
+                radioGroup.getChildAt(2).setVisibility(View.GONE);
+                radioGroup.check(radioButton[1].getId());
+            } else if (((MainActivity) getActivity()).isThingAvailable("Бутылка с водой") && ((MainActivity) getActivity()).wasIHere(71)) {
+                radioGroup.getChildAt(1).setVisibility(View.GONE);
+                radioGroup.getChildAt(2).setVisibility(View.GONE);
+                radioGroup.check(radioButton[0].getId());
+            } else {
+                radioGroup.getChildAt(0).setVisibility(View.GONE);
+                radioGroup.getChildAt(1).setVisibility(View.GONE);
+                radioGroup.check(radioButton[2].getId());
             }
         }
         if (mArticle == 269) {

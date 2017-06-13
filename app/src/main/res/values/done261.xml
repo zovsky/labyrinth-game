@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_261">1</string>
+
+    <string name="article_261_1">Входи в комнату.</string>
+
+    <string name="opt_261">3</string>
+
+    <string name="option_261_1">122</string>
+    <string name="text_261_1">Тихий стон Гремлина не оставляет тебя равнодушным.</string>
+    <string name="option_261_2">18</string>
+    <string name="text_261_2">Гуманоид встречает тебя у самого входа и за руку ведет в соседнее помещение.</string>
+    <string name="option_261_3">286</string>
+    <string name="text_261_3">Впрочем можешь сразу и выходить. Тут нечего делать.</string>
+</resources>
