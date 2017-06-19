@@ -2,11 +2,11 @@
 <resources>
     <string name="para_316">1</string>
 
-    <string name="article_316_1">Иди коридором на юг.</string>
+    <string name="article_316_1">Только отделался от монстров, а вдалеке вновь слышен какой-то шум. Оставаться на Безумном Поле небезопасно. Возвращайся коридором на запад.</string>
 
     <string name="opt_316">1</string>
 
-    <string name="option_316_1">176</string>
+    <string name="option_316_1">97</string>
     <string name="text_316_1">Далее</string>
 
 </resources>

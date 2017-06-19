@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("VVV", 0);
         editor.putInt("UUU", 0); //todo поменять Удачу на Карму, использовать либо Карму игрока, либо шанс 50/50.
         editor.putInt("extraLLL", 0);
-        editor.putInt("gold", 20); //default 0
+        editor.putInt("gold", 0); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
         editor.putInt("stoneDown", 0); //stone for 24 and 284
@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity
 
         Set<String> things=new HashSet<>();
         things.add("Боевой шлем");//default меч
-        things.add("Бутылка"); //default фонарь
+        things.add("Бутылка с водой"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
@@ -572,8 +572,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void takeSpecialAction(int article) {
-        if (article == 16 || article == 32 || article == 47 || article == 61 || article == 68 || article == 110 || article == 114 ||
-                article == 137 || article == 141 || article == 144 ||
+        if (article == 16 || article == 20 || article == 27 || article == 32 || article == 47 || article == 61 || article == 68 ||
+                article == 110 || article == 114 || article == 137 || article == 141 || article == 144 ||
                 article == 248 || article == 269 || article == 273 || article == 293 || article == 296 || article == 339 || article == 374 ||
                 article == 382) {
             if (gamePref.getInt("food", 0) > 0 && gamePref.getInt("foodTries", 0) > 0) {
@@ -621,11 +621,14 @@ public class MainActivity extends AppCompatActivity
             changeUUU(2);
         }
         if (article == 20) {
-            editor.putInt("goBackArticleID", 316).commit();
+            editor.putInt("goBackArticleID", 156).commit();
         }
         //24 see 284
         if (article == 26) {
             changeGold(5 * gamePref.getInt("fatHitCount", 0));
+        }
+        if (article == 27) {
+            editor.putInt("goBackArticleID", 316).commit();
         }
         if (article == 31) {
             changeGold(5);
@@ -859,6 +862,11 @@ public class MainActivity extends AppCompatActivity
                 addThing("Копье");
             }
         }
+        if (article == 193) {
+            changeGold(5 * gamePref.getInt("killedMonsters", 0));
+            changeUUU(2);
+            changeLLL(2);
+        }
         if (article == 199) {
             changeGold(20);
         }
@@ -1004,6 +1012,9 @@ public class MainActivity extends AppCompatActivity
             changeExtraLLL(-2);
         }
         //315 see 143
+        if (article == 316) {
+            addRoomToWasHere(176);
+        }
         if (article == 317) {
             addRoomToWasHere(268);
         }
@@ -1057,6 +1068,13 @@ public class MainActivity extends AppCompatActivity
             addThing("Соска");
             removeThing("Деревянный кол");
         }
+        if (article == 371) {
+            int slctd = gamePref.getInt("selectedRadio", 0);
+            if (slctd == 0) {
+                removeThing("Бутылка с водой");
+                addThing("Пустая бутылка");
+            }
+        }
         if (article == 376) {
             changeLLL(1);
             changeUUU(2);
@@ -1077,6 +1095,7 @@ public class MainActivity extends AppCompatActivity
         if (article == 385) {
             addRoomToWasHere(53);
         }
+        //todo: решетка, если идти на запад (см. блокнот) + 103
         if (article == 500) {
             gameOver(); //todo show buttonfragment
         }

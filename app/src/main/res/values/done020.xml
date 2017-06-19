@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_20">1</string>
+
+    <string name="article_20_1">Дорога ведет на восток. Можешь перекусить порцией еды. Вскоре дойдешь до Безумного Поля. И что ты видишь? На тебя вновь несется толпа монстров. Это просто невероятно!</string>
+
+    <string name="opt_20">1</string>
+
+    <string name="option_20_1">238</string>
+    <string name="text_20_1">Далее</string>
+
+</resources>

@@ -327,7 +327,7 @@ public class ArticleFragment extends Fragment {
             }
         }
 
-        if (mArticle == 24 || mArticle == 30 || mArticle == 35 || mArticle == 36 || mArticle == 41 || mArticle == 95 ||
+        if (mArticle == 24 || mArticle == 30 || mArticle == 35 || mArticle == 41 || mArticle == 95 ||
                 mArticle == 126 || mArticle == 138 || mArticle == 149 || mArticle == 162 || mArticle == 190 || mArticle == 225 ||
                 mArticle == 229 || mArticle == 242 || mArticle == 274 || mArticle == 284 || mArticle == 381) {
             final AppCompatButton takeChance = new AppCompatButton(getContext());
@@ -747,6 +747,13 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[1].getId());
             }
         }
+        if (mArticle == 176) {
+            if (wasHere) {
+                radioGroup.getChildAt(0).setVisibility(View.GONE);
+            } else {
+                radioGroup.getChildAt(1).setVisibility(View.GONE);
+            }
+        }
         if (mArticle == 180) {
             if (wasHere) {
                 textView[0].setText("Тут ты уже все осмотрел.");
@@ -1089,8 +1096,9 @@ public class ArticleFragment extends Fragment {
         }
         if (mArticle == 371) {
             radioGroup.getChildAt(0).setEnabled(false);
-            if (((MainActivity)getActivity()).isThingAvailable("Бутылка с водой")) { //todo ?? бутылка с водой? менять текст в абзацах?
+            if (((MainActivity)getActivity()).isThingAvailable("Бутылка с водой")) {
                 radioGroup.getChildAt(0).setEnabled(true);
+                radioGroup.getChildAt(1).setEnabled(false);
             }
         }
         if (mArticle == 377) {

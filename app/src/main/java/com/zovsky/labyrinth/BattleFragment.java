@@ -250,6 +250,11 @@ public class BattleFragment extends Fragment {
                         ((MainActivity) getActivity()).showArticle(500);
                         return;
                     } else {
+                        if (mArticle == 2092 || mArticle == 2277 || mArticle == 2278 || mArticle == 2312 || mArticle == 2313 || mArticle == 2314) {
+                            int killedMonsters = ((MainActivity) getActivity()).gamePref.getInt("killedMonsters", 0);
+                            Log.d(GAME, "" + killedMonsters);
+                            ((MainActivity) getActivity()).editor.putInt("killedMonsters", killedMonsters + 1);
+                        }
                         if (mArticle == 2238 || mArticle == 2239 || mArticle == 2240 || mArticle == 2241 || mArticle == 2069 ||
                                 mArticle == 2277 || mArticle == 2312 || mArticle == 2313) {
                             Log.d(GAME, "branch2 - monster pack battles");
