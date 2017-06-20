@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity
 
         //TODO Remove on release
         addRoomToWasHere(122);
-        editor.putInt("fatHitCount", 2);
+        //editor.putInt("fatHitCount", 2);
         editor.commit();
 
         Set<String> things=new HashSet<>();

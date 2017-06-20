@@ -103,7 +103,7 @@ public class ArticleFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_article, container, false);
 
-        TextView[] textView = new TextView[mParas];
+        final TextView[] textView = new TextView[mParas];
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.article_layout);
         String articleID, optionID, textID;
 
@@ -369,6 +369,50 @@ public class ArticleFragment extends Fragment {
                 daleeButton.setEnabled(true);
             }
 
+        }
+        if (mArticle == 36) {
+            textView[1].setVisibility(View.GONE);
+            textView[2].setVisibility(View.GONE);
+            final AppCompatButton throwDiceButton = new AppCompatButton(getContext());
+            final TextView fatHitCountTextView = new TextView(getContext());
+            layout.addView(throwDiceButton, 1);
+            layout.addView(fatHitCountTextView,2);
+            throwDiceButton.setText("Осталось попыток: " + (3-((MainActivity) getActivity()).gamePref.getInt("thrownDice36", 0)));
+            fatHitCountTextView.setText("Попаданий: " + ((MainActivity) getActivity()).gamePref.getInt("fatHitCount", 0));
+            radioGroup.getChildAt(0).setVisibility(View.GONE);
+            radioGroup.getChildAt(1).setVisibility(View.GONE);
+            if (((MainActivity) getActivity()).gamePref.getInt("thrownDice36", 0) < 3) {
+                daleeButton.setVisibility(View.GONE);
+                throwDiceButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Random rnd = new Random();
+                        int dice = rnd.nextInt(6) + 1;
+                        Log.d(GAME, "" + dice);
+                        ((MainActivity) getActivity()).editor.putInt("thrownDice36", ((MainActivity) getActivity()).gamePref.getInt("thrownDice36", 0) + 1).commit();
+                        throwDiceButton.setText("Осталось попыток: " + (3-((MainActivity) getActivity()).gamePref.getInt("thrownDice36", 0)));
+                        if (dice == 5) {
+                            ((MainActivity) getActivity()).editor.putInt("fatHitCount", ((MainActivity) getActivity()).gamePref.getInt("fatHitCount", 0) + 1).commit();
+                            fatHitCountTextView.setText("Попаданий: " + ((MainActivity) getActivity()).gamePref.getInt("fatHitCount", 0));
+                        }
+                        if (((MainActivity) getActivity()).gamePref.getInt("thrownDice36", 0) >= 3) {
+                            throwDiceButton.setEnabled(false);
+                            textView[1].setVisibility(View.VISIBLE);
+                            textView[2].setVisibility(View.VISIBLE);
+                            radioGroup.getChildAt(0).setVisibility(View.VISIBLE);
+                            radioGroup.getChildAt(1).setVisibility(View.VISIBLE);
+                            daleeButton.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+            } else {
+                textView[1].setVisibility(View.VISIBLE);
+                textView[2].setVisibility(View.VISIBLE);
+                throwDiceButton.setEnabled(false);
+                radioGroup.getChildAt(0).setVisibility(View.VISIBLE);
+                radioGroup.getChildAt(1).setVisibility(View.VISIBLE);
+                daleeButton.setEnabled(true);
+            }
         }
         if (mArticle == 52) {
             if (((MainActivity) getActivity()).isThingAvailable("Герметичный шлем")) {
@@ -916,6 +960,42 @@ public class ArticleFragment extends Fragment {
                 }
             });
         }
+        if (mArticle == 217) {
+            final AppCompatButton throwDiceButton = new AppCompatButton(getContext());
+            final TextView fatHitCountTextView = new TextView(getContext());
+            layout.addView(throwDiceButton, 1);
+            layout.addView(fatHitCountTextView,2);
+            throwDiceButton.setText("Осталось попыток: " + (4 -((MainActivity) getActivity()).gamePref.getInt("thrownDice217", 0)));
+            fatHitCountTextView.setText("Попаданий всего: " + ((MainActivity) getActivity()).gamePref.getInt("fatHitCount", 0));
+            radioGroup.getChildAt(0).setVisibility(View.GONE);
+            if (((MainActivity) getActivity()).gamePref.getInt("thrownDice217", 0) < 4) {
+                daleeButton.setVisibility(View.GONE);
+                throwDiceButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Random rnd = new Random();
+                        int dice = rnd.nextInt(6) + 1;
+                        Log.d(GAME, "" + dice);
+                        ((MainActivity) getActivity()).editor.putInt("thrownDice217", ((MainActivity) getActivity()).gamePref.getInt("thrownDice217", 0) + 1).commit();
+                        if (dice >= 5) {
+                            ((MainActivity) getActivity()).editor.putInt("fatHitCount", ((MainActivity) getActivity()).gamePref.getInt("fatHitCount", 0) + 1).commit();
+                            ((MainActivity) getActivity()).editor.putInt("thrownDice217", ((MainActivity) getActivity()).gamePref.getInt("thrownDice217", 0) + 1).commit();
+                            fatHitCountTextView.setText("Попаданий всего: " + ((MainActivity) getActivity()).gamePref.getInt("fatHitCount", 0));
+                        }
+                        throwDiceButton.setText("Осталось попыток: " + (4-((MainActivity) getActivity()).gamePref.getInt("thrownDice217", 0)));
+                        if (((MainActivity) getActivity()).gamePref.getInt("thrownDice217", 0) >= 4) {
+                            throwDiceButton.setEnabled(false);
+                            radioGroup.getChildAt(0).setVisibility(View.VISIBLE);
+                            daleeButton.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+            } else {
+                throwDiceButton.setEnabled(false);
+                radioGroup.getChildAt(0).setVisibility(View.VISIBLE);
+                daleeButton.setEnabled(true);
+            }
+        }
         if (mArticle == 240) {
             final AppCompatButton loseVvvButton = new AppCompatButton(getContext());
             final String rememberedLoseAmount = "loseAmount" + mArticle;
@@ -1092,6 +1172,41 @@ public class ArticleFragment extends Fragment {
                 radioGroup.getChildAt(0).setEnabled(true);
             } else {
                 radioGroup.check(radioButton[1].getId());
+            }
+        }
+        if (mArticle == 359) {
+            final AppCompatButton throwDiceButton = new AppCompatButton(getContext());
+            final TextView fatHitCountTextView = new TextView(getContext());
+            layout.addView(throwDiceButton, 1);
+            layout.addView(fatHitCountTextView,2);
+            throwDiceButton.setText("Осталось попыток: " + (2-((MainActivity) getActivity()).gamePref.getInt("thrownDice359", 0)));
+            fatHitCountTextView.setText("Попаданий всего: " + ((MainActivity) getActivity()).gamePref.getInt("fatHitCount", 0));
+            radioGroup.getChildAt(0).setVisibility(View.GONE);
+            if (((MainActivity) getActivity()).gamePref.getInt("thrownDice359", 0) < 2) {
+                daleeButton.setVisibility(View.GONE);
+                throwDiceButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Random rnd = new Random();
+                        int dice = rnd.nextInt(6) + 1;
+                        Log.d(GAME, "" + dice);
+                        ((MainActivity) getActivity()).editor.putInt("thrownDice359", ((MainActivity) getActivity()).gamePref.getInt("thrownDice359", 0) + 1).commit();
+                        throwDiceButton.setText("Осталось попыток: " + (2-((MainActivity) getActivity()).gamePref.getInt("thrownDice359", 0)));
+                        if (dice == 5) {
+                            ((MainActivity) getActivity()).editor.putInt("fatHitCount", ((MainActivity) getActivity()).gamePref.getInt("fatHitCount", 0) + 1).commit();
+                            fatHitCountTextView.setText("Попаданий всего: " + ((MainActivity) getActivity()).gamePref.getInt("fatHitCount", 0));
+                        }
+                        if (((MainActivity) getActivity()).gamePref.getInt("thrownDice359", 0) >= 2) {
+                            throwDiceButton.setEnabled(false);
+                            radioGroup.getChildAt(0).setVisibility(View.VISIBLE);
+                            daleeButton.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+            } else {
+                throwDiceButton.setEnabled(false);
+                radioGroup.getChildAt(0).setVisibility(View.VISIBLE);
+                daleeButton.setEnabled(true);
             }
         }
         if (mArticle == 371) {

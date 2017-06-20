@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="para_36">3</string>
+
+    <string name="article_36_1">Выбираешь одного толстяка и пытаешься ударить его мечом. Но не все так просто. Скорее всего, как только меч оказывается над головой толстяка, он исчезает. Но шанс успешно попасть в толстяка все-таки есть (1 к 5). Делай три такие попытки.</string>
+    <string name="article_36_2">\n\"Дорогой друг, оставь их в покое!\" - говорит Хозяин.</string>
+    <string name="article_36_3">Послушаешься совета?</string>
+
+    <string name="opt_36">2</string>
+
+    <string name="option_36_1">83</string>
+    <string name="text_36_1">Да</string>
+    <string name="option_36_2">359</string>
+    <string name="text_36_2">Нет</string>
+</resources>
