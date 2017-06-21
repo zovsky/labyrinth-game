@@ -250,28 +250,26 @@ public class MainActivity extends AppCompatActivity
     public void setInitialParameters() {
         editor.putInt("LLL", 0);
         editor.putInt("VVV", 0);
-        editor.putInt("KKK", 0); //todo поменять Удачу на Карму, использовать либо Карму игрока, либо шанс 50/50.
+        editor.putInt("KKK", 0);
         editor.putInt("extraLLL", 0);
-        editor.putInt("gold", 1); //default 0
+        editor.putInt("gold", 0); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
         editor.putInt("stoneDown", 0); //stone for 24 and 284
 
-        //TODO Remove on release
-        addRoomToWasHere(122);
+        //addRoomToWasHere(122);
         //editor.putInt("fatHitCount", 2);
         editor.commit();
 
         Set<String> things=new HashSet<>();
-        things.add("Боевой шлем");//default меч
-        things.add("Бутылка с водой"); //default фонарь
+        things.add("Меч");//default меч
+        things.add("Пустая бутылка"); //default фонарь
         editor.putStringSet("things", things);
 
-        Set<String> keys=new HashSet<>();
+        //Set<String> keys=new HashSet<>();
         //keys.add("12"); //no keys on start
         //keys.add("70");
-
-        editor.putStringSet("keys", keys);
+        //editor.putStringSet("keys", keys);
         editor.commit();
         //REMOVE on release
     }
@@ -403,7 +401,7 @@ public class MainActivity extends AppCompatActivity
         } else if (elixir == 2) {
             elixirmenu = "Эликсир выносливости: " + gamePref.getInt("elixirCounter", 0);
         } else {
-            elixirmenu = "Эликсир удачи: " + gamePref.getInt("elixirCounter", 0);
+            elixirmenu = "Эликсир кармы: " + gamePref.getInt("elixirCounter", 0);
         }
         editor.putInt("elixirCounter", difference).commit();
         subMenu.add(1, 20, 20, elixirmenu);
@@ -532,8 +530,7 @@ public class MainActivity extends AppCompatActivity
             gameOver();
         }
     }
-    //todo опустошить флягу в начале
-    //TODO put all else in brackets
+
     public void changeKKK(int difference) {
         int KKK = gamePref.getInt("KKK", 0) + difference;
         if (KKK <= 0) {
@@ -711,7 +708,6 @@ public class MainActivity extends AppCompatActivity
             addThing("Сеть");
             editor.putInt("lakeSwimCount", 2).commit();
         }
-        //todo 86 see excel
         if (article == 89) {
             changeGold(3);
             changeKKK(2);
@@ -751,7 +747,7 @@ public class MainActivity extends AppCompatActivity
             int slctd = gamePref.getInt("selectedRadio", 0);
             if (slctd == 0) {
                 addThing("Канат с крюком");
-                addThing("Пустая бутылка"); //todo может быть две пустые бутылки? 343
+                addThing("Пустая бутылка");
             } else if (slctd == 1) {
                 addThing("Канат с крюком");
                 addThing("Скальп Оборотня");
@@ -1044,9 +1040,7 @@ public class MainActivity extends AppCompatActivity
             editor.putInt("savedGold334", 0).commit();
         }
         if (article == 343) {
-            if (!isThingAvailable("Пустая бутылка")) {
-                addThing("Пустая бутылка");
-            }
+            addThing("Пустая бутылка");
         }
         if (article == 344) {
             changeExtraLLL(2);

@@ -118,7 +118,7 @@ public class NewGameFragment extends Fragment {
                 int selectedId = radioGroup.getCheckedRadioButtonId();
                 if (selectedId == -1 || ((MainActivity)getActivity()).gamePref.getInt("VVV", 0) == 0) {
                     Toast.makeText(getContext(), "Рассчитайте начальные параметры и выберите эликсир", Toast.LENGTH_SHORT).show();
-                } else {//todo default without 100+
+                } else {
                     ((MainActivity)getActivity()).editor.putInt("startLLL", ((MainActivity)getActivity()).gamePref.getInt("LLL", 0));
                     ((MainActivity)getActivity()).editor.putInt("startVVV", ((MainActivity)getActivity()).gamePref.getInt("VVV", 0));
                     ((MainActivity)getActivity()).editor.putInt("startKKK", 1+((MainActivity)getActivity()).gamePref.getInt("KKK", 0));
@@ -142,7 +142,7 @@ public class NewGameFragment extends Fragment {
                     ((MainActivity)getActivity()).editor.commit();
                     ((MainActivity)getActivity()).generateInitialMenu();
                     ((MainActivity) getActivity()).showAllParameters();
-                    ((MainActivity)getActivity()).showArticle(145); //todo default 1
+                    ((MainActivity)getActivity()).showArticle(343); //todo default 1
                 }
             }
         });
@@ -168,11 +168,11 @@ public class NewGameFragment extends Fragment {
         if (((MainActivity)getActivity()).gamePref.getInt("LLL", 0) == 0) {
             lovk.setText("ЛОВКОСТЬ (7-12)");
             vinos.setText("ВЫНОСЛИВОСТЬ (14-24)");
-            udaca.setText("УДАЧА (7-12)");
+            udaca.setText("КАРМА (7-12)");
         } else {
             lovk.setText("ЛОВКОСТЬ (7-12) " + Integer.toString(((MainActivity)getActivity()).gamePref.getInt("LLL", 0)));
             vinos.setText("ВЫНОСЛИВОСТЬ (14-24) " + Integer.toString(((MainActivity)getActivity()).gamePref.getInt("VVV", 0)));
-            udaca.setText("УДАЧА (7-12) " + Integer.toString(((MainActivity)getActivity()).gamePref.getInt("KKK", 0)));
+            udaca.setText("КАРМА (7-12) " + Integer.toString(((MainActivity)getActivity()).gamePref.getInt("KKK", 0)));
         }
     }
 
