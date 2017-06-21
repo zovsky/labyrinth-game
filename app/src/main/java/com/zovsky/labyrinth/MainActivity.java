@@ -163,8 +163,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public int takeChance() {
-        int currentU = gamePref.getInt("UUU", 0);
-        changeUUU(-1);
+        int currentU = gamePref.getInt("KKK", 0);
+        changeKKK(-1);
         Random rnd = new Random();
         int dice = rnd.nextInt(6)+rnd.nextInt(6)+2;
         if (dice <= currentU) {
@@ -250,9 +250,9 @@ public class MainActivity extends AppCompatActivity
     public void setInitialParameters() {
         editor.putInt("LLL", 0);
         editor.putInt("VVV", 0);
-        editor.putInt("UUU", 0); //todo поменять Удачу на Карму, использовать либо Карму игрока, либо шанс 50/50.
+        editor.putInt("KKK", 0); //todo поменять Удачу на Карму, использовать либо Карму игрока, либо шанс 50/50.
         editor.putInt("extraLLL", 0);
-        editor.putInt("gold", 0); //default 0
+        editor.putInt("gold", 1); //default 0
         editor.putInt("food", 8); //default 8
         editor.putInt("gameOn", 0);
         editor.putInt("stoneDown", 0); //stone for 24 and 284
@@ -534,15 +534,15 @@ public class MainActivity extends AppCompatActivity
     }
     //todo опустошить флягу в начале
     //TODO put all else in brackets
-    public void changeUUU(int difference) {
-        int UUU = gamePref.getInt("UUU", 0) + difference;
-        if (UUU <= 0) {
-            UUU = 0;
+    public void changeKKK(int difference) {
+        int KKK = gamePref.getInt("KKK", 0) + difference;
+        if (KKK <= 0) {
+            KKK = 0;
         }
-        if (UUU > gamePref.getInt("startUUU", 0)) {
-            editor.putInt("UUU", gamePref.getInt("startUUU", 0)).commit();
+        if (KKK > gamePref.getInt("startKKK", 0)) {
+            editor.putInt("KKK", gamePref.getInt("startKKK", 0)).commit();
         } else {
-            editor.putInt("UUU", UUU).commit();
+            editor.putInt("KKK", KKK).commit();
         }
     }
 
@@ -552,7 +552,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public boolean isAllowedToTakeChance() {
-        if (gamePref.getInt("UUU", 0) == 0) {
+        if (gamePref.getInt("KKK", 0) == 0) {
             return false;
         } else {
             return true;
@@ -605,7 +605,7 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 6) {
             addRoomToWasHere(336);
-            changeUUU(1);
+            changeKKK(1);
         }
         if (article == 11) {
             addRoomToWasHere(331);
@@ -618,7 +618,7 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 19) {
             changeFood(1);
-            changeUUU(2);
+            changeKKK(2);
         }
         if (article == 20) {
             editor.putInt("goBackArticleID", 156).commit();
@@ -635,7 +635,7 @@ public class MainActivity extends AppCompatActivity
             changeFood(-1);
             changeVVV(4);
             changeLLL(1);
-            changeUUU(1);
+            changeKKK(1);
         }
         //todo 32 alter text if come from 377 e.g. что нельзя забрать сеть и кол
         if (article == 35) {
@@ -661,7 +661,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
         if (article == 45) {
-            changeUUU(2);
+            changeKKK(2);
             addThing("Бутылка с водой");
         }
         if (article == 51) {
@@ -714,7 +714,7 @@ public class MainActivity extends AppCompatActivity
         //todo 86 see excel
         if (article == 89) {
             changeGold(3);
-            changeUUU(2);
+            changeKKK(2);
             addRoomToWasHere(224);
         }
         if (article == 95) {
@@ -727,7 +727,7 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 96) {
             addKeyNumber("12");
-            changeUUU(2);
+            changeKKK(2);
         }
         if (article == 98) {
             changeExtraLLL(3);
@@ -765,7 +765,7 @@ public class MainActivity extends AppCompatActivity
             addThing("Пустая бутылка");
         }
         if (article == 127) {
-            changeUUU(2);
+            changeKKK(2);
             changeExtraLLL(2);
             editor.putInt("lakeSwimCount", 1).commit();
         }
@@ -789,7 +789,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
         if (article == 144) {
-            changeUUU(1);
+            changeKKK(1);
         }
         if (article == 145) {
             changeGold(-gamePref.getInt("loseGold145", 0));
@@ -802,13 +802,13 @@ public class MainActivity extends AppCompatActivity
         if (article == 151) {
             changeVVV(5);
             changeLLL(2);
-            changeUUU(3);
+            changeKKK(3);
         }
         if (article == 151) {
             addRoomToWasHere(38);
         }
         if (article == 153) {
-            changeUUU(1);
+            changeKKK(1);
             changeExtraLLL(1);
             removeThing("Меч");
             addThing("Заколдованный меч");
@@ -817,7 +817,7 @@ public class MainActivity extends AppCompatActivity
             changeVVV(-1);
         }
         if (article == 163) {
-            changeUUU(1);
+            changeKKK(1);
             addRoomToWasHere(163);
         }
         if (article == 166) {
@@ -832,7 +832,7 @@ public class MainActivity extends AppCompatActivity
         }
         //174 see 143
         if (article == 177) {
-            changeUUU(3);
+            changeKKK(3);
             addThing("Огненное ядро");
         }
         if (article == 180) {
@@ -864,7 +864,7 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 193) {
             changeGold(5 * gamePref.getInt("killedMonsters", 0));
-            changeUUU(2);
+            changeKKK(2);
             changeLLL(2);
         }
         if (article == 199) {
@@ -985,7 +985,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
         if (article == 294) {
-            changeUUU(2);
+            changeKKK(2);
             addThing("Бутылка с эликсиром невидимости");
         }
         if (article == 298) {
@@ -999,7 +999,7 @@ public class MainActivity extends AppCompatActivity
             addRoomToWasHere(298);
         }
         if (article == 306) {
-            changeUUU(2);
+            changeKKK(2);
             if (isThingAvailable("Пустая бутылка")) {
                 removeThing("Пустая бутылка");
                 addThing("Бутылка с водой");
@@ -1027,13 +1027,13 @@ public class MainActivity extends AppCompatActivity
             addThing("Молот Гномов");
         }
         if (article == 326) {
-            changeUUU(3);
+            changeKKK(3);
             changeGold(30);
         }
         if (article == 329) {
             addKeyNumber("70");
             removeThing("Канат с крюком");
-            changeUUU(1);
+            changeKKK(1);
         }
         if (article == 330) {
             addRoomToWasHere(319);//todo 319: allow second entry but with no battle at 69
@@ -1077,7 +1077,7 @@ public class MainActivity extends AppCompatActivity
         }
         if (article == 376) {
             changeLLL(1);
-            changeUUU(2);
+            changeKKK(2);
             return; //todo why return here?
         }
         if (article == 377) {

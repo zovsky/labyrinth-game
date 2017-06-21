@@ -7,7 +7,7 @@
     <string name="opt_145">2</string>
 
     <string name="option_145_1">40</string>
-    <string name="text_145_1">Далее</string>
+    <string name="text_145_1">Да</string>
     <string name="option_145_2">19</string>
-    <string name="text_145_2">Отступиться</string>
+    <string name="text_145_2">Нет/Нет золота</string>
 </resources>

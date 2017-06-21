@@ -98,7 +98,7 @@ public class ArticleFragment extends Fragment {
         //set LVU as toolbar title
         String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
                                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
-                                " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
+                                " У:" + ((MainActivity)getActivity()).gamePref.getInt("KKK",0);
         ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
 
         View view = inflater.inflate(R.layout.fragment_article, container, false);
@@ -121,7 +121,6 @@ public class ArticleFragment extends Fragment {
         }
         //check wasHere in another article
         if (mArticle == 59) {
-            ((MainActivity) getActivity()).showAllParameters(); //todo remove
             boolean was163 = ((MainActivity) getActivity()).wasIHere(163);
             if (was163) {
                 mRadios = 1;
@@ -257,7 +256,7 @@ public class ArticleFragment extends Fragment {
         final AppCompatButton daleeButton = new AppCompatButton(getContext());
         layout.addView(daleeButton);
         //articles before battle;
-        if (mArticle == 2) { //TODO: all articles before battle? maybe if mRadios == 0?
+        if (mRadios == 0) {
             daleeButton.setText("БИТВА");
         } else daleeButton.setText("Продолжить");
 
@@ -267,7 +266,7 @@ public class ArticleFragment extends Fragment {
                 radioGroup.getChildAt(0).setEnabled(false);
             }
             if (!((MainActivity) getActivity()).isThingAvailable("Канат с крюком")) {
-                radioGroup.getChildAt(1).setEnabled(false); //toDo веревку поменять на канат
+                radioGroup.getChildAt(1).setEnabled(false);
             }
             if (((MainActivity) getActivity()).gamePref.getInt("VVV", 0) < 18 || ((MainActivity) getActivity()).gamePref.getInt("LLL", 0) < 9) {
                 radioGroup.getChildAt(3).setEnabled(false);
@@ -331,7 +330,7 @@ public class ArticleFragment extends Fragment {
                 mArticle == 126 || mArticle == 138 || mArticle == 149 || mArticle == 162 || mArticle == 190 || mArticle == 225 ||
                 mArticle == 229 || mArticle == 242 || mArticle == 274 || mArticle == 284 || mArticle == 381) {
             final AppCompatButton takeChance = new AppCompatButton(getContext());
-            final String rememberedChanceInArticle = "chanceInArticle" + mArticle; //todo probably remove remembered chance in some articles (e.g. 229)
+            final String rememberedChanceInArticle = "chanceInArticle" + mArticle;
             int radioID = ((MainActivity) getActivity()).gamePref.getInt(rememberedChanceInArticle, -1);
             if (radioID < 0) {
                 layout.addView(takeChance, 1);
@@ -496,18 +495,28 @@ public class ArticleFragment extends Fragment {
             }
 
         }
-        if (mArticle == 74) { //todo all radios can be disabled
+        if (mArticle == 74) {
+            radioGroup.getChildAt(4).setVisibility(View.GONE);
+            int allDisabled = 0;
             if (!((MainActivity) getActivity()).isThingAvailable("Сеть")) {
                 radioGroup.getChildAt(0).setEnabled(false);
+                allDisabled++;
             }
             if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) < 10) {
                 radioGroup.getChildAt(1).setEnabled(false);
+                allDisabled++;
             }
             if (!((MainActivity) getActivity()).isThingAvailable("Канат с крюком")) {
                 radioGroup.getChildAt(2).setEnabled(false);
+                allDisabled++;
             }
             if (((MainActivity) getActivity()).gamePref.getInt("VVV", 0) < 18 || ((MainActivity) getActivity()).gamePref.getInt("LLL", 0) < 9) {
                 radioGroup.getChildAt(3).setEnabled(false);
+                allDisabled++;
+            }
+            if (allDisabled == 4) {
+                radioGroup.getChildAt(4).setVisibility(View.VISIBLE);
+                radioGroup.check(radioButton[4].getId());
             }
         }
         if (mArticle == 76) {
@@ -583,7 +592,7 @@ public class ArticleFragment extends Fragment {
         }
         if (mArticle == 110 || mArticle == 143 || mArticle == 174 || mArticle == 315) {
             final AppCompatButton oneDiceButton = new AppCompatButton(getContext());
-            final String rememberedChanceInArticle = "chanceInArticle" + mArticle; //todo probably remove remembered chance in some articles (e.g. 229)
+            final String rememberedChanceInArticle = "chanceInArticle" + mArticle;
             int radioID = ((MainActivity) getActivity()).gamePref.getInt(rememberedChanceInArticle, -1);
             if (radioID < 0) {
                 layout.addView(oneDiceButton, 1);
@@ -722,15 +731,13 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[1].getId());
             }
         }
-        if (mArticle == 138) {
-            //todo smth here
-        }
+        //138 see 24
         if (mArticle == 145) {
             final AppCompatButton loseGoldButton = new AppCompatButton(getContext());
             final String loseGoldAmount = "loseGold" + mArticle;
-            int radioID = ((MainActivity) getActivity()).gamePref.getInt(loseGoldAmount, 0);
+            int loseGold = ((MainActivity) getActivity()).gamePref.getInt(loseGoldAmount, 0);
             layout.addView(loseGoldButton, 1);
-            if (radioID < 1) {
+            if (loseGold < 1) {
                 loseGoldButton.setText("Бросить кубики");
                 daleeButton.setEnabled(false);
                 loseGoldButton.setOnClickListener(new View.OnClickListener() {
@@ -741,15 +748,23 @@ public class ArticleFragment extends Fragment {
                         int dice;
                         dice = rnd.nextInt(6) + rnd.nextInt(6) + 2;
                         ((MainActivity) getActivity()).editor.putInt(loseGoldAmount, dice).commit();
-                        Toast.makeText(getContext(), "" + dice, Toast.LENGTH_SHORT).show();
-                        loseGoldButton.setText("Проигрываешь золота: " + dice); //// TODO disable yes option if no more gold 145 201 334 66 maybe smth else
+                        Toast.makeText(getContext(), "" + dice, Toast.LENGTH_SHORT).show(); //todo remove toasts
+                        loseGoldButton.setText("Проигрываешь золота: " + dice);
+                        if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) - dice <= 0) {
+                            radioButton[0].setEnabled(false);
+                            radioGroup.check(radioButton[1].getId());
+                        }
                         daleeButton.setEnabled(true);
                     }
                 });
 
             } else {
                 loseGoldButton.setEnabled(false);
-                loseGoldButton.setText("Проигрываешь золота: " + radioID);
+                loseGoldButton.setText("Проигрываешь золота: " + loseGold);
+                if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) - loseGold <= 0) {
+                    radioButton[0].setEnabled(false);
+                    radioGroup.check(radioButton[1].getId());
+                }
                 daleeButton.setEnabled(true);
             }
 
@@ -809,9 +824,6 @@ public class ArticleFragment extends Fragment {
                     !((MainActivity) getActivity()).isThingAvailable("Бутылка с водой")) {
                 radioGroup.getChildAt(0).setEnabled(false);
             }
-        }
-        if (mArticle == 193) {
-            //TODO: +5gold for every monster defeated
         }
         if (mArticle == 201) {
             final AppCompatButton winGoldButton = new AppCompatButton(getContext());
@@ -1137,6 +1149,10 @@ public class ArticleFragment extends Fragment {
                         if (dice % 2 == 0) {
                             ((MainActivity) getActivity()).editor.putInt("savedGold334", -dice).commit();
                             twoDiceForGold.setText("Проигрываешь золота: " + dice);
+                            if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) - dice <= 0) {
+                                radioButton[0].setEnabled(false);
+                                radioGroup.check(radioButton[1].getId());
+                            }
                         } else {
                             ((MainActivity) getActivity()).editor.putInt("savedGold334", dice).commit();
                             twoDiceForGold.setText("Выигрываешь золота: " + dice);
@@ -1149,10 +1165,13 @@ public class ArticleFragment extends Fragment {
                 int dice = ((MainActivity) getActivity()).gamePref.getInt("savedGold334", 0);
                 if (dice < 0) {
                     twoDiceForGold.setText("Проигрываешь золота: " + -dice);
+                    if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) + dice <= 0) {
+                        radioButton[0].setEnabled(false);
+                        radioGroup.check(radioButton[1].getId());
+                    }
                 } else {
                     twoDiceForGold.setText("Выигрываешь золота: " + dice);
                 }
-                //daleeButton.setEnabled(true);
             }
         }
         if (mArticle == 335 || mArticle == 91) {
@@ -1336,7 +1355,7 @@ public class ArticleFragment extends Fragment {
     public void redrawToolbar() {
         String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
-                " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
+                " У:" + ((MainActivity)getActivity()).gamePref.getInt("KKK",0);
         ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
     }
 

@@ -126,7 +126,7 @@ public class BattleFragment extends Fragment {
         String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
                 extraLLLstring +
                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
-                " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
+                " У:" + ((MainActivity)getActivity()).gamePref.getInt("KKK",0);
 
         ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle)); //TODO subtitle null
 
@@ -411,14 +411,14 @@ public class BattleFragment extends Fragment {
             if (mArticle == 2109) {
                 if (((MainActivity) getActivity()).gamePref.getInt("firstWinningRound109", 0) == 0) {
                     ((MainActivity) getActivity()).editor.putInt("firstWinningRound109", 1).commit();
-                    Log.d(GAME, "set 1"); //todo remove log
+                    //Log.d(GAME, "set 1");
                 }
             }
             if (mArticle == 2355) {
                 // 0 - не было, 1 - сейчас
                 if (((MainActivity) getActivity()).gamePref.getInt("firstWinningRound355", 0) == 0) {
                     ((MainActivity) getActivity()).editor.putInt("firstWinningRound355", 1).commit();
-                    Log.d(GAME, "set 1"); //todo remove log
+                    //Log.d(GAME, "set 1");
                 }
             }
             if (luck > 0) {

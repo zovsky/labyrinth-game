@@ -40,7 +40,7 @@ public class NewGameFragment extends Fragment {
     private TextView udaca;
     int LLL;
     int VVV;
-    int UUU;
+    int KKK;
 
     private String mParam1;
     private String mParam2;
@@ -119,9 +119,9 @@ public class NewGameFragment extends Fragment {
                 if (selectedId == -1 || ((MainActivity)getActivity()).gamePref.getInt("VVV", 0) == 0) {
                     Toast.makeText(getContext(), "Рассчитайте начальные параметры и выберите эликсир", Toast.LENGTH_SHORT).show();
                 } else {//todo default without 100+
-                    ((MainActivity)getActivity()).editor.putInt("startLLL", 100+ ((MainActivity)getActivity()).gamePref.getInt("LLL", 0));
-                    ((MainActivity)getActivity()).editor.putInt("startVVV", 100 + ((MainActivity)getActivity()).gamePref.getInt("VVV", 0));
-                    ((MainActivity)getActivity()).editor.putInt("startUUU", 100+((MainActivity)getActivity()).gamePref.getInt("UUU", 0));
+                    ((MainActivity)getActivity()).editor.putInt("startLLL", ((MainActivity)getActivity()).gamePref.getInt("LLL", 0));
+                    ((MainActivity)getActivity()).editor.putInt("startVVV", ((MainActivity)getActivity()).gamePref.getInt("VVV", 0));
+                    ((MainActivity)getActivity()).editor.putInt("startKKK", 1+((MainActivity)getActivity()).gamePref.getInt("KKK", 0));
                     ((MainActivity)getActivity()).editor.putInt("elixirCounter", 2);
                     switch (selectedId){
                         case R.id.radioButton1:
@@ -142,7 +142,7 @@ public class NewGameFragment extends Fragment {
                     ((MainActivity)getActivity()).editor.commit();
                     ((MainActivity)getActivity()).generateInitialMenu();
                     ((MainActivity) getActivity()).showAllParameters();
-                    ((MainActivity)getActivity()).showArticle(265); //todo default 1
+                    ((MainActivity)getActivity()).showArticle(145); //todo default 1
                 }
             }
         });
@@ -154,10 +154,10 @@ public class NewGameFragment extends Fragment {
         Random rnd = new Random();
         LLL = rnd.nextInt(6)+7;
         VVV = rnd.nextInt(6)+rnd.nextInt(6)+14;
-        UUU = rnd.nextInt(6)+7;
+        KKK = rnd.nextInt(6)+7;
         ((MainActivity)getActivity()).editor.putInt("LLL", LLL);
         ((MainActivity)getActivity()).editor.putInt("VVV", VVV);
-        ((MainActivity)getActivity()).editor.putInt("UUU", UUU);
+        ((MainActivity)getActivity()).editor.putInt("KKK", KKK);
         ((MainActivity)getActivity()).editor.commit();
 
         setLVUnumbers();
@@ -172,7 +172,7 @@ public class NewGameFragment extends Fragment {
         } else {
             lovk.setText("ЛОВКОСТЬ (7-12) " + Integer.toString(((MainActivity)getActivity()).gamePref.getInt("LLL", 0)));
             vinos.setText("ВЫНОСЛИВОСТЬ (14-24) " + Integer.toString(((MainActivity)getActivity()).gamePref.getInt("VVV", 0)));
-            udaca.setText("УДАЧА (7-12) " + Integer.toString(((MainActivity)getActivity()).gamePref.getInt("UUU", 0)));
+            udaca.setText("УДАЧА (7-12) " + Integer.toString(((MainActivity)getActivity()).gamePref.getInt("KKK", 0)));
         }
     }
 

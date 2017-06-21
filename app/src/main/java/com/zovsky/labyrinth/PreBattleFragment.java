@@ -104,7 +104,7 @@ public class PreBattleFragment extends Fragment {
         String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
                 extraLLLstring +
                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
-                " У:" + ((MainActivity)getActivity()).gamePref.getInt("UUU",0);
+                " У:" + ((MainActivity)getActivity()).gamePref.getInt("KKK",0);
         ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
 
         View view = inflater.inflate(R.layout.fragment_pre_battle, container, false);
@@ -177,9 +177,8 @@ public class PreBattleFragment extends Fragment {
                 mArticle == 1213 || mArticle == 1216 || mArticle == 1238 || mArticle == 1255 || mArticle == 1277 || mArticle == 1278 ||
                 mArticle == 1288 || mArticle == 1307 || mArticle == 1312 || mArticle == 1317 || mArticle == 1332 || mArticle == 1341 ||
                 mArticle == 1344 || mArticle == 1355 || mArticle == 1361 || mArticle == 1367) {
-            fleeBeforeBattle.setVisibility(View.INVISIBLE);
+            fleeBeforeBattle.setVisibility(View.GONE);
         }
-        //TODO: change default fleeBeforeBattle to invisible
         fleeBeforeBattle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
