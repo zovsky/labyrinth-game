@@ -579,6 +579,11 @@ public class ArticleFragment extends Fragment {
             }
             //if (radioGroup.getChildAt(1).isClickable())
         }
+        if (mArticle == 83) {
+            if (!((MainActivity) getActivity()).isThingAvailable("Пустая бутылка") && !((MainActivity) getActivity()).isThingAvailable("Бутылка с водой")) {
+                radioButton[2].setVisibility(View.GONE);
+            }
+        }
         //91 see 335
         if (mArticle == 106) {
             radioGroup.getChildAt(1).setEnabled(false);

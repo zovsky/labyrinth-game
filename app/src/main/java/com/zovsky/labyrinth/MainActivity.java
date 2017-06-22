@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity
 
         Set<String> things=new HashSet<>();
         things.add("Меч");//default меч
-        things.add("Пустая бутылка"); //default фонарь
+        things.add("Бутылка с водой"); //default фонарь
         editor.putStringSet("things", things);
 
         //Set<String> keys=new HashSet<>();
@@ -703,6 +703,18 @@ public class MainActivity extends AppCompatActivity
             changeVVV(2);
             changeLLL(1);
         }
+        if (article == 83) {
+            int selectedRadio = gamePref.getInt("selectedRadio", 0);
+            if (selectedRadio == 2) {
+                if (isThingAvailable("Пустая бутылка")) {
+                    removeThing("Пустая бутылка");
+                    addThing("Бутылка с эликсиром невидимости");
+                } else if (isThingAvailable("Бутылка с водой")) {
+                    removeThing("Бутылка с водой");
+                    addThing("Бутылка с эликсиром невидимости");
+                }
+            }
+        }
         if (article == 88) {
             changeVVV(-2);
             addThing("Сеть");
@@ -719,7 +731,7 @@ public class MainActivity extends AppCompatActivity
                 changeExtraLLL(-1);
             }
             addRoomToWasHere(95);
-            //todo убрать -1 extra после ближайшей битвы
+            //todo убрать extraLLL = -1 после ближайшей битвы
         }
         if (article == 96) {
             addKeyNumber("12");
