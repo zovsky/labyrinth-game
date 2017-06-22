@@ -519,7 +519,7 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[4].getId());
             }
         }
-        if (mArticle == 76) {
+        if (mArticle == 76) { //todo поменять текста
             Set<String> selectedCombinations = ((MainActivity) getActivity()).gamePref.getStringSet("selectedCombinations", new HashSet<String>());
             for (String i : selectedCombinations) {
                 if (selectedCombinations.contains(i)) {
