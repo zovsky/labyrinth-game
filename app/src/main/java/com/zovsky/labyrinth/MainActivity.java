@@ -61,13 +61,17 @@ public class MainActivity extends AppCompatActivity
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                ArticleFragment fragment = (ArticleFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
                 switch (item.getItemId()) {
                     case 10:
                         eatFood();
                         int foodTries = gamePref.getInt("foodTries", 0);
                         toolbar.getMenu().findItem(10).setEnabled(false);
                         editor.putInt("foodTries", foodTries-1).commit();
-                        ArticleFragment fragment = (ArticleFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                        fragment.redrawToolbar();
+                        return true;
+                    case 20:
+                        drinkElixir();
                         fragment.redrawToolbar();
                         return true;
                     default:
@@ -127,6 +131,23 @@ public class MainActivity extends AppCompatActivity
         changeFood(-1);
         changeVVV(4);
     }
+    private void drinkElixir() {
+        changeElixirCount(-1);
+        int elixir = gamePref.getInt("elixir", 0);
+        if (elixir == 1) {
+            editor.putInt("LLL", gamePref.getInt("startLLL", 0) - 1);
+
+            changeLLL(0);
+        } else if (elixir == 2) {
+            editor.putInt("VVV", gamePref.getInt("startVVV", 0) - 1).commit();
+            Log.d(GAME, "" + gamePref.getInt("VVV", 0));
+            changeVVV(0);
+        } else {
+            editor.putInt("KKK", gamePref.getInt("startKKK", 0) - 1);
+            changeKKK(0);
+        }
+    }
+
 
     private void showAlert() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -297,11 +318,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.menu_main, menu); //why is this commented?
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        //getMenuInflater().inflate(R.menu.menu_main, menu); //why is this commented?
+//        Log.d(GAME, "Activity onCreateOptionsMenu");
+//        return true;
+//    }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -331,7 +353,7 @@ public class MainActivity extends AppCompatActivity
         subMenu.clear();
         changeFood(0);
         changeGold(0);
-        changeElixirCount(gamePref.getInt("elixirCounter", 0));
+        changeElixirCount(0);
 
         ArrayList<String> thingsList = new ArrayList<String>();
         Set<String> things = gamePref.getStringSet("things", new HashSet<String>());
@@ -394,16 +416,20 @@ public class MainActivity extends AppCompatActivity
         SubMenu subMenu = inventory.getSubMenu();
         subMenu.removeItem(20);
         String elixirmenu;
+        int newElixirCount = gamePref.getInt("elixirCounter", 0) + difference;
         int elixir = gamePref.getInt("elixir", 0);
         if (elixir == 1) {
-            elixirmenu = "Эликсир ловкости: " + gamePref.getInt("elixirCounter", 0);
+            elixirmenu = "Эликсир ловкости: " + newElixirCount;
         } else if (elixir == 2) {
-            elixirmenu = "Эликсир выносливости: " + gamePref.getInt("elixirCounter", 0);
+            elixirmenu = "Эликсир выносливости: " + newElixirCount;
         } else {
-            elixirmenu = "Эликсир кармы: " + gamePref.getInt("elixirCounter", 0);
+            elixirmenu = "Эликсир кармы: " + newElixirCount;
         }
-        editor.putInt("elixirCounter", difference).commit();
+        editor.putInt("elixirCounter", newElixirCount).commit();
         subMenu.add(1, 20, 20, elixirmenu);
+        if (newElixirCount == 0) {
+            subMenu.getItem(1).setEnabled(false);
+        }
         //TODO: когда и как использовать эликсир
     }
 
@@ -576,6 +602,10 @@ public class MainActivity extends AppCompatActivity
                 setOneMenuItemActive("Запасы еды");
             }
         }
+        if (gamePref.getInt("elixirCounter", 0) > 0) {
+            setOneMenuItemActive("Эликсир ");
+        }
+
     }
 
     private void setOneMenuItemActive(String string) {
