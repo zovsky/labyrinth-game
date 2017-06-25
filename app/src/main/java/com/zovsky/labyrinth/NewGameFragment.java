@@ -119,8 +119,8 @@ public class NewGameFragment extends Fragment {
                 if (selectedId == -1 || ((MainActivity)getActivity()).gamePref.getInt("VVV", 0) == 0) {
                     Toast.makeText(getContext(), "Рассчитайте начальные параметры и выберите эликсир", Toast.LENGTH_SHORT).show();
                 } else {
-                    ((MainActivity)getActivity()).editor.putInt("startLLL", ((MainActivity)getActivity()).gamePref.getInt("LLL", 0));
-                    ((MainActivity)getActivity()).editor.putInt("startVVV", ((MainActivity)getActivity()).gamePref.getInt("VVV", 0));
+                    ((MainActivity)getActivity()).editor.putInt("startLLL", 1+((MainActivity)getActivity()).gamePref.getInt("LLL", 0));
+                    ((MainActivity)getActivity()).editor.putInt("startVVV", 1+((MainActivity)getActivity()).gamePref.getInt("VVV", 0));
                     ((MainActivity)getActivity()).editor.putInt("startKKK", 1+((MainActivity)getActivity()).gamePref.getInt("KKK", 0));
                     ((MainActivity)getActivity()).editor.putInt("elixirCounter", 2);
                     switch (selectedId){
@@ -142,7 +142,7 @@ public class NewGameFragment extends Fragment {
                     ((MainActivity)getActivity()).editor.commit();
                     ((MainActivity)getActivity()).generateInitialMenu();
                     ((MainActivity) getActivity()).showAllParameters();
-                    ((MainActivity)getActivity()).showArticle(83); //todo default 1
+                    ((MainActivity)getActivity()).showArticle(387); //todo default 1
                 }
             }
         });

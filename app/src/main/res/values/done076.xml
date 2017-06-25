@@ -7,25 +7,25 @@
     <string name="opt_76">12</string>
 
     <string name="option_76_1">237</string>
-    <string name="text_76_1">12+45+93=150</string>
+    <string name="text_76_1">Ключи 12, 45 и 93</string>
     <string name="option_76_2">237</string>
-    <string name="text_76_2">12+45+122=179</string>
+    <string name="text_76_2">Ключи 12, 45 и 122</string>
     <string name="option_76_3">237</string>
-    <string name="text_76_3">12+93+122=227</string>
+    <string name="text_76_3">Ключи 12, 93 и 122</string>
     <string name="option_76_4">237</string>
-    <string name="text_76_4">12+70+93=175</string>
+    <string name="text_76_4">Ключи 12, 70 и 93</string>
     <string name="option_76_5">387</string>
-    <string name="text_76_5">12+70+122=204</string>
+    <string name="text_76_5">Ключи 12, 70 и 122</string>
     <string name="option_76_6">237</string>
-    <string name="text_76_6">45+93+122=260</string>
+    <string name="text_76_6">Ключи 45, 93 и 122</string>
     <string name="option_76_7">237</string>
-    <string name="text_76_7">70+93+122=285</string>
+    <string name="text_76_7">Ключи 70, 93 и 122</string>
     <string name="option_76_8">237</string>
-    <string name="text_76_8">45+70+122=237</string>
+    <string name="text_76_8">Ключи 45, 70 и 122</string>
     <string name="option_76_9">237</string>
-    <string name="text_76_9">12+45+70=127</string>
+    <string name="text_76_9">Ключи 12, 45 и 70</string>
     <string name="option_76_10">237</string>
-    <string name="text_76_10">45+93+70=208</string>
+    <string name="text_76_10">Ключи 45, 93 и 70</string>
 
     <string name="option_76_11">500</string>
     <string name="text_76_11">Недостаточно ключей</string>

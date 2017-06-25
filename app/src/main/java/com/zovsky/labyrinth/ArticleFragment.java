@@ -9,6 +9,8 @@ import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -86,6 +88,14 @@ public class ArticleFragment extends Fragment {
         ((MainActivity)getActivity()).editor.putInt("currentArticle", mArticle).commit();
         ((MainActivity)getActivity()).editor.putInt("breakIntoArticle", 0).commit();
         ((MainActivity)getActivity()).showAllParameters();
+    }
+
+    @Override
+    public void   onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if (menu.size() == 0)
+            inflater.inflate(R.menu.menu_main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+
     }
 
     @Override
@@ -519,7 +529,7 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[4].getId());
             }
         }
-        if (mArticle == 76) { //todo поменять текста
+        if (mArticle == 76) {
             Set<String> selectedCombinations = ((MainActivity) getActivity()).gamePref.getStringSet("selectedCombinations", new HashSet<String>());
             for (String i : selectedCombinations) {
                 if (selectedCombinations.contains(i)) {
@@ -772,7 +782,6 @@ public class ArticleFragment extends Fragment {
                 }
                 daleeButton.setEnabled(true);
             }
-
         }
         //158 see 125
         if (mArticle == 165) {
@@ -1265,8 +1274,12 @@ public class ArticleFragment extends Fragment {
             public void onClick(View view) {
                 ((MainActivity) getActivity()).editor.putInt("foodTries", 1).commit();
                 if (mRadios == 0) {
-                    ((MainActivity) getActivity()).takeAction(mArticle);
-                    ((MainActivity) getActivity()).showPreArticle(mArticle+1000);
+                    if (mArticle == 500) {
+                        ((MainActivity) getActivity()).takeAction(mArticle);
+                    } else {
+                        ((MainActivity) getActivity()).takeAction(mArticle);
+                        ((MainActivity) getActivity()).showPreArticle(mArticle+1000);
+                    }
                 } else {
                     int selectedId = radioGroup.getCheckedRadioButtonId();
                     if (selectedId == -1) {

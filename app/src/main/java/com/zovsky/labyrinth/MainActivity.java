@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-//
         if (gamePref.getInt("gameOn", 0) == 0) {
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
@@ -266,10 +265,11 @@ public class MainActivity extends AppCompatActivity
         things.add("Бутылка с водой"); //default фонарь
         editor.putStringSet("things", things);
 
-        //Set<String> keys=new HashSet<>();
-        //keys.add("12"); //no keys on start
-        //keys.add("70");
-        //editor.putStringSet("keys", keys);
+        Set<String> keys=new HashSet<>();
+        keys.add("12"); //no keys on start
+        keys.add("70");
+        keys.add("122");
+        editor.putStringSet("keys", keys);
         editor.commit();
         //REMOVE on release
     }
@@ -387,7 +387,6 @@ public class MainActivity extends AppCompatActivity
             subMenu.add(1, 30, 30, menugold);
         }
     }
-    //TODO: if some parameters get to 0
     public void changeElixirCount(int difference) {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         Menu menu = toolbar.getMenu();
@@ -892,7 +891,7 @@ public class MainActivity extends AppCompatActivity
             addRoomToWasHere(18);
         }
         if (article == 216) {
-            removeThing("Металлический щит"); //todo оборотень против волкодава
+            removeThing("Металлический щит");
         }
         if (article == 220) {
             changeLLL(1);
@@ -1084,7 +1083,6 @@ public class MainActivity extends AppCompatActivity
         if (article == 376) {
             changeLLL(1);
             changeKKK(2);
-            return; //todo why return here?
         }
         if (article == 377) {
             int slctd = gamePref.getInt("selectedRadio", 0);
@@ -1093,7 +1091,6 @@ public class MainActivity extends AppCompatActivity
             }
             removeThing("Сеть");
         }
-        //todo check 378 text
         if (article == 380) {
             changeLLL(1);
             addRoomToWasHere(164);
@@ -1101,9 +1098,9 @@ public class MainActivity extends AppCompatActivity
         if (article == 385) {
             addRoomToWasHere(53);
         }
-        //todo: решетка, если идти на запад (см. блокнот) + 103
         if (article == 500) {
             gameOver(); //todo show buttonfragment
+            return;
         }
     }
 
