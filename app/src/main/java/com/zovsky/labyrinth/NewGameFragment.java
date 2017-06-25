@@ -126,15 +126,15 @@ public class NewGameFragment extends Fragment {
                     switch (selectedId){
                         case R.id.radioButton1:
                             ((MainActivity)getActivity()).editor.putInt("elixir", 1);
-                            ((MainActivity)getActivity()).editor.commit();
+                            //((MainActivity)getActivity()).editor.commit();
                             break;
                         case R.id.radioButton2:
                             ((MainActivity)getActivity()).editor.putInt("elixir", 2);
-                            ((MainActivity)getActivity()).editor.commit();
+                            //((MainActivity)getActivity()).editor.commit();
                             break;
                         case R.id.radioButton3:
                             ((MainActivity)getActivity()).editor.putInt("elixir", 3);
-                            ((MainActivity)getActivity()).editor.commit();
+                            //((MainActivity)getActivity()).editor.commit();
                             break;
 
                     }
@@ -142,7 +142,7 @@ public class NewGameFragment extends Fragment {
                     ((MainActivity)getActivity()).editor.commit();
                     ((MainActivity)getActivity()).generateInitialMenu();
                     ((MainActivity) getActivity()).showAllParameters();
-                    ((MainActivity)getActivity()).showArticle(387); //todo default 1
+                    ((MainActivity)getActivity()).showArticle(386); //todo default 1
                 }
             }
         });

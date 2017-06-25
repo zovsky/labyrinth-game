@@ -19,7 +19,7 @@ android {
     }
     sourceSets {
         main {
-            res.srcDirs = ['src/main/res', 'src/main/res/values-v21']
+            res.srcDirs = ['src/main/res']
         }
     }
 }
