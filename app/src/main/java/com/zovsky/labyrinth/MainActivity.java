@@ -61,18 +61,24 @@ public class MainActivity extends AppCompatActivity
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                ArticleFragment fragment = (ArticleFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                String toolbarTitle;
                 switch (item.getItemId()) {
                     case 10:
                         eatFood();
                         int foodTries = gamePref.getInt("foodTries", 0);
-                        toolbar.getMenu().findItem(10).setEnabled(false);
                         editor.putInt("foodTries", foodTries-1).commit();
-                        fragment.redrawToolbar();
+                        toolbarTitle = "Л:" + gamePref.getInt("LLL",0) +
+                                " В:" + gamePref.getInt("VVV",0) +
+                                " У:" + gamePref.getInt("KKK",0);
+                        setToolbarTitle(toolbarTitle, Integer.toString(gamePref.getInt("currentArticle", 0)));
                         return true;
                     case 20:
                         drinkElixir();
-                        fragment.redrawToolbar();
+//                        fragment.redrawToolbar();
+                        toolbarTitle = "Л:" + gamePref.getInt("LLL",0) +
+                                " В:" + gamePref.getInt("VVV",0) +
+                                " У:" + gamePref.getInt("KKK",0);
+                        setToolbarTitle(toolbarTitle, Integer.toString(gamePref.getInt("currentArticle", 0)));
                         return true;
                     default:
                         return true;
@@ -135,15 +141,13 @@ public class MainActivity extends AppCompatActivity
         changeElixirCount(-1);
         int elixir = gamePref.getInt("elixir", 0);
         if (elixir == 1) {
-            editor.putInt("LLL", gamePref.getInt("startLLL", 0) - 1);
-
+            editor.putInt("LLL", gamePref.getInt("startLLL", 0) - 1).commit();
             changeLLL(0);
         } else if (elixir == 2) {
             editor.putInt("VVV", gamePref.getInt("startVVV", 0) - 1).commit();
-            Log.d(GAME, "" + gamePref.getInt("VVV", 0));
             changeVVV(0);
         } else {
-            editor.putInt("KKK", gamePref.getInt("startKKK", 0) - 1);
+            editor.putInt("KKK", gamePref.getInt("startKKK", 0) - 1).commit();
             changeKKK(0);
         }
     }
@@ -282,8 +286,8 @@ public class MainActivity extends AppCompatActivity
         editor.commit();
 
         Set<String> things=new HashSet<>();
-        things.add("Меч");//default меч
-        things.add("Бутылка с водой"); //default фонарь
+        things.add("Сеть");//default меч
+        things.add("Деревянный кол"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
@@ -430,7 +434,6 @@ public class MainActivity extends AppCompatActivity
         if (newElixirCount == 0) {
             subMenu.getItem(1).setEnabled(false);
         }
-        //TODO: когда и как использовать эликсир
     }
 
 
@@ -663,7 +666,6 @@ public class MainActivity extends AppCompatActivity
             changeLLL(1);
             changeKKK(1);
         }
-        //todo 32 alter text if come from 377 e.g. что нельзя забрать сеть и кол
         if (article == 35) {
             changeGold(-10);
         }

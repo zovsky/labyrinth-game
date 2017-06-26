@@ -128,7 +128,7 @@ public class BattleFragment extends Fragment {
                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
                 " У:" + ((MainActivity)getActivity()).gamePref.getInt("KKK",0);
 
-        ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle)); //TODO subtitle null
+        ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle)); //TODO subtitle null everywhere
 
         View view = inflater.inflate(R.layout.fragment_battle, container, false);
 

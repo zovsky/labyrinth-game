@@ -1361,12 +1361,4 @@ public class ArticleFragment extends Fragment {
         int resId = getResources().getIdentifier(aString, "string", GAME);
         return resId;
     }
-
-    public void redrawToolbar() {
-        String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
-                " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
-                " У:" + ((MainActivity)getActivity()).gamePref.getInt("KKK",0);
-        ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
-    }
-
 }
