@@ -760,9 +760,10 @@ public class MainActivity extends AppCompatActivity
             int slctd = gamePref.getInt("selectedRadio", 0);
             if (slctd == 1) {
                 changeExtraLLL(-1);
+                editor.putInt("addOneExtraLAfterBattle", 1).commit();
             }
             addRoomToWasHere(95);
-            //todo убрать extraLLL = -1 после ближайшей битвы
+            //todo обновить правила
         }
         if (article == 96) {
             addKeyNumber("12");
