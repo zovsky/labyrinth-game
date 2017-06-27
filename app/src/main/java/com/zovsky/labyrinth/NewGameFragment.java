@@ -12,10 +12,7 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -117,7 +114,7 @@ public class NewGameFragment extends Fragment {
 
                 int selectedId = radioGroup.getCheckedRadioButtonId();
                 if (selectedId == -1 || ((MainActivity)getActivity()).gamePref.getInt("VVV", 0) == 0) {
-                    Toast.makeText(getContext(), "Рассчитайте начальные параметры и выберите эликсир", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Рассчитай начальные параметры и выбери эликсир", Toast.LENGTH_SHORT).show();
                 } else {
                     ((MainActivity)getActivity()).editor.putInt("startLLL", 1+((MainActivity)getActivity()).gamePref.getInt("LLL", 0));
                     ((MainActivity)getActivity()).editor.putInt("startVVV", 1+((MainActivity)getActivity()).gamePref.getInt("VVV", 0));

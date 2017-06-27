@@ -73,12 +73,7 @@ public class MainActivity extends AppCompatActivity
                         setToolbarTitle(toolbarTitle, Integer.toString(gamePref.getInt("currentArticle", 0)));
                         return true;
                     case 20:
-                        drinkElixir();
-//                        fragment.redrawToolbar();
-                        toolbarTitle = "Л:" + gamePref.getInt("LLL",0) +
-                                " В:" + gamePref.getInt("VVV",0) +
-                                " У:" + gamePref.getInt("KKK",0);
-                        setToolbarTitle(toolbarTitle, Integer.toString(gamePref.getInt("currentArticle", 0)));
+                        showElixirAlert();
                         return true;
                     default:
                         return true;
@@ -137,21 +132,6 @@ public class MainActivity extends AppCompatActivity
         changeFood(-1);
         changeVVV(4);
     }
-    private void drinkElixir() {
-        changeElixirCount(-1);
-        int elixir = gamePref.getInt("elixir", 0);
-        if (elixir == 1) {
-            editor.putInt("LLL", gamePref.getInt("startLLL", 0) - 1).commit();
-            changeLLL(0);
-        } else if (elixir == 2) {
-            editor.putInt("VVV", gamePref.getInt("startVVV", 0) - 1).commit();
-            changeVVV(0);
-        } else {
-            editor.putInt("KKK", gamePref.getInt("startKKK", 0) - 1).commit();
-            changeKKK(0);
-        }
-    }
-
 
     private void showAlert() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -1178,4 +1158,53 @@ public class MainActivity extends AppCompatActivity
         Set<String> keys = gamePref.getStringSet("keys", new HashSet<String>());
         return keys.size();
     }
+
+    private void showElixirAlert() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        LinearLayout layout       = new LinearLayout(this);
+        TextView tvMessage        = new TextView(this);
+
+        tvMessage.setText("Ты действительно хочешь использовать эликсир?");
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.addView(tvMessage);
+        tvMessage.setPadding(50, 20, 50, 0);
+        alert.setTitle("Внимание");
+        alert.setView(layout);
+
+
+        alert.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alert.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                changeElixirCount(-1);
+                int elixir = gamePref.getInt("elixir", 0);
+                if (elixir == 1) {
+                    editor.putInt("LLL", gamePref.getInt("startLLL", 0) - 1).commit();
+                    changeLLL(0);
+                } else if (elixir == 2) {
+                    editor.putInt("VVV", gamePref.getInt("startVVV", 0) - 1).commit();
+                    changeVVV(0);
+                } else {
+                    editor.putInt("KKK", gamePref.getInt("startKKK", 0) - 1).commit();
+                    changeKKK(0);
+                }
+
+                String toolbarTitle = "Л:" + gamePref.getInt("LLL",0) +
+                        " В:" + gamePref.getInt("VVV",0) +
+                        " У:" + gamePref.getInt("KKK",0);
+                setToolbarTitle(toolbarTitle, Integer.toString(gamePref.getInt("currentArticle", 0)));
+
+            }
+        });
+        alert.show();
+    }
+
 }
