@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -136,9 +135,6 @@ public class PreBattleFragment extends Fragment {
             }
             if (para == 3) {
                 textView[para] = (TextView) view.findViewById(R.id.battle_condition_text);
-                /*if (textView[para].getText().toString().equals("")) {
-                    textView[para].setText("Предстоит битва.");
-                } else {*/
                 textView[para].setText(resID);
             }
             if (para == 4) {

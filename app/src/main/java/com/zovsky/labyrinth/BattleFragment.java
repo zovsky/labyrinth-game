@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
 
@@ -176,7 +175,6 @@ public class BattleFragment extends Fragment {
                     int dice = rnd.nextInt(6)+1;
                     ((MainActivity)getActivity()).editor.putInt("damage2344", dice).commit();
                 }
-                Toast.makeText(getContext() ,hero_attack-extraLLL + "", Toast.LENGTH_SHORT).show();
                 ((MainActivity) getActivity()).editor.putInt("heroAttack", hero_attack).commit();
                 calcHeroAttackButton.setEnabled(false);
                 heroAttackTextView.setText("" + (hero_attack-extraLLL) + extraLLLstring);

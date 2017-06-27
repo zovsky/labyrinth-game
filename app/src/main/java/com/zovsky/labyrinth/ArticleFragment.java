@@ -751,7 +751,6 @@ public class ArticleFragment extends Fragment {
                         int dice;
                         dice = rnd.nextInt(6) + rnd.nextInt(6) + 2;
                         ((MainActivity) getActivity()).editor.putInt(loseGoldAmount, dice).commit();
-                        Toast.makeText(getContext(), "" + dice, Toast.LENGTH_SHORT).show(); //todo remove toasts
                         loseGoldButton.setText("Проигрываешь золота: " + dice);
                         if (((MainActivity) getActivity()).gamePref.getInt("gold", 0) - dice <= 0) {
                             radioButton[0].setEnabled(false);
@@ -843,7 +842,6 @@ public class ArticleFragment extends Fragment {
                         int dice;
                         dice = rnd.nextInt(6) + rnd.nextInt(6) + 2;
                         ((MainActivity) getActivity()).editor.putInt(winGoldAmount, dice).commit();
-                        Toast.makeText(getContext(), "" + dice, Toast.LENGTH_SHORT).show();
                         winGoldButton.setText("Выигрываешь золота: " + dice);
                         daleeButton.setEnabled(true);
                     }
@@ -1031,7 +1029,6 @@ public class ArticleFragment extends Fragment {
                             dice = rnd.nextInt(currentVVV-1) + 1;
                         }
                         ((MainActivity) getActivity()).editor.putInt(rememberedLoseAmount, dice).commit();
-                        Toast.makeText(getContext(), "" + dice, Toast.LENGTH_SHORT).show();
                         loseVvvButton.setText("Теряешь " + dice + "В");
                         daleeButton.setEnabled(true);
                     }
@@ -1287,7 +1284,7 @@ public class ArticleFragment extends Fragment {
                 } else {
                     int selectedId = radioGroup.getCheckedRadioButtonId();
                     if (selectedId == -1) {
-                        Toast.makeText(getContext(), "Сделайте выбор", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Сделай выбор", Toast.LENGTH_SHORT).show();
                     } else {
                         ((MainActivity) getActivity()).editor.putInt("selectedRadio", selectedId - 1).commit();
                         ((MainActivity) getActivity()).takeAction(mArticle);
@@ -1315,14 +1312,12 @@ public class ArticleFragment extends Fragment {
         Random rnd = new Random();
         if (mArticle == 110) {
             int dice = rnd.nextInt(6) + 1;
-            Toast.makeText(getContext(), "" + dice, Toast.LENGTH_SHORT).show();
             if (dice > 2) {
                 return true;
             }
         }
         if (mArticle == 143 || mArticle == 174 || mArticle == 315) {
             int dice = rnd.nextInt(6) + 1;
-            Toast.makeText(getContext(), "" + dice, Toast.LENGTH_SHORT).show();
             if (dice > 3) {
                 return true;
             }
