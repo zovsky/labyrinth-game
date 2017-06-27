@@ -258,7 +258,7 @@ public class ArticleFragment extends Fragment {
         final AppCompatButton daleeButton = new AppCompatButton(getContext());
         layout.addView(daleeButton);
         //articles before battle;
-        if (mRadios == 0) {
+        if (mRadios == 0 && mArticle != 500) {
             daleeButton.setText("БИТВА");
         } else daleeButton.setText("Продолжить");
 
@@ -1021,7 +1021,6 @@ public class ArticleFragment extends Fragment {
             layout.addView(loseVvvButton, 1);
             if (radioID < 1) {
                 loseVvvButton.setText("Бросить кубик");
-                radioGroup.getChildAt(0).setEnabled(false);
                 daleeButton.setEnabled(false);
                 loseVvvButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1038,7 +1037,6 @@ public class ArticleFragment extends Fragment {
                         ((MainActivity) getActivity()).editor.putInt(rememberedLoseAmount, dice).commit();
                         Toast.makeText(getContext(), "" + dice, Toast.LENGTH_SHORT).show();
                         loseVvvButton.setText("Теряешь " + dice + "В");
-
                         daleeButton.setEnabled(true);
                     }
                 });
@@ -1257,7 +1255,25 @@ public class ArticleFragment extends Fragment {
                 radioGroup.check(radioButton[2].getId());
             }
         }
-
+        if (mArticle == 500) {
+            int previousArticle = ((MainActivity) getActivity()).gamePref.getInt("previousArticle", 0);
+            if (previousArticle > 2000) {
+                textView[1].setText("Ты пал в битве. Соперник оказался слишком силен. Попробуй пройти Лабиринт еще раз.");
+            } else if (previousArticle == 23) {
+                textView[1].setText("К сожалению, у тебя недостаточно ключей, чтобы войти в хранилище и продолжить путь. А было так близко! Попробуй пройти Лабиринт еще раз.");
+            } else if (previousArticle == 74) {
+                textView[1].setText("К сожалению, у тебя не осталось способов перебраться через расщелину! Попробуй пройти Лабиринт еще раз.");
+            } else if (previousArticle == 76) {
+                textView[1].setText("К сожалению, у тебя недостаточно ключей, чтобы открыть замки. И так близко к цели! Попробуй пройти Лабиринт еще раз.");
+            } else if (previousArticle == 352) {
+                textView[1].setText("Цель была так близка... Попробуй пройти Лабиринт еще раз.");
+            } else if (previousArticle == 401) {
+                textView[1].setText("В следующий раз ищи старую книгу гремлинов. Дальнейшее продолжение невозможно даже для такого настоящего смельчака как ты. Попробуй пройти Лабиринт еще раз.");
+            } else if (previousArticle == 387) {
+                textView[1].setText("Осторожно приподними крышку ящика. На дне его лежит какая-то бумага. Это сложенная в 32 раза богато иллюстрированная карта. Осторожно разверни ее, и сразу обнаружишь подробный план подземных лабиринтов. Возьми и спрячь ее! Потому что она бесценна!");
+            } else textView[1].setText("Попробуй пройти Лабиринт еще раз.");
+        }
+        //todo alert when use elixir
         //take special action on article load
         ((MainActivity) getActivity()).takeSpecialAction(mArticle);
 

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="para_500">1</string>
+    <string name="para_500">2</string>
 
-    <string name="article_500_1">КОНЕЦ</string>
+    <string name="article_500_1">КОНЕЦ ИГРЫ</string>
+    <string name="article_500_2"></string>
 
-    <string name="opt_500">1</string>
+    <string name="opt_500">0</string>
 
-    <string name="option_500_1">0</string>
-    <string name="text_500_1">Далее</string>
 
 </resources>

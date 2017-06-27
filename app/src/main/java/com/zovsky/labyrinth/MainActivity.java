@@ -286,14 +286,14 @@ public class MainActivity extends AppCompatActivity
         editor.commit();
 
         Set<String> things=new HashSet<>();
-        things.add("Сеть");//default меч
+        things.add("Меч");//default меч
         things.add("Деревянный кол"); //default фонарь
         editor.putStringSet("things", things);
 
         Set<String> keys=new HashSet<>();
         keys.add("12"); //no keys on start
-        keys.add("70");
-        keys.add("122");
+        //keys.add("70");
+        //keys.add("122");
         editor.putStringSet("keys", keys);
         editor.commit();
         //REMOVE on release
@@ -1132,7 +1132,7 @@ public class MainActivity extends AppCompatActivity
             addRoomToWasHere(53);
         }
         if (article == 500) {
-            gameOver(); //todo show buttonfragment
+            gameOver();
             return;
         }
     }

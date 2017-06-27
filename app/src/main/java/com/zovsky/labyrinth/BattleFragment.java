@@ -247,6 +247,7 @@ public class BattleFragment extends Fragment {
                 if (heroVVV < 1 || monsterVVV < 1) {
                     if (heroVVV < 1) {
                         Log.d(GAME, "branch1 - game over");
+                        ((MainActivity) getActivity()).editor.putInt("previousArticle", mArticle).commit();
                         ((MainActivity) getActivity()).showArticle(500);
                         return;
                     } else {

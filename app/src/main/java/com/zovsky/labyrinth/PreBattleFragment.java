@@ -219,6 +219,7 @@ public class PreBattleFragment extends Fragment {
                 ((MainActivity) getActivity()).editor.putInt("luck", 0);
                 ((MainActivity) getActivity()).editor.remove("monsterAttack");
                 ((MainActivity) getActivity()).editor.remove("heroAttack");
+                ((MainActivity) getActivity()).editor.putInt("previousArticle", mArticle);
                 ((MainActivity) getActivity()).editor.commit();
                 ((MainActivity) getActivity()).showBattle(mArticle + 1000);
             }
