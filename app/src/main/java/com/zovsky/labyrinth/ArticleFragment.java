@@ -1266,10 +1266,9 @@ public class ArticleFragment extends Fragment {
                 textView[1].setText("Осторожно приподними крышку ящика. На дне его лежит какая-то бумага. Это сложенная в 32 раза богато иллюстрированная карта. Осторожно разверни ее, и сразу обнаружишь подробный план подземных лабиринтов. Возьми и спрячь ее! Потому что она бесценна!");
             } else textView[1].setText("Попробуй пройти Лабиринт еще раз.");
         }
-        //todo alert when use elixir
         //take special action on article load
         ((MainActivity) getActivity()).takeSpecialAction(mArticle);
-
+//todo remove logs
         daleeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
