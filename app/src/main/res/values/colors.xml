@@ -6,4 +6,6 @@
     <item name="color_menu_item" type="color">#EFBD5F</item>
     <item name="color_background" type="color">#303030</item>
     <color name="background_material_dark_1">#755444</color>
+    <color name="black">#000000</color>
+    <color name="zvsDarkBrown">#623722</color>
 </resources>

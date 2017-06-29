@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="LabTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorControlNormal">@color/color_text</item>
+        <item name="android:colorBackground">@color/background_material_dark_1</item>
+        <item name="titleTextColor">@color/color_text</item>
+        <item name="android:navigationBarColor">@color/zvsDarkBrown</item>
+        <item name="android:statusBarColor">@color/zvsDarkBrown</item>
+
+    </style>
+</resources>

@@ -66,10 +66,11 @@ public class MainActivity extends AppCompatActivity
                     case 10:
                         eatFood();
                         int foodTries = gamePref.getInt("foodTries", 0);
+                        toolbar.getMenu().findItem(10).setEnabled(false);
                         editor.putInt("foodTries", foodTries-1).commit();
                         toolbarTitle = "Л:" + gamePref.getInt("LLL",0) +
                                 " В:" + gamePref.getInt("VVV",0) +
-                                " У:" + gamePref.getInt("KKK",0);
+                                " К:" + gamePref.getInt("KKK",0);
                         //setToolbarTitle(toolbarTitle, Integer.toString(gamePref.getInt("currentArticle", 0)));
                         setToolbarTitle(toolbarTitle);
                         return true;
@@ -1203,7 +1204,7 @@ public class MainActivity extends AppCompatActivity
 
                 String toolbarTitle = "Л:" + gamePref.getInt("LLL",0) +
                         " В:" + gamePref.getInt("VVV",0) +
-                        " У:" + gamePref.getInt("KKK",0);
+                        " К:" + gamePref.getInt("KKK",0);
                 //setToolbarTitle(toolbarTitle, Integer.toString(gamePref.getInt("currentArticle", 0)));
                 setToolbarTitle(toolbarTitle);
 
