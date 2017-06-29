@@ -96,7 +96,7 @@ public class ArticleFragment extends Fragment {
         //set LVU as toolbar title
         String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
                                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
-                                " У:" + ((MainActivity)getActivity()).gamePref.getInt("KKK",0);
+                                " К:" + ((MainActivity)getActivity()).gamePref.getInt("KKK",0);
         //((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
         ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle);
 
