@@ -99,7 +99,8 @@ public class PreBattleFragment extends Fragment {
                 extraLLLstring +
                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
                 " У:" + ((MainActivity)getActivity()).gamePref.getInt("KKK",0);
-        ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
+        //((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
+        ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle);
 
         View view = inflater.inflate(R.layout.fragment_pre_battle, container, false);
 
@@ -195,7 +196,7 @@ public class PreBattleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ((MainActivity) getActivity()).takeAction(mArticle);
-                ((MainActivity) getActivity()).showAllParameters();
+                //((MainActivity) getActivity()).showAllParameters();
                 if (layout.findViewById(R.id.helmetCheckBox) != null) {
                     CheckBox hCB = (CheckBox) layout.findViewById(R.id.helmetCheckBox);
                     if (hCB.isChecked()) {

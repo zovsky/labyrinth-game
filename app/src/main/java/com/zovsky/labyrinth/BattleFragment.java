@@ -127,7 +127,8 @@ public class BattleFragment extends Fragment {
                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
                 " У:" + ((MainActivity)getActivity()).gamePref.getInt("KKK",0);
 
-        ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle)); //TODO subtitle null everywhere
+        //((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
+        ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle);
 
         View view = inflater.inflate(R.layout.fragment_battle, container, false);
 
@@ -244,7 +245,7 @@ public class BattleFragment extends Fragment {
                 ((MainActivity) getActivity()).editor.commit();
                 if (heroVVV < 1 || monsterVVV < 1) {
                     if (heroVVV < 1) {
-                        Log.d(GAME, "branch1 - game over");
+                        //Log.d(GAME, "branch1 - game over");
                         ((MainActivity) getActivity()).editor.putInt("previousArticle", mArticle).commit();
                         ((MainActivity) getActivity()).showArticle(500);
                         return;
@@ -255,30 +256,30 @@ public class BattleFragment extends Fragment {
                         }
                         if (mArticle == 2092 || mArticle == 2277 || mArticle == 2278 || mArticle == 2312 || mArticle == 2313 || mArticle == 2314) {
                             int killedMonsters = ((MainActivity) getActivity()).gamePref.getInt("killedMonsters", 0);
-                            Log.d(GAME, "" + killedMonsters);
+                            //Log.d(GAME, "" + killedMonsters);
                             ((MainActivity) getActivity()).editor.putInt("killedMonsters", killedMonsters + 1).commit();
                         }
                         if (mArticle == 2238 || mArticle == 2239 || mArticle == 2240 || mArticle == 2241 || mArticle == 2069 ||
                                 mArticle == 2277 || mArticle == 2312 || mArticle == 2313) {
-                            Log.d(GAME, "branch2 - monster pack battles");
+                            //Log.d(GAME, "branch2 - monster pack battles");
                             ((MainActivity) getActivity()).showPreArticle(mArticle - 1000 + 1);
                             return;
                         } else {
-                            Log.d(GAME, "branch3");
+                            //Log.d(GAME, "branch3");
                             int victoryArticle = ((MainActivity) getActivity()).gamePref.getInt("victoryArticle", 0);
                             if (victoryArticle == 0) {
-                                Log.d(GAME, "branch4 - custom victory");
+                                //Log.d(GAME, "branch4 - custom victory");
                                 ((MainActivity) getActivity()).showArticle(((MainActivity) getActivity()).gamePref.getInt("goBackArticleID", 0));
                                 return;
                             } else {
-                                Log.d(GAME, "branch5 - normal victory");
+                                //Log.d(GAME, "branch5 - normal victory");
                                 ((MainActivity) getActivity()).showArticle(victoryArticle);
                                 return;
                             }
                         }
                     }
                 } else {
-                    Log.d(GAME, "branch6 - next round");
+                    //Log.d(GAME, "branch6 - next round");
                     ((MainActivity) getActivity()).editor.putInt("VVV", heroVVV);
                     ((MainActivity) getActivity()).editor.putInt("monsterVVV", monsterVVV);
                     ((MainActivity) getActivity()).editor.commit();

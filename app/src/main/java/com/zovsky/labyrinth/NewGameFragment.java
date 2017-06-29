@@ -138,12 +138,13 @@ public class NewGameFragment extends Fragment {
                     ((MainActivity)getActivity()).editor.putInt("gameOn", 1);
                     ((MainActivity)getActivity()).editor.commit();
                     ((MainActivity)getActivity()).generateInitialMenu();
-                    ((MainActivity) getActivity()).showAllParameters();
+                    //((MainActivity) getActivity()).showAllParameters();
                     ((MainActivity)getActivity()).showArticle(1);
                 }
             }
         });
-        ((MainActivity) getActivity()).setToolbarTitle("Лабиринт", "");
+        //((MainActivity) getActivity()).setToolbarTitle("Лабиринт", "");
+        ((MainActivity) getActivity()).setToolbarTitle("Лабиринт");
         return view;
     }
 

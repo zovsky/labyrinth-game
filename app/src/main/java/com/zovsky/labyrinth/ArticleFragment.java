@@ -83,7 +83,7 @@ public class ArticleFragment extends Fragment {
         choice = new int[mRadios];
         ((MainActivity)getActivity()).editor.putInt("currentArticle", mArticle).commit();
         ((MainActivity)getActivity()).editor.putInt("breakIntoArticle", 0).commit();
-        ((MainActivity)getActivity()).showAllParameters();
+        //((MainActivity)getActivity()).showAllParameters();
     }
 
     @Override
@@ -97,7 +97,8 @@ public class ArticleFragment extends Fragment {
         String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
                                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
                                 " У:" + ((MainActivity)getActivity()).gamePref.getInt("KKK",0);
-        ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
+        //((MainActivity) getActivity()).setToolbarTitle(toolbarTitle, Integer.toString(mArticle));
+        ((MainActivity) getActivity()).setToolbarTitle(toolbarTitle);
 
         View view = inflater.inflate(R.layout.fragment_article, container, false);
 
@@ -134,7 +135,6 @@ public class ArticleFragment extends Fragment {
             }
         }
         if (mArticle == 164) {
-            ((MainActivity) getActivity()).showAllParameters();
             boolean was164 = ((MainActivity) getActivity()).wasIHere(164);
             if (was164) {
                 mParas = 1;
@@ -153,7 +153,6 @@ public class ArticleFragment extends Fragment {
             }
         }
         if (mArticle == 401) {
-            ((MainActivity) getActivity()).showAllParameters();
             boolean was122 = ((MainActivity) getActivity()).wasIHere(122);
             if (was122) {
                 mParas = 1;
@@ -188,7 +187,7 @@ public class ArticleFragment extends Fragment {
                     radioStartCount = 0;
                 }
             }
-            Log.d(GAME, "was here:" + wasHere);
+            //Log.d(GAME, "was here:" + wasHere);
         }
         if (mArticle == 181) {
             if (((MainActivity) getActivity()).isThingAvailable("Канат с крюком")) {
@@ -231,17 +230,19 @@ public class ArticleFragment extends Fragment {
             int radioTextID = getStringResourceByName(textID);
             choice[radio] = Integer.parseInt(getResources().getString(resID));
             String radioTextNumber = getResources().getString(resID);
-            String radioTextShortDescription = ", " + getResources().getString(radioTextID);
+            //String radioTextShortDescription = ", " + getResources().getString(radioTextID); debug
+            String radioTextShortDescription = getResources().getString(radioTextID);
             if (radioTextNumber.equals("0")) {
                 int goBackID = ((MainActivity) getActivity()).gamePref.getInt("goBackArticleID", 0);
                 radioTextNumber = Integer.toString(goBackID);
                 choice[radio] = goBackID;
             }
             if ((mArticle == 247 || mArticle == 270) && radioStartCount == 0 && radio == 0 && wasHere) {
-                radioTextShortDescription = ", Ты тут уже был. Возвращайся к перекрестку.";
-                //TODO: remove ", "
+                //radioTextShortDescription = ", Ты тут уже был. Возвращайся к перекрестку.";
+                radioTextShortDescription = "Ты тут уже был. Возвращайся к перекрестку.";
             }
-            String radioText = radioTextNumber + radioTextShortDescription;
+            //String radioText = radioTextNumber + radioTextShortDescription; debug
+            String radioText = radioTextShortDescription;
             //set radio button text
 
             radioButton[radio].setText(radioText);
@@ -385,7 +386,7 @@ public class ArticleFragment extends Fragment {
                     public void onClick(View view) {
                         Random rnd = new Random();
                         int dice = rnd.nextInt(6) + 1;
-                        Log.d(GAME, "" + dice);
+                        //Log.d(GAME, "" + dice);
                         ((MainActivity) getActivity()).editor.putInt("thrownDice36", ((MainActivity) getActivity()).gamePref.getInt("thrownDice36", 0) + 1).commit();
                         throwDiceButton.setText("Осталось попыток: " + (3-((MainActivity) getActivity()).gamePref.getInt("thrownDice36", 0)));
                         if (dice == 5) {
@@ -987,7 +988,7 @@ public class ArticleFragment extends Fragment {
                     public void onClick(View view) {
                         Random rnd = new Random();
                         int dice = rnd.nextInt(6) + 1;
-                        Log.d(GAME, "" + dice);
+                        //Log.d(GAME, "" + dice);
                         ((MainActivity) getActivity()).editor.putInt("thrownDice217", ((MainActivity) getActivity()).gamePref.getInt("thrownDice217", 0) + 1).commit();
                         if (dice >= 5) {
                             ((MainActivity) getActivity()).editor.putInt("fatHitCount", ((MainActivity) getActivity()).gamePref.getInt("fatHitCount", 0) + 1).commit();
@@ -1205,7 +1206,7 @@ public class ArticleFragment extends Fragment {
                     public void onClick(View view) {
                         Random rnd = new Random();
                         int dice = rnd.nextInt(6) + 1;
-                        Log.d(GAME, "" + dice);
+                        //Log.d(GAME, "" + dice);
                         ((MainActivity) getActivity()).editor.putInt("thrownDice359", ((MainActivity) getActivity()).gamePref.getInt("thrownDice359", 0) + 1).commit();
                         throwDiceButton.setText("Осталось попыток: " + (2-((MainActivity) getActivity()).gamePref.getInt("thrownDice359", 0)));
                         if (dice == 5) {
@@ -1268,7 +1269,7 @@ public class ArticleFragment extends Fragment {
         }
         //take special action on article load
         ((MainActivity) getActivity()).takeSpecialAction(mArticle);
-//todo remove logs
+
         daleeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1287,7 +1288,7 @@ public class ArticleFragment extends Fragment {
                     } else {
                         ((MainActivity) getActivity()).editor.putInt("selectedRadio", selectedId - 1).commit();
                         ((MainActivity) getActivity()).takeAction(mArticle);
-                        ((MainActivity) getActivity()).showAllParameters();
+                        //((MainActivity) getActivity()).showAllParameters();
                         ((MainActivity) getActivity()).editor.putInt("previousArticle", mArticle).commit();
                         int breakInto = ((MainActivity) getActivity()).gamePref.getInt("breakIntoArticle",0);
                         if (breakInto > 0){

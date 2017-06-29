@@ -70,7 +70,8 @@ public class MainActivity extends AppCompatActivity
                         toolbarTitle = "Л:" + gamePref.getInt("LLL",0) +
                                 " В:" + gamePref.getInt("VVV",0) +
                                 " У:" + gamePref.getInt("KKK",0);
-                        setToolbarTitle(toolbarTitle, Integer.toString(gamePref.getInt("currentArticle", 0)));
+                        //setToolbarTitle(toolbarTitle, Integer.toString(gamePref.getInt("currentArticle", 0)));
+                        setToolbarTitle(toolbarTitle);
                         return true;
                     case 20:
                         showElixirAlert();
@@ -176,10 +177,14 @@ public class MainActivity extends AppCompatActivity
         } else return -1;
     }
 
-    public void setToolbarTitle(String title, String subtitle) {
+//    public void setToolbarTitle(String title, String subtitle) {
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        toolbar.setTitle(title);
+//        toolbar.setSubtitle(subtitle);
+//    }
+    public void setToolbarTitle(String title) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(title);
-        toolbar.setSubtitle(subtitle);
     }
 
     public void setInventoryVisibility(boolean visibility) {
@@ -267,25 +272,25 @@ public class MainActivity extends AppCompatActivity
 
         Set<String> things=new HashSet<>();
         things.add("Меч");//default меч
-        things.add("Деревянный кол"); //default фонарь
+        things.add("Фонарь"); //default фонарь
         editor.putStringSet("things", things);
 
-        Set<String> keys=new HashSet<>();
-        keys.add("12"); //no keys on start
+        //Set<String> keys=new HashSet<>();
+        //keys.add("12"); //no keys on start
         //keys.add("70");
         //keys.add("122");
-        editor.putStringSet("keys", keys);
+        //editor.putStringSet("keys", keys);
         editor.commit();
         //REMOVE on release
     }
 
-    public void showAllParameters() {
-        Map<String, ?> allEntries = gamePref.getAll();
-        Log.d(GAME, "-----------------");
-        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            Log.d(GAME, entry.getKey() + ": " + entry.getValue().toString());
-        }
-    }
+//    public void showAllParameters() {
+//        Map<String, ?> allEntries = gamePref.getAll();
+//        Log.d(GAME, "-----------------");
+//        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+//            Log.d(GAME, entry.getKey() + ": " + entry.getValue().toString());
+//        }
+//    }
 
     public void onFragmentInteraction(Uri uri){
         //you can leave it empty
@@ -743,7 +748,6 @@ public class MainActivity extends AppCompatActivity
                 editor.putInt("addOneExtraLAfterBattle", 1).commit();
             }
             addRoomToWasHere(95);
-            //todo обновить правила
         }
         if (article == 96) {
             addKeyNumber("12");
@@ -1200,7 +1204,8 @@ public class MainActivity extends AppCompatActivity
                 String toolbarTitle = "Л:" + gamePref.getInt("LLL",0) +
                         " В:" + gamePref.getInt("VVV",0) +
                         " У:" + gamePref.getInt("KKK",0);
-                setToolbarTitle(toolbarTitle, Integer.toString(gamePref.getInt("currentArticle", 0)));
+                //setToolbarTitle(toolbarTitle, Integer.toString(gamePref.getInt("currentArticle", 0)));
+                setToolbarTitle(toolbarTitle);
 
             }
         });

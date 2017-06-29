@@ -80,7 +80,8 @@ public class ButtonsFragment extends Fragment {
                 ((MainActivity) getActivity()).showNewGameFragment();
             }
         });
-        ((MainActivity) getActivity()).setToolbarTitle("Лабиринт", "");
+        //((MainActivity) getActivity()).setToolbarTitle("Лабиринт", "");
+        ((MainActivity) getActivity()).setToolbarTitle("Лабиринт");
         return view;
     }
 
