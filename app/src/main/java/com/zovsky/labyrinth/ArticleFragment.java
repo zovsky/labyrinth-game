@@ -93,7 +93,7 @@ public class ArticleFragment extends Fragment {
         ((MainActivity)getActivity()).setInventoryVisibility(true);
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         toolbar.getMenu().getItem(0).setTitle(R.string.action_settings).setEnabled(true);
-        //set LVU as toolbar title
+        //set LVK as toolbar title
         String toolbarTitle = "Л:" + ((MainActivity)getActivity()).gamePref.getInt("LLL",0) +
                                 " В:" + ((MainActivity)getActivity()).gamePref.getInt("VVV",0) +
                                 " К:" + ((MainActivity)getActivity()).gamePref.getInt("KKK",0);
